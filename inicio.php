@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="utf-8" />
-        <title>GEO <?php echo "<3"; ?></title>
+        <title>Totem <?php echo "<3"; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -735,23 +735,24 @@
                                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>ID Meta</th>
-                                                    <th>Nombre Campaña Meta</th>
-                                                    <th>Tipo Resultado Meta</th>
-                                                    <th>Resultado Meta</th>
-                                                    <th>Costo Resultado Meta</th>
-                                                    <th>Importe Gastado Meta</th>
-                                                    <th>Alcance Meta</th>
-                                                    <th>Impresiones Meta</th>
+                                                    
+                                                    <th>Nombre</th>
+                                                    <th>Email</th>
+                                                    <th>Telefono</th>
+                                                    <th>Mensaje</th>
+                                                    <th>Variable 1</th>
+                                                    <th>Variable 2</th>
+                                                    <th>Variable 3</th>
+                                                    <th>Fecha</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
                                                 // Establecer la conexión con la base de datos
                                                 $servername = "localhost";
-                                                $username = "root";
-                                                $password = "";
-                                                $dbname = "geo";
+                                                $username = "u291982824_totem";
+                                                $password = "21.17.Totem";
+                                                $dbname = "u291982824_totem";
 
                                                 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -761,7 +762,7 @@
                                                 }
 
                                                 // Consulta SQL para obtener los datos de la tabla "meta"
-                                                $sql = "SELECT idMeta, nombreCampanaMeta, tipoResultadoMeta, resultadoMeta, costoResultadoMeta, importeGastadoMeta, alcanceMeta, impresionesMeta FROM meta";
+                                                $sql = "SELECT * FROM formulario_totem";
                                                 $result = $conn->query($sql);
 
                                                 // Verificar si se obtuvieron resultados
@@ -769,14 +770,14 @@
                                                     // Mostrar los datos en filas de la tabla
                                                     while ($row = $result->fetch_assoc()) {
                                                         echo "<tr>";
-                                                        echo "<td>" . $row["idMeta"] . "</td>";
-                                                        echo "<td>" . $row["nombreCampanaMeta"] . "</td>";
-                                                        echo "<td>" . $row["tipoResultadoMeta"] . "</td>";
-                                                        echo "<td>" . $row["resultadoMeta"] . "</td>";
-                                                        echo "<td>" ."S/ ". $row["costoResultadoMeta"] . "</td>";
-                                                        echo "<td>" ."S/ ". $row["importeGastadoMeta"] . "</td>";
-                                                        echo "<td>" . $row["alcanceMeta"] . "</td>";
-                                                        echo "<td>" . $row["impresionesMeta"] . "</td>";
+                                                        echo "<td>" . $row["name"] . "</td>";
+                                                        echo "<td>" . $row["email"] . "</td>";
+                                                        echo "<td>" . $row["phone"] . "</td>";
+                                                        echo "<td>" . $row["mensaje"] . "</td>";
+                                                        echo "<td>" . $row["var1"] . "</td>";
+                                                        echo "<td>" . $row["var2"] . "</td>";
+                                                        echo "<td>" . $row["var3"] . "</td>";
+                                                        echo "<td>" . $row["fecha2"] . "</td>";
                                                         echo "</tr>";
                                                     }
                                                 } else {
