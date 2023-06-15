@@ -779,10 +779,10 @@
                                                         echo "<td>" . $row["phone"] . "</td>";
                                                         echo "<td>" . $row["fecha2"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
-                                                        echo "<td>" . $row["var1"] . "</td>";
+                                                        echo "<td><button type='button' class='btn btn-primary btn-sm waves-effect waves-light'>" . $row["var1"] . "</button></td>";
                                                         echo "<td>" . $row["var2"] . "</td>";
                                                         echo "<td>" . $row["var3"] . "</td>";
-                                                        
+                                                                                                                                                                  
                                                         echo "</tr>";
 
                                                         $id++; // Incrementar el ID
