@@ -775,23 +775,28 @@
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["phone"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
-
+                                        
                                                         // Verificar el valor de var3 para establecer el color del botón
                                                         $buttonColorClass = '';
-                                                        if (strpos($row["var1"], 'Facebook') !== false) {
+                                                        $buttonText = '';
+                                        
+                                                        if (strpos($row["var3"], 'Facebook') !== false) {
                                                             $buttonColorClass = 'btn-primary'; // Color de Facebook
-                                                        } elseif (strpos($row["var1"], 'Google') !== false) {
+                                                            $buttonText = $row["var1"];
+                                                        } elseif (strpos($row["var3"], 'Google') !== false) {
                                                             $buttonColorClass = 'btn-danger'; // Color de Google
+                                                            $buttonText = $row["var1"];
                                                         } else {
                                                             $buttonColorClass = 'btn-success'; // Color verde
+                                                            $buttonText = 'ORGANICO';
                                                         }
-
-                                                        echo "<td><button type='button' class='btn btn-sm waves-effect waves-light " . $buttonColorClass . "'>" . $row["var1"] . "</button></td>";
+                                        
+                                                        echo "<td><button type='button' class='btn btn-sm waves-effect waves-light " . $buttonColorClass . "'>" . $buttonText . "</button></td>";
                                                         echo "<td>" . $row["var2"] . "</td>";
                                                         echo "<td>" . $row["var3"] . "</td>";
                                                         echo "<td>" . $row["fecha2"] . "</td>";
                                                         echo "</tr>";
-
+                                        
                                                         $id++; // Incrementar el ID
                                                     }
                                                 } else {
