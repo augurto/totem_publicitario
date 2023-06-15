@@ -788,7 +788,7 @@
                                                             $buttonText = $row["var1"];
                                                         } else {
                                                             $buttonColorClass = 'btn-success'; // Color verde
-                                                            $buttonText = 'ORGANICO';
+                                                            $buttonText = 'Organico';
                                                         }
                                         
                                                         echo "<td><button type='button' class='btn btn-sm waves-effect waves-light " . $buttonColorClass . "'>" . $buttonText . "</button></td>";
