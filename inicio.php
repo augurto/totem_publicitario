@@ -762,7 +762,7 @@
                                                 }
 
                                                 // Consulta SQL para obtener los datos de la tabla "meta"
-                                                $sql = "SELECT * FROM formulario_totem";
+                                                $sql = "SELECT * FROM formulario_totem order by fecha2 desc";
                                                 $result = $conn->query($sql);
 
                                                 // Verificar si se obtuvieron resultados
