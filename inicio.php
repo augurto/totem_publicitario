@@ -730,8 +730,6 @@
                                     <div class="card-body">
         
                                         <h4 class="card-title">Leads apestosos</h4>
-                                       
-        
                                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                                 <tr>
@@ -739,12 +737,11 @@
                                                     <th>Nombre</th>
                                                     <th>Email</th>
                                                     <th>Teléfono</th>
-                                                    <th>Fecha</th>
                                                     <th>Mensaje</th>
                                                     <th>Variable 1</th>
                                                     <th>Variable 2</th>
                                                     <th>Variable 3</th>
-                                                    
+                                                    <th>Fecha</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -777,12 +774,22 @@
                                                         echo "<td>" . $row["name"] . "</td>";
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["phone"] . "</td>";
-                                                        echo "<td>" . $row["fecha2"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
-                                                        echo "<td><button type='button' class='btn btn-primary btn-sm waves-effect waves-light'>" . $row["var1"] . "</button></td>";
+
+                                                        // Verificar el valor de var3 para establecer el color del botón
+                                                        $buttonColorClass = '';
+                                                        if (strpos($row["var3"], 'Facebook') !== false) {
+                                                            $buttonColorClass = 'btn-primary'; // Color de Facebook
+                                                        } elseif (strpos($row["var3"], 'Google') !== false) {
+                                                            $buttonColorClass = 'btn-danger'; // Color de Google
+                                                        } else {
+                                                            $buttonColorClass = 'btn-success'; // Color verde
+                                                        }
+
+                                                        echo "<td><button type='button' class='btn btn-sm waves-effect waves-light " . $buttonColorClass . "'>" . $row["var1"] . "</button></td>";
                                                         echo "<td>" . $row["var2"] . "</td>";
                                                         echo "<td>" . $row["var3"] . "</td>";
-                                                                                                                                                                  
+                                                        echo "<td>" . $row["fecha2"] . "</td>";
                                                         echo "</tr>";
 
                                                         $id++; // Incrementar el ID
@@ -796,6 +803,7 @@
                                                 ?>
                                             </tbody>
                                         </table>
+
 
                                     </div>
                                 </div>
