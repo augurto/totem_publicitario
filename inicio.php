@@ -780,10 +780,10 @@
                                                         $buttonColorClass = '';
                                                         $buttonText = '';
                                         
-                                                        if (strpos($row["var3"], 'Facebook') !== false) {
+                                                        if (strpos($row["var1"], 'Facebook') !== false) {
                                                             $buttonColorClass = 'btn-primary'; // Color de Facebook
                                                             $buttonText = $row["var1"];
-                                                        } elseif (strpos($row["var3"], 'Google') !== false) {
+                                                        } elseif (strpos($row["var1"], 'Google') !== false) {
                                                             $buttonColorClass = 'btn-danger'; // Color de Google
                                                             $buttonText = $row["var1"];
                                                         } else {
