@@ -735,10 +735,10 @@
                                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    
+                                                    <th>ID</th>
                                                     <th>Nombre</th>
                                                     <th>Email</th>
-                                                    <th>Telefono</th>
+                                                    <th>Teléfono</th>
                                                     <th>Mensaje</th>
                                                     <th>Variable 1</th>
                                                     <th>Variable 2</th>
@@ -761,15 +761,18 @@
                                                     die("Error en la conexión: " . $conn->connect_error);
                                                 }
 
-                                                // Consulta SQL para obtener los datos de la tabla "meta"
-                                                $sql = "SELECT * FROM formulario_totem order by fecha2 desc";
+                                                // Consulta SQL para obtener los datos de la tabla "formulario_totem"
+                                                $sql = "SELECT * FROM formulario_totem ORDER BY fecha2 DESC";
                                                 $result = $conn->query($sql);
 
                                                 // Verificar si se obtuvieron resultados
                                                 if ($result->num_rows > 0) {
+                                                    $id = 1; // Variable para el ID inicial
+
                                                     // Mostrar los datos en filas de la tabla
                                                     while ($row = $result->fetch_assoc()) {
                                                         echo "<tr>";
+                                                        echo "<td>" . $id . "</td>";
                                                         echo "<td>" . $row["name"] . "</td>";
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["phone"] . "</td>";
@@ -779,9 +782,11 @@
                                                         echo "<td>" . $row["var3"] . "</td>";
                                                         echo "<td>" . $row["fecha2"] . "</td>";
                                                         echo "</tr>";
+
+                                                        $id++; // Incrementar el ID
                                                     }
                                                 } else {
-                                                    echo "<tr><td colspan='8'>No se encontraron resultados.</td></tr>";
+                                                    echo "<tr><td colspan='9'>No se encontraron resultados.</td></tr>";
                                                 }
 
                                                 // Cerrar la conexión
