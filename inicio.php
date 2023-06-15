@@ -739,11 +739,12 @@
                                                     <th>Nombre</th>
                                                     <th>Email</th>
                                                     <th>Teléfono</th>
+                                                    <th>Fecha</th>
                                                     <th>Mensaje</th>
                                                     <th>Variable 1</th>
                                                     <th>Variable 2</th>
                                                     <th>Variable 3</th>
-                                                    <th>Fecha</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -776,11 +777,12 @@
                                                         echo "<td>" . $row["name"] . "</td>";
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["phone"] . "</td>";
+                                                        echo "<td>" . $row["fecha2"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . $row["var1"] . "</td>";
                                                         echo "<td>" . $row["var2"] . "</td>";
                                                         echo "<td>" . $row["var3"] . "</td>";
-                                                        echo "<td>" . $row["fecha2"] . "</td>";
+                                                        
                                                         echo "</tr>";
 
                                                         $id++; // Incrementar el ID
