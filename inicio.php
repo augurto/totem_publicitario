@@ -553,7 +553,9 @@
                                                         echo "<tr>";
                                                         echo "<td>" . $id . "</td>";
                                                         /* echo "<td>" . $row["datos_form"] . "</td>"; */
-                                                        echo "<td><button type='button' class='btn btn-primary waves-effect waves-light' data-bs-toggle='modal' data-bs-target='.bs-example-modal-center'>Atender</button> "." " . $row["datos_form"] . "</td>";
+                                                        echo "<td><button type='button' class='btn btn-primary waves-effect waves-light' data-bs-toggle='modal' data-bs-target='.bs-example-modal-center' data-id='" . $row["id_form_web"] . "' data-datos='" . $row["datos_form"] . "'>Atender</button> " . $row["datos_form"] . "</td>";
+
+                                                        
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["telefono"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
@@ -583,6 +585,18 @@
                         </div> <!-- end row -->
 
                         <!-- MODAL -->
+                        <script>
+                            $('.bs-example-modal-center').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget); // Botón que activó el modal
+                            var idFormWeb = button.data('id'); // Obtener el valor de 'data-id'
+                            var datosForm = button.data('datos'); // Obtener el valor de 'data-datos'
+
+                            // Asignar los valores a los campos de entrada (inputs)
+                            $(this).find('input[name="id_form_web"]').val(idFormWeb);
+                            $(this).find('input[name="datos_form"]').val(datosForm);
+                            });
+
+                        </script>
                         <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
                                             aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
