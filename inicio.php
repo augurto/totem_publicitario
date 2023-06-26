@@ -627,6 +627,10 @@
                                                             <option value="2">Atendido</option>
                                                         </select>
                                                         <br>
+                                                        <input type="text" class="form-control" name="datos_form" id="datos_form" readonly>
+                                                        <br>  
+                                                        <textarea class="form-control"></textarea>
+                                                        <br>
                                                         <button type="submit" class="btn btn-primary">Enviar</button>
                                                     </form>
 
