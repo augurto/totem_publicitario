@@ -25,6 +25,11 @@
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <style>
+            .btn {
+                line-height:0.3 !important;
+            }
+        </style>
 
     </head>
 
@@ -548,7 +553,7 @@
                                                         echo "<tr>";
                                                         echo "<td>" . $id . "</td>";
                                                         /* echo "<td>" . $row["datos_form"] . "</td>"; */
-                                                        echo "<td>" . $row["datos_form"] . " <a href='atender.php?id=" . $row["id"] . "' target='_blank' class='btn btn-soft-primary waves-effect waves-light'>Primary</a></td>";
+                                                        echo "<td>" ." <a href='atender.php?id=" . $row["id"] . "' target='_blank' class='btn btn-soft-primary waves-effect waves-light'>Atender</a>". $row["datos_form"] . "</td>";
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["telefono"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
