@@ -588,23 +588,13 @@
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title mt-0">Agregar comentario</h5>
+                                                        <h5 class="modal-title mt-0">Agregar comentario a</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Cras mattis consectetur purus sit amet fermentum.
-                                                            Cras justo odio, dapibus ac facilisis in,
-                                                            egestas eget quam. Morbi leo risus, porta ac
-                                                            consectetur ac, vestibulum at eros.</p>
-                                                        <p>Praesent commodo cursus magna, vel scelerisque
-                                                            nisl consectetur et. Vivamus sagittis lacus vel
-                                                            augue laoreet rutrum faucibus dolor auctor.</p>
-                                                        <p class="mb-0">Aenean lacinia bibendum nulla sed consectetur.
-                                                            Praesent commodo cursus magna, vel scelerisque
-                                                            nisl consectetur et. Donec sed odio dui. Donec
-                                                            ullamcorper nulla non metus auctor
-                                                            fringilla.</p>
+                                                    <input type="text" value="<?php echo $row["id_form_web"]; ?>">
+                                                    <input type="text" value="<?php echo $row["datos_form"]; ?>">
                                                     </div>
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
