@@ -591,10 +591,11 @@
                             var idFormWeb = button.data('id'); // Obtener el valor de 'data-id'
                             var datosForm = button.data('datos'); // Obtener el valor de 'data-datos'
 
-                            // Asignar los valores a los campos de entrada (inputs)
-                            $(this).find('input[name="id_form_web"]').val(idFormWeb);
-                            $(this).find('input[name="datos_form"]').val(datosForm);
+                            // Mostrar los valores en los campos de entrada
+                            $(this).find('#id_form_web_input').val(idFormWeb);
+                            $(this).find('#datos_form_input').val(datosForm);
                             });
+
 
                         </script>
                         <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
@@ -607,8 +608,8 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <input type="text" value="<?php echo $row["id_form_web"]; ?>">
-                                                    <input type="text" value="<?php echo $row["datos_form"]; ?>">
+                                                    <input type="text" id="id_form_web_input" name="id_form_web" readonly>
+                                                    <input type="text" id="datos_form_input" name="datos_form" readonly>
                                                     </div>
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
