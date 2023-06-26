@@ -508,14 +508,15 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Nombre</th>
+                                                    <th>Nombres</th>
                                                     <th>Email</th>
                                                     <th>Teléfono</th>
-                                                    <th>Fecha</th>
+                                                  
                                                     <th>Mensaje</th>
-                                                    <th>Variable 1</th>
-                                                    <th>Variable 2</th>
-                                                    <th>Variable 3</th>
+                                                    <th>Fecha </th>
+                                                    <th>URL</th>
+                                                    <th>Nombre Formulario</th>
+                                                    <th>IP</th>
                                                     
                                                 </tr>
                                             </thead>
@@ -523,9 +524,9 @@
                                                 <?php
                                                 // Establecer la conexión con la base de datos
                                                 $servername = "localhost";
-                                                $username = "u291982824_totem";
-                                                $password = "21.17.Totem";
-                                                $dbname = "u291982824_totem";
+                                                $username = "u291982824_bd_geo";
+                                                $password = "21.17.BDgeo";
+                                                $dbname = "u291982824_bd_geo";
 
                                                 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -535,7 +536,7 @@
                                                 }
 
                                                 // Consulta SQL para obtener los datos de la tabla "formulario_totem"
-                                                $sql = "SELECT * FROM formulario_totem ORDER BY fecha2 DESC";
+                                                $sql = "SELECT * FROM web_formularios ORDER BY fecha DESC";
                                                 $result = $conn->query($sql);
 
                                                 // Verificar si se obtuvieron resultados
@@ -546,31 +547,15 @@
                                                     while ($row = $result->fetch_assoc()) {
                                                         echo "<tr>";
                                                         echo "<td>" . $id . "</td>";
-                                                        echo "<td>" . $row["name"] . "</td>";
+                                                        echo "<td>" . $row["datos_form"] . "</td>";
                                                         echo "<td>" . $row["email"] . "</td>";
-                                                        echo "<td>" . $row["phone"] . "</td>";
-                                                        echo "<td>" . $row["fecha2"] . "</td>";
+                                                        echo "<td>" . $row["telefono"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
-                                        
-                                                        // Verificar el valor de var3 para establecer el color del botón
-                                                        $buttonColorClass = '';
-                                                        $buttonText = '';
-                                        
-                                                        if (strpos($row["var1"], 'Facebook') !== false) {
-                                                            $buttonColorClass = 'btn-primary'; // Color de Facebook
-                                                            $buttonText = $row["var1"];
-                                                        } elseif (strpos($row["var1"], 'Google') !== false) {
-                                                            $buttonColorClass = 'btn-danger'; // Color de Google
-                                                            $buttonText = $row["var1"];
-                                                        } else {
-                                                            $buttonColorClass = 'btn-success'; // Color verde
-                                                            $buttonText = 'Organico';
-                                                        }
-                                        
-                                                        echo "<td><button type='button' class='btn btn-sm waves-effect waves-light " . $buttonColorClass . "'>" . $buttonText . "</button></td>";
-                                                        echo "<td>" . $row["var2"] . "</td>";
-                                                        echo "<td>" . $row["var3"] . "</td>";
-                                                        
+                                                        echo "<td>" . $row["fecha"] . "</td>";
+                                                        echo "<td>" . $row["URL"] . "</td>";
+                                                        echo "<td>" . $row["nombre_formulario"] . "</td>";
+                                                        echo "<td>" . $row["ip_formulario"] . "</td>";
+                                                                                               
                                                         echo "</tr>";
                                         
                                                         $id++; // Incrementar el ID
