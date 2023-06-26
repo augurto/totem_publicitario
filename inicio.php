@@ -559,7 +559,7 @@
                                                         
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["telefono"] . "</td>";
-                                                        echo "<td>" ."<span class='badge bg-primary'>Primary</span></td>";
+                                                        echo "<td>" ."<span class='badge bg-primary'>Pendiente</span></td>";
 
                                                         
                                                         echo "<td>" . $row["mensaje"] . "</td>";
