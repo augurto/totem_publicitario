@@ -626,6 +626,7 @@
                                                             <option value="1">Observado</option>
                                                             <option value="2">Atendido</option>
                                                         </select>
+                                                        <br>
                                                         <button type="submit" class="btn btn-primary">Enviar</button>
                                                     </form>
 
