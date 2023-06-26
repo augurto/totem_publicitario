@@ -517,7 +517,7 @@
                                                     <th>Nombres</th>
                                                     <th>Email</th>
                                                     <th>Teléfono</th>
-                                                  
+                                                    <th>Estado</th>
                                                     <th>Mensaje</th>
                                                     <th>Fecha </th>
                                                     <th>URL</th>
@@ -559,6 +559,9 @@
                                                         
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["telefono"] . "</td>";
+                                                        echo "<td>" ."<span class='badge bg-primary'>Primary</span></td>";
+
+                                                        
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . $row["fecha"] . "</td>";
                                                         echo "<td>" . $row["URL"] . "</td>";
@@ -606,20 +609,21 @@
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title mt-0">Agregar comentario a </h5>
+                                                        <h5 class="modal-title mt-0">Agregar comentario </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    
+                                                    <form action="includes/guardar_datos_atender.php" method="POST">
                                                     <input type="text" name="id_form_web" readonly>
-                                                    <input type="text" name="datos_form" readonly>
-                                                    <select class="form-control select2">
-                                                        <option value="0" selected>Pendiente</option>
-                                                        <option value="1">Observado</option>
-                                                        <option value="2">Atendido</option>
-                                                    </select>
-
+                                                    <input type="text" class="form-control" name="datos_form" readonly>
+                                                        <select class="form-control select2">
+                                                            <option value="0" selected>Pendiente</option>
+                                                            <option value="1">Observado</option>
+                                                            <option value="2">Atendido</option>
+                                                        </select>
+                                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                                    </form>
 
                                                     </div>
                                                 </div><!-- /.modal-content -->
