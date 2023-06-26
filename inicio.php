@@ -606,7 +606,7 @@
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title mt-0">Agregar comentario a</h5>
+                                                        <h5 class="modal-title mt-0">Agregar comentario a </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -614,6 +614,12 @@
                                                     
                                                     <input type="text" name="id_form_web" readonly>
                                                     <input type="text" name="datos_form" readonly>
+                                                    <select class="form-control select2">
+                                                        <option value="0" selected>Pendiente</option>
+                                                        <option value="1">Observado</option>
+                                                        <option value="2">Atendido</option>
+                                                    </select>
+
 
                                                     </div>
                                                 </div><!-- /.modal-content -->
