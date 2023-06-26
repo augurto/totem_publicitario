@@ -25,6 +25,7 @@
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <style>
             .btn {
                 line-height:0.3 !important;
@@ -567,6 +568,8 @@
                                                         echo "</tr>";
                                         
                                                         $id++; // Incrementar el ID
+
+                                                        
                                                     }
                                                 } else {
                                                     echo "<tr><td colspan='9'>No se encontraron resultados.</td></tr>";
@@ -586,17 +589,17 @@
 
                         <!-- MODAL -->
                         <script>
-                            $('.bs-example-modal-center').on('show.bs.modal', function (event) {
+                        $(document).ready(function() {
+                        $('.bs-example-modal-center').on('show.bs.modal', function(event) {
                             var button = $(event.relatedTarget); // Botón que activó el modal
                             var idFormWeb = button.data('id'); // Obtener el valor de 'data-id'
                             var datosForm = button.data('datos'); // Obtener el valor de 'data-datos'
-
+                            
                             // Mostrar los valores en los campos de entrada
-                            $(this).find('#id_form_web_input').val(idFormWeb);
-                            $(this).find('#datos_form_input').val(datosForm);
-                            });
-
-
+                            $(this).find('input[name="id_form_web"]').val(idFormWeb);
+                            $(this).find('input[name="datos_form"]').val(datosForm);
+                        });
+                        });
                         </script>
                         <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
                                             aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -608,8 +611,10 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <input type="text" id="id_form_web_input" name="id_form_web" readonly>
-                                                    <input type="text" id="datos_form_input" name="datos_form" readonly>
+                                                    
+                                                    <input type="text" name="id_form_web" readonly>
+                                                    <input type="text" name="datos_form" readonly>
+
                                                     </div>
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
