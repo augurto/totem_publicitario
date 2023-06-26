@@ -517,7 +517,7 @@
                                                     <th>Nombres</th>
                                                     <th>Email</th>
                                                     <th>Teléfono</th>
-                                                    <th>Estado</th>
+                                                   
                                                     <th>Mensaje</th>
                                                     <th>Fecha </th>
                                                     <th>URL</th>
@@ -554,8 +554,7 @@
                                                         echo "<tr>";
                                                         echo "<td>" . $id . "</td>";
                                                         /* echo "<td>" . $row["datos_form"] . "</td>"; */
-                                                        echo "<td><button type='button' class='btn btn-primary waves-effect waves-light' data-bs-toggle='modal' data-bs-target='.bs-example-modal-center' data-id='" . $row["id_form_web"] . "' data-datos='" . $row["datos_form"] . "'>Atender</button> " . $row["datos_form"] . "</td>";
-                                                     
+                                                       
                                                         if ($row["estado_web"] == 0) {
                                                             echo "<td><button type='button' class='btn btn-primary waves-effect waves-light' data-bs-toggle='modal' data-bs-target='.bs-example-modal-center' data-id='" . $row["id_form_web"] . "' data-datos='" . $row["datos_form"] . "'>Atender</button> " . $row["datos_form"] . "</td>";
                                                         } elseif ($row["estado_web"] == 1) {
@@ -565,7 +564,7 @@
                                                         }
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["telefono"] . "</td>";
-                                                        echo "<td>" ."<span class='badge bg-primary'>Pendiente</span></td>";
+                                                        
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . $row["fecha"] . "</td>";
                                                         echo "<td>" . $row["URL"] . "</td>";
