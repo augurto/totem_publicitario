@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
     <head>
         
         <meta charset="utf-8" />
-        <title>Totem <?php echo "<3"; ?></title>
+        <title>Geo <?php echo "<3"; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -553,7 +553,7 @@
                                                         echo "<tr>";
                                                         echo "<td>" . $id . "</td>";
                                                         /* echo "<td>" . $row["datos_form"] . "</td>"; */
-                                                        echo "<td>" ." <a href='atender.php?id=" . $row["id"] . "' target='_blank' class='btn btn-soft-primary waves-effect waves-light'>Atender</a>". $row["datos_form"] . "</td>";
+                                                        echo "<td><button type='button' class='btn btn-primary waves-effect waves-light' data-bs-toggle='modal' data-bs-target='.bs-example-modal-center'>Atender</button> "." " . $row["datos_form"] . "</td>";
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["telefono"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
