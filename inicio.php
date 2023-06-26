@@ -618,8 +618,8 @@
                                                     </div>
                                                     <div class="modal-body">
                                                     <form action="includes/guardar_datos_atender.php" method="POST">
-                                                    <input type="hiiden" name="id_form_web" readonly>
-                                                    <input type="text" class="form-control" name="datos_form" readonly>
+                                                    <input type="hidden" name="id_form_web" id="id_form_web" readonly>
+                                                    <input type="text" class="form-control" name="datos_form" id="datos_form" readonly>
                                                     <br>
                                                         <select class="form-control select2">
                                                             <option value="0" selected>Pendiente</option>
