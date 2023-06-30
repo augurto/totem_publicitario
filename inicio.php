@@ -605,6 +605,7 @@
                                                         echo "<td>" . $row["URL"] . "</td>";
                                                         echo "<td>" . $row["nombre_formulario"] . "</td>";
                                                         echo "<td>" . $row["ip_formulario"] . "</td>";
+                                                        echo "<td>" . $c . "</td>";
                                                                                                
                                                         echo "</tr>";
                                         
