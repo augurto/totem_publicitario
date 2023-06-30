@@ -654,17 +654,18 @@
                                                     </div>
                                                     <div class="modal-body">
                                                     <form action="includes/guardar_datos_atender.php" method="POST">
-                                                    <input type="hidden" name="id_form_web" id="id_form_web" readonly>
+                                                    <input type="text" name="id_form_web" id="id_form_web" readonly>
+                                                    <input type="text" name="id_usuario" id="id_usuario" value="2" readonly>
                                                     <input type="text" class="form-control" name="datos_form" id="datos_form" readonly>
                                                     <br>
+                                                    <label for="">Estado</label>
                                                         <select class="form-control select2">
                                                             <option value="0" selected>Pendiente</option>
                                                             <option value="1">Observado</option>
                                                             <option value="2">Atendido</option>
                                                         </select>
                                                         <br>
-                                                        <input type="text" class="form-control" name="datos_form" id="datos_form" readonly>
-                                                        <br>  
+                                                        <label for="">Mensaje</label>
                                                         <textarea class="form-control"></textarea>
                                                         <br>
                                                         <button type="submit" class="btn btn-primary">Enviar</button>
