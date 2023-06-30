@@ -515,6 +515,7 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Nombres</th>
+                                                    <th>Fuente</th>
                                                     <th>Email</th>
                                                     <th>Teléfono</th>
                                                    
@@ -562,6 +563,8 @@
                                                         } elseif ($row["estado_web"] == 2) {
                                                             echo "<td><button type='button' class='btn btn-success waves-effect waves-light' data-bs-toggle='modal' data-bs-target='.bs-example-modal-center' data-id='" . $row["id_form_web"] . "' data-datos='" . $row["datos_form"] . "'>Atendido</button> " . $row["datos_form"] . "</td>";
                                                         }
+                                                        echo '<td><span class="badge rounded-pill bg-primary">' . '</span></td>';
+
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["telefono"] . "</td>";
                                                         
