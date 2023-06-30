@@ -524,6 +524,7 @@
                                                     <th>URL</th>
                                                     <th>Nombre Formulario</th>
                                                     <th>IP</th>
+                                                    <th>Aterrizaje</th>
                                                     
                                                 </tr>
                                             </thead>
@@ -577,7 +578,24 @@
                                                             echo "<td><button type='button' class='btn btn-success waves-effect waves-light' data-bs-toggle='modal' data-bs-target='.bs-example-modal-center' data-id='" . $row["id_form_web"] . "' data-datos='" . $row["datos_form"] . "'>Atendido</button> " . $row["datos_form"] . "</td>";
                                                         }
                                                         /* condicional para mostrar si es de facebook, google, organico o presencial */
-                                                        echo '<td><span class="badge rounded-pill bg-primary">' . $a.$b.$c. '</span></td>';
+                                                        if ($row["id_user"] == 0) {
+                                                            if ($a == "google") {
+                                                              echo '<td><span class="badge rounded-pill bg-danger">Google</span></td>';
+                                                            } elseif ($a == "facebook") {
+                                                              echo '<td><span class="badge rounded-pill bg-primary">Facebook</span></td>';
+                                                            } elseif (empty($a)) {
+                                                              echo '<td><span class="badge rounded-pill bg-success">Organico</span></td>';
+                                                            } else {
+                                                              echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
+                                                            }
+                                                          } else {
+                                                            if (empty($a)) {
+                                                              echo '<td><span class="badge rounded-pill bg-dark">Transito</span></td>';
+                                                            } else {
+                                                              echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
+                                                            }
+                                                          }
+                                                          
 
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["telefono"] . "</td>";
