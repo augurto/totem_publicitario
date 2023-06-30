@@ -555,7 +555,20 @@
                                                         echo "<tr>";
                                                         echo "<td>" . $id . "</td>";
                                                         /* echo "<td>" . $row["datos_form"] . "</td>"; */
-                                                       
+                                                        $url_dato = $row["URL"];
+                                                        // Obtener los parámetros de la URL
+                                                        $params = parse_url($url_dato, PHP_URL_QUERY);
+
+                                                        // Convertir los parámetros en un arreglo asociativo
+                                                        parse_str($params, $query);
+
+                                                        // Obtener los valores de las variables específicas
+                                                        $a = $query['utm_source'];
+                                                        $b = $query['utm_medium'];
+                                                        $c = $query['utm_campaign'];
+
+                                                        // Imprimir los valores
+                                                                                                           
                                                         if ($row["estado_web"] == 0) {
                                                             echo "<td><button type='button' class='btn btn-primary waves-effect waves-light' data-bs-toggle='modal' data-bs-target='.bs-example-modal-center' data-id='" . $row["id_form_web"] . "' data-datos='" . $row["datos_form"] . "'>Atender</button> " . $row["datos_form"] . "</td>";
                                                         } elseif ($row["estado_web"] == 1) {
@@ -563,7 +576,8 @@
                                                         } elseif ($row["estado_web"] == 2) {
                                                             echo "<td><button type='button' class='btn btn-success waves-effect waves-light' data-bs-toggle='modal' data-bs-target='.bs-example-modal-center' data-id='" . $row["id_form_web"] . "' data-datos='" . $row["datos_form"] . "'>Atendido</button> " . $row["datos_form"] . "</td>";
                                                         }
-                                                        echo '<td><span class="badge rounded-pill bg-primary">' . $row["telefono"] . '</span></td>';
+                                                        /* condicional para mostrar si es de facebook, google, organico o presencial */
+                                                        echo '<td><span class="badge rounded-pill bg-primary">' . $a.$b.$c. '</span></td>';
 
                                                         echo "<td>" . $row["email"] . "</td>";
                                                         echo "<td>" . $row["telefono"] . "</td>";
