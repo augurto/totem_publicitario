@@ -579,9 +579,9 @@
                                                         }
                                                         /* condicional para mostrar si es de facebook, google, organico o presencial */
                                                         if ($row["id_user"] == 0) {
-                                                            if ($a == "Google") {
+                                                            if ($a == "Google ADS") {
                                                               echo '<td><span class="badge rounded-pill bg-danger">Google</span></td>';
-                                                            } elseif ($a == "Meta") {
+                                                            } elseif ($a == "Meta ADS") {
                                                               echo '<td><span class="badge rounded-pill bg-primary">Facebook</span></td>';
                                                             } elseif (empty($a)) {
                                                               echo '<td><span class="badge rounded-pill bg-success">Organico</span></td>';
