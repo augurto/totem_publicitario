@@ -3,7 +3,7 @@
 include 'conexion.php';
 
 // Obtener el valor de idFormWeb enviado por AJAX
-$idFormWeb = $_POST['id_form_web'];
+$idFormWeb = $_POST['idFormWeb'];
 
 // Realizar la consulta SQL
 $query = "SELECT id_user FROM web_formularios WHERE id_form_web = $idFormWeb";
