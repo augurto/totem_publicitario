@@ -675,17 +675,14 @@
                                                     <input type="text" name="id_usuario" id="id_usuario" value="2" readonly>
                                                     <input type="text" class="form-control" name="datos_form" id="datos_form" readonly>
                                                     <br>
-                                                    <label for="">Usuario</label>
-                                                    <select class="select2 form-control select2-multiple"
-                                                        multiple="multiple" data-placeholder="Buscar Usuario">
-                                                       
-                                                            <option value="AK">Alaska</option>
-                                                            <option value="HI">Hawaii</option>
-                                                       
-                                                    </select>
-                                                <!-- end select -->
+                                                    <label for="">Estado</label>
+                                                        <select class="form-control select2">
+                                                            <option value="0" selected>Pendiente</option>
+                                                            <option value="1">Observado</option>
+                                                            <option value="2">Atendido</option>
+                                                        </select>
                                                         <br>
-                                                        <label for="">Asignar</label>
+                                                        <label for="">Usario Asignado</label>
                                                         <select class="form-control select2">
                                                             <option value="0" selected>Usuario1</option>
                                                             <option value="1">Usuario 2 </option>
