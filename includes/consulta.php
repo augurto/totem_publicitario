@@ -13,7 +13,7 @@ $result = mysqli_query($con, $query);
 if ($result) {
     // Obtener el valor de la consulta
     $row = mysqli_fetch_assoc($result);
-    $valor = $row['valor'];
+    $valor = $row['id_user'];
 
     // Devolver el valor como respuesta AJAX
     echo $valor;
