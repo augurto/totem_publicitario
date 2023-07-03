@@ -630,19 +630,36 @@
                         </div> <!-- end row -->
 
                         <!-- MODAL -->
+                        
                         <script>
-                        $(document).ready(function() {
-                        $('.bs-example-modal-center').on('show.bs.modal', function(event) {
-                            var button = $(event.relatedTarget); // Botón que activó el modal
-                            var idFormWeb = button.data('id'); // Obtener el valor de 'data-id'
-                            var datosForm = button.data('datos'); // Obtener el valor de 'data-datos'
-                            
-                            // Mostrar los valores en los campos de entrada
-                            $(this).find('input[name="id_form_web"]').val(idFormWeb);
-                            $(this).find('input[name="datos_form"]').val(datosForm);
-                        });
-                        });
+                            $(document).ready(function() {
+                                $('.bs-example-modal-center').on('show.bs.modal', function(event) {
+                                    var button = $(event.relatedTarget); // Botón que activó el modal
+                                    var idFormWeb = button.data('id'); // Obtener el valor de 'data-id'
+                                    var datosForm = button.data('datos'); // Obtener el valor de 'data-datos'
+
+                                    // Mostrar los valores en los campos de entrada
+                                    $(this).find('input[name="id_form_web"]').val(idFormWeb);
+                                    $(this).find('input[name="datos_form"]').val(datosForm);
+
+                                    // Realizar la solicitud AJAX para obtener el valor de la consulta
+                                    $.ajax({
+                                        url: 'includes/consulta.php',
+                                        type: 'POST',
+                                        data: { idFormWeb: idFormWeb },
+                                        success: function(response) {
+                                            // Asignar el valor al campo de entrada
+                                            $('.modal-body').find('#valor').val(response);
+                                        },
+                                        error: function(xhr, status, error) {
+                                            console.log(error);
+                                        }
+                                    });
+                                });
+                            });
                         </script>
+
+                       
                         <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
                                             aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -668,6 +685,7 @@
                                                         <label for="">Mensaje</label>
                                                         <textarea class="form-control"></textarea>
                                                         <br>
+                                                        <input type="text" class="form-control" name="valor" id="valor">
                                                         <button type="submit" class="btn btn-primary">Enviar</button>
                                                     </form>
 
