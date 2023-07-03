@@ -682,7 +682,14 @@
                                                             <option value="2">Atendido</option>
                                                         </select>
                                                         <br>
-                                                        <label for="">Mensaje</label>
+                                                        <label for="">Usario Asignado</label>
+                                                        <select class="form-control select2">
+                                                            <option value="0" selected>Usuario1</option>
+                                                            <option value="1">Usuario 2 </option>
+                                                            <option value="2">Usuario 3</option>
+                                                        </select>
+                                                        <br>
+                                                        <label for="">Comentario</label>
                                                         <textarea class="form-control"></textarea>
                                                         <br>
                                                         <input type="text" class="form-control" name="valor" id="valor">

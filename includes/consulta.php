@@ -6,7 +6,7 @@ include 'conexion.php';
 $idFormWeb = $_POST['idFormWeb'];
 
 // Realizar la consulta SQL
-$query = "SELECT valor FROM tabla WHERE idFormWeb = $idFormWeb";
+$query = "SELECT id_user FROM web_formularios WHERE idFormWeb = $idFormWeb";
 $result = mysqli_query($con, $query);
 
 // Verificar si se obtuvo algún resultado
