@@ -3,10 +3,10 @@
 include 'conexion.php';
 
 // Obtener el valor de idFormWeb enviado por AJAX
-$idFormWeb = $_POST['idFormWeb'];
+$idFormWeb = $_POST['id_form_web'];
 
 // Realizar la consulta SQL
-$query = "SELECT id_user FROM web_formularios WHERE idFormWeb = $idFormWeb";
+$query = "SELECT id_user FROM web_formularios WHERE id_form_web = $idFormWeb";
 $result = mysqli_query($con, $query);
 
 // Verificar si se obtuvo algún resultado
