@@ -1,20 +1,20 @@
 <?php
-session_start(); // Iniciar sesión
+session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
-    // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión
+    // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
     header("Location: login.php");
     exit();
 }
 
-// Obtener los datos de inicio de sesión de la variable de sesión
+// El usuario ha iniciado sesión, puedes acceder a los datos de sesión
 $usuario = $_SESSION['usuario'];
 $dni = $_SESSION['dni'];
 $tipoUsuario = $_SESSION['tipoUsuario'];
 
-// Resto del código de la página vendedor.php
+// Resto del código de la página
 // ...
+
 ?>
 
 <!doctype html>

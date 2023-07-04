@@ -15,6 +15,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($result);
         $tipoUsuario = $row['tipo_user'];
         
+        // Obtener los datos de inicio de sesión de la variable de sesión
+        $usuario = $row['nombre_user'];
+        $dni = $row['documento'];
+
+        // Iniciar sesión y guardar los datos en variables de sesión
+        session_start();
+        $_SESSION['usuario'] = $usuario;
+        $_SESSION['dni'] = $dni;
+        $_SESSION['tipoUsuario'] = $tipoUsuario;
+        
         // Redireccionar según el tipo de usuario
         if ($tipoUsuario == 1) {
             header("Location: ../vendedor.php");
