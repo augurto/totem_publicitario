@@ -494,14 +494,14 @@
                                     <div class="page-title-center">
                                        <button type="button"
                                         class="btn btn-info btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".agregar-cliente">+ Cliente</button>
-                                        
-
-                                        
-                                    </div>
-
                                         <button type="button"
-                                        class="btn btn-warning btn-rounded waves-effect waves-light">+ Lead</button>
+                                        class="btn btn-warning btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".agregar-lead">+ Lead</button>
                                     </div>
+
+                                        
+                                    </div>
+
+                                        
                                     
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
@@ -711,7 +711,47 @@
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title mt-0">Center modal</h5>
+                                                        <h5 class="modal-title mt-0">Agregar Usuario</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <form action="includes/guardar_datos_atender.php" method="POST">
+                                                    <input type="text" name="id_form_web" id="id_form_web" readonly>
+                                                    <input type="text" name="id_usuario" id="id_usuario" value="2" readonly>
+                                                    <input type="text" class="form-control" name="datos_form" id="datos_form" readonly>
+                                                    <br>
+                                                    <label for="">Estado</label>
+                                                        <select class="form-control select2">
+                                                            <option value="0" selected>Pendiente</option>
+                                                            <option value="1">Observado</option>
+                                                            <option value="2">Atendido</option>
+                                                        </select>
+                                                        <br>
+                                                        <label for="">Usario Asignado</label>
+                                                        <select class="form-control select2">
+                                                            <option value="0" selected>Usuario1</option>
+                                                            <option value="1">Usuario 2 </option>
+                                                            <option value="2">Usuario 3</option>
+                                                        </select>
+                                                        <br>
+                                                        <label for="">Comentario</label>
+                                                        <textarea class="form-control"></textarea>
+                                                        <br>
+                                                        <input type="text" class="form-control" name="valor" id="valor">
+                                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                                    </form>
+
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                    <div class="modal fade agregar-lead" tabindex="-1" role="dialog"
+                                            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title mt-0">Agregar Lead</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
