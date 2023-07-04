@@ -494,7 +494,10 @@
                                     <div class="page-title-center">
                                        <button type="button"
                                         class="btn btn-info btn-rounded waves-effect waves-light">+ Cliente</button>
+                                        <button type="button"
+                                        class="btn btn-warning btn-rounded waves-effect waves-light">+ Lead</button>
                                     </div>
+                                    
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
