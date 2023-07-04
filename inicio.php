@@ -26,12 +26,6 @@
         <!-- App Css-->
         <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-        <link href="assets/libs/spectrum-colorpicker2/spectrum.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
-
-       
         <style>
             .btn {
                 line-height:0.3 !important;
@@ -496,7 +490,11 @@
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0">Data Tables</h4>
-
+                                    
+                                    <div class="page-title-center">
+                                       <button type="button"
+                                        class="btn btn-info btn-rounded waves-effect waves-light">+ Cliente</button>
+                                    </div>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
@@ -648,19 +646,7 @@
                                     $(this).find('input[name="id_form_web"]').val(idFormWeb);
                                     $(this).find('input[name="datos_form"]').val(datosForm);
 
-                                    // Realizar la solicitud AJAX para obtener el valor de la consulta
-                                    $.ajax({
-                                        url: 'includes/consulta.php',
-                                        type: 'POST',
-                                        data: { idFormWeb: idFormWeb },
-                                        success: function(response) {
-                                            // Asignar el valor al campo de entrada
-                                            $('.modal-body').find('#valor').val(response);
-                                        },
-                                        error: function(xhr, status, error) {
-                                            console.log(error);
-                                        }
-                                    });
+                                  
                                 });
                             });
                         </script>
@@ -681,10 +667,14 @@
                                                     <input type="text" name="id_usuario" id="id_usuario" value="2" readonly>
                                                     <input type="text" class="form-control" name="datos_form" id="datos_form" readonly>
                                                     <br>
-                                                                                                  
-                                                <!-- end select -->
+                                                    <label for="">Estado</label>
+                                                        <select class="form-control select2">
+                                                            <option value="0" selected>Pendiente</option>
+                                                            <option value="1">Observado</option>
+                                                            <option value="2">Atendido</option>
+                                                        </select>
                                                         <br>
-                                                        <label for="">Asignar</label>
+                                                        <label for="">Usario Asignado</label>
                                                         <select class="form-control select2">
                                                             <option value="0" selected>Usuario1</option>
                                                             <option value="1">Usuario 2 </option>
@@ -782,16 +772,6 @@
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
-                
-        <!-- Select2 -->                    
-        <script src="assets/libs/select2/js/select2.min.js"></script>
-        <script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-        <script src="assets/libs/spectrum-colorpicker2/spectrum.min.js"></script>
-        <script src="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-        <script src="assets/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
-        <script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
-        <script src="assets/js/pages/form-advanced.init.js"></script>
-        <script src="assets/js/app.js"></script>
 
         <!-- JAVASCRIPT -->
         <script src="assets/libs/jquery/jquery.min.js"></script>
@@ -823,7 +803,7 @@
         <!-- Datatable init js -->
         <script src="assets/js/pages/datatables.init.js"></script>
 
-    
+        <script src="assets/js/app.js"></script>
 
     </body>
 </html>
