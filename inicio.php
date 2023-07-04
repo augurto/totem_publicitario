@@ -1,3 +1,22 @@
+<?php
+session_start(); // Iniciar sesión
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['usuario'])) {
+    // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión
+    header("Location: login.php");
+    exit();
+}
+
+// Obtener los datos de inicio de sesión de la variable de sesión
+$usuario = $_SESSION['usuario'];
+$dni = $_SESSION['dni'];
+$tipoUsuario = $_SESSION['tipoUsuario'];
+
+// Resto del código de la página inicio.php
+// ...
+?>
+
 <!doctype html>
 <html lang="es">
 
