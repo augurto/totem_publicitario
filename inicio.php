@@ -716,18 +716,32 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Cras mattis consectetur purus sit amet fermentum.
-                                                            Cras justo odio, dapibus ac facilisis in,
-                                                            egestas eget quam. Morbi leo risus, porta ac
-                                                            consectetur ac, vestibulum at eros.</p>
-                                                        <p>Praesent commodo cursus magna, vel scelerisque
-                                                            nisl consectetur et. Vivamus sagittis lacus vel
-                                                            augue laoreet rutrum faucibus dolor auctor.</p>
-                                                        <p class="mb-0">Aenean lacinia bibendum nulla sed consectetur.
-                                                            Praesent commodo cursus magna, vel scelerisque
-                                                            nisl consectetur et. Donec sed odio dui. Donec
-                                                            ullamcorper nulla non metus auctor
-                                                            fringilla.</p>
+                                                    <form action="includes/guardar_datos_atender.php" method="POST">
+                                                    <input type="text" name="id_form_web" id="id_form_web" readonly>
+                                                    <input type="text" name="id_usuario" id="id_usuario" value="2" readonly>
+                                                    <input type="text" class="form-control" name="datos_form" id="datos_form" readonly>
+                                                    <br>
+                                                    <label for="">Estado</label>
+                                                        <select class="form-control select2">
+                                                            <option value="0" selected>Pendiente</option>
+                                                            <option value="1">Observado</option>
+                                                            <option value="2">Atendido</option>
+                                                        </select>
+                                                        <br>
+                                                        <label for="">Usario Asignado</label>
+                                                        <select class="form-control select2">
+                                                            <option value="0" selected>Usuario1</option>
+                                                            <option value="1">Usuario 2 </option>
+                                                            <option value="2">Usuario 3</option>
+                                                        </select>
+                                                        <br>
+                                                        <label for="">Comentario</label>
+                                                        <textarea class="form-control"></textarea>
+                                                        <br>
+                                                        <input type="text" class="form-control" name="valor" id="valor">
+                                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                                    </form>
+
                                                     </div>
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
