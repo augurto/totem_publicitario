@@ -33,8 +33,8 @@
                             <div class="text-center mt-4">
                                 <div class="mb-3">
                                     <a href="index.html" class="">
-                                        <img src="assets/images/adfusion.png" alt="" height="22" class="auth-logo logo-dark mx-auto">
-                                        <img src="assets/images/adfusion.png" alt="" height="22" class="auth-logo logo-light mx-auto">
+                                        <img src="assets/images/adfusion.png" alt="" height="22" class="auth-logo logo-dark mx-auto"  style="background: #b0b0b0; border-radius: 12px;">
+                                        <img src="assets/images/adfusion.png" alt="" height="22" class="auth-logo logo-light mx-auto"  style="background: #b0b0b0; border-radius: 12px;">
                                     </a>
                                 </div>
                             </div>
@@ -42,18 +42,16 @@
                                 <h4 class="font-size-18 text-muted mt-2 text-center">Bienvenido!</h4>
                                 <p class="text-muted text-center mb-4">Iniciar Sesion</p>
 
-                                <form class="form-horizontal" action="index.html">
+                                <form class="form-horizontal" action="includes/guardar_datos_usuario.php" method="POST">
 
                                     <div class="mb-3">
                                         <label class="form-label" for="username">DNI</label>
-                                        <input type="text" class="form-control" id="username"
-                                            placeholder="Enter username">
+                                        <input type="text" class="form-control" id="username" name="dni" placeholder="Documento">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label" for="userpassword">Contraseña</label>
-                                        <input type="password" class="form-control" id="userpassword"
-                                            placeholder="Enter password">
+                                        <input type="password" class="form-control" id="userpassword" name="password" placeholder="Ingrese su constraseña">
                                     </div>
 
                                     <div class="mb-3 row mt-4">
@@ -75,15 +73,13 @@
                                     <!-- end row -->
 
                                     <div class="row mb-4">
-                                        <div class="col-12 text-center">
-                                            <button class="btn btn-primary w-100 waves-effect waves-light"
-                                                type="submit">Iniciar Sesion</button>
-                                        </div>
-                                    </div>
-                                    <!-- end row -->
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Iniciar Sesion</button>
+                                </div>
+                            </div>
+                            <!-- end row -->
 
-                               
-                                </form>
+                        </form>
                                 <!-- end form -->
                             </div>
                         </div>
