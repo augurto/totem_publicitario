@@ -5,6 +5,7 @@ session_start(); // Iniciar la sesión
 $_SESSION = array();
 
 // Destruir la sesión
+
 session_destroy();
 
 // Redireccionar a la página de inicio de sesión o a otra página deseada
