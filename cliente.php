@@ -640,7 +640,17 @@
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="id-input">
+
+                                            <script>
+                                                // Obtener el valor de la variable "id" de la URL
+                                                const urlParams = new URLSearchParams(window.location.search);
+                                                const id = urlParams.get('id');
+
+                                                // Establecer el valor en el input
+                                                document.getElementById('id-input').value = id;
+                                            </script>
+
                                             <input type="text" class="form-control">
                                             <center>
                                             <button type="button"
