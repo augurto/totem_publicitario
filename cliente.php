@@ -742,30 +742,42 @@ if (!isset($_SESSION['usuario'])) {
                                     </div>
                                     <!-- end row -->
                                 </form>
+                               
                                 <script>
-                                    $(document).ready(function() {
-                                    // Capturar el evento de envío del formulario
-                                    $('#myForm2').submit(function(event) {
-                                        event.preventDefault(); // Prevenir la recarga de la página
+                                $(document).ready(function() {
+                                // Capturar el evento de clic en el botón
+                                $('#submitBtn').click(function() {
+                                    // Obtener los valores del formulario
+                                    var idCliente = $('#idcliente').val();
+                                    var tipoCliente = $('#tipoCliente').val();
+                                    var prospecto = $('#prospecto').val();
+                                    var observacion = $('#observacion').val();
+                                    var idid = $('#idid').val();
+                                    var iduser = $('#iduser').val();
 
-                                        // Obtener los datos del formulario
-                                        var formData = $(this).serialize();
-
-                                        // Enviar los datos al servidor utilizando AJAX
-                                        $.ajax({
-                                        type: 'POST',
-                                        url: 'guardar_webform.php', // URL del archivo PHP para guardar los datos
-                                        data: formData,
-                                        success: function(response) {
-                                            // Manejar la respuesta del servidor
-                                            console.log(response); // Mostrar la respuesta en la consola (opcional)
-                                            // Aquí puedes mostrar una notificación de éxito o actualizar la página, si lo deseas
-                                        }
-                                        });
+                                    // Enviar los datos al servidor utilizando AJAX
+                                    $.ajax({
+                                    type: 'POST',
+                                    url: 'includes/guardar_webform.php', // URL del archivo PHP para guardar los datos
+                                    data: {
+                                        idCliente: idCliente,
+                                        tipoCliente: tipoCliente,
+                                        prospecto: prospecto,
+                                        observacion: observacion,
+                                        idid: idid,
+                                        iduser: iduser
+                                    },
+                                    success: function(response) {
+                                        // Manejar la respuesta del servidor
+                                        console.log(response); // Mostrar la respuesta en la consola (opcional)
+                                        // Aquí puedes mostrar una notificación de éxito o actualizar la página, si lo deseas
+                                    }
                                     });
-                                    });
-
+                                });
+                                });
                                 </script>
+
+                                
                                 <!-- end form -->
                             </div>
                             <!-- end cardbody -->
