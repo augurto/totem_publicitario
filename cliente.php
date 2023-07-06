@@ -640,7 +640,10 @@
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
-
+                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control">
+                                            <button type="button"
+                                              class="btn btn-outline-success btn-rounded waves-effect waves-light">Reistrar Usuario</button>
                                             
                                         </div>
                                         <!-- end col -->
