@@ -18,10 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Obtener los datos de inicio de sesión de la variable de sesión
         $usuario = $row['nombre_user'];
         $dni = $row['documento'];
+        $idUser = $row['id_user'];
 
         // Iniciar sesión y guardar los datos en variables de sesión
         session_start();
         $_SESSION['usuario'] = $usuario;
+        $_SESSION['idUser'] = $idUser;
         $_SESSION['dni'] = $dni;
         $_SESSION['tipoUsuario'] = $tipoUsuario;
         

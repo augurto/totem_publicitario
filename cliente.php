@@ -426,8 +426,8 @@ if (!isset($_SESSION['usuario'])) {
                                 <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock
                                     screen</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#"><i
-                                        class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger" href="./cerrar.php"><i
+                                        class="ri-shut-down-line align-middle me-1 text-danger"></i> Cerrar Sesion</a>
                             </div>
                         </div>
                         <!-- end user -->
@@ -577,7 +577,7 @@ if (!isset($_SESSION['usuario'])) {
 
                                             <input type="text" class="form-control" id="iduser">
                                             <input type="text" id="usuarioInput" class="form-control" readonly>
-                                            <input type="text" id="usuarioInput" class="form-control" value="<?php echo $_SESSION['usuario']; ?>" readonly>
+                                            <input type="text" id="usuarioInput" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
 
 
                                             <script>
