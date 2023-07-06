@@ -1,3 +1,6 @@
+<?php 
+ include 'includes/conexion.php'; 
+?>
 <!doctype html>
 <html lang="en">
 
@@ -507,7 +510,7 @@
                                                 
                                                 <select class="form-control select2">
                                                 <?php
-                                                include 'includes/conexion.php'; // Incluir el archivo de conexión
+                                                
 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
                                                 $query = "SELECT * FROM tipoCliente";
@@ -519,6 +522,33 @@
                                                     while ($row = mysqli_fetch_assoc($result)) {
                                                     $value = $row['valorTipoCliente'];
                                                     $text = $row['descripcionTipoCliente'];
+                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
+                                                    }
+                                                }
+
+                                                // Cerrar la conexión a la base de datos
+                                                mysqli_close($con);
+                                                ?>
+                                                </select>
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Fuente</label>
+                                                
+                                                <select class="form-control select2">
+                                                <?php
+                                             
+
+                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                                $query = "SELECT * FROM fuente";
+                                                $result = mysqli_query($con, $query);
+
+                                                // Verificar si se encontraron resultados
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    // Generar las opciones dentro del select
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                    $value = $row['tipoFuente'];
+                                                    $text = $row['descripcionFuente'];
                                                     echo "<option value='" . $value . "'>" . $text . "</option>";
                                                     }
                                                 }
