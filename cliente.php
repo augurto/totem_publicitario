@@ -495,93 +495,7 @@
 
 
                 <div class="row">
-                    <div class="col-lg-6">
-                    <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Titulo</h4>
-                                <p class="card-title-desc">Parametros del cliente</p>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="mb-12">
-                                                <label class="form-label">Tipo de Cliente</label>
-                                                
-                                                <select class="form-control select2">
-                                                <?php
-                                                 include 'includes/conexion.php'; 
-                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query = "SELECT * FROM tipoCliente";
-                                                $result = mysqli_query($con, $query);
-
-                                                // Verificar si se encontraron resultados
-                                                if (mysqli_num_rows($result) > 0) {
-                                                    // Generar las opciones dentro del select
-                                                    while ($row = mysqli_fetch_assoc($result)) {
-                                                    $value = $row['valorTipoCliente'];
-                                                    $text = $row['descripcionTipoCliente'];
-                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
-                                                    }
-                                                }
-
-                                                // Cerrar la conexión a la base de datos
-                                                mysqli_close($con);
-                                                ?>
-                                                </select>
-
-                                            </div>
-                                            <div class="mb-12">
-                                                <label class="form-label">Fuente</label>
-                                                
-                                                <select class="form-control select2">
-                                                <?php
-                                             
-                                                include 'includes/conexion.php'; 
-                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query2 = "SELECT * FROM fuente where idAterrizajeFuente = 1";
-                                                $result2 = mysqli_query($con, $query2);
-
-                                                // Verificar si se encontraron resultados
-                                                if (mysqli_num_rows($result2) > 0) {
-                                                    // Generar las opciones dentro del select
-                                                    while ($row2 = mysqli_fetch_assoc($result2)) {
-                                                    $value2 = $row2['tipoFuente'];
-                                                    $text2 = $row2['descripcionFuente'];
-                                                    echo "<option value='" . $value2 . "'>" . $text2 . "</option>";
-                                                    }
-                                                }
-
-                                                // Cerrar la conexión a la base de datos
-                                                mysqli_close($con);
-                                                ?>
-                                                </select>
-
-                                            </div>
-                                            <div class="mt-12">
-                                                <label class="mb-1">Observacion</label>
-                                                
-                                                <textarea id="textarea" class="form-control" maxlength="225" rows="3"
-                                                    placeholder="Observacion al Cliente"></textarea>
-                                            </div>
-
-                                            
-                                        </div>
-                                        <!-- end col -->
-                                        
-                                        <!-- end col -->
-                                    </div>
-                                    <!-- end row -->
-                                </form>
-                                <!-- end form -->
-                            </div>
-                            <!-- end cardbody -->
-                        </div>
-                        <!-- end card -->
-                       
-
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-lg-6">
+                <div class="col-lg-6">
                         
 
                         <div class="card">
@@ -672,6 +586,94 @@
                         <!-- end card -->
                     </div>
                     <!-- end col -->
+                    
+                    <div class="col-lg-6">
+                    <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Titulo</h4>
+                                <p class="card-title-desc">Parametros del cliente</p>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="mb-12">
+                                                <label class="form-label">Tipo de Cliente</label>
+                                                
+                                                <select class="form-control select2">
+                                                <?php
+                                                 include 'includes/conexion.php'; 
+                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                                $query = "SELECT * FROM tipoCliente";
+                                                $result = mysqli_query($con, $query);
+
+                                                // Verificar si se encontraron resultados
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    // Generar las opciones dentro del select
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                    $value = $row['valorTipoCliente'];
+                                                    $text = $row['descripcionTipoCliente'];
+                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
+                                                    }
+                                                }
+
+                                                // Cerrar la conexión a la base de datos
+                                                mysqli_close($con);
+                                                ?>
+                                                </select>
+
+                                            </div>
+                                            <div class="mb-12">
+                                                <label class="form-label">Fuente</label>
+                                                
+                                                <select class="form-control select2">
+                                                <?php
+                                             
+                                                include 'includes/conexion.php'; 
+                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                                $query2 = "SELECT * FROM fuente where idAterrizajeFuente = 1";
+                                                $result2 = mysqli_query($con, $query2);
+
+                                                // Verificar si se encontraron resultados
+                                                if (mysqli_num_rows($result2) > 0) {
+                                                    // Generar las opciones dentro del select
+                                                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                                                    $value2 = $row2['tipoFuente'];
+                                                    $text2 = $row2['descripcionFuente'];
+                                                    echo "<option value='" . $value2 . "'>" . $text2 . "</option>";
+                                                    }
+                                                }
+
+                                                // Cerrar la conexión a la base de datos
+                                                mysqli_close($con);
+                                                ?>
+                                                </select>
+
+                                            </div>
+                                            <div class="mt-12">
+                                                <label class="mb-1">Observacion</label>
+                                                
+                                                <textarea id="textarea" class="form-control" maxlength="225" rows="3"
+                                                    placeholder="Observacion al Cliente"></textarea>
+                                            </div>
+
+                                            
+                                        </div>
+                                        <!-- end col -->
+                                        
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </form>
+                                <!-- end form -->
+                            </div>
+                            <!-- end cardbody -->
+                        </div>
+                        <!-- end card -->
+                       
+
+                    </div>
+                    <!-- end col -->
+
+                    
                 </div>
                 <!-- end row -->
 
