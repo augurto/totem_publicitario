@@ -566,6 +566,16 @@
                                             </script>
 
                                             <input type="text" class="form-control" id="iduser">
+                                            <input type="text" id="usuarioInput" class="form-control" readonly>
+
+                                            <script>
+                                                // Obtener el valor de inicio de sesión de alguna manera (por ejemplo, desde una variable PHP o una cookie)
+                                                var usuario = "nombre_de_usuario";
+
+                                                // Establecer el valor en el input
+                                                document.getElementById('usuarioInput').value = usuario;
+                                            </script>
+
                                             <center>
                                             <center>
                                                 <button type="button" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Usuario</button>
