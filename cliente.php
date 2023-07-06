@@ -503,7 +503,7 @@
                                 <form>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <div class="mb-3">
+                                            <div class="mb-6">
                                                 <label class="form-label">Tipo de Cliente</label>
                                                 
                                                 <select class="form-control select2">
@@ -529,7 +529,7 @@
                                                 </select>
 
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-6">
                                                 <label class="form-label">Fuente</label>
                                                 
                                                 <select class="form-control select2">
@@ -556,7 +556,7 @@
                                                 </select>
 
                                             </div>
-                                            <div class="mt-3">
+                                            <div class="mt-6">
                                                 <label class="mb-1">Observacion</label>
                                                 
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
@@ -594,14 +594,14 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             
-                                            <div class="row mb-3">
+                                            <div class="row mb-6">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" type="text" placeholder="Nombres y Apellidos"
                                                         id="example-text-input">
                                                 </div>
                                             </div>
-                                            <div class="row mb-3">
+                                            <div class="row mb-6">
                                                 <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" type="number" id="example-number-input" maxlength="9">
@@ -616,7 +616,7 @@
                                             </script>
 
                                             <!-- end row -->
-                                            <div class="mt-3">
+                                            <div class="mt-6">
                                                 <label class="mb-1">Comentario</label>
                                                 
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
