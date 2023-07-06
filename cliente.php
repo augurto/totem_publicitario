@@ -562,17 +562,19 @@
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
-
+                                            <div class="card-body">
+                                            <center>
+                                                <br>
+                                            <button type="button"
+                                                class="btn btn-outline-danger btn-rounded waves-effect waves-light">Registrar Atencion</button>
+                                            </center>
+                                            </div>
                                             
                                         </div>
                                         <!-- end col -->
                                         
                                         <!-- end col -->
-                                        <center>
-                                        <br>
-                                    <button type="button"
-                                        class="btn btn-outline-danger btn-rounded waves-effect waves-light">Registrar Atencion</button>
-                                    </center>
+                                        
                                     </div>
                                     <!-- end row -->
                                     
@@ -648,16 +650,20 @@
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
 
+                                        
+                                            <div class="card-body">
+                                            <center>
+                                                <br>
+                                            <button type="submit"
+                                                class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Cliente</button>
+                                            </center>
+                                            </div>
                                             
                                         </div>
                                         <!-- end col -->
                                         
                                         <!-- end col -->
-                                        <center>
-                                        <br>
-                                    <button type="submit"
-                                        class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Cliente</button>
-                                    </center>
+                                        
                                     </div>
                                     <!-- end row -->
                                     
