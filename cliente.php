@@ -574,10 +574,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 // Establecer el valor en el input
                                                 document.getElementById('id-input').value = id;
                                             </script>
-
-                                            <input type="text" class="form-control" id="iduser">
-                                            <input type="text" id="usuarioInput" class="form-control" readonly>
-                                            <input type="text" id="usuarioInput" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+                                            <input type="text" id="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
 
 
                                             <script>
