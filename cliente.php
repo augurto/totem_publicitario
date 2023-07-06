@@ -640,136 +640,60 @@
                     <!-- end col -->
 
                     <div class="col-lg-6">
+                        
+
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title">Datepicker</h4>
-                                <p class="card-title-desc">Examples of twitter bootstrap datepicker.</p>
+                                <h4 class="card-title">Registrar Cliente</h4>
+                                
 
-                                <form action="#">
-                                    <div class="mb-4">
-                                        <label class="form-label">Default Functionality</label>
-                                        <div class="input-group" id="datepicker1">
-                                            <input type="text" class="form-control" placeholder="dd M, yyyy"
-                                                data-date-format="dd M, yyyy" data-date-container='#datepicker1'
-                                                data-provide="datepicker">
+                                    <form>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tipo de Cliente</label>
+                                                
+                                                <select class="form-control select2">
+                                                <?php
+                                                include 'includes/conexion.php'; // Incluir el archivo de conexión
 
-                                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                                $query = "SELECT * FROM tipoCliente";
+                                                $result = mysqli_query($con, $query);
+
+                                                // Verificar si se encontraron resultados
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    // Generar las opciones dentro del select
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                    $value = $row['valorTipoCliente'];
+                                                    $text = $row['descripcionTipoCliente'];
+                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
+                                                    }
+                                                }
+
+                                                // Cerrar la conexión a la base de datos
+                                                mysqli_close($con);
+                                                ?>
+                                                </select>
+
+                                            </div>
+                                            <div class="mt-3">
+                                                <label class="mb-1">Observacion</label>
+                                                
+                                                <textarea id="textarea" class="form-control" maxlength="225" rows="3"
+                                                    placeholder="Observacion al Cliente"></textarea>
+                                            </div>
+
+                                            
                                         </div>
-                                        <!-- input-group -->
+                                        <!-- end col -->
+                                        
+                                        <!-- end col -->
                                     </div>
-
-                                    <div class="mb-4">
-                                        <label class="form-label">Auto Close</label>
-                                        <div class="input-group" id="datepicker2">
-                                            <input type="text" class="form-control" placeholder="dd M, yyyy"
-                                                data-date-format="dd M, yyyy" data-date-container='#datepicker2'
-                                                data-provide="datepicker" data-date-autoclose="true">
-
-                                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                                        </div>
-                                        <!-- input-group -->
-                                    </div>
-
-                                    <div class="mb-4">
-                                        <label class="form-label">Multiple Date</label>
-                                        <div class="input-group" id="datepicker3">
-                                            <input type="text" class="form-control" placeholder="dd M, yyyy"
-                                                data-provide="datepicker" data-date-container='#datepicker3'
-                                                data-date-format="dd M, yyyy" data-date-multidate="true">
-
-                                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                                        </div>
-                                        <!-- input-group -->
-                                    </div>
-
-                                    <div class="mb-4">
-                                        <label class="form-label">Month View</label>
-                                        <div class="position-relative" id="datepicker4">
-                                            <input type="text" class="form-control" data-date-container='#datepicker4'
-                                                data-provide="datepicker" data-date-format="MM yyyy"
-                                                data-date-min-view-mode="1">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="mb-4">
-                                        <label class="form-label">Year View</label>
-                                        <div class="position-relative" id="datepicker5">
-                                            <input type="text" class="form-control" data-provide="datepicker"
-                                                data-date-container='#datepicker5' data-date-format="dd M, yyyy"
-                                                data-date-min-view-mode="2">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label class="form-label">Date Range</label>
-                                        <div class="input-daterange input-group" id="datepicker6"
-                                            data-date-format="dd M, yyyy" data-date-autoclose="true"
-                                            data-provide="datepicker" data-date-container='#datepicker6'>
-                                            <input type="text" class="form-control" name="start"
-                                                placeholder="Start Date" />
-                                            <input type="text" class="form-control" name="end" placeholder="End Date" />
-                                        </div>
-                                        <!-- input group -->
-                                    </div>
+                                    <!-- end row -->
                                 </form>
                                 <!-- end form -->
-                            </div>
-                            <!-- end cardbody -->
-                        </div>
-                        <!-- end card -->
-
-                        <div class="card">
-                            <div class="card-body">
-
-                                <h4 class="card-title">Bootstrap TouchSpin</h4>
-                                <p class="card-title-desc">A mobile and touch friendly input spinner component for
-                                    Bootstrap</p>
-
-                                <form>
-                                    <div class="mb-3">
-                                        <label class="form-label">Using data attributes</label>
-                                        <input id="demo0" type="text" value="55" name="demo0" data-bts-min="0"
-                                            data-bts-max="100" data-bts-init-val="" data-bts-step="1"
-                                            data-bts-decimal="0" data-bts-step-interval="100"
-                                            data-bts-force-step-divisibility="round" data-bts-step-interval-delay="500"
-                                            data-bts-prefix="" data-bts-postfix="" data-bts-prefix-extra-class=""
-                                            data-bts-postfix-extra-class="" data-bts-booster="true"
-                                            data-bts-boostat="10" data-bts-max-boosted-step="false"
-                                            data-bts-mousewheel="true" data-bts-button-down-class="btn btn-default"
-                                            data-bts-button-up-class="btn btn-default">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Example with postfix (large)</label>
-                                        <input id="demo1" type="text" value="55" name="demo1">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">With prefix </label>
-                                        <input id="demo2" type="text" value="0" name="demo2" class=" form-control">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Init with empty value:</label>
-                                        <input id="demo3" type="text" value="" name="demo3">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Value attribute is not set (applying
-                                            settings.initval)</label>
-                                        <input id="demo3_21" type="text" value="" name="demo3_21">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Value is set explicitly to 33 (skipping
-                                            settings.initval) </label>
-                                        <input id="demo3_22" type="text" value="33" name="demo3_22">
-                                    </div>
-
-                                    <div>
-                                        <label class="form-label">Vertical button alignment:</label>
-                                        <input id="demo_vertical" type="text" value="" name="demo_vertical">
-                                    </div>
-
-                                </form>
                                 <!-- end form -->
                             </div>
                             <!-- end cardbody -->
