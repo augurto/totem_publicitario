@@ -537,7 +537,7 @@
                                              
                                                 include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query2 = "SELECT * FROM fuente";
+                                                $query2 = "SELECT * FROM fuente where idAterrizajeFuente = 1";
                                                 $result2 = mysqli_query($con, $query2);
 
                                                 // Verificar si se encontraron resultados
