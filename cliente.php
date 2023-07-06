@@ -493,7 +493,7 @@
                 <!-- end page title -->
 
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Titulo</h4>
@@ -538,25 +538,7 @@
                                             
                                         </div>
                                         <!-- end col -->
-                                        <div class="col-lg-6">
-                                            <div class="mb-0">
-                                                <label class="form-label">Search Disable</label>
-                                                <select class="form-control select2-search-disable">
-                                                    <option>Select</option>
-                                                    <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                        <option value="AK">Alaska</option>
-                                                        <option value="HI">Hawaii</option>
-                                                    </optgroup>
-                                                    <optgroup label="Pacific Time Zone">
-                                                        <option value="CA">California</option>
-                                                        <option value="NV">Nevada</option>
-                                                        <option value="OR">Oregon</option>
-                                                        <option value="WA">Washington</option>
-                                                    </optgroup>
-                                                </select>
-                                                <!-- end select -->
-                                            </div>
-                                        </div>
+                                        
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
@@ -575,41 +557,26 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Colorpicker</h4>
+                                <h4 class="card-title">Registrar nuevo CLiente</h4>
                                 <p class="card-title-desc">Examples of Spectrum Colorpicker.</p>
 
                                 <form action="#">
-                                    <div class="mb-3">
-                                        <label class="form-label">Simple input field</label>
-                                        <input type="text" class="form-control" id="colorpicker-default"
-                                            value="#50a5f1">
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Nombre y Apellidos</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" placeholder="Artisanal kale"
+                                            id="example-text-input">
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Show Alpha</label>
-                                        <input type="text" class="form-control" id="colorpicker-showalpha"
-                                            value="rgba(244, 106, 106, 0.6)">
+                                </div>
+                                <!-- end row -->
+                                <div class="row mb-3">
+                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="number" value="9" id="example-number-input">
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Show Palette Only</label>
-                                        <input type="text" class="form-control" id="colorpicker-showpaletteonly"
-                                            value="#34c38f">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Toggle Palette Only</label>
-                                        <input type="text" class="form-control" id="colorpicker-togglepaletteonly"
-                                            value="#50a5f1">
-                                    </div>
+                                </div>
+                                <!-- end row -->
 
-                                    <div class="mb-3">
-                                        <label class="form-label">Show Initial</label>
-                                        <input type="text" class="form-control" id="colorpicker-showintial"
-                                            value="#f1b44c">
-                                    </div>
-                                    <div>
-                                        <label class="form-label">Show Input And Initial</label>
-                                        <input type="text" class="form-control" id="colorpicker-showinput-intial"
-                                            value="#f46a6a">
-                                    </div>
                                 </form>
                                 <!-- end form -->
                             </div>
