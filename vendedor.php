@@ -591,24 +591,28 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                                                            
                                                   
                                                         if ($row["estado_web"] == 0) {
-                                                        echo "<td>
-                                                                <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-primary waves-effect waves-light'>
-                                                                    Atender " . $row['datos_form'] . "
-                                                                </a>
-                                                                </td>";
+                                                            echo "<td>
+                                                                    <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-primary waves-effect waves-light'>
+                                                                        Atender
+                                                                    </a>
+                                                                    " . $row['datos_form'] . "
+                                                                  </td>";
                                                         } elseif ($row["estado_web"] == 1) {
-                                                        echo "<td>
-                                                                <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-danger waves-effect waves-light'>
-                                                                    Observado " . $row['datos_form'] . "
-                                                                </a>
-                                                                </td>";
+                                                            echo "<td>
+                                                                    <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-danger waves-effect waves-light'>
+                                                                        Observado
+                                                                    </a>
+                                                                    " . $row['datos_form'] . "
+                                                                  </td>";
                                                         } elseif ($row["estado_web"] == 2) {
-                                                        echo "<td>
-                                                                <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-success waves-effect waves-light'>
-                                                                    Atendido " . $row['datos_form'] . "
-                                                                </a>
-                                                                </td>";
+                                                            echo "<td>
+                                                                    <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-success waves-effect waves-light'>
+                                                                        Atendido
+                                                                    </a>
+                                                                    " . $row['datos_form'] . "
+                                                                  </td>";
                                                         }
+                                                        
 
 
                                                         /* condicional para mostrar si es de facebook, google, organico o presencial */

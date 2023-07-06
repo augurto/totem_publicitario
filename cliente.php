@@ -506,7 +506,7 @@
                                                 
                                                 <select class="form-control select2">
                                                 <?php
-                                                include 'conexion.php'; // Incluir el archivo de conexión
+                                                include 'includes/conexion.php'; // Incluir el archivo de conexión
 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
                                                 $query = "SELECT * FROM tipoCliente";
