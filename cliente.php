@@ -570,6 +570,8 @@
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
+                                    <button type="button"
+                                        class="btn btn-outline-danger btn-rounded waves-effect waves-light">Registrar Atencion</button>
                                 </form>
                                 <!-- end form -->
                             </div>
@@ -588,7 +590,7 @@
                             <div class="card-body">
 
                                 <h4 class="card-title">Registrar Cliente</h4>
-                                
+                                <br>
 
                                     <form>
                                     <div class="row">
@@ -648,6 +650,8 @@
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
+                                    <button type="submit"
+                                        class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Cliente</button>
                                 </form>
                                 <!-- end form -->
                                 <!-- end form -->
