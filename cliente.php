@@ -640,7 +640,7 @@
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
-                                            <input type="text" class="form-control" id="id-input">
+                                            <input type="text" class="form-control" id="id-input" readonly>
 
                                             <script>
                                                 // Obtener el valor de la variable "id" de la URL
