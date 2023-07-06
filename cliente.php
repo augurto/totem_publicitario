@@ -643,7 +643,7 @@ if (!isset($_SESSION['usuario'])) {
                                             <div class="mb-12">
                                                 <label class="form-label">Tipo de Cliente</label>
                                                 
-                                                <select class="form-control select2">
+                                                <select class="form-control select2" id="tipoCLiente">
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
@@ -669,7 +669,7 @@ if (!isset($_SESSION['usuario'])) {
                                             <div class="mb-12">
                                                 <label class="form-label">Fuente</label>
                                                 
-                                                <select class="form-control select2">
+                                                <select class="form-control select2" id="prospecto">
                                                 <?php
                                              
                                                 include 'includes/conexion.php'; 
@@ -696,10 +696,11 @@ if (!isset($_SESSION['usuario'])) {
                                             <div class="mt-12">
                                                 <label class="mb-1">Observacion</label>
                                                 
-                                                <textarea id="textarea" class="form-control" maxlength="225" rows="3"
+                                                <textarea id="observacion" class="form-control" maxlength="225" rows="3"
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
-                                            <input type="text" class="form-control" id="id-input" readonly>
+                                            <input type="text" id="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+
 
                                             <input type="text" id="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
 
