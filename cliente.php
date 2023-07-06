@@ -504,7 +504,7 @@
                                 <h4 class="card-title">Registrar Cliente</h4>
                                 <br>
 
-                                    <form>
+                                <form id="myForm">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             
@@ -565,20 +565,56 @@
                                                 document.getElementById('id-input').value = id;
                                             </script>
 
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="iduser">
                                             <center>
-                                            <button type="button"
-                                              class="btn btn-outline-success btn-rounded waves-effect waves-light">Reistrar Usuario</button>
+                                            <center>
+                                                <button type="button" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Usuario</button>
                                             </center>
-                                            
+                                                    
                                         </div>
                                         <!-- end col -->
                                         
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
+                                    
                                 </form>
+                                <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
+                                    ¡Los datos se han guardado correctamente!
+                                </div>
                                 <!-- end form -->
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    $(document).ready(function() {
+                                        // Capturar el evento de clic en el botón
+                                        $('#submitBtn').click(function() {
+                                            // Obtener los valores del formulario
+                                            var datos = {
+                                                datos: $('#example-text-input').val(),
+                                                documento: $('#example-number-input').val(),
+                                                telefono: $('#example-tel-input').val(),
+                                                email: $('#example-email-input').val(),
+                                                comentario: $('#textarea').val(),
+                                                idweb: $('#id-input').val(),
+                                                iduser: $('#iduser').val()
+                                            };
+
+                                            // Enviar los datos al servidor utilizando AJAX
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'includes/guardar_user.php', // URL del archivo PHP para guardar los datos
+                                                data: datos,
+                                                success: function(response) {
+                                                    // Manejar la respuesta del servidor
+                                                    console.log(response); // Mostrar la respuesta en la consola (opcional)
+
+                                                    // Si la operación de guardado fue exitosa, mostrar el mensaje de alerta
+                                                    $('#successAlert').show();
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
                                 <!-- end form -->
                             </div>
                             <!-- end cardbody -->
@@ -586,7 +622,7 @@
                         <!-- end card -->
                     </div>
                     <!-- end col -->
-                    
+
                     <div class="col-lg-6">
                     <div class="card">
                             <div class="card-body">
