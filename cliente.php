@@ -502,8 +502,8 @@
                                 <p class="card-title-desc">Parametros del cliente</p>
                                 <form>
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-6">
+                                        <div class="col-lg-12">
+                                            <div class="mb-12">
                                                 <label class="form-label">Tipo de Cliente</label>
                                                 
                                                 <select class="form-control select2">
@@ -529,7 +529,7 @@
                                                 </select>
 
                                             </div>
-                                            <div class="mb-6">
+                                            <div class="mb-12">
                                                 <label class="form-label">Fuente</label>
                                                 
                                                 <select class="form-control select2">
@@ -556,7 +556,7 @@
                                                 </select>
 
                                             </div>
-                                            <div class="mt-6">
+                                            <div class="mt-12">
                                                 <label class="mb-1">Observacion</label>
                                                 
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
