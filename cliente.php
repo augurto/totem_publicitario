@@ -577,6 +577,8 @@ if (!isset($_SESSION['usuario'])) {
 
                                             <input type="text" class="form-control" id="iduser">
                                             <input type="text" id="usuarioInput" class="form-control" readonly>
+                                            <input type="text" id="usuarioInput" class="form-control" value="<?php echo $_SESSION['usuario']; ?>" readonly>
+
 
                                             <script>
                                                 // Obtener el valor de inicio de sesión de alguna manera (por ejemplo, desde una variable PHP o una cookie)
@@ -586,7 +588,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 document.getElementById('usuarioInput').value = usuario;
                                             </script>
 
-                                            <center>
+                                           
                                             <center>
                                                 <button type="button" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Usuario</button>
                                             </center>
