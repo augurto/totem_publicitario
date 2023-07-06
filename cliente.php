@@ -492,9 +492,10 @@
                 </div>
                 <!-- end page title -->
 
+
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="card">
+                    <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Titulo</h4>
                                 <p class="card-title-desc">Parametros del cliente</p>
@@ -548,23 +549,16 @@
                             <!-- end cardbody -->
                         </div>
                         <!-- end card -->
-                    </div>
-                    <!-- end col -->
-                </div>
-                <!-- end row -->
-
-                <div class="row">
-                    <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Registrar nuevo CLiente</h4>
-                                <p class="card-title-desc">Examples of Spectrum Colorpicker.</p>
+                                
 
                                 <form action="#">
                                 <div class="row mb-3">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">Nombre y Apellidos</label>
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" placeholder="Artisanal kale"
+                                        <input class="form-control" type="text" placeholder="Nombres y Apellidos"
                                             id="example-text-input">
                                     </div>
                                 </div>
@@ -572,7 +566,7 @@
                                 <div class="row mb-3">
                                     <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="number" value="9" id="example-number-input">
+                                        <input class="form-control" type="number"  id="example-number-input">
                                     </div>
                                 </div>
                                 <!-- end row -->
