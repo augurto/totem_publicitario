@@ -642,8 +642,10 @@
                                             </div>
                                             <input type="text" class="form-control">
                                             <input type="text" class="form-control">
+                                            <center>
                                             <button type="button"
                                               class="btn btn-outline-success btn-rounded waves-effect waves-light">Reistrar Usuario</button>
+                                            </center>
                                             
                                         </div>
                                         <!-- end col -->
