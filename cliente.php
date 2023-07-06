@@ -570,8 +570,10 @@
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
+                                    <div class="row align-items-center">
                                     <button type="button"
                                         class="btn btn-outline-danger btn-rounded waves-effect waves-light">Registrar Atencion</button>
+                                    </div>
                                 </form>
                                 <!-- end form -->
                             </div>
