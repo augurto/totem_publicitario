@@ -564,7 +564,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
-                                            <input type="text" class="form-control" id="id-input" readonly>
+                                            <input type="hidden" class="form-control" id="id-input" readonly>
 
                                             <script>
                                                 // Obtener el valor de la variable "id" de la URL
@@ -574,7 +574,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 // Establecer el valor en el input
                                                 document.getElementById('id-input').value = id;
                                             </script>
-                                            <input type="text" id="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+                                            <input type="hidden" id="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
                                            
                                             <center>
                                                 <button type="button" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Usuario</button>
@@ -699,7 +699,13 @@ if (!isset($_SESSION['usuario'])) {
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
+                                            <input type="hidden" class="form-control" id="id-input" readonly>
 
+                                            <input type="hidden" id="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+
+                                            <center>
+                                                <button type="button" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Usuario</button>
+                                            </center>
                                             
                                         </div>
                                         <!-- end col -->
