@@ -510,8 +510,6 @@
                                                 
                                                 <select class="form-control select2">
                                                 <?php
-                                                
-
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
                                                 $query = "SELECT * FROM tipoCliente";
                                                 $result = mysqli_query($con, $query);
@@ -540,16 +538,16 @@
                                              
 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query = "SELECT * FROM fuente";
-                                                $result = mysqli_query($con, $query);
+                                                $query2 = "SELECT * FROM fuente";
+                                                $result2 = mysqli_query($con, $query2);
 
                                                 // Verificar si se encontraron resultados
-                                                if (mysqli_num_rows($result) > 0) {
+                                                if (mysqli_num_rows($result2) > 0) {
                                                     // Generar las opciones dentro del select
-                                                    while ($row = mysqli_fetch_assoc($result)) {
-                                                    $value = $row['tipoFuente'];
-                                                    $text = $row['descripcionFuente'];
-                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
+                                                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                                                    $value2 = $row2['tipoFuente'];
+                                                    $text2 = $row2['descripcionFuente'];
+                                                    echo "<option value='" . $value2 . "'>" . $text2 . "</option>";
                                                     }
                                                 }
 
