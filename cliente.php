@@ -568,13 +568,14 @@
                                         <!-- end col -->
                                         
                                         <!-- end col -->
-                                    </div>
-                                    <!-- end row -->
-                                    <center>
+                                        <center>
                                         <br>
                                     <button type="button"
                                         class="btn btn-outline-danger btn-rounded waves-effect waves-light">Registrar Atencion</button>
                                     </center>
+                                    </div>
+                                    <!-- end row -->
+                                    
                                     </div>
                                 </form>
                                 <!-- end form -->
@@ -652,13 +653,14 @@
                                         <!-- end col -->
                                         
                                         <!-- end col -->
-                                    </div>
-                                    <!-- end row -->
-                                    <center>
+                                        <center>
                                         <br>
                                     <button type="submit"
                                         class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Cliente</button>
                                     </center>
+                                    </div>
+                                    <!-- end row -->
+                                    
                                 </form>
                                 <!-- end form -->
                                 <!-- end form -->
