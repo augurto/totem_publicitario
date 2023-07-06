@@ -593,35 +593,31 @@
                                     <form>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Tipo de Cliente</label>
-                                                
-                                                <select class="form-control select2">
-                                                <?php
-                                                include 'includes/conexion.php'; // Incluir el archivo de conexión
-
-                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query = "SELECT * FROM tipoCliente";
-                                                $result = mysqli_query($con, $query);
-
-                                                // Verificar si se encontraron resultados
-                                                if (mysqli_num_rows($result) > 0) {
-                                                    // Generar las opciones dentro del select
-                                                    while ($row = mysqli_fetch_assoc($result)) {
-                                                    $value = $row['valorTipoCliente'];
-                                                    $text = $row['descripcionTipoCliente'];
-                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
-                                                    }
-                                                }
-
-                                                // Cerrar la conexión a la base de datos
-                                                mysqli_close($con);
-                                                ?>
-                                                </select>
-
+                                            
+                                            <div class="row mb-3">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" placeholder="Nombres y Apellidos"
+                                                        id="example-text-input">
+                                                </div>
                                             </div>
+                                            <div class="row mb-3">
+                                                <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="number" id="example-number-input" maxlength="9">
+                                                </div>
+                                            </div>
+                                            <script>
+                                                document.getElementById("example-number-input").addEventListener("input", function() {
+                                                    if (this.value.length > 9) {
+                                                        this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
+                                                    }
+                                                });
+                                            </script>
+
+                                            <!-- end row -->
                                             <div class="mt-3">
-                                                <label class="mb-1">Observacion</label>
+                                                <label class="mb-1">Comentario</label>
                                                 
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
                                                     placeholder="Observacion al Cliente"></textarea>
