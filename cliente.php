@@ -601,6 +601,7 @@
                                                         id="example-text-input">
                                                 </div>
                                             </div>
+                                            <br>
                                             <div class="row mb-6">
                                                 <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                 <div class="col-sm-10">
@@ -614,7 +615,24 @@
                                                     }
                                                 });
                                             </script>
-
+                                            <br>
+                                             <!-- end row -->
+                                             <div class="row mb-6">
+                                                <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="tel" placeholder="999-555-555"
+                                                        id="example-tel-input">
+                                                </div>
+                                            </div>
+                                            <!-- end row -->
+                                            <br>
+                                            <div class="row mb-3">
+                                                <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="email" placeholder="nombre@example.com"
+                                                        id="example-email-input">
+                                                </div>
+                                            </div>
                                             <!-- end row -->
                                             <div class="mt-6">
                                                 <label class="mb-1">Comentario</label>
