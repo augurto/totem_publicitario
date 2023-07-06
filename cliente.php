@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
+    header("Location: login.php");
+    exit();
+}
+
+?>
 
 <!doctype html>
 <html lang="en">
