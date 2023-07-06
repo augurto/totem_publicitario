@@ -1,6 +1,4 @@
-<?php 
- include 'includes/conexion.php'; 
-?>
+
 <!doctype html>
 <html lang="en">
 
@@ -510,6 +508,7 @@
                                                 
                                                 <select class="form-control select2">
                                                 <?php
+                                                 include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
                                                 $query = "SELECT * FROM tipoCliente";
                                                 $result = mysqli_query($con, $query);
@@ -536,7 +535,7 @@
                                                 <select class="form-control select2">
                                                 <?php
                                              
-
+                                                include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
                                                 $query2 = "SELECT * FROM fuente";
                                                 $result2 = mysqli_query($con, $query2);
