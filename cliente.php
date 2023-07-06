@@ -637,9 +637,36 @@ if (!isset($_SESSION['usuario'])) {
                             <div class="card-body">
                                 <h4 class="card-title">Titulo</h4>
                                 <p class="card-title-desc">Parametros del cliente</p>
-                                <form>
+                                <form id="myForm2">
                                     <div class="row">
                                         <div class="col-lg-12">
+                                        <div class="mb-12">
+                                                <label class="form-label">Buscar Cliente</label>
+                                                
+                                                <select class="form-control select2" id="idcliente">
+                                                <?php
+                                                 include 'includes/conexion.php'; 
+                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                                $queryc = "SELECT * FROM cliente";
+                                                $resultc = mysqli_query($con, $queryc);
+
+                                                // Verificar si se encontraron resultados
+                                                if (mysqli_num_rows($resultc) > 0) {
+                                                    // Generar las opciones dentro del select
+                                                    while ($rowc= mysqli_fetch_assoc($resultc)) {
+                                                    $valuec = $rowc['documentoCliente'];
+                                                    $textc = $rowc['datosCliente'];
+                                                    $telefonoc = $rowc['telefonoCliente'];
+                                                    echo "<option value='" . $valuec . "'>" . $textc."-".$valuec."-".$telefonoc. "</option>";
+                                                    }
+                                                }
+
+                                                // Cerrar la conexión a la base de datos
+                                                mysqli_close($con);
+                                                ?>
+                                                </select>
+
+                                            </div>
                                             <div class="mb-12">
                                                 <label class="form-label">Tipo de Cliente</label>
                                                 
@@ -715,6 +742,30 @@ if (!isset($_SESSION['usuario'])) {
                                     </div>
                                     <!-- end row -->
                                 </form>
+                                <script>
+                                    $(document).ready(function() {
+                                    // Capturar el evento de envío del formulario
+                                    $('#myForm2').submit(function(event) {
+                                        event.preventDefault(); // Prevenir la recarga de la página
+
+                                        // Obtener los datos del formulario
+                                        var formData = $(this).serialize();
+
+                                        // Enviar los datos al servidor utilizando AJAX
+                                        $.ajax({
+                                        type: 'POST',
+                                        url: 'guardar_webform.php', // URL del archivo PHP para guardar los datos
+                                        data: formData,
+                                        success: function(response) {
+                                            // Manejar la respuesta del servidor
+                                            console.log(response); // Mostrar la respuesta en la consola (opcional)
+                                            // Aquí puedes mostrar una notificación de éxito o actualizar la página, si lo deseas
+                                        }
+                                        });
+                                    });
+                                    });
+
+                                </script>
                                 <!-- end form -->
                             </div>
                             <!-- end cardbody -->
