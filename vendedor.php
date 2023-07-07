@@ -592,19 +592,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         $documentoCliente=$row["documentoCliente"];
                                                         $fuente_dato = $row["fuente_dato"];
 
-                                                        if ($fuente_dato == 1) {
-                                                             // Realizar la consulta interna a la tabla cliente
-                                                            $queryCliente = "SELECT datosCliente FROM cliente WHERE documentoCliente = $documentoCliente";
-                                                            $resultCliente = mysqli_query($con, $queryCliente);
-
-                                                            
-                                                                $rowCliente = mysqli_fetch_assoc($resultCliente);
-                                                                $datosCliente = $rowCliente["datosCliente"];
-
-                                                                // Mostrar los datos del cliente en la celda de la tabla
-                                                                echo "<td>" . $datosCliente . "</td>";
-                                                           
-                                                        } else {
+                                                       
                                                             // Obtener el valor de $row["estado_web"]
                                                             $estado_web = $row["estado_web"];
 
@@ -630,7 +618,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                         " . $row['datos_form'] . "
                                                                     </td>";
                                                             }
-                                                        }
+                                                      
                                                         
 
 
