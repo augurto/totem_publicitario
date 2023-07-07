@@ -597,15 +597,13 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             $queryCliente = "SELECT datosCliente FROM cliente WHERE documentoCliente = $documentoCliente";
                                                             $resultCliente = mysqli_query($con, $queryCliente);
 
-                                                            // Verificar si se encontraron resultados
-                                                            if (mysqli_num_rows($resultCliente) > 0) {
-                                                                // Obtener los datos del cliente
+                                                            
                                                                 $rowCliente = mysqli_fetch_assoc($resultCliente);
                                                                 $datosCliente = $rowCliente["datosCliente"];
 
                                                                 // Mostrar los datos del cliente en la celda de la tabla
                                                                 echo "<td>" . $datosCliente . "</td>";
-                                                            } 
+                                                           
                                                         } else {
                                                             // Obtener el valor de $row["estado_web"]
                                                             $estado_web = $row["estado_web"];
