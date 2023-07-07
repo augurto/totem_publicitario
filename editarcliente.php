@@ -15,7 +15,7 @@ include 'conexion.php'; // Incluir el archivo de conexión
 $idUrl = $_GET['id'];
 
 // Realizar la consulta SQL para obtener los valores de email, telefono, mensaje, fecha e id_user
-$selectQuery = "SELECT datos_form, email, telefono, mensaje, fecha, id_user FROM web_formularios WHERE id_form_web = $idUrl";
+$selectQuery = "SELECT datos_form, email, telefono,documentoCliente, mensaje, fecha, id_user FROM web_formularios WHERE id_form_web = $idUrl";
 $selectResult = mysqli_query($con, $selectQuery);
 
 // Verificar si se obtuvieron resultados
@@ -563,6 +563,7 @@ mysqli_close($con);
                                                 <div class="col-sm-10">
                                                     <input class="form-control" type="text" value="<?php echo $datosForm2  ;?>"
                                                         id="example-text-input" name="datos">
+                                                        
                                                 </div>
                                             </div>
                                             <br>
