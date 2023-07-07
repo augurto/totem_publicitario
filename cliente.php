@@ -514,7 +514,7 @@ if (!isset($_SESSION['usuario'])) {
                                 <h4 class="card-title">Registrar Cliente</h4>
                                 <br>
 
-                                <form id="myForm">
+                                <form id="myForm" action="includes/guardar_user.php" method="post">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             
@@ -522,14 +522,14 @@ if (!isset($_SESSION['usuario'])) {
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                        id="example-text-input">
+                                                        id="example-text-input" name="datos">
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row mb-6">
                                                 <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="number" id="example-number-input" maxlength="9">
+                                                    <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
                                                 </div>
                                             </div>
                                             <script>
@@ -545,7 +545,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" type="tel" placeholder="999-555-555"
-                                                        id="example-tel-input">
+                                                        id="example-tel-input" name="telefono">
                                                 </div>
                                             </div>
                                             <!-- end row -->
@@ -554,7 +554,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" type="email" placeholder="nombre@example.com"
-                                                        id="example-email-input">
+                                                        id="example-email-input" name="email">
                                                 </div>
                                             </div>
                                             <!-- end row -->
@@ -562,7 +562,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 <label class="mb-1">Comentario</label>
                                                 
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
-                                                    placeholder="Observacion al Cliente"></textarea>
+                                                    placeholder="Observacion al Cliente" name="comentario"></textarea>
                                             </div>
                                             <input type="hidden" class="form-control" id="id-input" readonly>
 
@@ -588,42 +588,12 @@ if (!isset($_SESSION['usuario'])) {
                                     <!-- end row -->
                                     
                                 </form>
-                                <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
+                                <!-- <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
                                     ¡Los datos se han guardado correctamente!
-                                </div>
+                                </div> -->
                                 <!-- end form -->
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                <script>
-                                    $(document).ready(function() {
-                                        // Capturar el evento de clic en el botón
-                                        $('#submitBtn').click(function() {
-                                            // Obtener los valores del formulario
-                                            var datos = {
-                                                datos: $('#example-text-input').val(),
-                                                documento: $('#example-number-input').val(),
-                                                telefono: $('#example-tel-input').val(),
-                                                email: $('#example-email-input').val(),
-                                                comentario: $('#textarea').val(),
-                                                idweb: $('#id-input').val(),
-                                                iduser: $('#iduser').val()
-                                            };
-
-                                            // Enviar los datos al servidor utilizando AJAX
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: 'includes/guardar_user.php', // URL del archivo PHP para guardar los datos
-                                                data: datos,
-                                                success: function(response) {
-                                                    // Manejar la respuesta del servidor
-                                                    console.log(response); // Mostrar la respuesta en la consola (opcional)
-
-                                                    // Si la operación de guardado fue exitosa, mostrar el mensaje de alerta
-                                                    $('#successAlert').show();
-                                                }
-                                            });
-                                        });
-                                    });
-                                </script>
+                               
                                 <!-- end form -->
                             </div>
                             <!-- end cardbody -->

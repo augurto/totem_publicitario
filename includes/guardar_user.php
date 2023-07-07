@@ -23,7 +23,7 @@ if ($result) {
     $lastId = mysqli_insert_id($con);
 
     // Redireccionar a la misma página con el parámetro de ID en la URL
-    header("Location: cliente.php?id=" . $lastId);
+    header("Location: ../cliente.php?id=" . $lastId);
     exit();
 } else {
     // Ocurrió un error durante la inserción de datos, puedes mostrar un mensaje de error o realizar alguna acción adicional si lo deseas
