@@ -606,7 +606,7 @@ mysqli_close($con);
                                             </div>
 
                                             <br>
-                                            <?php echo "Registrado por : ".$id_user2."fecha: ". $fecha2;?>
+                                            <!-- <?php echo "Registrado por : ".$id_user2."fecha: ".$fecha2;?> -->
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
                                             <script>
