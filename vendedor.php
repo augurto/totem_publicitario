@@ -646,7 +646,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         echo "<td>" . $row["telefono"] . "</td>";
                                                         
                                                         echo "<td>" . $row["mensaje"] . "</td>";
-                                                        echo "<td>" . $row["fecha"] . "</td>";
+                                                        echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fecha"] . '-5 hours')) . "</td>";
                                                         echo "<td>" . $row["URL"] . "</td>";
                                                         echo "<td>" . $row["nombre_formulario"] . "</td>";
                                                         echo "<td>" . $row["ip_formulario"] . "</td>";
