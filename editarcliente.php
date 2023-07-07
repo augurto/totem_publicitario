@@ -7,43 +7,7 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-                  
-
-include 'conexion.php'; // Incluir el archivo de conexión
-
-// Obtener el valor de $idUrl desde la URL
-$idUrl = $_GET['id'];
-
-// Realizar la consulta SQL para obtener los valores de email, telefono, mensaje, fecha e id_user
-$selectQuery = "SELECT datos_form, email, telefono,documentoCliente, mensaje, fecha, id_user FROM web_formularios WHERE id_form_web = $idUrl";
-$selectResult = mysqli_query($con, $selectQuery);
-
-// Verificar si se obtuvieron resultados
-if (mysqli_num_rows($selectResult) > 0) {
-    // Obtener el primer resultado de la consulta
-    $selectRow = mysqli_fetch_assoc($selectResult);
-
-    // Obtener los valores y almacenarlos en variables
-    $datosForm2 = $selectRow['datos_form'];
-    $email2 = $selectRow['email'];
-    $documento2 = $selectRow['documentoCliente'];
-    $telefono2 = $selectRow['telefono'];
-    $mensaje2 = $selectRow['mensaje'];
-    $fecha2 = $selectRow['fecha'];
-    $id_user2 = $selectRow['id_user'];
-} else {
-    // Si no se encontraron resultados, asignar valores predeterminados a las variables
-    $datosForm2 = "";
-    $email2 = "";
-    $telefono2 = "";
-    $mensaje2 = "";
-    $fecha2 = "";
-    $id_user2 = "";
-}
-
-// Cerrar la conexión a la base de datos
-mysqli_close($con);
-
+$idUrl = $_GET['id'];                       
 
 ?>
 
@@ -551,8 +515,6 @@ mysqli_close($con);
 
                                 <h4 class="card-title">Registrar Cliente</h4>
                                 <br>
-                                
-    
 
                                 <form id="myForm" action="includes/guardar_user.php" method="post">
                                     <div class="row">
@@ -561,16 +523,15 @@ mysqli_close($con);
                                             <div class="row mb-6">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text" value="<?php echo $datosForm2  ;?>"
+                                                    <input class="form-control" type="text" placeholder="Nombres y Apellidos"
                                                         id="example-text-input" name="datos">
-                                                        
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row mb-6">
                                                 <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="number" value="<?php echo $documento2  ;?> id="example-number-input" name="documento" maxlength="9">
+                                                    <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
                                                 </div>
                                             </div>
                                             <script>
@@ -585,7 +546,7 @@ mysqli_close($con);
                                              <div class="row mb-6">
                                                 <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" value="<?php echo  $telefono2  ;?>" type="tel" 
+                                                    <input class="form-control" type="tel" placeholder="999-555-555"
                                                         id="example-tel-input" name="telefono">
                                                 </div>
                                             </div>
@@ -594,7 +555,7 @@ mysqli_close($con);
                                             <div class="row mb-3">
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="email" value="<?php echo $email2 ;?>"
+                                                    <input class="form-control" type="email" placeholder="nombre@example.com"
                                                         id="example-email-input" name="email">
                                                 </div>
                                             </div>
@@ -603,11 +564,8 @@ mysqli_close($con);
                                                 <label class="mb-1">Comentario</label>
                                                 
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
-                                                value="<?php echo $mensaje2 ;?>" name="comentario"></textarea>
+                                                    placeholder="Observacion al Cliente" name="comentario"></textarea>
                                             </div>
-
-                                            <br>
-                                            <!-- <?php echo "Registrado por : ".$id_user2."fecha: ".$fecha2;?> -->
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
                                             <script>
