@@ -37,7 +37,7 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
         $id_web = $id_web;
 
         // Redirecciona a la página cliente.php con el id_form_web como parámetro en la URL
-        header("Location: ../cliente.php?id=" . $id_web);
+        header("Location: ../vendedor.php?id=" . $id_web);
         exit();
     } else {
         // Ocurrió un error durante la inserción, puedes enviar un mensaje de error al cliente si lo deseas
