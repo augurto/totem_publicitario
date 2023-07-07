@@ -589,19 +589,21 @@ if (!isset($_SESSION['usuario'])) {
                                     
                                 </form>
                                 <?php
-                                // Obtener el valor de "user" de la URL
-                                $user = isset($_GET['user']) ? $_GET['user'] : null;
+                                    // Obtener el valor de "a" de la URL
+                                    $a = isset($_GET['a']) ? $_GET['a'] : null;
 
-                                // Verificar si el valor de "user" es igual a 0
-                                if ($user == 0) {
-                                    // Mostrar el div "successAlert"
-                                    echo '<div id="successAlert" class="alert alert-success" role="alert">¡Los datos se han guardado correctamente!</div>';
-                                }
-                                ?>
+                                    // Verificar si el valor de "a" es igual a 0
+                                    if ($a == 0) {
+                                        // Mostrar el div "successAlert"
+                                        echo '
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                                A simple danger alert—check it out!
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                                                    aria-label="Close"></button>
+                                                                            </div>';
+                                    }
+                                    ?>
 
-                                <!-- <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
-                                    ¡Los datos se han guardado correctamente!
-                                </div> -->
                                 <!-- end form -->
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                
