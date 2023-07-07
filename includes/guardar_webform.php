@@ -1,4 +1,5 @@
 
+
 <?php
 include 'conexion.php'; // Incluir el archivo de conexión
 
@@ -9,24 +10,41 @@ $prospecto = $_POST['prospecto'];
 $observacionCliente = $_POST['observacion'];
 $idid = $_POST['idid'];
 $id_user = $_POST['iduser'];
-$estadoWeb=1;
-// Preparar la consulta SQL para realizar la inserción
-$query = "INSERT INTO web_formularios (documentoCliente,tipoCliente, prospecto, observacionCliente, idid, id_user,fuente_dato) VALUES ('$documentoCliente','$tipoCliente', '$prospecto', '$observacionCliente', '$idid', '$id_user','$estadoWeb')";
+$estadoWeb = 1;
 
-// Ejecutar la consulta y verificar si se realizó correctamente
-if (mysqli_query($con, $query)) {
-    // La inserción fue exitosa, obtén el id_form_web generado
-    $id_web = mysqli_insert_id($con);
+// Consultar la tabla cliente para obtener los datosCliente, telefonoCliente y emailCliente según el documentoCliente
+$queryCliente = "SELECT datosCliente, telefonoCliente, emailCliente FROM cliente WHERE idCliente='$documentoCliente'";
+$resultCliente = mysqli_query($con, $queryCliente);
 
-    // Guardar el valor de id_form_web en la variable $id_web
-    $id_web = $id_web;
+// Verificar si se encontraron resultados
+if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
+    // Obtener los valores de datosCliente, telefonoCliente y emailCliente
+    $rowCliente = mysqli_fetch_assoc($resultCliente);
+    $datosCliente = $rowCliente['datosCliente'];
+    $telefonoCliente = $rowCliente['telefonoCliente'];
+    $emailCliente = $rowCliente['emailCliente'];
 
-    // Redirecciona a la página cliente.php con el id_form_web como parámetro en la URL
-    header("Location: ../cliente.php?id=" . $id_web);
-    exit();
+    // Preparar la consulta SQL para realizar la inserción en web_formularios con los valores obtenidos
+    $query = "INSERT INTO web_formularios (documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, observacionCliente, idid, id_user, fuente_dato) VALUES ('$documentoCliente', '$datosCliente', '$telefonoCliente', '$emailCliente', '$tipoCliente', '$prospecto', '$observacionCliente', '$idid', '$id_user', '$estadoWeb')";
+
+    // Ejecutar la consulta y verificar si se realizó correctamente
+    if (mysqli_query($con, $query)) {
+        // La inserción fue exitosa, obtén el id_form_web generado
+        $id_web = mysqli_insert_id($con);
+
+        // Guardar el valor de id_form_web en la variable $id_web
+        $id_web = $id_web;
+
+        // Redirecciona a la página cliente.php con el id_form_web como parámetro en la URL
+        header("Location: ../cliente.php?id=" . $id_web);
+        exit();
+    } else {
+        // Ocurrió un error durante la inserción, puedes enviar un mensaje de error al cliente si lo deseas
+        echo 'Error al guardar los datos: ' . mysqli_error($con);
+    }
 } else {
-    // Ocurrió un error durante la inserción, puedes enviar un mensaje de error al cliente si lo deseas
-    echo 'Error al guardar los datos: ' . mysqli_error($con);
+    // No se encontró el cliente con el documento especificado, puedes enviar un mensaje de error al cliente si lo deseas
+    echo 'No se encontró el cliente con el documento especificado';
 }
 
 // Cerrar la conexión a la base de datos
