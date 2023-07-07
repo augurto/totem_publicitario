@@ -7,7 +7,39 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-$idUrl = $_GET['id'];                       
+include 'conexion.php'; // Incluir el archivo de conexión
+
+// Obtener el valor de $idUrl desde la URL
+$idUrl = $_GET['id'];
+
+// Realizar la consulta SQL para obtener los valores de email, telefono, mensaje, fecha e id_user
+$selectQuery = "SELECT datos_form, email, telefono, mensaje, fecha, id_user FROM web_formularios WHERE id_form_web = $idUrl";
+$selectResult = mysqli_query($con, $selectQuery);
+
+// Verificar si se obtuvieron resultados
+if (mysqli_num_rows($selectResult) > 0) {
+    // Obtener el primer resultado de la consulta
+    $selectRow = mysqli_fetch_assoc($selectResult);
+
+    // Obtener los valores y almacenarlos en variables
+    $datosForm = $selectRow['datos_form'];
+    $email = $selectRow['email'];
+    $telefono = $selectRow['telefono'];
+    $mensaje = $selectRow['mensaje'];
+    $fecha = $selectRow['fecha'];
+    $id_user = $selectRow['id_user'];
+} else {
+    // Si no se encontraron resultados, asignar valores predeterminados a las variables
+    $datosForm = "";
+    $email = "";
+    $telefono = "";
+    $mensaje = "";
+    $fecha = "";
+    $id_user = "";
+}
+
+// Cerrar la conexión a la base de datos
+mysqli_close($con);                    
 
 ?>
 
@@ -523,8 +555,8 @@ $idUrl = $_GET['id'];
                                             <div class="row mb-6">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                        id="example-text-input" name="datos">
+                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos"
+                                                id="example-text-input" name="datos" value="<?php echo $datosForm; ?>">
                                                 </div>
                                             </div>
                                             <br>
