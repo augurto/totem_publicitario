@@ -10,7 +10,7 @@ $idid = $_POST['idid'];
 $iduser = $_POST['iduser'];
 
 // Preparar la consulta SQL para realizar la inserción
-$query = "INSERT INTO web_formularios (documentoCliente, prospecto, observacionCliente, idid, id_user) VALUES ('$idCliente', '$tipoCliente', '$prospecto', '$observacion', '$idid', '$iduser')";
+$query = "INSERT INTO web_formularios (documentoCliente,tipoCliente prospecto, observacionCliente, idid, id_user) VALUES ('$idCliente', '$tipoCliente', '$prospecto', '$observacion', '$idid', '$iduser')";
 
 // Ejecutar la consulta y verificar si se realizó correctamente
 if (mysqli_query($con, $query)) {
