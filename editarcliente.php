@@ -13,7 +13,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
 $idUrl = $_GET['id'];
 
 // Realizar la consulta SQL para obtener los valores de email, telefono, mensaje, fecha e id_user
-$selectQuery = "SELECT datos_form, email, telefono, mensaje, fecha, id_user FROM web_formularios WHERE id_form_web = $idUrl";
+$selectQuery = "SELECT datos_form, email, telefono,documentoCliente, mensaje, fecha, id_user FROM web_formularios WHERE id_form_web = $idUrl";
 $selectResult = mysqli_query($con, $selectQuery);
 
 // Verificar si se obtuvieron resultados
@@ -28,6 +28,8 @@ if (mysqli_num_rows($selectResult) > 0) {
     $mensaje = $selectRow['mensaje'];
     $fecha = $selectRow['fecha'];
     $id_user = $selectRow['id_user'];
+    $documento = $selectRow['documentoCliente'];
+    
 } else {
     // Si no se encontraron resultados, asignar valores predeterminados a las variables
     $datosForm = "";
@@ -563,7 +565,7 @@ mysqli_close($con);
                                             <div class="row mb-6">
                                                 <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
+                                                    <input class="form-control" type="number" value="<?php echo $documento; ?>" id="example-number-input" name="documento" maxlength="9">
                                                 </div>
                                             </div>
                                             <script>
@@ -578,7 +580,7 @@ mysqli_close($con);
                                              <div class="row mb-6">
                                                 <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="tel" placeholder="999-555-555"
+                                                    <input class="form-control" type="tel"  value="<?php echo $telefono ; ?>"  
                                                         id="example-tel-input" name="telefono">
                                                 </div>
                                             </div>
@@ -587,7 +589,7 @@ mysqli_close($con);
                                             <div class="row mb-3">
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="email" placeholder="nombre@example.com"
+                                                    <input class="form-control" type="email"  value="<?php echo $email  ; ?>" 
                                                         id="example-email-input" name="email">
                                                 </div>
                                             </div>
@@ -596,8 +598,10 @@ mysqli_close($con);
                                                 <label class="mb-1">Comentario</label>
                                                 
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
-                                                    placeholder="Observacion al Cliente" name="comentario"></textarea>
+                                                value="<?php echo $mensaje   ; ?>"  name="comentario"></textarea>
                                             </div>
+                                            <br>
+                                            <?php echo "Atendido por :". $id_user."Fecha :".$fecha ; ?>
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
                                             <script>
