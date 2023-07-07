@@ -597,7 +597,7 @@ if (!isset($_SESSION['usuario'])) {
                                         // Mostrar el div "successAlert"
                                         echo '
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                                                A simple danger alert—check it out!
+                                                                                Documento ya registrado
                                                                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                                                                     aria-label="Close"></button>
                                                                             </div>';
