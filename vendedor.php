@@ -590,27 +590,36 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         // Imprimir los valores
                                                                                                            
                                                   
-                                                        if ($row["estado_web"] == 0) {
-                                                            echo "<td>
-                                                                    <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-primary waves-effect waves-light'>
-                                                                        Atender
-                                                                    </a>
-                                                                    " . $row['datos_form'] . "
-                                                                  </td>";
-                                                        } elseif ($row["estado_web"] == 1) {
-                                                            echo "<td>
-                                                                    <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-danger waves-effect waves-light'>
-                                                                        Observado
-                                                                    </a>
-                                                                    " . $row['datos_form'] . "
-                                                                  </td>";
-                                                        } elseif ($row["estado_web"] == 2) {
-                                                            echo "<td>
-                                                                    <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-success waves-effect waves-light'>
-                                                                        Atendido
-                                                                    </a>
-                                                                    " . $row['datos_form'] . "
-                                                                  </td>";
+                                                        $fuente_dato = $row["fuente_dato"];
+
+                                                        if ($fuente_dato == 1) {
+                                                            echo "<td>Manual</td>";
+                                                        } else {
+                                                            // Obtener el valor de $row["estado_web"]
+                                                            $estado_web = $row["estado_web"];
+
+                                                            if ($estado_web == 0) {
+                                                                echo "<td>
+                                                                        <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-primary waves-effect waves-light'>
+                                                                            Atender
+                                                                        </a>
+                                                                        " . $row['datos_form'] . "
+                                                                    </td>";
+                                                            } elseif ($estado_web == 1) {
+                                                                echo "<td>
+                                                                        <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-danger waves-effect waves-light'>
+                                                                            Observado
+                                                                        </a>
+                                                                        " . $row['datos_form'] . "
+                                                                    </td>";
+                                                            } elseif ($estado_web == 2) {
+                                                                echo "<td>
+                                                                        <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-success waves-effect waves-light'>
+                                                                            Atendido
+                                                                        </a>
+                                                                        " . $row['datos_form'] . "
+                                                                    </td>";
+                                                            }
                                                         }
                                                         
 

@@ -575,7 +575,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 document.getElementById('id-input').value = id;
                                             </script>
                                             <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
-                                           
+                                           <br>
                                             <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Usuario</button>
                                             </center>
@@ -588,21 +588,7 @@ if (!isset($_SESSION['usuario'])) {
                                     <!-- end row -->
                                     
                                 </form>
-                                <?php
-                                    // Obtener el valor de "a" de la URL
-                                    $a = isset($_GET['a']) ? $_GET['a'] : null;
-
-                                    // Verificar si el valor de "a" es igual a 0
-                                    if ($a == 0) {
-                                        // Mostrar el div "successAlert"
-                                        echo '
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                                                Documento ya registrado
-                                                                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                                                    aria-label="Close"></button>
-                                                                            </div>';
-                                    }
-                                    ?>
+                                
 
                                 <!-- end form -->
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -713,7 +699,7 @@ if (!isset($_SESSION['usuario'])) {
 
 
                                             <input type="text" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
-
+                                            <br>
                                             <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Lead</button>
                                             </center>

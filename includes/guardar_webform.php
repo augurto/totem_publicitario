@@ -9,9 +9,9 @@ $prospecto = $_POST['prospecto'];
 $observacionCliente = $_POST['observacion'];
 $idid = $_POST['idid'];
 $id_user = $_POST['iduser'];
-
+$estadoWeb=1;
 // Preparar la consulta SQL para realizar la inserción
-$query = "INSERT INTO web_formularios (documentoCliente,tipoCliente, prospecto, observacionCliente, idid, id_user) VALUES ('$documentoCliente','$tipoCliente', '$prospecto', '$observacionCliente', '$idid', '$id_user')";
+$query = "INSERT INTO web_formularios (documentoCliente,tipoCliente, prospecto, observacionCliente, idid, id_user,fuente_dato) VALUES ('$documentoCliente','$tipoCliente', '$prospecto', '$observacionCliente', '$idid', '$id_user','$estadoWeb')";
 
 // Ejecutar la consulta y verificar si se realizó correctamente
 if (mysqli_query($con, $query)) {
