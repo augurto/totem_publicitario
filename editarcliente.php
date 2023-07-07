@@ -7,6 +7,8 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+$idUrl = $_GET['id'];
+
 ?>
 
 <!doctype html>
@@ -611,12 +613,15 @@ if (!isset($_SESSION['usuario'])) {
                                         <div class="col-lg-12">
                                         <div class="mb-12">
                                                 <label class="form-label">Buscar Cliente</label>
-                                                
+                                                <input type="text"  id="idcliente" value="<?php echo $idUrl ?>" >
+
                                                 <select class="form-control select2" id="idcliente" name="idcliente">
+                                                
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $queryc = "SELECT * FROM cliente order by idCliente DESC    ";
+                                                
+                                                $queryc = "SELECT * FROM cliente where $idUrl";
                                                 $resultc = mysqli_query($con, $queryc);
 
                                                 // Verificar si se encontraron resultados
