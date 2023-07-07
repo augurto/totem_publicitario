@@ -2,7 +2,7 @@
 include 'conexion.php'; // Incluir el archivo de conexión
 
 // Obtener los datos enviados desde el formulario
-$idCliente = $_POST['idCliente'];
+$idCliente = $_POST['idcliente'];
 $tipoCliente = $_POST['tipoCliente'];
 $prospecto = $_POST['prospecto'];
 $observacion = $_POST['observacion'];
