@@ -13,7 +13,7 @@ $id_user = $_POST['iduser'];
 $estadoWeb = 1;
 
 // Consultar la tabla cliente para obtener los datosCliente, telefonoCliente y emailCliente según el documentoCliente
-$queryCliente = "SELECT datosCliente, telefonoCliente, emailCliente FROM cliente WHERE idCliente='$documentoCliente'";
+$queryCliente = "SELECT datosCliente, telefonoCliente, emailCliente FROM cliente WHERE idCliente=$documentoCliente";
 $resultCliente = mysqli_query($con, $queryCliente);
 
 // Verificar si se encontraron resultados
