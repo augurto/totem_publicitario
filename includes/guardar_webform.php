@@ -44,7 +44,7 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
     }
 } else {
     // No se encontró el cliente con el documento especificado, puedes enviar un mensaje de error al cliente si lo deseas
-    echo 'No se encontró el cliente con el documento especificado';
+    echo $datosCliente.$telefonoCliente.$emailCliente;
 }
 
 // Cerrar la conexión a la base de datos
