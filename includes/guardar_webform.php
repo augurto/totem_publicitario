@@ -1,15 +1,27 @@
+
 <?php
+include 'conexion.php'; // Incluir el archivo de conexión
+
 // Obtener los datos enviados desde el formulario
-$idCliente = $_POST['idCliente'];
+$documentoCliente = $_POST['idCliente'];
 $tipoCliente = $_POST['tipoCliente'];
 $prospecto = $_POST['prospecto'];
-$observacion = $_POST['observacion'];
+$observacionCliente = $_POST['observacion'];
 $idid = $_POST['idid'];
-$iduser = $_POST['iduser'];
+$id_user = $_POST['iduser'];
 
-// Realizar la inserción en la base de datos (aquí debes adaptarlo a tu estructura y lógica de base de datos)
-// ...
+// Preparar la consulta SQL para realizar la inserción
+$query = "INSERT INTO web_formularios (documentoCliente,tipoCliente, prospecto, observacionCliente, idid, id_user) VALUES ('$documentoCliente','$tipoCliente', '$prospecto', '$observacionCliente', '$idid', '$id_user')";
 
-// Enviar una respuesta al cliente
-echo 'Datos guardados correctamente';
+// Ejecutar la consulta y verificar si se realizó correctamente
+if (mysqli_query($con, $query)) {
+    // La inserción fue exitosa, puedes enviar una respuesta al cliente si lo deseas
+    echo 'Datos guardados correctamente';
+} else {
+    // Ocurrió un error durante la inserción, puedes enviar un mensaje de error al cliente si lo deseas
+    echo 'Error al guardar los datos: ' . mysqli_error($con);
+}
+
+// Cerrar la conexión a la base de datos
+mysqli_close($con);
 ?>
