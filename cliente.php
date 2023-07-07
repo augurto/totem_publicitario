@@ -588,6 +588,17 @@ if (!isset($_SESSION['usuario'])) {
                                     <!-- end row -->
                                     
                                 </form>
+                                <?php
+                                // Obtener el valor de "user" de la URL
+                                $user = isset($_GET['user']) ? $_GET['user'] : null;
+
+                                // Verificar si el valor de "user" es igual a 0
+                                if ($user == 0) {
+                                    // Mostrar el div "successAlert"
+                                    echo '<div id="successAlert" class="alert alert-success" role="alert">¡Los datos se han guardado correctamente!</div>';
+                                }
+                                ?>
+
                                 <!-- <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
                                     ¡Los datos se han guardado correctamente!
                                 </div> -->
@@ -605,7 +616,7 @@ if (!isset($_SESSION['usuario'])) {
                     <div class="col-lg-6">
                     <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Registrar Lead</h4>
+                                <h4 class="card-title">Seguimiento de Lead</h4>
                                 
                                 <form  action="includes/guardar_webform.php" method="post" >
                                     <div class="row">
