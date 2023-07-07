@@ -637,7 +637,7 @@ if (!isset($_SESSION['usuario'])) {
                             <div class="card-body">
                                 <h4 class="card-title">Registrar Lead</h4>
                                 
-                                <form  action="includes/guardar_webform.php" >
+                                <form  action="includes/guardar_webform.php" method="post" >
                                     <div class="row">
                                         <div class="col-lg-12">
                                         <div class="mb-12">
