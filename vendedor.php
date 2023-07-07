@@ -589,11 +589,25 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                         // Imprimir los valores
                                                                                                            
-                                                  
+                                                        $documentoCliente=$row["documentoCliente"];
                                                         $fuente_dato = $row["fuente_dato"];
 
                                                         if ($fuente_dato == 1) {
-                                                            echo "<td>Manual</td>";
+                                                             // Realizar la consulta interna a la tabla cliente
+                                                            $queryCliente = "SELECT datosCliente FROM cliente WHERE documentoCliente = '$documentoCliente'";
+                                                            $resultCliente = mysqli_query($con, $queryCliente);
+
+                                                            // Verificar si se encontraron resultados
+                                                            if (mysqli_num_rows($resultCliente) > 0) {
+                                                                // Obtener los datos del cliente
+                                                                $rowCliente = mysqli_fetch_assoc($resultCliente);
+                                                                $datosCliente = $rowCliente["datosCliente"];
+
+                                                                // Mostrar los datos del cliente en la celda de la tabla
+                                                                echo "<td>" . $datosCliente . "</td>";
+                                                            } else {
+                                                                echo "<td>Cliente no encontrado</td>";
+                                                            }
                                                         } else {
                                                             // Obtener el valor de $row["estado_web"]
                                                             $estado_web = $row["estado_web"];
