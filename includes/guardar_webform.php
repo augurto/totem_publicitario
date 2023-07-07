@@ -3,7 +3,7 @@
 include 'conexion.php'; // Incluir el archivo de conexión
 
 // Obtener los datos enviados desde el formulario
-$documentoCliente = $_POST['idCliente'];
+$documentoCliente = $_POST['idcliente'];
 $tipoCliente = $_POST['tipoCliente'];
 $prospecto = $_POST['prospecto'];
 $observacionCliente = $_POST['observacion'];
@@ -22,7 +22,7 @@ if (mysqli_query($con, $query)) {
     $id_web = $id_web;
 
     // Redirecciona a la página cliente.php con el id_form_web como parámetro en la URL
-    header("Location: cliente.php?id=" . $id_web);
+    header("Location: ../cliente.php?id=" . $id_web);
     exit();
 } else {
     // Ocurrió un error durante la inserción, puedes enviar un mensaje de error al cliente si lo deseas

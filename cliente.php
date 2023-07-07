@@ -637,7 +637,7 @@ if (!isset($_SESSION['usuario'])) {
                             <div class="card-body">
                                 <h4 class="card-title">Titulo</h4>
                                 <p class="card-title-desc">Parametros del cliente</p>
-                                <form id="myForm2" action="includes/guardar_webform.php" method="post">
+                                <form  action="includes/guardar_webform.php" method="post">
                                     <div class="row">
                                         <div class="col-lg-12">
                                         <div class="mb-12">
@@ -670,7 +670,7 @@ if (!isset($_SESSION['usuario'])) {
                                             <div class="mb-12">
                                                 <label class="form-label">Tipo de Cliente</label>
                                                 
-                                                <select class="form-control select2" id="tipoCLiente">
+                                                <select class="form-control select2" id="tipoCliente">
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
