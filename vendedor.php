@@ -568,8 +568,9 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 }
 
                                                 // Consulta SQL para obtener los datos de la tabla "formulario_totem"
-                                                $sql = "SELECT * FROM web_formularios GROUP BY documentoCliente ORDER BY fecha DESC;
-                                                ";
+                                                $sql = "SELECT * FROM web_formularios GROUP BY documentoCliente ORDER BY fecha DESC";
+                                              
+
                                                 $result = $conn->query($sql);
 
                                                 // Verificar si se obtuvieron resultados
