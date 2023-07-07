@@ -653,7 +653,11 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                           
 
                                                         echo "<td>" . $row["email"] . "</td>";
-                                                        echo "<td>" . $row["telefono"] . "</td>";
+                                                       
+                                                        $telefonooo = $row["telefono"];
+                                                        echo "<td><a href='https://wa.me/$telefonooo' target='_blank'>$telefono</a></td>";
+                                                     
+
                                                         
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fecha"] . '-5 hours')) . "</td>";

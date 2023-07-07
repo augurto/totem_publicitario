@@ -695,10 +695,10 @@ if (!isset($_SESSION['usuario'])) {
                                                 <textarea id="observacion" name="observacion" class="form-control" maxlength="225" rows="3"
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
-                                            <input type="text" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+                                            <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
 
 
-                                            <input type="text" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+                                            <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
                                             <br>
                                             <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Lead</button>
