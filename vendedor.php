@@ -594,7 +594,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                         if ($fuente_dato == 1) {
                                                              // Realizar la consulta interna a la tabla cliente
-                                                            $queryCliente = "SELECT datosCliente FROM cliente WHERE documentoCliente = '$documentoCliente'";
+                                                            $queryCliente = "SELECT datosCliente FROM cliente WHERE documentoCliente = $documentoCliente";
                                                             $resultCliente = mysqli_query($con, $queryCliente);
 
                                                             // Verificar si se encontraron resultados
@@ -605,9 +605,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                                 // Mostrar los datos del cliente en la celda de la tabla
                                                                 echo "<td>" . $datosCliente . "</td>";
-                                                            } else {
-                                                                echo "<td>Cliente no encontrado</td>";
-                                                            }
+                                                            } 
                                                         } else {
                                                             // Obtener el valor de $row["estado_web"]
                                                             $estado_web = $row["estado_web"];
