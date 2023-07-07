@@ -510,7 +510,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0">Data Tables</h4>
                                     <div class="page-title-center">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="window.location.href = 'cliente.php';">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" style="height: 35px !important;" onclick="window.location.href = 'cliente.php';">
                                         Lead <i class="mdi mdi-emoticon-excited-outline font-size-16 align-middle ms-2"></i>
                                     </button>
 
