@@ -732,7 +732,7 @@ if (!isset($_SESSION['usuario'])) {
                                             <input type="text" id="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
 
                                             <center>
-                                                <button type="button" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Lead</button>
+                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Lead</button>
                                             </center>
                                             
                                         </div>
