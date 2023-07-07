@@ -601,7 +601,7 @@ mysqli_close($con);
                                                 value="<?php echo $mensaje   ; ?>"  name="comentario"></textarea>
                                             </div>
                                             <br>
-                                            <?php echo "Atendido por :". $id_user."Fecha :".$fecha ; ?>
+                                            <?php echo "Atendido por :". $id_user." Fecha : ".$fecha ; ?>
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
                                             <script>
@@ -614,9 +614,9 @@ mysqli_close($con);
                                             </script>
                                             <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
                                            <br>
-                                            <center>
+                                          <!--   <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Usuario</button>
-                                            </center>
+                                            </center> -->
                                                     
                                         </div>
                                         <!-- end col -->
