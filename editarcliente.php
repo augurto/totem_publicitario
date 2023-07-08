@@ -558,14 +558,14 @@ mysqli_close($con);
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                 <div class="col-sm-10">
                                                 <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                id="example-text-input" name="datos" value="<?php echo $datosForm; ?>">
+                                                id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" readonly>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row mb-6">
                                                 <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="number" value="<?php echo $documento; ?>" id="example-number-input" name="documento" maxlength="9">
+                                                    <input class="form-control" type="number" value="<?php echo $documento; ?>" id="example-number-input" name="documento" maxlength="9" readonly>
                                                 </div>
                                             </div>
                                             <script>
@@ -581,7 +581,7 @@ mysqli_close($con);
                                                 <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" type="tel"  value="<?php echo $telefono ; ?>"  
-                                                        id="example-tel-input" name="telefono">
+                                                        id="example-tel-input" name="telefono" readonly>
                                                 </div>
                                             </div>
                                             <!-- end row -->
@@ -590,7 +590,7 @@ mysqli_close($con);
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" type="email"  value="<?php echo $email  ; ?>" 
-                                                        id="example-email-input" name="email">
+                                                        id="example-email-input" name="email" readonly>
                                                 </div>
                                             </div>
                                             <!-- end row -->
@@ -598,7 +598,7 @@ mysqli_close($con);
                                                 <label class="mb-1">Comentario</label>
                                                 
                                                 <textarea id="textarea" class="form-control" maxlength="225" rows="3"
-                                                value="<?php echo $mensaje   ; ?>"  name="comentario"></textarea>
+                                                value="<?php echo $mensaje   ; ?>"  name="comentario" readonly></textarea>
                                             </div>
                                             <br>
                                             <?php echo "Atendido por :". $id_user." Fecha : ".$fecha ; ?>
