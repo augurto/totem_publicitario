@@ -663,7 +663,7 @@ mysqli_close($con);
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $queryc = "SELECT * FROM cliente order by idCliente DESC    ";
+                                                $queryc = "SELECT * FROM cliente WHERE id_form_web=$idUrl ";
                                                 $resultc = mysqli_query($con, $queryc);
 
                                                 // Verificar si se encontraron resultados
