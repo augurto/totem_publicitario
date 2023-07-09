@@ -40,7 +40,7 @@ if (mysqli_num_rows($selectResult) > 0) {
     $id_user = "";
 }
 // Realizar la consulta a la base de datos
-$queryUser = "SELECT nombre_user FROM user WHERE documento = '$id_user'";
+$queryUser = "SELECT nombre_user FROM user WHERE id_user = '$id_user'";
 $resultUser = mysqli_query($con, $queryUser);
 $rowUser = mysqli_fetch_assoc($resultUser);
 $nombreUserEdicion = $rowUser['nombre_user'];
@@ -610,7 +610,7 @@ mysqli_close($con);
                                             
                                             // Restar 5 horas a la fecha
                                             $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
-                                            echo "Atendido por :". $nombreUserEdicion." Fecha : ".$nuevaFecha ; ?>
+                                            echo "Atendido por :". $nombreUserEdicion.$id_user." Fecha : ".$nuevaFecha ; ?>
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
                                             <script>
