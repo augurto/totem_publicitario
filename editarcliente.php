@@ -670,10 +670,10 @@ mysqli_close($con);
                                                 if (mysqli_num_rows($resultc) > 0) {
                                                     // Generar las opciones dentro del select
                                                     while ($rowc= mysqli_fetch_assoc($resultc)) {
-                                                    $valuec = $rowc['documentoCliente'];
-                                                    $textc = $rowc['datosCliente'];
-                                                    $telefonoc = $rowc['telefonoCliente'];
-                                                    echo "<option value='" . $valuec . "'>" . $textc."-".$valuec."-".$telefonoc. "</option>";
+                                                    $valuec = $rowc['id_form_web'];
+                                                    $textc = $rowc['datos_form'];
+                                                    $telefonoc = $rowc['telefono'];
+                                                    echo "<option value='" . $valuec . "'>" . $textc."-".$telefonoc. "</option>";
                                                     }
                                                 }
 
