@@ -601,7 +601,12 @@ mysqli_close($con);
                                                 value="<?php echo $mensaje   ; ?>"  name="comentario" readonly></textarea>
                                             </div>
                                             <br>
-                                            <?php echo "Atendido por :". $id_user." Fecha : ".$fecha ; ?>
+                                            <?php 
+                                            $fecha = "2023-05-22 15:30:00";
+
+                                            // Restar 5 horas a la fecha
+                                            $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
+                                            echo "Atendido por :". $id_user." Fecha : ".$nuevaFecha ; ?>
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
                                             <script>
