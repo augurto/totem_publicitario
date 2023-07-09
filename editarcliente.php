@@ -585,8 +585,8 @@ mysqli_close($con);
                                              <div class="row mb-6">
                                                 <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="tel"  value="<?php echo $telefono ; ?>"  
-                                                        id="example-tel-input" name="telefono" readonly>
+                                                <a href="https://api.whatsapp.com/send?phone=<?php echo $telefono; ?>" target="_blank"><?php echo $telefono; ?></a>
+
                                                 </div>
                                             </div>
                                             <!-- end row -->
