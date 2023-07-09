@@ -608,27 +608,28 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                             if ($estado_web == 0) {
                                                                 echo "<td>
-                                                                        <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-primary waves-effect waves-light'>
+                                                                        <a href='editarcliente.php?id=" . $row['id_form_web'] . "' target='_blank' class='btn btn-primary waves-effect waves-light'>
                                                                             Atender
                                                                         </a>
                                                                         " . $row['datos_form'] . "
                                                                     </td>";
                                                             } elseif ($estado_web == 1) {
                                                                 echo "<td>
-                                                                        <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-danger waves-effect waves-light'>
+                                                                        <a href='editarcliente.php?id=" . $row['id_form_web'] . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
                                                                             Observado
                                                                         </a>
                                                                         " . $row['datos_form'] . "
                                                                     </td>";
                                                             } elseif ($estado_web == 2) {
                                                                 echo "<td>
-                                                                        <a href='cliente.php?id=" . $row['id_form_web'] . "' class='btn btn-success waves-effect waves-light'>
+                                                                        <a href='editarcliente.php?id=" . $row['id_form_web'] . "' target='_blank' class='btn btn-success waves-effect waves-light'>
                                                                             Atendido
                                                                         </a>
                                                                         " . $row['datos_form'] . "
                                                                     </td>";
                                                             }
-                                                      
+
+                                                                                                                
                                                         
 
 
