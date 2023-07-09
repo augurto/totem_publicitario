@@ -602,8 +602,8 @@ mysqli_close($con);
                                             <div class="mt-6">
                                                 <label class="mb-1">Comentario</label>
                                                 
-                                                <textarea id="textarea" class="form-control" maxlength="225" rows="3"
-                                                value="<?php echo $mensaje   ; ?>"  name="comentario" readonly></textarea>
+                                                <textarea  id="textarea" class="form-control" maxlength="225" rows="3" name="comentario" readonly><?php echo $mensaje; ?></textarea>
+
                                             </div>
                                             <br>
                                             <?php 
