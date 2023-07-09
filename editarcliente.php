@@ -39,6 +39,11 @@ if (mysqli_num_rows($selectResult) > 0) {
     $fecha = "";
     $id_user = "";
 }
+// Realizar la consulta a la base de datos
+$queryUser = "SELECT nombre_user FROM user WHERE documento = '$id_user'";
+$resultUser = mysqli_query($con, $queryUser);
+$rowUser = mysqli_fetch_assoc($resultUser);
+$nombreUserEdicion = $rowUser['nombre_user'];
 
 // Cerrar la conexión a la base de datos
 mysqli_close($con);                    
@@ -602,11 +607,7 @@ mysqli_close($con);
                                             </div>
                                             <br>
                                             <?php 
-                                            // Realizar la consulta a la base de datos
-                                            $queryUser = "SELECT nombre_user FROM user WHERE documento = '$id_user'";
-                                            $resultUser = mysqli_query($con, $queryUser);
-                                            $rowUser = mysqli_fetch_assoc($resultUser);
-                                            $nombreUserEdicion = $rowUser['nombre_user'];
+                                            
                                             // Restar 5 horas a la fecha
                                             $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
                                             echo "Atendido por :". $nombreUserEdicion." Fecha : ".$nuevaFecha ; ?>
