@@ -803,7 +803,7 @@ mysqli_close($con);
                        <div class="checkbox-container">
                             <input type="checkbox" id="switch1" switch="none" onchange="toggleElement()" />
                             <label for="switch1" data-on-label="CON " data-off-label="SIN "></label>
-                            <p>FACTURACIÓN</p>
+                            <p> FACTURACIÓN</p>
                         </div>
                         <style>
                             .checkbox-container {
@@ -841,34 +841,82 @@ mysqli_close($con);
                                 <form  action="includes/guardar_webform.php" method="post" >
                                     <div class="row">
                                         <div class="col-lg-12">
-                                        <div class="mb-12">
-                                                <label class="form-label">Buscar Cliente</label>
-                                                
-                                                <select class="form-control select2" id="idcliente" name="idcliente">
-                                                <?php
-                                                 include 'includes/conexion.php'; 
-                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $queryc = "SELECT * FROM web_formularios WHERE id_form_web=$idUrl ";
-                                                $resultc = mysqli_query($con, $queryc);
+                                        <div class="mb-6">
+                                        <label class="form-label">Buscar Producto</label>
+                                        <select class="form-control select2" id="idcliente" name="idcliente" onchange="agregarProducto()">
+                                            <?php
+                                            include 'includes/conexion.php';
+                                            // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                            $queryp = "SELECT * FROM producto WHERE id_form_web=$idUrl ";
+                                            $resultp = mysqli_query($con, $queryp);
 
-                                                // Verificar si se encontraron resultados
-                                                if (mysqli_num_rows($resultc) > 0) {
-                                                    // Generar las opciones dentro del select
-                                                    while ($rowc= mysqli_fetch_assoc($resultc)) {
-                                                    $valuec = $rowc['id_form_web'];
-                                                    $textc = $rowc['datos_form'];
-                                                    $telefonoc = $rowc['telefono'];
-                                                    echo "<option value='" . $valuec . "'>" . $textc."-".$telefonoc. "</option>";
-                                                    }
+                                            // Verificar si se encontraron resultados
+                                            if (mysqli_num_rows($resultp) > 0) {
+                                                // Generar las opciones dentro del select
+                                                while ($rowp = mysqli_fetch_assoc($resultp)) {
+                                                    $valuep = $rowp['idProducto'];
+                                                    $textp = $rowp['nombreProducto'];
+                                                    $tipoProducto = $rowp['tipoProducto'];
+                                                    $precioProducto = $rowp['precioProducto'];
+                                                    $empresaProducto = $rowp['empresaProducto'];
+                                                    echo "<option value='" . $valuep . "'>" . $textp . "-" . $precioProducto . "</option>";
                                                 }
+                                            }
 
-                                                // Cerrar la conexión a la base de datos
-                                                mysqli_close($con);
-                                                ?>
-                                                </select>
+                                            // Cerrar la conexión a la base de datos
+                                            mysqli_close($con);
+                                            ?>
+                                        </select>
+                                    </div>
 
-                                            </div>
-                                            <div class="mb-12">
+                                    <table id="tablaProductos">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre Producto</th>
+                                                <th>Precio Producto</th>
+                                                <th>Tipo Producto</th>
+                                                <th>Empresa Producto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Filas de productos seleccionados se agregarán aquí -->
+                                        </tbody>
+                                    </table>
+
+                                    <script>
+                                        function agregarProducto() {
+                                            var select = document.getElementById("idcliente");
+                                            var option = select.options[select.selectedIndex];
+
+                                            var nombreProducto = option.text.split("-")[0];
+                                            var precioProducto = option.text.split("-")[1];
+                                            var tipoProducto = option.getAttribute("data-tipo");
+                                            var empresaProducto = option.getAttribute("data-empresa");
+
+                                            var tablaProductos = document.getElementById("tablaProductos");
+                                            var tbody = tablaProductos.getElementsByTagName("tbody")[0];
+
+                                            var fila = document.createElement("tr");
+                                            var columnaNombre = document.createElement("td");
+                                            var columnaPrecio = document.createElement("td");
+                                            var columnaTipo = document.createElement("td");
+                                            var columnaEmpresa = document.createElement("td");
+
+                                            columnaNombre.textContent = nombreProducto;
+                                            columnaPrecio.textContent = precioProducto;
+                                            columnaTipo.textContent = tipoProducto;
+                                            columnaEmpresa.textContent = empresaProducto;
+
+                                            fila.appendChild(columnaNombre);
+                                            fila.appendChild(columnaPrecio);
+                                            fila.appendChild(columnaTipo);
+                                            fila.appendChild(columnaEmpresa);
+
+                                            tbody.appendChild(fila);
+                                        }
+                                    </script>
+
+                                            <div class="mb-6">
                                                 <label class="form-label">Estado</label>
                                                 
                                                 <select class="form-control select2" id="tipoCliente" name="tipoCliente">
