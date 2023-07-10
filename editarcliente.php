@@ -838,7 +838,7 @@ mysqli_close($con);
                             <div class="card-body">
                                 <h4 class="card-title">Seguimiento de Cliente</h4>
                                 
-                                <form  action="includes/guardar_webform.php" method="post" >
+                                
                                     <div class="row">
                                         <div class="col-lg-12">
                                         <div class="mb-12">
@@ -866,24 +866,32 @@ mysqli_close($con);
                                         mysqli_close($con);
                                         ?>
                                         </select>
+                                        <button onclick="buscar()"  class="form-control" >Buscar</button>
                                     </div>
-
+                                    <form  action="includes/guardar_webform.php" method="post" >
+                                    <input type="text" id="idProductoInput" class="form-control" readonly>
                                     <input type="text" id="nombreInput" class="form-control" readonly>
                                     <input type="text" id="precioInput" class="form-control" readonly>
-                                    <button onclick="buscar()">Buscar</button>
+                                    <input type="text" id="cantidad" class="form-control" >
+                                    <input type="text" id="montoAdicional" class="form-control" >
+                                    
 
                                     <script>
                                         function buscar() {
                                             var select = document.getElementById("idproducto");
+                                            var idProductoInput = document.getElementById("idProductoInput");
                                             var nombreInput = document.getElementById("nombreInput");
                                             var precioInput = document.getElementById("precioInput");
                                             var selectedOption = select.options[select.selectedIndex];
+                                            var valueSeleccionado = selectedOption.value;
                                             var textoSeleccionado = selectedOption.text;
                                             var partes = textoSeleccionado.split(" - Precio: ");
+                                            idProductoInput.value = valueSeleccionado;
                                             nombreInput.value = partes[0];
                                             precioInput.value = partes[1];
                                         }
                                     </script>
+
 
 
 
