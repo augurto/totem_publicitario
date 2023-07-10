@@ -870,17 +870,17 @@ mysqli_close($con);
                                     </div>
                                     
                                     <form action="includes/ventasProducto.php" method="post" enctype="multipart/form-data">
-                                    <input type="text" id="idProductoInput" class="form-control" readonly>
+                                    <input type="text" id="idProductoInput" name="idProductoInput" class="form-control" readonly>
                                     <label class="form-label">Nombre Producto</label>
-                                    <input type="text" id="nombreInput" class="form-control" readonly>
+                                    <input type="text" id="nombreInput" class="form-control" name="nombreInput" readonly>
                                     <label class="form-label">Precio del Producto</label>
-                                    <input type="text" id="precioInput" class="form-control" readonly>
+                                    <input type="text" id="precioInput" name="precioInput" class="form-control" readonly>
                                     <label class="form-label">Cantidad Producto</label>
-                                    <input type="text" id="cantidad" class="form-control" oninput="calcularMontoTotal()">
+                                    <input type="text" id="cantidad" name="cantidad" class="form-control" oninput="calcularMontoTotal()">
                                     <label class="form-label">Monto adicional</label>
-                                    <input type="text" id="montoAdicional" class="form-control" oninput="calcularMontoTotal()">
+                                    <input type="text" id="montoAdicional" name="montoAdicional" class="form-control" oninput="calcularMontoTotal()">
                                     <label class="form-label">Monto Total</label>
-                                    <input type="text" id="montoTotal" class="form-control" readonly>
+                                    <input type="text" id="montoTotal" name="montoTotal" class="form-control" readonly>
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Adjuntar archivo</label>
                                         
