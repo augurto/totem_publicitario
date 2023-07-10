@@ -803,7 +803,7 @@ mysqli_close($con);
                        <div class="checkbox-container">
                             <input type="checkbox" id="switch1" switch="none" onchange="toggleElement()" />
                             <label for="switch1" data-on-label="CON " data-off-label="SIN "></label>
-                            <p> FACTURACIÓN</p>
+                            <p>FACTURACIÓN</p>
                         </div>
                         <style>
                             .checkbox-container {
@@ -839,42 +839,69 @@ mysqli_close($con);
                                 <h4 class="card-title">Seguimiento de Cliente</h4>
                                 
                                 <form  action="includes/guardar_webform.php" method="post" >
-                                    <?php 
-                                $queryp = "SELECT * FROM producto";
-                                $resultp = mysqli_query($con, $queryp);
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                        <div class="mb-12">
+                                        <label class="form-label">Buscar Producto</label>
+                                        <select class="form-control select2" id="idproducto" name="idproducto">
+                                        <?php
+                                        include 'includes/conexion.php'; 
+                                        
+                                        // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                        $queryp = "SELECT * FROM productos";
+                                        $resultp = mysqli_query($con, $queryp);
 
-                                // Comprueba si la consulta devolvió resultados
-                                if (mysqli_num_rows($resultp) > 0) {
-                                    echo '<select class="form-control select2" id="productoSelect">';
-                                    
-                                    // Recorre los registros devueltos por la consulta
-                                    while ($rowp = mysqli_fetch_assoc($resultp)) {
-                                        echo '<option value="' . $rowp['id'] . '">' . $rowp['nombre'] . '</option>';
-                                    }
-                                    
-                                    echo '</select>';
-                                    
-                                    echo '<br><br>';
-                                    
-                                    echo '<input type="text" id="resultadoInput" class="form-control" readonly>';
-                                    
-                                    echo '<br><br>';
-                                    
-                                    echo '<button onclick="mostrarResultado()">Buscar</button>';
-                                } else {
-                                    echo 'No se encontraron productos.';
-                                }
-                                ?>
+                                        // Verificar si se encontraron resultados
+                                        if (mysqli_num_rows($resultp) > 0) {
+                                            // Generar las opciones dentro del select
+                                            while ($rowp = mysqli_fetch_assoc($resultp)) {
+                                                $valuep = $rowp['id_producto'];
+                                                $textp = $rowp['nombreProducto'];
+                                                $preciop = $rowp['precioProducto'];
+                                                echo "<option value='" . $valuep . "'>" . $textp . " - Precio: " . $preciop . "</option>";
+                                            }
+                                        }
+
+                                        // Cerrar la conexión a la base de datos
+                                        mysqli_close($con);
+                                        ?>
+                                        </select>
+                                    </div>
+
+                                            <div class="mb-12">
+                                                <label class="form-label">Tipo de Cliente</label>
+                                                                                                
+                                                
+                                            </div>
+                                            <div class="mb-12">
+                                                <label class="form-label">Fuente</label>
+                                                
+                                               
+
+                                            </div>
+                                            <div class="mt-12">
+                                                <label class="mb-1">Observacion</label>
+                                                
+                                                <textarea id="observacion" name="observacion" class="form-control" maxlength="225" rows="3"
+                                                    placeholder="Observacion al Cliente"></textarea>
+                                            </div>
+                                            <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+
+
+                                            <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+                                            <br>
+                                            <center>
+                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Guardar</button>
+                                            </center>
+                                            
+                                        </div>
+                                        <!-- end col -->
+                                        
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
                                 </form>
-                                <script>
-                                    function mostrarResultado() {
-                                        var select = document.getElementById("productoSelect");
-                                        var input = document.getElementById("resultadoInput");
-                                        var selectedOption = select.options[select.selectedIndex];
-                                        input.value = selectedOption.text;
-                                    }
-                                </script>
-
+                               
                                 </div>
 
                                 
