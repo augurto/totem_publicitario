@@ -844,85 +844,71 @@ mysqli_close($con);
                                         <div class="mb-6">
                                         <label class="form-label">Buscar Producto</label>
                                         <select class="form-control select2" id="idcliente" name="idcliente">
-                                            <?php
-                                            include 'includes/conexion.php';
-                                            // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                            $queryp = "SELECT * FROM producto ";
-                                            $resultp = mysqli_query($con, $queryp);
+                                        <?php
+include 'includes/conexion.php';
+// Realizar la consulta a la base de datos para obtener los datos de la tabla
+$queryp = "SELECT * FROM producto ";
+$resultp = mysqli_query($con, $queryp);
 
-                                            // Verificar si se encontraron resultados
-                                            if (mysqli_num_rows($resultp) > 0) {
-                                                // Generar las opciones dentro del select
-                                                while ($rowp = mysqli_fetch_assoc($resultp)) {
-                                                    $valuep = $rowp['idProducto'];
-                                                    $nombreProducto = $rowp['nombreProducto'];
-                                                    $tipoProducto = $rowp['tipoProducto'];
-                                                    $precioProducto = $rowp['precioProducto'];
-                                                    $empresaProducto = $rowp['empresaProducto'];
-                                                    echo "<option value='" . $valuep . "' data-precio='" . $precioProducto . "'>" . $nombreProducto . "</option>";
-                                                }
-                                            }
+// Verificar si se encontraron resultados
+if (mysqli_num_rows($resultp) > 0) {
+    // Generar las opciones dentro del select
+    while ($rowp = mysqli_fetch_assoc($resultp)) {
+        $valuep = $rowp['idProducto'];
+        $nombreProducto = $rowp['nombreProducto'];
+        $tipoProducto = $rowp['tipoProducto'];
+        $precioProducto = $rowp['precioProducto'];
+        $empresaProducto = $rowp['empresaProducto'];
+        echo "<option value='" . $valuep . "' data-precio='" . $precioProducto . "'>" . $nombreProducto . "</option>";
+    }
+}
+?>
 
-                                            // Cerrar la conexión a la base de datos
-                                            mysqli_close($con);
-                                            ?>
-                                        </select>
-                                        <button type="button" onclick="agregarProducto()">Agregar</button>
+<!-- Agregar la tabla con los valores -->
+<table>
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+        </tr>
+    </thead>
+    <tbody id="tablaProductos">
+        <!-- Aquí se agregarán las filas de la tabla -->
+    </tbody>
+</table>
 
-                                        <table id="tablaProductos">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nombre Producto</th>
-                                                    <th>Precio Producto</th>
-                                                    <th>Cantidad</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- Filas de productos seleccionados se agregarán aquí -->
-                                            </tbody>
-                                        </table>
+<!-- Botón para agregar productos -->
+<button type="button" onclick="agregarProducto()">Agregar</button>
 
-                                        <script>
-                                            function agregarProducto() {
-                                                var select = document.getElementById("idcliente");
-                                                var option = select.options[select.selectedIndex];
+<!-- Script para agregar productos a la tabla -->
+<script>
+    function agregarProducto() {
+        // Obtener el valor seleccionado del select
+        var select = document.getElementById("selectProducto");
+        var idProducto = select.value;
+        var nombreProducto = select.options[select.selectedIndex].text;
+        var precioProducto = select.options[select.selectedIndex].dataset.precio;
 
-                                                var nombreProducto = option.text;
-                                                var precioProducto = parseFloat(option.getAttribute("data-precio"));
-                                                var cantidad = 1;
+        // Obtener la cantidad del producto
+        var cantidad = prompt("Ingrese la cantidad:", "1");
+        if (cantidad == null || cantidad == "") {
+            cantidad = 1;
+        }
 
-                                                var tablaProductos = document.getElementById("tablaProductos");
-                                                var tbody = tablaProductos.getElementsByTagName("tbody")[0];
+        // Crear una nueva fila en la tabla con los valores seleccionados
+        var tabla = document.getElementById("tablaProductos");
+        var fila = document.createElement("tr");
+        fila.innerHTML = "<td>" + nombreProducto + "</td><td>" + precioProducto + "</td><td>" + cantidad + "</td>";
+        tabla.appendChild(fila);
+    }
+</script>
 
-                                                var fila = document.createElement("tr");
-                                                var columnaNombre = document.createElement("td");
-                                                var columnaPrecio = document.createElement("td");
-                                                var columnaCantidad = document.createElement("td");
+<?php
+// Cerrar la conexión a la base de datos
+mysqli_close($con);
+?>
 
-                                                columnaNombre.textContent = nombreProducto;
-                                                columnaPrecio.textContent = precioProducto.toFixed(2);
-                                                columnaCantidad.innerHTML = "<input type='number' value='" + cantidad + "' onchange='calcularSubtotal(this)'>";
-
-                                                fila.appendChild(columnaNombre);
-                                                fila.appendChild(columnaPrecio);
-                                                fila.appendChild(columnaCantidad);
-
-                                                tbody.appendChild(fila);
-                                            }
-
-                                            function calcularSubtotal(inputCantidad) {
-                                                // Obtener la fila actual
-                                                var fila = inputCantidad.parentNode.parentNode;
-                                                // Obtener el precio desde la columna "Precio Producto"
-                                                var precioProducto = parseFloat(fila.cells[1].textContent);
-                                                // Obtener la cantidad ingresada
-                                                var cantidad = parseInt(inputCantidad.value);
-                                                // Calcular el subtotal
-                                                var subtotal = precioProducto * cantidad;
-                                                // Actualizar el valor en la columna "Subtotal"
-                                                fila.cells[2].textContent = subtotal.toFixed(2);
-                                            }
-                                        </script>
 
 
                                             <div class="mb-6">
