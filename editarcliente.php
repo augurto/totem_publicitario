@@ -870,11 +870,20 @@ mysqli_close($con);
                                     </div>
                                     <form  action="includes/guardar_webform.php" method="post" >
                                     <input type="text" id="idProductoInput" class="form-control" readonly>
+                                    <label class="form-label">Nombre Producto</label>
                                     <input type="text" id="nombreInput" class="form-control" readonly>
+                                    <label class="form-label">Precio del Producto</label>
                                     <input type="text" id="precioInput" class="form-control" readonly>
-                                    <input type="text" id="cantidad" class="form-control" >
-                                    <input type="text" id="montoAdicional" class="form-control" >
-                                    
+                                    <label class="form-label">Cantidad Producto</label>
+                                    <input type="text" id="cantidad" class="form-control" oninput="calcularMontoTotal()">
+                                    <label class="form-label">Monto adicional</label>
+                                    <input type="text" id="montoAdicional" class="form-control" oninput="calcularMontoTotal()">
+                                    <label class="form-label">Monto Total</label>
+                                    <input type="text" id="montoTotal" class="form-control" readonly>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Adjuntar archivo</label>
+                                        <input class="form-control" type="file" id="formFile">
+                                    </div>
 
                                     <script>
                                         function buscar() {
@@ -889,6 +898,19 @@ mysqli_close($con);
                                             idProductoInput.value = valueSeleccionado;
                                             nombreInput.value = partes[0];
                                             precioInput.value = partes[1];
+                                        }
+                                        function calcularMontoTotal() {
+                                            var cantidadInput = document.getElementById("cantidad");
+                                            var precioInput = document.getElementById("precioInput");
+                                            var montoAdicionalInput = document.getElementById("montoAdicional");
+                                            var montoTotalInput = document.getElementById("montoTotal");
+
+                                            var cantidad = parseInt(cantidadInput.value) || 0;
+                                            var precio = parseFloat(precioInput.value) || 0;
+                                            var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
+
+                                            var montoTotal = (cantidad * precio) + montoAdicional;
+                                            montoTotalInput.value = montoTotal.toFixed(2);
                                         }
                                     </script>
 
