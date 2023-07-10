@@ -855,11 +855,11 @@ mysqli_close($con);
                                                 // Generar las opciones dentro del select
                                                 while ($rowp = mysqli_fetch_assoc($resultp)) {
                                                     $valuep = $rowp['idProducto'];
-                                                    $textp = $rowp['nombreProducto'];
+                                                    $nombreProducto = $rowp['nombreProducto'];
                                                     $tipoProducto = $rowp['tipoProducto'];
                                                     $precioProducto = $rowp['precioProducto'];
                                                     $empresaProducto = $rowp['empresaProducto'];
-                                                    echo "<option value='" . $valuep . "' data-precio='" . $precioProducto . "'>" . $textp . "</option>";
+                                                    echo "<option value='" . $valuep . "' data-precio='" . $precioProducto . "'>" . $nombreProducto . "</option>";
                                                 }
                                             }
 
@@ -868,95 +868,61 @@ mysqli_close($con);
                                             ?>
                                         </select>
                                         <button type="button" onclick="agregarProducto()">Agregar</button>
-                                    </div>
 
-                                    <table id="tablaProductos">
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre Producto</th>
-                                                <th>Precio Producto</th>
-                                                <th>Cantidad</th>
-                                                <th>Subtotal</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Filas de productos seleccionados se agregarán aquí -->
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th colspan="3">Total:</th>
-                                                <th id="total"></th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                                        <table id="tablaProductos">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre Producto</th>
+                                                    <th>Precio Producto</th>
+                                                    <th>Cantidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Filas de productos seleccionados se agregarán aquí -->
+                                            </tbody>
+                                        </table>
 
-                                    <script>
-                                        function agregarProducto() {
-                                            var select = document.getElementById("idcliente");
-                                            var option = select.options[select.selectedIndex];
+                                        <script>
+                                            function agregarProducto() {
+                                                var select = document.getElementById("idcliente");
+                                                var option = select.options[select.selectedIndex];
 
-                                            var nombreProducto = option.text;
-                                            var precioProducto = parseFloat(option.getAttribute("data-precio"));
-                                            var cantidad = 1;
-                                            var subtotal = precioProducto * cantidad;
+                                                var nombreProducto = option.text;
+                                                var precioProducto = parseFloat(option.getAttribute("data-precio"));
+                                                var cantidad = 1;
 
-                                            var tablaProductos = document.getElementById("tablaProductos");
-                                            var tbody = tablaProductos.getElementsByTagName("tbody")[0];
-                                            var tfoot = tablaProductos.getElementsByTagName("tfoot")[0];
+                                                var tablaProductos = document.getElementById("tablaProductos");
+                                                var tbody = tablaProductos.getElementsByTagName("tbody")[0];
 
-                                            var fila = document.createElement("tr");
-                                            var columnaNombre = document.createElement("td");
-                                            var columnaPrecio = document.createElement("td");
-                                            var columnaCantidad = document.createElement("td");
-                                            var columnaSubtotal = document.createElement("td");
+                                                var fila = document.createElement("tr");
+                                                var columnaNombre = document.createElement("td");
+                                                var columnaPrecio = document.createElement("td");
+                                                var columnaCantidad = document.createElement("td");
 
-                                            columnaNombre.textContent = nombreProducto;
-                                            columnaPrecio.textContent = precioProducto.toFixed(2);
-                                            columnaCantidad.innerHTML = "<input type='number' value='" + cantidad + "' onchange='calcularSubtotal(this)'>";
-                                            columnaSubtotal.textContent = subtotal.toFixed(2);
+                                                columnaNombre.textContent = nombreProducto;
+                                                columnaPrecio.textContent = precioProducto.toFixed(2);
+                                                columnaCantidad.innerHTML = "<input type='number' value='" + cantidad + "' onchange='calcularSubtotal(this)'>";
 
-                                            fila.appendChild(columnaNombre);
-                                            fila.appendChild(columnaPrecio);
-                                            fila.appendChild(columnaCantidad);
-                                            fila.appendChild(columnaSubtotal);
+                                                fila.appendChild(columnaNombre);
+                                                fila.appendChild(columnaPrecio);
+                                                fila.appendChild(columnaCantidad);
 
-                                            tbody.appendChild(fila);
-
-                                            calcularTotal();
-                                        }
-
-                                        function calcularSubtotal(inputCantidad) {
-                                            var fila = inputCantidad.parentNode.parentNode;
-                                            var columnaPrecio = fila.cells[1];
-                                            var columnaSubtotal = fila.cells[3];
-
-                                            var precio = parseFloat(columnaPrecio.textContent);
-                                            var cantidad = parseFloat(inputCantidad.value);
-                                            var subtotal = precio * cantidad;
-
-                                            columnaSubtotal.textContent = subtotal.toFixed(2);
-
-                                            calcularTotal();
-                                        }
-
-                                        function calcularTotal() {
-                                            var tablaProductos = document.getElementById("tablaProductos");
-                                            var tbody = tablaProductos.getElementsByTagName("tbody")[0];
-                                            var filas = tbody.rows;
-
-                                            var total = 0;
-
-                                            for (var i = 0; i < filas.length; i++) {
-                                                var columnaSubtotal = filas[i].cells[3];
-                                                var subtotal = parseFloat(columnaSubtotal.textContent);
-
-                                                total += subtotal;
+                                                tbody.appendChild(fila);
                                             }
 
-                                            var totalElement = document.getElementById("total");
-                                            totalElement.textContent = total.toFixed(2);
-                                        }
-                                    </script>
+                                            function calcularSubtotal(inputCantidad) {
+                                                // Obtener la fila actual
+                                                var fila = inputCantidad.parentNode.parentNode;
+                                                // Obtener el precio desde la columna "Precio Producto"
+                                                var precioProducto = parseFloat(fila.cells[1].textContent);
+                                                // Obtener la cantidad ingresada
+                                                var cantidad = parseInt(inputCantidad.value);
+                                                // Calcular el subtotal
+                                                var subtotal = precioProducto * cantidad;
+                                                // Actualizar el valor en la columna "Subtotal"
+                                                fila.cells[3].textContent = subtotal.toFixed(2);
+                                            }
+                                        </script>
 
 
                                             <div class="mb-6">
