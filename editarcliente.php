@@ -800,10 +800,21 @@ mysqli_close($con);
                         <!-- end card -->
 
                        <!--  agregando otra columna -->
-                       <input type="checkbox" id="switch1" switch="none" />
-                                            <label for="switch1" data-on-label="Habilitar Facturacion" data-off-label="No facturar"></label>
-                                            <br>
-                        <div class="col-lg-12" style="display: none;">
+                       <input type="checkbox" id="switch1" switch="none" onchange="toggleElement()" />
+                        <label for="switch1" data-on-label="CON " data-off-label="SIN ">FACTURACIÓN</label>
+                        <script>
+                            function toggleElement() {
+                                var checkbox = document.getElementById("switch1");
+                                var elemento = document.getElementById("elemento");
+
+                                if (checkbox.checked) {
+                                    elemento.style.display = "block";
+                                } else {
+                                    elemento.style.display = "none";
+                                }
+                            }
+                        </script>
+                    <div id="elemento" class="col-lg-12" style="display: none;">
                     <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Seguimiento de Cliente</h4>
