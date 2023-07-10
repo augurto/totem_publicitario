@@ -35,6 +35,11 @@ if (!is_dir($rutaCarpetaDestino)) {
 $rutaDestino = $rutaCarpetaDestino . $archivoNombre;
 
 // Mover el archivo a la ruta de destino
+if ($_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
+    echo "Error al subir el archivo: " . $_FILES['archivo']['error'];
+    exit();
+}
+
 if (move_uploaded_file($archivoRutaTemp, $rutaDestino)) {
     // Preparar la consulta SQL para insertar los datos en la tabla de ventas
     $query = "INSERT INTO ventas (idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, observacionVenta, id_web_formularios, idUser, rutaArchivo, nombreArchivo, estadoVenta) VALUES ('$idProducto', '$nombreProducto', '$precioProducto', '$cantidad', '$montoAdicional', '$montoTotal', '$observacion', '$idVenta', '$idUsuario', '$rutaDestino', '$archivoNombre', '$estado')";
