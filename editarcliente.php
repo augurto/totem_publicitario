@@ -868,7 +868,8 @@ mysqli_close($con);
                                         </select>
                                         <button onclick="buscar()"  class="form-control" >Buscar</button>
                                     </div>
-                                    <form  action="includes/ventasProducto.php" method="post" >
+                                    
+                                    <form action="includes/ventasProducto.php" method="post" enctype="multipart/form-data">
                                     <input type="text" id="idProductoInput" class="form-control" readonly>
                                     <label class="form-label">Nombre Producto</label>
                                     <input type="text" id="nombreInput" class="form-control" readonly>
