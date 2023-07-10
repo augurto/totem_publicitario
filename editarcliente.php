@@ -843,19 +843,19 @@ mysqli_close($con);
                                         <div class="col-lg-12">
                                         <div class="mb-12">
                                         <label class="form-label">Buscar Producto</label>
-                                        <select class="form-control select2" id="idproducto" name="idproducto">
+                                        <select class="form-control select2" id="idproducto" name="idproducto" onchange="actualizarValores()">
                                         <?php
                                         include 'includes/conexion.php'; 
                                         
                                         // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                        $queryp = "SELECT * FROM producto";
+                                        $queryp = "SELECT * FROM productos";
                                         $resultp = mysqli_query($con, $queryp);
 
                                         // Verificar si se encontraron resultados
                                         if (mysqli_num_rows($resultp) > 0) {
                                             // Generar las opciones dentro del select
                                             while ($rowp = mysqli_fetch_assoc($resultp)) {
-                                                $valuep = $rowp['idProducto'];
+                                                $valuep = $rowp['id_producto'];
                                                 $textp = $rowp['nombreProducto'];
                                                 $preciop = $rowp['precioProducto'];
                                                 echo "<option value='" . $valuep . "'>" . $textp . " - Precio: " . $preciop . "</option>";
@@ -867,6 +867,23 @@ mysqli_close($con);
                                         ?>
                                         </select>
                                     </div>
+
+                                    <input type="text" id="nombreInput" class="form-control" readonly>
+                                    <input type="text" id="precioInput" class="form-control" readonly>
+
+                                    <script>
+                                    function actualizarValores() {
+                                        var select = document.getElementById("idproducto");
+                                        var nombreInput = document.getElementById("nombreInput");
+                                        var precioInput = document.getElementById("precioInput");
+                                        var selectedOption = select.options[select.selectedIndex];
+                                        var textoSeleccionado = selectedOption.text;
+                                        var partes = textoSeleccionado.split(" - Precio: ");
+                                        nombreInput.value = partes[0];
+                                        precioInput.value = partes[1];
+                                    }
+                                    </script>
+
 
                                             <div class="mb-12">
                                                 <label class="form-label">Tipo de Cliente</label>
