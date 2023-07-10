@@ -848,14 +848,14 @@ mysqli_close($con);
                                         include 'includes/conexion.php'; 
                                         
                                         // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                        $queryp = "SELECT * FROM productos";
+                                        $queryp = "SELECT * FROM producto";
                                         $resultp = mysqli_query($con, $queryp);
 
                                         // Verificar si se encontraron resultados
                                         if (mysqli_num_rows($resultp) > 0) {
                                             // Generar las opciones dentro del select
                                             while ($rowp = mysqli_fetch_assoc($resultp)) {
-                                                $valuep = $rowp['id_producto'];
+                                                $valuep = $rowp['idProducto'];
                                                 $textp = $rowp['nombreProducto'];
                                                 $preciop = $rowp['precioProducto'];
                                                 echo "<option value='" . $valuep . "'>" . $textp . " - Precio: " . $preciop . "</option>";
