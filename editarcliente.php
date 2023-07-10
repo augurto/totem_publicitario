@@ -570,7 +570,9 @@ mysqli_close($con);
                                             <div class="row mb-6">
                                                 <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="number" value="<?php echo $documento; ?>" id="example-number-input" name="documento" maxlength="9" readonly>
+                                                    
+                                                    <input class="form-control" type="number" value="<?php echo $documento; ?>" id="example-number-input" name="documento" maxlength="9" <?php if ($documento === null) { echo "readonly"; } ?>>
+
                                                 </div>
                                             </div>
                                             <script>
