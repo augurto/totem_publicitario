@@ -920,7 +920,7 @@ mysqli_close($con);
                                                 // Calcular el subtotal
                                                 var subtotal = precioProducto * cantidad;
                                                 // Actualizar el valor en la columna "Subtotal"
-                                                fila.cells[3].textContent = subtotal.toFixed(2);
+                                                fila.cells[2].textContent = subtotal.toFixed(2);
                                             }
                                         </script>
 
