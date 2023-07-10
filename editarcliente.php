@@ -872,17 +872,18 @@ mysqli_close($con);
                                     <input type="text" id="precioInput" class="form-control" readonly>
 
                                     <script>
-                                    function actualizarValores() {
-                                        var select = document.getElementById("idproducto");
-                                        var nombreInput = document.getElementById("nombreInput");
-                                        var precioInput = document.getElementById("precioInput");
-                                        var selectedOption = select.options[select.selectedIndex];
-                                        var textoSeleccionado = selectedOption.text;
-                                        var partes = textoSeleccionado.split(" - Precio: ");
-                                        nombreInput.value = partes[0];
-                                        precioInput.value = partes[1];
-                                    }
+                                        function actualizarValores() {
+                                            var select = document.getElementById("idproducto");
+                                            var nombreInput = document.getElementById("nombreInput");
+                                            var precioInput = document.getElementById("precioInput");
+                                            var selectedOption = select.options[select.selectedIndex];
+                                            var textoSeleccionado = selectedOption.text;
+                                            var partes = textoSeleccionado.split(" - Precio: ");
+                                            nombreInput.value = partes[0];
+                                            precioInput.value = partes[1];
+                                        }
                                     </script>
+
 
 
                                             <div class="mb-12">
