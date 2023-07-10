@@ -868,7 +868,7 @@ mysqli_close($con);
                                         </select>
                                         <button onclick="buscar()"  class="form-control" >Buscar</button>
                                     </div>
-                                    <form  action="includes/guardar_webform.php" method="post" >
+                                    <form  action="includes/ventasProducto.php" method="post" >
                                     <input type="text" id="idProductoInput" class="form-control" readonly>
                                     <label class="form-label">Nombre Producto</label>
                                     <input type="text" id="nombreInput" class="form-control" readonly>
@@ -882,7 +882,9 @@ mysqli_close($con);
                                     <input type="text" id="montoTotal" class="form-control" readonly>
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Adjuntar archivo</label>
-                                        <input class="form-control" type="file" id="formFile">
+                                        
+                                        <input class="form-control" type="file" id="archivo" name="archivo">
+
                                     </div>
 
                                     <script>
@@ -914,21 +916,7 @@ mysqli_close($con);
                                         }
                                     </script>
 
-
-
-
-
-                                            <div class="mb-12">
-                                                <label class="form-label">Tipo de Cliente</label>
-                                                                                                
-                                                
-                                            </div>
-                                            <div class="mb-12">
-                                                <label class="form-label">Fuente</label>
-                                                
-                                               
-
-                                            </div>
+                                            
                                             <div class="mt-12">
                                                 <label class="mb-1">Observacion</label>
                                                 
@@ -943,6 +931,8 @@ mysqli_close($con);
                                             <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Guardar</button>
                                             </center>
+
+                                            </form>
                                             
                                         </div>
                                         <!-- end col -->
@@ -950,7 +940,7 @@ mysqli_close($con);
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
-                                </form>
+                                
                                
                                 </div>
 
