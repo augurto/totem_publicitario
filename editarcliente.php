@@ -800,8 +800,9 @@ mysqli_close($con);
                         <!-- end card -->
 
                        <!--  agregando otra columna -->
-                       <input type="checkbox" id="switch1" switch="none" onchange="toggleElement()" />
                        <center>
+                       <input type="checkbox" id="switch1" switch="none" onchange="toggleElement()" />
+                       
                         <label for="switch1" data-on-label="CON " data-off-label="SIN "></label><p>FACTURACIÓN</p>
                         <br>
                         </center>
