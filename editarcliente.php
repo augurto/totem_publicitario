@@ -453,9 +453,9 @@ mysqli_close($con);
                         <div class="dropdown d-inline-block user-dropdown">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-7.jpg"
-                                    alt="Header Avatar">
-                                <span class="d-none d-xl-inline-block ms-1">Malvika</span>
+                                <!-- <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-7.jpg"
+                                    alt="Header Avatar"> -->
+                                    <span class="d-none d-xl-inline-block ms-1"><?php echo $_SESSION['usuario'] ; ?></span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -662,7 +662,7 @@ mysqli_close($con);
                                     <div class="row">
                                         <div class="col-lg-12">
                                         <div class="mb-12">
-                                                <label class="form-label">Buscar Cliente</label>
+                                                <label class="form-label">Seguimiento de Cliente</label>
                                                 
                                                 <select class="form-control select2" id="idcliente" name="idcliente">
                                                 <?php
@@ -689,13 +689,39 @@ mysqli_close($con);
 
                                             </div>
                                             <div class="mb-12">
-                                                <label class="form-label">Tipo de Cliente</label>
+                                                <label class="form-label">Estado</label>
                                                 
                                                 <select class="form-control select2" id="tipoCliente" name="tipoCliente">
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
                                                 $query = "SELECT * FROM tipoCliente";
+                                                $result = mysqli_query($con, $query);
+
+                                                // Verificar si se encontraron resultados
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    // Generar las opciones dentro del select
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                    $value = $row['valorTipoCliente'];
+                                                    $text = $row['descripcionTipoCliente'];
+                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
+                                                    }
+                                                }
+
+                                                // Cerrar la conexión a la base de datos
+                                                mysqli_close($con);
+                                                ?>
+                                                </select>
+
+                                            </div>
+                                            <div class="mb-12">
+                                                <label class="form-label">Tipo de Cliente</label>
+                                                                                                
+                                                <select class="form-control select2" id="tipoCliente2" name="tipoCliente2">
+                                                <?php
+                                                 include 'includes/conexion.php'; 
+                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                                $query = "SELECT * FROM tipoClienteCliente";
                                                 $result = mysqli_query($con, $query);
 
                                                 // Verificar si se encontraron resultados

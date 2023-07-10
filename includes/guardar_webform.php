@@ -5,7 +5,8 @@ include 'conexion.php'; // Incluir el archivo de conexión
 
 // Obtener los datos enviados desde el formulario
 $documentoCliente = $_POST['idcliente'];
-$tipoCliente = $_POST['tipoCliente'];
+$estadoCliente = $_POST['tipoCliente'];
+$tipoCliente = $_POST['tipoCliente2'];
 $prospecto = $_POST['prospecto'];
 $observacionCliente = $_POST['observacion'];
 $idid = $_POST['idid'];
@@ -26,7 +27,7 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
     $mensajeCliente = $rowCliente['mensajeCliente'];
 
     // Preparar la consulta SQL para realizar la inserción en web_formularios con los valores obtenidos
-    $query = "INSERT INTO web_formularios (documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, idid, id_user, fuente_dato,mensaje) VALUES ('$documentoCliente', '$datosCliente', '$telefonoCliente', '$emailCliente', '$tipoCliente', '$prospecto', '$idid', '$id_user', '$estadoWeb','$observacionCliente')";
+    $query = "INSERT INTO web_formularios (documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, idid, id_user, fuente_dato,mensaje,estadoCliente) VALUES ('$documentoCliente', '$datosCliente', '$telefonoCliente', '$emailCliente', '$estadoCliente', '$prospecto', '$idid', '$id_user', '$estadoWeb','$observacionCliente','$estadoCliente')";
 
     // Ejecutar la consulta y verificar si se realizó correctamente
     if (mysqli_query($con, $query)) {
