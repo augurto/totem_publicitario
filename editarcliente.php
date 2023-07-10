@@ -839,180 +839,42 @@ mysqli_close($con);
                                 <h4 class="card-title">Seguimiento de Cliente</h4>
                                 
                                 <form  action="includes/guardar_webform.php" method="post" >
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                        <div class="mb-6">
-                                        <label class="form-label">Buscar Producto</label>
-                                        <select class="form-control select2" id="idcliente" name="idcliente">
-                                        <?php
-include 'includes/conexion.php';
-// Realizar la consulta a la base de datos para obtener los datos de la tabla
-$queryp = "SELECT * FROM producto ";
-$resultp = mysqli_query($con, $queryp);
+                                    <?php 
+                                $queryp = "SELECT * FROM producto";
+                                $resultp = mysqli_query($con, $queryp);
 
-// Verificar si se encontraron resultados
-if (mysqli_num_rows($resultp) > 0) {
-    // Generar las opciones dentro del select
-    while ($rowp = mysqli_fetch_assoc($resultp)) {
-        $valuep = $rowp['idProducto'];
-        $nombreProducto = $rowp['nombreProducto'];
-        $tipoProducto = $rowp['tipoProducto'];
-        $precioProducto = $rowp['precioProducto'];
-        $empresaProducto = $rowp['empresaProducto'];
-        echo "<option value='" . $valuep . "' data-precio='" . $precioProducto . "'>" . $nombreProducto . "</option>";
-    }
-}
-?>
-
-<!-- Agregar la tabla con los valores -->
-<table>
-    <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-        </tr>
-    </thead>
-    <tbody id="tablaProductos">
-        <!-- Aquí se agregarán las filas de la tabla -->
-    </tbody>
-</table>
-
-<!-- Botón para agregar productos -->
-<button type="button" onclick="agregarProducto()">Agregar</button>
-
-<!-- Script para agregar productos a la tabla -->
-<script>
-    function agregarProducto() {
-        // Obtener el valor seleccionado del select
-        var select = document.getElementById("selectProducto");
-        var idProducto = select.value;
-        var nombreProducto = select.options[select.selectedIndex].text;
-        var precioProducto = select.options[select.selectedIndex].dataset.precio;
-
-        // Obtener la cantidad del producto
-        var cantidad = prompt("Ingrese la cantidad:", "1");
-        if (cantidad == null || cantidad == "") {
-            cantidad = 1;
-        }
-
-        // Crear una nueva fila en la tabla con los valores seleccionados
-        var tabla = document.getElementById("tablaProductos");
-        var fila = document.createElement("tr");
-        fila.innerHTML = "<td>" + nombreProducto + "</td><td>" + precioProducto + "</td><td>" + cantidad + "</td>";
-        tabla.appendChild(fila);
-    }
-</script>
-
-<?php
-// Cerrar la conexión a la base de datos
-mysqli_close($con);
-?>
-
-
-
-                                            <div class="mb-6">
-                                                <label class="form-label">Estado</label>
-                                                
-                                                <select class="form-control select2" id="tipoCliente" name="tipoCliente">
-                                                <?php
-                                                 include 'includes/conexion.php'; 
-                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query = "SELECT * FROM tipoCliente";
-                                                $result = mysqli_query($con, $query);
-
-                                                // Verificar si se encontraron resultados
-                                                if (mysqli_num_rows($result) > 0) {
-                                                    // Generar las opciones dentro del select
-                                                    while ($row = mysqli_fetch_assoc($result)) {
-                                                    $value = $row['valorTipoCliente'];
-                                                    $text = $row['descripcionTipoCliente'];
-                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
-                                                    }
-                                                }
-
-                                                // Cerrar la conexión a la base de datos
-                                                mysqli_close($con);
-                                                ?>
-                                                </select>
-
-                                            </div>
-                                            <div class="mb-12">
-                                                <label class="form-label">Tipo de Cliente</label>
-                                                                                                
-                                                <select class="form-control select2" id="tipoCliente2" name="tipoCliente2">
-                                                <?php
-                                                 include 'includes/conexion.php'; 
-                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query = "SELECT * FROM tipoClienteCliente";
-                                                $result = mysqli_query($con, $query);
-
-                                                // Verificar si se encontraron resultados
-                                                if (mysqli_num_rows($result) > 0) {
-                                                    // Generar las opciones dentro del select
-                                                    while ($row = mysqli_fetch_assoc($result)) {
-                                                    $value = $row['valorTipoCliente'];
-                                                    $text = $row['descripcionTipoCliente'];
-                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
-                                                    }
-                                                }
-
-                                                // Cerrar la conexión a la base de datos
-                                                mysqli_close($con);
-                                                ?>
-                                                </select>
-
-                                            </div>
-                                            <div class="mb-12">
-                                                <label class="form-label">Fuente</label>
-                                                
-                                                <select class="form-control select2" id="prospecto" name="prospecto">
-                                                <?php
-                                             
-                                                include 'includes/conexion.php'; 
-                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query2 = "SELECT * FROM fuente where idAterrizajeFuente = 1";
-                                                $result2 = mysqli_query($con, $query2);
-
-                                                // Verificar si se encontraron resultados
-                                                if (mysqli_num_rows($result2) > 0) {
-                                                    // Generar las opciones dentro del select
-                                                    while ($row2 = mysqli_fetch_assoc($result2)) {
-                                                    $value2 = $row2['tipoFuente'];
-                                                    $text2 = $row2['descripcionFuente'];
-                                                    echo "<option value='" . $value2 . "'>" . $text2 . "</option>";
-                                                    }
-                                                }
-
-                                                // Cerrar la conexión a la base de datos
-                                                mysqli_close($con);
-                                                ?>
-                                                </select>
-
-                                            </div>
-                                            <div class="mt-12">
-                                                <label class="mb-1">Observacion</label>
-                                                
-                                                <textarea id="observacion" name="observacion" class="form-control" maxlength="225" rows="3"
-                                                    placeholder="Observacion al Cliente"></textarea>
-                                            </div>
-                                            <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
-
-
-                                            <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
-                                            <br>
-                                            <center>
-                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Cliente</button>
-                                            </center>
-                                            
-                                        </div>
-                                        <!-- end col -->
-                                        
-                                        <!-- end col -->
-                                    </div>
-                                    <!-- end row -->
+                                // Comprueba si la consulta devolvió resultados
+                                if (mysqli_num_rows($resultp) > 0) {
+                                    echo '<select class="form-control select2" id="productoSelect">';
+                                    
+                                    // Recorre los registros devueltos por la consulta
+                                    while ($rowp = mysqli_fetch_assoc($resultp)) {
+                                        echo '<option value="' . $rowp['id'] . '">' . $rowp['nombre'] . '</option>';
+                                    }
+                                    
+                                    echo '</select>';
+                                    
+                                    echo '<br><br>';
+                                    
+                                    echo '<input type="text" id="resultadoInput" class="form-control" readonly>';
+                                    
+                                    echo '<br><br>';
+                                    
+                                    echo '<button onclick="mostrarResultado()">Buscar</button>';
+                                } else {
+                                    echo 'No se encontraron productos.';
+                                }
+                                ?>
                                 </form>
-                               
+                                <script>
+                                    function mostrarResultado() {
+                                        var select = document.getElementById("productoSelect");
+                                        var input = document.getElementById("resultadoInput");
+                                        var selectedOption = select.options[select.selectedIndex];
+                                        input.value = selectedOption.text;
+                                    }
+                                </script>
+
                                 </div>
 
                                 
