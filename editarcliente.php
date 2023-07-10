@@ -623,9 +623,12 @@ mysqli_close($con);
                                             </script>
                                             <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
                                            <br>
-                                          <!--   <center>
-                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Usuario</button>
-                                            </center> -->
+                                           <?php if ($documento === null): ?>
+                                                <center>
+                                                    <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Usuario</button>
+                                                </center>
+                                            <?php endif; ?>
+
                                                     
                                         </div>
                                         <!-- end col -->
