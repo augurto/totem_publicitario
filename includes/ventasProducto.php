@@ -43,7 +43,7 @@ if (move_uploaded_file($archivoRutaTemp, $rutaDestino)) {
         echo "Error al guardar los datos: " . mysqli_error($con);
     }
 } else {
-    echo "Error al mover el archivo a la ruta de destino.";
+    echo "Error al mover el archivo a la ruta de destino: " . error_get_last()['message'];
 }
 
 // Cerrar la conexión a la base de datos
