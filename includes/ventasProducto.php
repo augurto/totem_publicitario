@@ -20,7 +20,7 @@ $archivoTamano = $_FILES['archivo']['size'];
 $archivoRutaTemp = $_FILES['archivo']['tmp_name'];
 
 // Directorio de destino donde se guardarán los archivos
-$directorioDestino = 'archivos/';
+$directorioDestino = '../archivos/';
 
 // Crear la carpeta con el nombre de la variable $_POST['idid']
 $rutaCarpetaDestino = $directorioDestino . $_POST['idid'] . '/';
