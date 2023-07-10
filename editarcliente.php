@@ -800,8 +800,10 @@ mysqli_close($con);
                         <!-- end card -->
 
                        <!--  agregando otra columna -->
-
-                        <div class="col-lg-12">
+                       <input type="checkbox" id="switch1" switch="none" />
+                                            <label for="switch1" data-on-label="Habilitar Facturacion" data-off-label="No facturar"></label>
+                                            <br>
+                        <div class="col-lg-12" style="display: none;">
                     <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Seguimiento de Cliente</h4>
