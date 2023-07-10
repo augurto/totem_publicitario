@@ -801,7 +801,10 @@ mysqli_close($con);
 
                        <!--  agregando otra columna -->
                        <input type="checkbox" id="switch1" switch="none" onchange="toggleElement()" />
-                        <label for="switch1" data-on-label="CON " data-off-label="SIN ">FACTURACIÓN</label>
+                       <center>
+                        <label for="switch1" data-on-label="CON " data-off-label="SIN "></label><p>FACTURACIÓN</p>
+                        <br>
+                        </center>
                         <script>
                             function toggleElement() {
                                 var checkbox = document.getElementById("switch1");
