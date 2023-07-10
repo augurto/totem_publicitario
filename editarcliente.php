@@ -552,7 +552,7 @@ mysqli_close($con);
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title">Registrar Cliente</h4>
+                                <h4 class="card-title">Datos del  Cliente</h4>
                                 <br>
 
                                 <form id="myForm" action="includes/guardar_user.php" method="post">
@@ -627,7 +627,7 @@ mysqli_close($con);
                                            <br>
                                            <?php if ($documento === null): ?>
                                                 <center>
-                                                    <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Usuario</button>
+                                                    <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
                                                 </center>
                                             <?php endif; ?>
 
@@ -656,13 +656,13 @@ mysqli_close($con);
                     <div class="col-lg-6">
                     <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Seguimiento de Lead</h4>
+                                <h4 class="card-title">Seguimiento de Cliente</h4>
                                 
                                 <form  action="includes/guardar_webform.php" method="post" >
                                     <div class="row">
                                         <div class="col-lg-12">
                                         <div class="mb-12">
-                                                <label class="form-label">Seguimiento de Cliente</label>
+                                                <label class="form-label">Buscar Cliente</label>
                                                 
                                                 <select class="form-control select2" id="idcliente" name="idcliente">
                                                 <?php
@@ -779,7 +779,7 @@ mysqli_close($con);
                                             <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
                                             <br>
                                             <center>
-                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Lead</button>
+                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Cliente</button>
                                             </center>
                                             
                                         </div>
