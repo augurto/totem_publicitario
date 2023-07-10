@@ -800,12 +800,27 @@ mysqli_close($con);
                         <!-- end card -->
 
                        <!--  agregando otra columna -->
-                       <center>
-                       <input type="checkbox" id="switch1" switch="none" onchange="toggleElement()" />
-                       
-                        <label for="switch1" data-on-label="CON " data-off-label="SIN "></label><p>FACTURACIÓN</p>
-                        <br>
-                        </center>
+                       <div class="checkbox-container">
+                            <input type="checkbox" id="switch1" switch="none" onchange="toggleElement()" />
+                            <label for="switch1" data-on-label="CON " data-off-label="SIN "></label>
+                            <p>FACTURACIÓN</p>
+                        </div>
+                        <style>
+                            .checkbox-container {
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .checkbox-container input[type="checkbox"] {
+                                margin-right: 10px;
+                            }
+
+                            .checkbox-container p {
+                                margin: 0;
+                            }
+
+                        </style>
+
                         <script>
                             function toggleElement() {
                                 var checkbox = document.getElementById("switch1");
