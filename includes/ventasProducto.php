@@ -43,7 +43,9 @@ if (move_uploaded_file($archivoRutaTemp, $rutaDestino)) {
         echo "Error al guardar los datos: " . mysqli_error($con);
     }
 } else {
-    echo "Error al mover el archivo a la ruta de destino: " . error_get_last()['message'];
+    $error = error_get_last();
+    $errorMessage = isset($error['message']) ? $error['message'] : "Error desconocido";
+    echo "Error al mover el archivo a la ruta de destino: " . $errorMessage;
 }
 
 // Cerrar la conexión a la base de datos
