@@ -843,7 +843,7 @@ mysqli_close($con);
                                         <div class="col-lg-12">
                                         <div class="mb-12">
                                         <label class="form-label">Buscar Producto</label>
-                                        <select class="form-control select2" id="idproducto" name="idproducto" onchange="actualizarValores()">
+                                        <select class="form-control select2" id="idproducto" name="idproducto">
                                         <?php
                                         include 'includes/conexion.php'; 
                                         
@@ -870,9 +870,10 @@ mysqli_close($con);
 
                                     <input type="text" id="nombreInput" class="form-control" readonly>
                                     <input type="text" id="precioInput" class="form-control" readonly>
+                                    <button onclick="buscar()">Buscar</button>
 
                                     <script>
-                                        function actualizarValores() {
+                                        function buscar() {
                                             var select = document.getElementById("idproducto");
                                             var nombreInput = document.getElementById("nombreInput");
                                             var precioInput = document.getElementById("precioInput");
@@ -883,6 +884,7 @@ mysqli_close($con);
                                             precioInput.value = partes[1];
                                         }
                                     </script>
+
 
 
 
