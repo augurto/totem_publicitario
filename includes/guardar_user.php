@@ -10,6 +10,9 @@ $email = $_POST['email'];
 $comentario = $_POST['comentario'];
 $idweb = $_POST['idweb'];
 $iduser = $_POST['iduser'];
+$pr = $_POST['pr'];
+
+
 
 // Verificar si el documento ya existe en la base de datos
 $queryExist = "SELECT documentoCliente FROM cliente WHERE documentoCliente = '$documento'";
@@ -31,7 +34,9 @@ if (mysqli_num_rows($resultExist) > 0) {
         $lastId = mysqli_insert_id($con);
 
         // Redireccionar a la misma página con el parámetro de ID en la URL
-        header("Location: ../cliente.php?id=" . $idweb);
+        
+        header("Location: ../cliente.php?id=" . $idweb . "&pr=" . $pr);
+
         exit();
     } else {
         // Ocurrió un error durante la inserción de datos, puedes mostrar un mensaje de error o realizar alguna acción adicional si lo deseas

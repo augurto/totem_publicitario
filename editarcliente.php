@@ -624,7 +624,9 @@ mysqli_close($con);
                                                 document.getElementById('id-input').value = id;
                                             </script>
                                             <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
-                                           <br>
+
+                                            <input type="text" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
+                                            <br>
                                            <?php if ($documento === null): ?>
                                                 <center>
                                                     <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
