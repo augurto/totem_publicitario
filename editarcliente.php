@@ -672,12 +672,9 @@ mysqli_close($con);
                                                     <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
                                                 </center>
                                             <?php elseif ($documentoCliente !== null): ?>
-                                                <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
-                                                    </div>
-                                                </div>
+                                                <center>
+                                                    <p>Datos completos</p>
+                                                </center>
                                             <?php endif; ?>
 
 
