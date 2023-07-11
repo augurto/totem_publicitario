@@ -619,14 +619,14 @@ if (!isset($_SESSION['usuario'])) {
 
                                                                
                                                         
-                                                                $queryFuente = "SELECT descripcionFuente FROM fuente WHERE tipoFuente = '$prospecto'";
+                                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$prospecto'";
                                                                 $resultFuente = mysqli_query($conn, $queryFuente);
 
                                                                 $rowFuente = mysqli_fetch_assoc($resultFuente);
                                                                 $descripcionFuente = $rowFuente['descripcionFuente'];
                                                                 $colorFuente = $rowFuente['colorFuente'];
 
-                                                                echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';">' . $descripcionFuente . '</span></td>';
+                                                                echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';color:black;">' . $descripcionFuente . '</span></td>';
 
 
 
