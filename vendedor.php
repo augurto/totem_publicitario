@@ -617,16 +617,20 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             } elseif ($estado_web == 1) {
                                                                 echo "<td>
                                                                         <a href='editarcliente.php?id=" . $row['id_form_web'] . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
-                                                                            Observado
-                                                                        </a>
-                                                                        " . $row['datos_form'] . "
+                                                                            Atendido
+                                                                            </a>
+                                                                            " . "
+                                                                        </td>";
+                                                                    echo "<td>" . $row['datos_form'] . "
                                                                     </td>";
                                                             } elseif ($estado_web == 2) {
                                                                 echo "<td>
                                                                         <a href='editarcliente.php?id=" . $row['id_form_web'] . "' target='_blank' class='btn btn-success waves-effect waves-light'>
-                                                                            Atendido
-                                                                        </a>
-                                                                        " . $row['datos_form'] . "
+                                                                            Observado
+                                                                            </a>
+                                                                            " . "
+                                                                        </td>";
+                                                                    echo "<td>" . $row['datos_form'] . "
                                                                     </td>";
                                                             }
 

@@ -29,7 +29,7 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
     $mensajeCliente = $rowCliente['mensajeCliente'];
 
     // Preparar la consulta SQL para realizar la inserción en web_formularios con los valores obtenidos
-    $query = "INSERT INTO web_formularios (documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, idid, id_user, fuente_dato,mensaje,estadoCliente,idEmpresa) VALUES ('$documentoCliente', '$datosCliente', '$telefonoCliente', '$emailCliente', '$estadoCliente', '$prospecto', '$idid', '$id_user', '$estadoWeb','$observacionCliente','$estadoCliente','$empresaUser')";
+    $query = "INSERT INTO web_formularios (documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, idid, id_user, estado_web,mensaje,estadoCliente,idEmpresa) VALUES ('$documentoCliente', '$datosCliente', '$telefonoCliente', '$emailCliente', '$estadoCliente', '$prospecto', '$idid', '$id_user', '$estadoWeb','$observacionCliente','$estadoCliente','$empresaUser')";
 
     // Ejecutar la consulta y verificar si se realizó correctamente
     if (mysqli_query($con, $query)) {
