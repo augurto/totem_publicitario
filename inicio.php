@@ -614,11 +614,16 @@ if (!isset($_SESSION['usuario'])) {
                                                               echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
                                                             }
                                                           } else {
-                                                            if (empty($a)) {
-                                                              echo '<td><span class="badge rounded-pill bg-dark">Transito</span></td>';
-                                                            } else {
-                                                              echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
+                                                               $querySubconsulta = "SELECT descripcionFuente, colorFuente FROM fuente WHERE tipoFuente = '$prospecto'";
+                                                               $resultSubconsulta = mysqli_query($conn, $querySubconsulta);
+                                                               if ($resultSubconsulta && mysqli_num_rows($resultSubconsulta) > 0) {
+                                                                $rowSubconsulta = mysqli_fetch_assoc($resultSubconsulta);
+                                                                $descripcionFuente = $rowSubconsulta["descripcionFuente"];
+                                                                $colorFuente = $rowSubconsulta["colorFuente"];
+
+                                                                echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . '; color: black;">' . $descripcionFuente . '</span></td>';
                                                             }
+
                                                           }
                                                           
 
