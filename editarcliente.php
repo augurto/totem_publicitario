@@ -838,7 +838,7 @@ mysqli_close($con);
                                             <input type="text" id="prospectoExistente" name="empresaUser" class="form-control" value="<?php echo $prospectoExistente ; ?>" readonly>
                                             <br>
                                             <center>
-                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Cliente</button>
+                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Guardar Datos </button>
                                             </center>
                                             
                                         </div>
