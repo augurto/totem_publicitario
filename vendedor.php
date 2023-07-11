@@ -624,17 +624,15 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                         </td>";
                                                                     echo "<td>" . $row['datos_form'] . "
                                                                     </td>";
-                                                            } elseif ($estado_web == 2) {
+                                                            } elseif (empty($a) && $estado_web == 2  ) {
                                                                 echo "<td>
-                                                                <a href='editarcliente.php?id=" . $row['id_form_web'] . "&pr=" . ($a ? $a : "Organico") . "' target='_blank' class='btn btn-success waves-effect waves-light'>
-                                                                Observado
-                                                            </a>
-                                                            
-                                                                            " . "
-                                                                        </td>";
-                                                                    echo "<td>" . $row['datos_form'] . "
-                                                                    </td>";
+                                                                    <a href='editarcliente.php?id=" . $row['id_form_web'] . "&pr=Organico' target='_blank' class='btn btn-success waves-effect waves-light'>
+                                                                        Observado
+                                                                    </a>
+                                                                </td>";
+                                                                echo "<td>" . $row['datos_form'] . "</td>";
                                                             }
+                                                            
 
                                                         /* condicional para mostrar si es de facebook, google, organico o presencial */
                                                         if ($row["id_user"] == 0) {
