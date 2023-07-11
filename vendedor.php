@@ -542,7 +542,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     <th>Fuente</th>
                                                     <th>Email</th>
                                                     <th>Teléfono</th>
-                                                   
+                                                    <th>Estado</th>
                                                     <th>Mensaje</th>
                                                     <th>Fecha </th>
                                                     <th>URL</th>
@@ -659,7 +659,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         echo "<td><a href='https://wa.me/$telefonooo' target='_blank'>$telefonooo</a></td>";
                                                      
 
-                                                        
+                                                        echo "<td>" . $row["estado_web"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fecha"] . '-5 hours')) . "</td>";
                                                         echo "<td>" . $row["URL"] . "</td>";

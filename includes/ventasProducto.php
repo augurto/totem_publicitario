@@ -46,7 +46,9 @@ if (move_uploaded_file($archivoRutaTemp, $rutaDestino)) {
 
     // Ejecutar la consulta
     if (mysqli_query($con, $query)) {
-        echo "Los datos se guardaron correctamente en la base de datos.";
+       // Redireccionar a ventas.php con el ID de la venta en la URL
+        header("Location: ../ventas.php?idVenta=" . $idVenta);
+        exit();
     } else {
         echo "Error al guardar los datos: " . mysqli_error($con);
     }
