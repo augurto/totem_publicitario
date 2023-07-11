@@ -570,6 +570,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 // Consulta SQL para obtener los datos de la tabla "formulario_totem"
                                                 $sql = "SELECT * FROM web_formularios ORDER BY fecha DESC";
                                                 $result = $conn->query($sql);
+                                                $prospecto=$row["prospecto"];
 
                                                 // Verificar si se obtuvieron resultados
                                                 if ($result->num_rows > 0) {
