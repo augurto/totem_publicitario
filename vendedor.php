@@ -662,8 +662,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         $estadoCliente = $row["estadoCliente"];
 
                                                         // Realizar la consulta a la base de datos para obtener la descripción del tipo de cliente
-                                                        $queryTipoCliente = "SELECT descripcionTipoCliente FROM tipoCliente WHERE valorTipoCliente = $estadoCliente";
-                                                        $resultTipoCliente = mysqli_query($con, $queryTipoCliente);
+                                                        $queryTipoCliente = "SELECT * FROM tipoCliente WHERE valorTipoCliente = $estadoCliente";
+                                                        $resultTipoCliente = mysqli_query($conn, $queryTipoCliente);
 
                                                         if ($resultTipoCliente && mysqli_num_rows($resultTipoCliente) > 0) {
                                                             $rowTipoCliente = mysqli_fetch_assoc($resultTipoCliente);
