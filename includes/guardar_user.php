@@ -35,7 +35,7 @@ if (mysqli_num_rows($resultExist) > 0) {
 
         // Redireccionar a la misma página con el parámetro de ID en la URL
         
-        header("Location: ../cliente.php?id=" . $idweb . "&pr=" . $pr);
+        header("Location: ../editarcliente.php?id=" . $idweb . "&pr=" . $pr);
 
         exit();
     } else {
