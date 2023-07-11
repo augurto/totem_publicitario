@@ -729,6 +729,9 @@ mysqli_close($con);
                                                     $telefonoc = $rowc['telefonoCliente'];
                                                     echo "<option value='" . $valuec . "'>" . $textc."-".$valuec."-".$telefonoc. "</option>";
                                                     }
+                                                }else{
+                                                    $dniVacio=0;
+                                                    echo "<option value='" . $dniVacio . "'>" ."DNI no registrado". "</option>";
                                                 }
 
                                                 // Cerrar la conexión a la base de datos
