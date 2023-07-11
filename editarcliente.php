@@ -667,13 +667,21 @@ mysqli_close($con);
 
                                             <input type="text" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
                                             <br>
-                                           <?php if ($documento === null || empty($documentoCliente)): ?>
+                                            <?php if ($documento === null): ?>
                                                 <center>
-                                                   
                                                     <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
                                                 </center>
+                                            <?php elseif ($documentoCliente !== null): ?>
+                                                <div class="row mb-6">
+                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
+                                                    </div>
+                                                </div>
                                             <?php endif; ?>
-                                            
+
+
+
                                                     
                                         </div>
                                         <!-- end col -->
