@@ -668,8 +668,9 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         if ($resultTipoCliente && mysqli_num_rows($resultTipoCliente) > 0) {
                                                             $rowTipoCliente = mysqli_fetch_assoc($resultTipoCliente);
                                                             $descripcionTipoCliente = $rowTipoCliente["descripcionTipoCliente"];
+                                                            $colorTipoCliente = $rowTipoCliente["colorTipoCliente"];
 
-                                                            echo "<td><span class=\"badge rounded-pill\">$descripcionTipoCliente</span></td>";
+                                                            echo "<td><span class=\"badge rounded-pill\" style=\"background-color: $colorTipoCliente;\">$descripcionTipoCliente</span></td>";
                                                         } else {
                                                             echo "<td><span class=\"badge rounded-pill\">Error al obtener la descripción del tipo de cliente</span></td>";
                                                         }
