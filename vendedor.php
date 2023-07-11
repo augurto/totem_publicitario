@@ -657,7 +657,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                 $descripcionFuente = $rowFuente['descripcionFuente'];
                                                                 $colorFuente = $rowFuente['colorFuente'];
 
-                                                                echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';color:black;">' . $descripcionFuente . '</span></td>';
+                                                                echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';color:white;">' . $descripcionFuente . '</span></td>';
 
 
 
