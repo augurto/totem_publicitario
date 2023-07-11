@@ -671,7 +671,7 @@ mysqli_close($con);
                                                 <center>
                                                     <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
                                                 </center>
-                                            <?php elseif($documentoCliente>1): ?>
+                                            <?php elseif($documentoCliente !== null): ?>
                                                 <p>Documentos Completos</p>
                                             <?php endif; ?>
 
