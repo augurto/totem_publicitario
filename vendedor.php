@@ -571,7 +571,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 $sql = "SELECT 
                                                 id_form_web,date_create,datos_form,email,telefono,mensaje,fecha,URL,nombre_formulario,ip_formulario,
                                                 time,estado_web,estado_web,fuente_dato,id_user,idEmpresa,documentoCliente,tipoCliente,prospecto,
-                                                observacionCliente,idid
+                                                observacionCliente,idid,estadoCliente
                                                  FROM web_formularios ORDER BY fecha DESC";
                                                 
                                                 $result = $conn->query($sql);
