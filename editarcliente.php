@@ -669,6 +669,7 @@ mysqli_close($con);
                                             <br>
                                            <?php if ($documento === null): ?>
                                                 <center>
+                                                    <?php echo $documentoCliente; ?>
                                                     <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
                                                 </center>
                                             <?php endif; ?>
