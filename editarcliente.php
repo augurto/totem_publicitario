@@ -742,37 +742,45 @@ mysqli_close($con);
 
                                             </div>
                                             <?php 
-                                            $prospectoExistente=$_GET['pr'];
+                                            $prospectoExistente = $_GET['pr'];
                                             /* Google ADS
                                             Meta ADS */
-                                            ?>
-                                            <div class="mb-12">
-                                                <label class="form-label">Fuente</label>
-                                                
-                                                <select class="form-control select2" id="prospecto" name="prospecto">
-                                                <?php
-                                             
-                                                include 'includes/conexion.php'; 
+
+                                            if ($prospectoExistente == "Meta ADS") {
+                                                echo '<input type="text" id="prospecto" name="prospecto" class="form-control" value="1" readonly>';
+                                            } elseif ($prospectoExistente == "Google ADS") {
+                                                echo '<input type="text" id="prospecto" name="prospecto" class="form-control" value="2" readonly>';
+                                            } else {
+                                                echo '
+                                                <div class="mb-12">
+                                                    <label class="form-label">Fuente</label>
+                                                    <select class="form-control select2" id="prospecto" name="prospecto">';
+                                                    
+                                                include 'includes/conexion.php';
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
                                                 $query2 = "SELECT * FROM fuente where idAterrizajeFuente = 1";
-                                                $result2 = mysqli_query($con, $query2);
-
+                                                $result2 = mysqli_query($conn, $query2);
+                                                
                                                 // Verificar si se encontraron resultados
                                                 if (mysqli_num_rows($result2) > 0) {
                                                     // Generar las opciones dentro del select
                                                     while ($row2 = mysqli_fetch_assoc($result2)) {
-                                                    $value2 = $row2['tipoFuente'];
-                                                    $text2 = $row2['descripcionFuente'];
-                                                    echo "<option value='" . $value2 . "'>" . $text2 . "</option>";
+                                                        $value2 = $row2["tipoFuente"];
+                                                        $text2 = $row2["descripcionFuente"];
+                                                        echo "<option value='" . $value2 . "'>" . $text2 . "</option>";
                                                     }
                                                 }
-
+                                                
                                                 // Cerrar la conexión a la base de datos
                                                 mysqli_close($con);
-                                                ?>
-                                                </select>
+                                                
+                                                echo '
+                                                    </select>
+                                                </div>';
+                                            }
+                                            ?>
 
-                                            </div>
+
                                             <div class="mt-12">
                                                 <label class="mb-1">Observacion</label>
                                                 
@@ -783,7 +791,7 @@ mysqli_close($con);
 
 
                                             <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
-                                            <input type="text" id="iduser" name="empresaUser" class="form-control" value="<?php echo $prospectoExistente ; ?>" readonly>
+                                            <input type="text" id="prospectoExistente" name="empresaUser" class="form-control" value="<?php echo $prospectoExistente ; ?>" readonly>
                                             <br>
                                             <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Cliente</button>
