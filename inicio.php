@@ -616,16 +616,7 @@ if (!isset($_SESSION['usuario'])) {
                                                           } else {
                                                             if (empty($a)) {
                                                                 
-                                                                $querySubconsulta = "SELECT descripcionFuente, colorFuente FROM fuente WHERE tipoFuente = '$prospecto'";
-                                                                $resultSubconsulta = mysqli_query($conn, $querySubconsulta);
-
-                                                                if ($resultSubconsulta && mysqli_num_rows($resultSubconsulta) > 0) {
-                                                                    $rowSubconsulta = mysqli_fetch_assoc($resultSubconsulta);
-                                                                    $descripcionFuente = $rowSubconsulta["descripcionFuente"];
-                                                                    $colorFuente = $rowSubconsulta["colorFuente"];
-
-                                                                   
-                                                                }
+                                                               
 
                                                             } 
                                                           }
