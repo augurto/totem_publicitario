@@ -534,6 +534,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
+                                                    <th>Accion</th>
                                                     <th>Nombres</th>
                                                     <th>Fuente</th>
                                                     <th>Email</th>
@@ -608,23 +609,24 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                 echo "<td>
                                                                         <a href='editarcliente.php?id=" . $row['id_form_web'] . "' target='_blank' class='btn btn-primary waves-effect waves-light'>
                                                                             Atender
-                                                                        </a>
+                                                                        </a><p>
                                                                         " . $row['datos_form'] . "
-                                                                    </td>";
+                                                                   </p></td>";
+                                                                
                                                             } elseif ($estado_web == 1) {
                                                                 echo "<td>
                                                                         <a href='editarcliente.php?id=" . $row['id_form_web'] . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
                                                                             Observado
-                                                                        </a>
+                                                                            </a><p>
                                                                         " . $row['datos_form'] . "
-                                                                    </td>";
+                                                                        </p></td>";
                                                             } elseif ($estado_web == 2) {
                                                                 echo "<td>
                                                                         <a href='editarcliente.php?id=" . $row['id_form_web'] . "' target='_blank' class='btn btn-success waves-effect waves-light'>
                                                                             Atendido
-                                                                        </a>
+                                                                            </a><p>
                                                                         " . $row['datos_form'] . "
-                                                                    </td>";
+                                                                        </p></td>";
                                                             }
 
                                                         /* condicional para mostrar si es de facebook, google, organico o presencial */
