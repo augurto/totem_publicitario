@@ -658,8 +658,22 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         $telefonooo = $row["telefono"];
                                                         echo "<td><a href='https://wa.me/$telefonooo' target='_blank'>$telefonooo</a></td>";
                                                      
+                                                        
+                                                        $estadoCliente = $row["estadoCliente"];
 
-                                                        echo "<td><span class=\"badge rounded-pill bg-primary\">" . $row["estadoCliente"] . "</span></td>";
+                                                        // Realizar la consulta a la base de datos para obtener la descripción del tipo de cliente
+                                                        $queryTipoCliente = "SELECT descripcionTipoCliente FROM tipoCliente WHERE valorTipoCliente = $estadoCliente";
+                                                        $resultTipoCliente = mysqli_query($con, $queryTipoCliente);
+
+                                                        if ($resultTipoCliente && mysqli_num_rows($resultTipoCliente) > 0) {
+                                                            $rowTipoCliente = mysqli_fetch_assoc($resultTipoCliente);
+                                                            $descripcionTipoCliente = $rowTipoCliente["descripcionTipoCliente"];
+
+                                                            echo "<td><span class=\"badge rounded-pill\">$descripcionTipoCliente</span></td>";
+                                                        } else {
+                                                            echo "<td><span class=\"badge rounded-pill\">Error al obtener la descripción del tipo de cliente</span></td>";
+                                                        }
+
 
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fecha"] . '-5 hours')) . "</td>";
