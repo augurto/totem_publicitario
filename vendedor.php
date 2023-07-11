@@ -583,6 +583,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                     // Mostrar los datos en filas de la tabla
                                                     while ($row = $result->fetch_assoc()) {
+                                                        $prospecto=$row["prospecto"];
                                                         echo "<tr>";
                                                         echo "<td>" . $id . "</td>";
                                                         /* echo "<td>" . $row["datos_form"] . "</td>"; */
