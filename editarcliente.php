@@ -667,14 +667,14 @@ mysqli_close($con);
 
                                             <input type="text" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
                                             <br>
-                                            <?php if ($documento === null || empty($documentoCliente)):  echo $documentoCliente
-;?>
+                                            <?php if ($documento === null || empty($documentoCliente)): ?>
                                                 <center>
-                                                                                                    <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
+                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
                                                 </center>
-                                            <?php elseif($documentoCliente !== null): ?>
+                                            <?php elseif ($documentoCliente !== null): ?>
                                                 <p>Documentos Completos</p>
                                             <?php endif; ?>
+
 
 
 
