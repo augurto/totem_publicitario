@@ -11,6 +11,8 @@ $prospecto = $_POST['prospecto'];
 $observacionCliente = $_POST['observacion'];
 $idid = $_POST['idid'];
 $id_user = $_POST['iduser'];
+$empresaUser = $_POST['empresaUser'];
+
 $estadoWeb = 1;
 
 // Consultar la tabla cliente para obtener los datosCliente, telefonoCliente y emailCliente según el documentoCliente
@@ -27,7 +29,7 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
     $mensajeCliente = $rowCliente['mensajeCliente'];
 
     // Preparar la consulta SQL para realizar la inserción en web_formularios con los valores obtenidos
-    $query = "INSERT INTO web_formularios (documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, idid, id_user, fuente_dato,mensaje,estadoCliente) VALUES ('$documentoCliente', '$datosCliente', '$telefonoCliente', '$emailCliente', '$estadoCliente', '$prospecto', '$idid', '$id_user', '$estadoWeb','$observacionCliente','$estadoCliente')";
+    $query = "INSERT INTO web_formularios (documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, idid, id_user, fuente_dato,mensaje,estadoCliente,idEmpresa) VALUES ('$documentoCliente', '$datosCliente', '$telefonoCliente', '$emailCliente', '$estadoCliente', '$prospecto', '$idid', '$id_user', '$estadoWeb','$observacionCliente','$estadoCliente','$empresaUser')";
 
     // Ejecutar la consulta y verificar si se realizó correctamente
     if (mysqli_query($con, $query)) {
