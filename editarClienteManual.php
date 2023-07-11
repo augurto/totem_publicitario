@@ -666,12 +666,11 @@ mysqli_close($con);
                                         <div class="mb-12">
                                                 <label class="form-label">Buscar Cliente</label>
                                                 
-                                                
                                                 <select class="form-control select2" id="idcliente" name="idcliente">
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $queryc = "SELECT * FROM cliente order by idCliente DESC    ";
+                                                $queryc = "SELECT * FROM web_formularios WHERE id_form_web=$idUrl ";
                                                 $resultc = mysqli_query($con, $queryc);
 
                                                 // Verificar si se encontraron resultados
@@ -679,9 +678,10 @@ mysqli_close($con);
                                                     // Generar las opciones dentro del select
                                                     while ($rowc= mysqli_fetch_assoc($resultc)) {
                                                     $valuec = $rowc['documentoCliente'];
-                                                    $textc = $rowc['datosCliente'];
-                                                    $telefonoc = $rowc['telefonoCliente'];
-                                                    echo "<option value='" . $valuec . "'>" . $textc."-".$valuec."-".$telefonoc. "</option>";
+                                                    $textc = $rowc['datos_form'];
+                                                    $telefonoc = $rowc['telefono'];
+                                                    echo "<option value='" . $valuec . "'>" .$valuec."-". $textc."-".$telefonoc. "</option>";
+                                                    
                                                     }
                                                 }
 
