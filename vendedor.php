@@ -530,7 +530,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     <div class="card-body">
         
                                         <h4 class="card-title">Data Clientes</h4>
-                                        <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
@@ -606,7 +606,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             $estado_web = $row["estado_web"];
 
                                                             if ($estado_web == 0) {
-                                                                echo "<td style='background-color: #F5A9A9;'>
+                                                                echo "<td>
                                                                         <a href='editarcliente.php?id=" . $row['id_form_web'] . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
                                                                             Atender
                                                                         </a>
