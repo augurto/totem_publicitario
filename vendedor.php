@@ -605,7 +605,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             // Obtener el valor de $row["estado_web"]
                                                             $estado_web = $row["estado_web"];
 
-                                                            if ($estado_web == 0) {
+                                                            if ($estado_web == 0 && !empty($a)) {
                                                                 echo "<td>
                                                                 <a href='editarcliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
                                                                     Atender
