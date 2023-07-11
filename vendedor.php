@@ -659,7 +659,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         echo "<td><a href='https://wa.me/$telefonooo' target='_blank'>$telefonooo</a></td>";
                                                      
 
-                                                        echo "<td>" . $row["estado_web"] . "</td>";
+                                                        echo "<td><span class=\"badge rounded-pill bg-primary\">" . $row["estadoCliente"] . "</span></td>";
+
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fecha"] . '-5 hours')) . "</td>";
                                                         echo "<td>" . $row["URL"] . "</td>";
