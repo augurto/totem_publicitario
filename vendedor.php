@@ -686,7 +686,9 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                             echo "<td><span class=\"badge rounded-pill\" style=\"background-color: $colorTipoCliente;\">$descripcionTipoCliente</span></td>";
                                                         } else {
-                                                            echo "<td><span class=\"badge rounded-pill\">Sin estado</span></td>";
+                                                            
+                                                            echo '<td><span class="badge rounded-pill" style="background-color: black; color: white;">Prospecto Venta</span></td>';
+
                                                         }
 
 
