@@ -624,7 +624,7 @@ if (!isset($_SESSION['usuario'])) {
                                                                     $descripcionFuente = $rowSubconsulta["descripcionFuente"];
                                                                     $colorFuente = $rowSubconsulta["colorFuente"];
 
-                                                                    echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . '; color: black;">' . $descripcionFuente . '</span></td>';
+                                                                   
                                                                 }
 
                                                             } 
