@@ -667,7 +667,7 @@ mysqli_close($con);
 
                                             <input type="text" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
                                             <br>
-                                           <?php if ($documento === null|| empty($documentoCliente)): ?>
+                                           <?php if ($documento === null || empty($documentoCliente)): ?>
                                                 <center>
                                                    
                                                     <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
