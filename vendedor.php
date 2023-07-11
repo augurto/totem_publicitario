@@ -661,8 +661,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
 
 
-                                                            } else {
-                                                              echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
+                                                            } elseif(empty($prospecto)) {
+                                                                echo '<td><span class="badge rounded-pill" style="background-color: black' . ';color:white;">Prospecto Venta</span></td>';
                                                             }
                                                           }
                                                           
