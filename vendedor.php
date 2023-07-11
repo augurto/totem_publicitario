@@ -637,7 +637,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         /* condicional para mostrar si es de facebook, google, organico o presencial */
                                                         if ($row["id_user"] == 0) {
                                                             if ($a == "Google ADS") {
-                                                              echo '<td><span class="badge rounded-pill bg-danger">Google</span></td>';
+                                                              echo '<td><span class="badge rounded-pill bg-danger">Google ADS</span></td>';
                                                             } elseif ($a == "Meta ADS") {
                                                               echo '<td><span class="badge rounded-pill bg-primary">Facebook ADS</span></td>';
                                                             } elseif (empty($a)) {
