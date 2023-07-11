@@ -639,7 +639,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             if ($a == "Google ADS") {
                                                               echo '<td><span class="badge rounded-pill bg-danger">Google</span></td>';
                                                             } elseif ($a == "Meta ADS") {
-                                                              echo '<td><span class="badge rounded-pill bg-primary">Facebook</span></td>';
+                                                              echo '<td><span class="badge rounded-pill bg-primary">Facebook ADS</span></td>';
                                                             } elseif (empty($a)) {
                                                               echo '<td><span class="badge rounded-pill bg-success">Organico</span></td>';
                                                             } else {
