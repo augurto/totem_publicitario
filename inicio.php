@@ -620,7 +620,7 @@ if (!isset($_SESSION['usuario'])) {
                                                                
                                                         
                                                                 $queryFuente = "SELECT descripcionFuente FROM fuente WHERE tipoFuente = '$prospecto'";
-                                                                $resultFuente = mysqli_query($con, $queryFuente);
+                                                                $resultFuente = mysqli_query($conn, $queryFuente);
 
                                                                 $rowFuente = mysqli_fetch_assoc($resultFuente);
                                                                 $descripcionFuente = $rowFuente['descripcionFuente'];
