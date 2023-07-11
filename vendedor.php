@@ -549,6 +549,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     <th>Nombre Formulario</th>
                                                     <th>IP</th>
                                                     <th>Aterrizaje</th>
+                                                    <th>otro</th>
                                                     
                                                 </tr>
                                             </thead>
