@@ -568,6 +568,7 @@ mysqli_close($con);
                                             </div>
                                             <br>
                                             <?php 
+                                            include 'includes/conexion.php'; 
                                             // Ejecutar la consulta
                                             $query4 = "SELECT idWeb, documentoCliente FROM cliente WHERE idWeb = $idUrl";
                                             $result4 = mysqli_query($con, $query4);
