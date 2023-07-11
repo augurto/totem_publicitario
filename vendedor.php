@@ -107,11 +107,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                         </form>
 
                         <div class="dropdown dropdown-mega d-none d-xl-block ms-2">
-                            <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown"
-                                aria-haspopup="false" aria-expanded="false">
-                                Mega Menu
-                                <i class="mdi mdi-chevron-down"></i>
-                            </button>
+                            <h3><?php echo $_SESSION['empresaUser']; ?></h3>
                             <div class="dropdown-menu dropdown-megamenu">
                                 <div class="row">
                                     <div class="col-sm-8">

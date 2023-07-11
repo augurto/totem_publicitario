@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['idUser'] = $idUser;
         $_SESSION['dni'] = $dni;
         $_SESSION['tipoUsuario'] = $tipoUsuario;
+        $_SESSION['empresaUser'] = $empresaUsuario;
         
         // Redireccionar según el tipo de usuario
         if ($tipoUsuario == 1) {
