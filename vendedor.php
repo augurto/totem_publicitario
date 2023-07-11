@@ -635,7 +635,6 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
 
                                                         /* condicional para mostrar si es de facebook, google, organico o presencial */
-                                                        $prospecto=$row["prospecto"];
                                                         if ($row["id_user"] == 0) {
                                                             if ($a == "Google ADS") {
                                                               echo '<td><span class="badge rounded-pill bg-danger">Google</span></td>';
@@ -648,17 +647,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             }
                                                           } else {
                                                             if (empty($a)) {
-                                                                
-                                                                $querySubconsulta = "SELECT descripcionFuente, colorFuente FROM fuente WHERE tipoFuente = '$prospecto'";
-                                                                $resultSubconsulta = mysqli_query($conn, $querySubconsulta);
-
-                                                                if ($resultSubconsulta && mysqli_num_rows($resultSubconsulta) > 0) {
-                                                                    $rowSubconsulta = mysqli_fetch_assoc($resultSubconsulta);
-                                                                    $descripcionFuente = $rowSubconsulta["descripcionFuente"];
-                                                                    $colorFuente = $rowSubconsulta["colorFuente"];
-
-                                                                    echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . '; color: black;">' . $descripcionFuente . '</span></td>';
-                                                                }
+                                                                echo '<td><span class="badge rounded-pill bg-dark">' . $prospecto . '</span></td>';
 
                                                             } else {
                                                               echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
