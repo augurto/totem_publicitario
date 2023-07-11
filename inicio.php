@@ -616,7 +616,18 @@ if (!isset($_SESSION['usuario'])) {
                                                             }
                                                           } else {
                                                             if (empty($a)) {
-                                                                echo '<td><span class="badge rounded-pill bg-dark">' . $prospecto . '</span></td>';
+
+                                                               
+                                                        
+                                                                $queryFuente = "SELECT descripcionFuente FROM fuente WHERE tipoFuente = '$prospecto'";
+                                                                $resultFuente = mysqli_query($con, $queryFuente);
+
+                                                                $rowFuente = mysqli_fetch_assoc($resultFuente);
+                                                                $descripcionFuente = $rowFuente['descripcionFuente'];
+
+                                                                echo '<td><span class="badge rounded-pill bg-dark">' . $descripcionFuente . '</span></td>';
+
+
 
                                                             } else {
                                                               echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
