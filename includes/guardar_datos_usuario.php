@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $row['nombre_user'];
         $dni = $row['documento'];
         $idUser = $row['id_user'];
+        $empresaUsuario = $row['empresaUser'];
 
         // Iniciar sesión y guardar los datos en variables de sesión
         session_start();
