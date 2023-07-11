@@ -570,7 +570,7 @@ mysqli_close($con);
                                             <?php 
                                             include 'includes/conexion.php'; 
                                             // Ejecutar la consulta
-                                            $query4 = "SELECT idWeb, documentoCliente FROM cliente WHERE idWeb = $idUrl";
+                                            $query4 = "SELECT idWeb, documentoCliente FROM cliente WHERE idWeb = $idUrl order by desc limit 1";
                                             $result4 = mysqli_query($con, $query4);
 
                                             // Verificar si se obtuvieron resultados
