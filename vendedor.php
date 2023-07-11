@@ -545,7 +545,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     <th>Estado</th>
                                                     <th>Mensaje</th>
                                                     <th>Fecha </th>
-                                                    
+                                                    <th>URL</th>
                                                     <th>Nombre Formulario</th>
                                                     <th>IP</th>
                                                     <th>Aterrizaje</th>
@@ -691,7 +691,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fecha"] . '-5 hours')) . "</td>";
-                                                        
+                                                        echo "<td>" . $row["URL"] . "</td>";
                                                         echo "<td>" . $row["nombre_formulario"] . "</td>";
                                                         echo "<td>" . $row["ip_formulario"] . "</td>";
                                                         echo "<td>" . $c . "</td>";

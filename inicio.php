@@ -7,13 +7,6 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-// El usuario ha iniciado sesión, puedes acceder a los datos de sesión
-$usuario = $_SESSION['usuario'];
-$dni = $_SESSION['dni'];
-$tipoUsuario = $_SESSION['tipoUsuario'];
-
-// Resto del código de la página
-// ...
 
 ?>
 
