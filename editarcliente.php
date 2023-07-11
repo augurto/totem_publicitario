@@ -567,6 +567,46 @@ mysqli_close($con);
                                                 </div>
                                             </div>
                                             <br>
+                                            <?php 
+                                            // Ejecutar la consulta
+                                            $query4 = "SELECT idWeb, documentoCliente FROM cliente WHERE idWeb = $idUrl";
+                                            $result4 = mysqli_query($con, $query4);
+
+                                            // Verificar si se obtuvieron resultados
+                                            if ($result4) {
+                                                // Obtener el primer resultado de la consulta
+                                                $row4 = mysqli_fetch_assoc($result4);
+
+                                                // Almacenar los valores en variables
+                                                $idWeb = $row4['idWeb'];
+                                                $documentoCliente = $row4['documentoCliente'];
+
+                                                // Mostrar el valor del documentoCliente si existe
+                                                if ($documentoCliente !== null) {
+                                                    echo $documentoCliente;
+                                                } else {
+                                                    // Si no existe, mostrar el formulario para ingresar el documento
+                                                    echo '
+                                                    <div class="row mb-6">
+                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9"';
+                                                    if ($documentoCliente !== null) {
+                                                        echo "readonly";
+                                                    }
+                                                    echo '>
+                                                        </div>
+                                                    </div>';
+                                                }
+                                            } else {
+                                                // Manejar el caso de que no se obtuvieron resultados
+                                                echo "No se encontraron resultados.";
+                                            }
+
+                                            // Liberar los recursos del resultado
+                                            mysqli_free_result($result4);
+                                        ?>
+
                                             <div class="row mb-6">
                                                 <label for="example-number-input" class="col-sm-2 col-form-label">Documento..</label>
                                                 <div class="col-sm-10">
@@ -575,6 +615,7 @@ mysqli_close($con);
 
                                                 </div>
                                             </div>
+
                                             <script>
                                                 document.getElementById("example-number-input").addEventListener("input", function() {
                                                     if (this.value.length > 9) {
