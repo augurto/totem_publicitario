@@ -634,6 +634,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
 
                                                         /* condicional para mostrar si es de facebook, google, organico o presencial */
+                                                        $prospecto=$row["prospecto"];
                                                         if ($row["id_user"] == 0) {
                                                             if ($a == "Google ADS") {
                                                               echo '<td><span class="badge rounded-pill bg-danger">Google</span></td>';
@@ -646,7 +647,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             }
                                                           } else {
                                                             if (empty($a)) {
-                                                              echo '<td><span class="badge rounded-pill bg-dark">Transito</span></td>';
+                                                                echo '<td><span class="badge rounded-pill bg-dark">' . $prospecto . '</span></td>';
+
                                                             } else {
                                                               echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
                                                             }
@@ -672,7 +674,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                             echo "<td><span class=\"badge rounded-pill\" style=\"background-color: $colorTipoCliente;\">$descripcionTipoCliente</span></td>";
                                                         } else {
-                                                            echo "<td><span class=\"badge rounded-pill\">Error al obtener la descripción del tipo de cliente</span></td>";
+                                                            echo "<td><span class=\"badge rounded-pill\">Sin estado</span></td>";
                                                         }
 
 
