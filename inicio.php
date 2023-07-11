@@ -627,9 +627,7 @@ if (!isset($_SESSION['usuario'])) {
                                                                     echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . '; color: black;">' . $descripcionFuente . '</span></td>';
                                                                 }
 
-                                                            } else {
-                                                              echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
-                                                            }
+                                                            } 
                                                           }
 
                                                         echo "<td>" . $row["email"] . "</td>";
