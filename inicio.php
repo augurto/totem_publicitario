@@ -624,8 +624,9 @@ if (!isset($_SESSION['usuario'])) {
 
                                                                 $rowFuente = mysqli_fetch_assoc($resultFuente);
                                                                 $descripcionFuente = $rowFuente['descripcionFuente'];
+                                                                $colorFuente = $rowFuente['colorFuente'];
 
-                                                                echo '<td><span class="badge rounded-pill bg-dark">' . $descripcionFuente . '</span></td>';
+                                                                echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';">' . $descripcionFuente . '</span></td>';
 
 
 
