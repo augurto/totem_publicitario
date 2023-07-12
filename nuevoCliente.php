@@ -505,7 +505,7 @@ if (!isset($_SESSION['usuario'])) {
 
 
                 <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                         
 
                         <div class="card">
@@ -656,7 +656,7 @@ if (!isset($_SESSION['usuario'])) {
                     </div>
                     <!-- end col -->
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" style="display: none;">
                     <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Seguimiento de Lead</h4>
