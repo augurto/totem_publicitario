@@ -29,7 +29,24 @@ if (mysqli_num_rows($selectResult) > 0) {
     $fecha = $selectRow['fecha'];
     $id_user = $selectRow['id_user'];
     $documento = $selectRow['documentoCliente'];
-    
+
+    $url= $selectRow['URL'];
+    $nombreFormulario= $selectRow['nombre_formulario'];
+    $ipFormulario= $selectRow['ip_formulario'];
+   
+    $aterrizajeURL = '';
+
+    $parts = parse_url($url);
+    if (isset($parts['query'])) {
+        parse_str($parts['query'], $query);
+        if (isset($query['utm_campaign'])) {
+            $aterrizajeURL = $query['utm_campaign'];
+        }
+    }
+
+ 
+
+        
 } else {
     // Si no se encontraron resultados, asignar valores predeterminados a las variables
     $datosForm = "";
@@ -841,6 +858,11 @@ mysqli_close($con);
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
                                             <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+                                            <input type="text"  name="URL" class="form-control" value="<?php echo $url; ?>" readonly>
+                                            <input type="text"  name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
+                                            <input type="text"  name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
+                                            <input type="text" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
+                                            
 
 
                                             <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
