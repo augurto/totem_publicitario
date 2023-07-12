@@ -641,6 +641,7 @@ mysqli_close($con);
                                             </div>
                                             <br>
                                             <?php 
+                                            $prospectoExistente = $_GET['pr'];
                                             
                                             // Restar 5 horas a la fecha
                                             $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
@@ -663,21 +664,27 @@ mysqli_close($con);
                                             <input type="text"  name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
                                             <input type="text"  name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
                                             <input type="text" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
-                                            <input type="text" name="formActualizado" class="form-control" value="<?php echo $formActualizado; ?>" readonly>
                                             
+                                            <?php
+                                            // Verificar si $formActualizado está vacío
+                                            if (empty($formActualizado)) {
+                                                echo '<input type="text" name="formActualizado" class="form-control" value="1" readonly>';
+                                            } else {
+                                                echo '<input type="text" name="formActualizado" class="form-control" value="' . $formActualizado . '" readonly>';
+                                            }
+                                            ?>
+
 
 
                                             <input type="text" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
                                             <input type="text" id="prospectoExistente" name="empresaUser" class="form-control" value="<?php echo $prospectoExistente ; ?>" readonly>
                                             <br>
                                             <br>
-                                            <?php if ($documento === null || empty($documentoCliente)): ?>
+                                            
                                                 <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
                                                 </center>
-                                            <?php elseif ($documentoCliente !== null): ?>
-                                                <p>Documentos Completos</p>
-                                            <?php endif; ?>
+                                            
 
 
 
