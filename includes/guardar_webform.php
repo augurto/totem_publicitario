@@ -46,7 +46,7 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
         // Ocurrió un error durante la inserción, puedes enviar un mensaje de error al cliente si lo deseas
         echo 'Error al guardar los datos: ' . mysqli_error($con);
     }
-}elseif ($idid == 1) {
+}elseif ($documentoCliente == 1) {
     date_default_timezone_set('America/Lima');
     $fechaUpdate = date('Y-m-d H:i:s');
     $query = "UPDATE web_formularios SET estado_web = '$estadoWeb', id_user = '$id_user', prospecto = '$prospecto', idid = '$idid', date_create = '$fechaUpdate' WHERE id_form_web = '$idid'";
