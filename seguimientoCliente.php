@@ -33,6 +33,8 @@ if (mysqli_num_rows($selectResult) > 0) {
     $url= $selectRow['URL'];
     $nombreFormulario= $selectRow['nombre_formulario'];
     $ipFormulario= $selectRow['ip_formulario'];
+    $prospecto= $selectRow['prospecto'];
+    $tipoCliente= $selectRow['tipoCliente'];
 
    
     $aterrizajeURL = '';
@@ -620,6 +622,18 @@ mysqli_close($con);
                                             </div>
                                             <!-- end row -->
                                             <div class="mt-6">
+                                                <label class="mb-1">Fuente</label>
+                                                
+                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos"
+                                                id="example-text-input" name="datos" value="<?php echo $prospecto; ?>" readonly>
+                                            </div>
+                                            <div class="mt-6">
+                                                <label class="mb-1">Estado</label>
+                                                
+                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos"
+                                                id="example-text-input" name="datos" value="<?php echo $tipoCliente; ?>" readonly>
+                                            </div>
+                                            <div class="mt-6">
                                                 <label class="mb-1">Comentario</label>
                                                 
                                                 <textarea  id="textarea" class="form-control" maxlength="225" rows="3" name="comentario" readonly><?php echo $mensaje; ?></textarea>
@@ -644,6 +658,18 @@ mysqli_close($con);
                                             <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
 
                                             <input type="text" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
+                                            <input type="text" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+                                            <input type="text"  name="URL" class="form-control" value="<?php echo $url; ?>" readonly>
+                                            <input type="text"  name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
+                                            <input type="text"  name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
+                                            <input type="text" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
+                                            <input type="text" name="formActualizado" class="form-control" value="<?php echo $formActualizado; ?>" readonly>
+                                            
+
+
+                                            <input type="text" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+                                            <input type="text" id="prospectoExistente" name="empresaUser" class="form-control" value="<?php echo $prospectoExistente ; ?>" readonly>
+                                            <br>
                                             <br>
                                             <?php if ($documento === null || empty($documentoCliente)): ?>
                                                 <center>
