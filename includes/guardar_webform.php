@@ -35,13 +35,23 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
     if (mysqli_query($con, $query)) {
         // La inserción fue exitosa, obtén el id_form_web generado
         $id_web = mysqli_insert_id($con);
-
+    
         // Guardar el valor de id_form_web en la variable $id_web
         $id_web = $id_web;
-
-        // Redirecciona a la página cliente.php con el id_form_web como parámetro en la URL
-        header("Location: ../vendedor.php?id=" . $id_web);
-        exit();
+    
+        // Realizar la operación de actualización
+        $updateQuery = "UPDATE web_formularios SET estado_web = '99' WHERE id_form_web = '$idid'";
+        $updateResult = mysqli_query($con, $updateQuery);
+    
+        if ($updateResult) {
+            // La actualización se realizó correctamente
+            // Redirecciona a la página cliente.php con el id_form_web como parámetro en la URL
+            header("Location: ../vendedor.php?id=" . $id_web);
+            exit();
+        } else {
+            // Error al realizar la actualización
+            echo "Error al actualizar los datos.";
+        }
     } else {
         // Ocurrió un error durante la inserción, puedes enviar un mensaje de error al cliente si lo deseas
         echo 'Error al guardar los datos: ' . mysqli_error($con);
@@ -54,7 +64,7 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
 
     if ($result) {
         // La actualización se realizó correctamente
-        echo "Actualización exitosa.";
+        header("Location: ../vendedor.php?id=" . $id_web);
     } else {
         // Error al realizar la actualización
         echo "Error al actualizar los datos.";
