@@ -627,6 +627,63 @@ mysqli_close($con);
                                                 <input class="form-control" type="text" placeholder="Nombres y Apellidos"
                                                 id="example-text-input" name="datos" value="<?php echo $prospecto; ?>" readonly>
                                             </div>
+                                            <div class="mb-12">
+                                                <label class="form-label">Estado</label>
+                                                <select class="form-control select2" id="tipoCliente" name="tipoCliente">
+                                                    <?php
+                                                    include 'includes/conexion.php';
+                                                    // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                                    $query = "SELECT * FROM tipoCliente";
+                                                    $result = mysqli_query($con, $query);
+
+                                                    // Verificar si se encontraron resultados
+                                                    if (mysqli_num_rows($result) > 0) {
+                                                        // Generar las opciones dentro del select
+                                                        while ($row = mysqli_fetch_assoc($result)) {
+                                                            $value = $row['valorTipoCliente'];
+                                                            $text = $row['descripcionTipoCliente'];
+
+                                                            // Verificar si el valor actual coincide con $tipoCliente
+                                                            if ($value == $tipoCliente) {
+                                                                echo "<option value='" . $value . "' selected>" . $text . "</option>";
+                                                            } else {
+                                                                echo "<option value='" . $value . "'>" . $text . "</option>";
+                                                            }
+                                                        }
+                                                    }
+
+                                                    // Cerrar la conexión a la base de datos
+                                                    mysqli_close($con);
+                                                    ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-12">
+                                                <label class="form-label">Estado</label>
+                                                
+                                                <select class="form-control select2" id="tipoCliente" name="tipoCliente">
+                                                <?php
+                                                 include 'includes/conexion.php'; 
+                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
+                                                $query = "SELECT * FROM tipoCliente";
+                                                $result = mysqli_query($con, $query);
+
+                                                // Verificar si se encontraron resultados
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    // Generar las opciones dentro del select
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                    $value = $row['valorTipoCliente'];
+                                                    $text = $row['descripcionTipoCliente'];
+                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
+                                                    }
+                                                }
+
+                                                // Cerrar la conexión a la base de datos
+                                                mysqli_close($con);
+                                                ?>
+                                                </select>
+
+                                            </div>
                                             <div class="mt-6">
                                                 <label class="mb-1">Estado</label>
                                                 
@@ -636,7 +693,7 @@ mysqli_close($con);
                                             <div class="mt-6">
                                                 <label class="mb-1">Comentario</label>
                                                 
-                                                <textarea  id="textarea" class="form-control" maxlength="225" rows="3" name="comentario" readonly><?php echo $mensaje; ?></textarea>
+                                                <textarea  id="textarea" class="form-control" maxlength="225" rows="3" name="comentario" ></textarea>
 
                                             </div>
                                             <br>
