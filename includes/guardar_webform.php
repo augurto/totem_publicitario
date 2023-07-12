@@ -16,6 +16,8 @@ $nombreFormulario = $_POST['nombreFormulario'];
 $ipFormulario = $_POST['ipFormulario'];
 $URL = $_POST['URL'];
 $aterrizaje = $_POST['aterrizaje'];
+$formActualizado = $_POST['formActualizado'];
+
 
 
 
@@ -62,6 +64,9 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
         // Ocurrió un error durante la inserción, puedes enviar un mensaje de error al cliente si lo deseas
         echo 'Error al guardar los datos: ' . mysqli_error($con);
     }
+}elseif() {
+    // No se encontró el cliente con el documento especificado, puedes enviar un mensaje de error al cliente si lo deseas
+    echo $datosCliente.$telefonoCliente.$emailCliente."Prueba de vacio";
 }elseif ($documentoCliente == 1) {
     date_default_timezone_set('America/Lima');
     $fechaUpdate = date('Y-m-d H:i:s');
@@ -76,11 +81,11 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
         // Error al realizar la actualización
         echo "Error al actualizar los datos.";
     }
-}
-else {
+}else {
     // No se encontró el cliente con el documento especificado, puedes enviar un mensaje de error al cliente si lo deseas
     echo $datosCliente.$telefonoCliente.$emailCliente."Prueba de vacio";
 }
+
 
 // Cerrar la conexión a la base de datos
 mysqli_close($con);

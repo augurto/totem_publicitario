@@ -29,10 +29,11 @@ if (mysqli_num_rows($selectResult) > 0) {
     $fecha = $selectRow['fecha'];
     $id_user = $selectRow['id_user'];
     $documento = $selectRow['documentoCliente'];
-
+    $formActualizado=$selectRow['formActualizado'];
     $url= $selectRow['URL'];
     $nombreFormulario= $selectRow['nombre_formulario'];
     $ipFormulario= $selectRow['ip_formulario'];
+
    
     $aterrizajeURL = '';
 
@@ -862,6 +863,7 @@ mysqli_close($con);
                                             <input type="text"  name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
                                             <input type="text"  name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
                                             <input type="text" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
+                                            <input type="text" name="formActualizado" class="form-control" value="<?php echo $formActualizado; ?>" readonly>
                                             
 
 
