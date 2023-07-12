@@ -730,7 +730,7 @@ mysqli_close($con);
                                                     echo "<option value='" . $valuec . "'>" . $textc."-".$valuec."-".$telefonoc. "</option>";
                                                     }
                                                 }else{
-                                                    $dniVacio=0;
+                                                    $dniVacio=1;
                                                     echo "<option value='" . $dniVacio . "'>" ."DNI no registrado". "</option>";
                                                 }
 
