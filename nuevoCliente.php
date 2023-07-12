@@ -630,7 +630,7 @@ if (!isset($_SESSION['usuario'])) {
                                                 document.getElementById('id-input').value = id;
                                             </script>
                                             <input type="text" id="empresa" name="empresa" class="form-control" value="<?php echo $_SESSION['empresaUser'] ; ?>" readonly>
-                                            <input type="text" id="usuario" name="empresa" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+                                            <input type="text" id="usuario" name="usuario" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
                                            <br>
                                             <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Registrar Usuario</button>
