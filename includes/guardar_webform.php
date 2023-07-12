@@ -64,10 +64,11 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
         // Ocurrió un error durante la inserción, puedes enviar un mensaje de error al cliente si lo deseas
         echo 'Error al guardar los datos: ' . mysqli_error($con);
     }
-}elseif() {
+}elseif($formActualizado==1) {
     // No se encontró el cliente con el documento especificado, puedes enviar un mensaje de error al cliente si lo deseas
-    echo $datosCliente.$telefonoCliente.$emailCliente."Prueba de vacio";
-}elseif ($documentoCliente == 1) {
+    $query = "INSERT INTO web_formularios (documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, idid, id_user, estado_web,mensaje,estadoCliente,idEmpresa,URL,nombre_formulario,ip_formulario,aterrizajeFormulario) VALUES ('$documentoCliente', '$datosCliente', '$telefonoCliente', '$emailCliente', '$estadoCliente', '$prospecto', '$idid', '$id_user', '$estadoWeb','$observacionCliente','$estadoCliente','$empresaUser','$URL','$nombreFormulario ','$ipFormulario ','$aterrizaje ')";
+    header("Location: ../vendedor.php?envio=duplicado");
+}elseif ($documentoCliente == 1 && empty($formActualizado)) {
     date_default_timezone_set('America/Lima');
     $fechaUpdate = date('Y-m-d H:i:s');
     $formActualizado=1;
