@@ -798,9 +798,9 @@ mysqli_close($con);
                                             Meta ADS */
 
                                             if ($prospectoExistente == "Meta ADS") {
-                                                echo '<input type="text" id="prospecto" name="prospecto" class="form-control" value="2" readonly>';
-                                            } elseif ($prospectoExistente == "Google ADS") {
                                                 echo '<input type="text" id="prospecto" name="prospecto" class="form-control" value="3" readonly>';
+                                            } elseif ($prospectoExistente == "Google ADS") {
+                                                echo '<input type="text" id="prospecto" name="prospecto" class="form-control" value="2" readonly>';
                                             }elseif ($prospectoExistente == "Organico") {
                                                 echo '<input type="text" id="prospecto" name="prospecto" class="form-control" value="1" readonly>';
                                             } else {
