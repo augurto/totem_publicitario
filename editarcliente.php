@@ -724,7 +724,18 @@ mysqli_close($con);
                             <div class="card-body">
                                 <h4 class="card-title">Seguimiento de Cliente</h4>
                                 
-                                <form  action="includes/guardar_webform.php" method="post" >
+                                <?php
+                                if ($formActualizado == 1) {
+                                    echo '<form action="includes/guardar_webformActualizado.php" method="post">';
+                                    // Aquí van los campos del formulario
+                                    echo '</form>';
+                                } else {
+                                    echo '<form action="includes/guardar_webform.php" method="post">';
+                                    // Aquí van los campos del formulario
+                                    echo '</form>';
+                                }
+                                ?>
+
                                     <div class="row">
                                         <div class="col-lg-12">
                                         <div class="mb-12">
