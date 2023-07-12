@@ -626,8 +626,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                     </td>";
                                                             } elseif (empty($a) && $estado_web == 0  ) {
                                                                 echo "<td>
-                                                                    <a href='editarcliente.php?id=" . $row['id_form_web'] . "&pr=Organico' target='_blank' class='btn btn-success waves-effect waves-light'>
-                                                                        Observado
+                                                                    <a href='editarcliente.php?id=" . $row['id_form_web'] . "&pr=Organico' target='_blank' class='btn btn-danger waves-effect waves-light'>
+                                                                        Atender
                                                                     </a>
                                                                 </td>";
                                                                 echo "<td>" . $row['datos_form'] . "</td>";
