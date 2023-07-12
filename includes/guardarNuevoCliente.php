@@ -23,7 +23,7 @@ $query = "INSERT INTO web_formularios (documentoCliente, datos_form, telefono, e
 if (mysqli_query($con, $query)) {
     // La inserción fue exitosa, redirecciona a editarcliente.php con el parámetro id
     $id = mysqli_insert_id($con);
-    header("Location: ../editarcliente.php?p=0");
+    header("Location: ../vendedor.php?p=0");
     exit();
 } else {
     // Manejar el caso de error en la inserción
