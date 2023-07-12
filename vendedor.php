@@ -662,6 +662,12 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
 
                                                             } elseif ($row["id_user"]>0){
+                                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$prospecto'";
+                                                                $resultFuente = mysqli_query($conn, $queryFuente);
+
+                                                                $rowFuente = mysqli_fetch_assoc($resultFuente);
+                                                                $descripcionFuente = $rowFuente['descripcionFuente'];
+                                                                $colorFuente = $rowFuente['colorFuente'];
                                                                 echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';color:white;">' . $descripcionFuente . '</span></td>';
                                                             }else {
                                                                 echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
