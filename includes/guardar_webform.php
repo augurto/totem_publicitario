@@ -65,7 +65,8 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
 }elseif ($documentoCliente == 1) {
     date_default_timezone_set('America/Lima');
     $fechaUpdate = date('Y-m-d H:i:s');
-    $query = "UPDATE web_formularios SET estado_web = '$estadoWeb', id_user = '$id_user', prospecto = '$prospecto', idid = '$idid', date_create = '$fechaUpdate' WHERE id_form_web = '$idid'";
+    $formActualizado=1;
+    $query = "UPDATE web_formularios SET estado_web = '$estadoWeb', id_user = '$id_user', prospecto = '$prospecto', idid = '$idid', date_create = '$fechaUpdate',formActualizado='$formActualizado' WHERE id_form_web = '$idid'";
     $result = mysqli_query($con, $query);
 
     if ($result) {
