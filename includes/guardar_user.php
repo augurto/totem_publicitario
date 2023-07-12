@@ -20,7 +20,7 @@ $resultExist = mysqli_query($con, $queryExist);
 
 if (mysqli_num_rows($resultExist) > 0) {
     // El documento ya existe, redireccionar a la misma página con el parámetro "a" en la URL
-    header("Location: ../cliente.php?id=" . $idweb . "&a=0");
+    header("Location: ../editarcliente.php?id=" . $idweb . "&pr=" . $pr. "&dp=0");
     exit();
 } else {
     // Realizar la consulta para insertar los datos en la base de datos
