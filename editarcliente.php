@@ -745,7 +745,7 @@ mysqli_close($con);
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $queryc = "SELECT * FROM cliente WHERE idWeb = $idUrl ORDER BY idCliente DESC LIMIT 1  ";
+                                                $queryc = "SELECT * FROM cliente WHERE documentoCliente = $documento ORDER BY idCliente DESC LIMIT 1  ";
                                                 $resultc = mysqli_query($con, $queryc);
 
                                                 // Verificar si se encontraron resultados
