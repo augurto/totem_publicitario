@@ -661,9 +661,11 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
 
 
-                                                            } else {
-                                                              echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
-                                                            }
+                                                            } elseif ($row["id_user"]>0){
+                                                                echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';color:white;">' . $descripcionFuente . '</span></td>';
+                                                            }else {
+                                                                echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
+                                                              }
                                                           }
                                                           
 
