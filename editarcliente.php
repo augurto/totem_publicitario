@@ -727,12 +727,11 @@ mysqli_close($con);
                                 <?php
                                 if ($formActualizado == 1) {
                                     echo '<form action="includes/guardar_webformActualizado.php" method="post">';
-                                    // Aquí van los campos del formulario
-                                    echo '</form>';
+                                    
+                                    
                                 } else {
                                     echo '<form action="includes/guardar_webform.php" method="post">';
-                                    // Aquí van los campos del formulario
-                                    echo '</form>';
+                                    
                                 }
                                 ?>
 
