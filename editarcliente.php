@@ -13,7 +13,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
 $idUrl = $_GET['id'];
 
 // Realizar la consulta SQL para obtener los valores de email, telefono, mensaje, fecha e id_user
-$selectQuery = "SELECT datos_form, email, telefono,documentoCliente, mensaje, fecha, id_user FROM web_formularios WHERE id_form_web = $idUrl";
+$selectQuery = "SELECT * FROM web_formularios WHERE id_form_web = $idUrl";
 $selectResult = mysqli_query($con, $selectQuery);
 
 // Verificar si se obtuvieron resultados
