@@ -678,7 +678,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         echo "<td>" . $row["email"] . "</td>";
                                                        
                                                         $telefonooo = $row["telefono"];
-                                                        echo "<td><a href='https://wa.me/$telefonooo' target='_blank'>$telefonooo</a></td>";
+                                                        echo "<td><a href='https://wa.me/51$telefonooo' target='_blank'>$telefonooo</a></td>";
                                                      
                                                         
                                                         $estadoCliente = $row["estadoCliente"];
