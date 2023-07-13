@@ -35,6 +35,7 @@ if (mysqli_num_rows($selectResult) > 0) {
     $ipFormulario= $selectRow['ip_formulario'];
     $prospecto= $selectRow['prospecto'];
     $tipoCliente= $selectRow['tipoCliente'];
+    $mensajeOriginal= $selectRow['mensajeOriginal'];
 
    
     $aterrizajeURL = '';
@@ -659,11 +660,12 @@ mysqli_close($con);
                                             </div>
 
                                             
+                                           
                                             <div class="mt-6">
-                                                <label class="mb-1">Estado</label>
+                                                <label class="mb-1">Comentario</label>
                                                 
-                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                id="example-text-input" name="datos" value="<?php echo $tipoCliente; ?>" readonly>
+                                                <textarea  id="textarea" class="form-control" maxlength="225" rows="3"  ><?php echo $Mensaje; ?></textarea>
+
                                             </div>
                                             <div class="mt-6">
                                                 <label class="mb-1">Comentario</label>
@@ -675,6 +677,11 @@ mysqli_close($con);
                                             <?php 
                                             $prospectoExistente = $_GET['pr'];
                                             
+                                            if (empty($mensajeOriginal)) {
+                                                echo $mensaje;
+                                            } else {
+                                                echo $mensajeOriginal;
+                                            }
                                             // Restar 5 horas a la fecha
                                             $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
                                             echo "Atendido por : ".ucwords($nombreUserEdicion)."\nFecha : ".$nuevaFecha ; ?>
