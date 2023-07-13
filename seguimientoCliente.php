@@ -662,13 +662,13 @@ mysqli_close($con);
                                             
                                            
                                             <div class="mt-6">
-                                                <label class="mb-1">Comentario</label>
+                                                <label class="mb-1">Comentario </label>
                                                 
-                                                <textarea  id="textarea" class="form-control" maxlength="225" rows="3"  ><?php echo $mensaje; ?></textarea>
+                                                <textarea  id="textarea" class="form-control" maxlength="225" rows="3"  readonly><?php echo $mensaje; ?></textarea>
 
                                             </div>
                                             <div class="mt-6">
-                                                <label class="mb-1">Comentario</label>
+                                                <label class="mb-1">Nuevo Comentario</label>
                                                 
                                                 <textarea  id="textarea" class="form-control" maxlength="225" rows="3" name="comentario" ></textarea>
 
