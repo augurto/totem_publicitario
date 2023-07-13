@@ -684,7 +684,7 @@ mysqli_close($con);
                                             }
                                             // Restar 5 horas a la fecha
                                             $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
-                                            echo "Atendido por : ".ucwords($nombreUserEdicion)."\nFecha : ".$nuevaFecha ; ?>
+                                            echo "\nAtendido por : ".ucwords($nombreUserEdicion)."\nFecha : ".$nuevaFecha ; ?>
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
                                             <script>
