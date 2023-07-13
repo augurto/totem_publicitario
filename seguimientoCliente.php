@@ -627,6 +627,24 @@ mysqli_close($con);
                                                 
                                                 <input class="form-control" type="text" placeholder="Nombres y Apellidos"
                                                 id="example-text-input" name="datos" value="<?php echo $prospecto; ?>" readonly>
+                                                <?php
+                                                include 'includes/conexion.php';
+                                                $query = "SELECT descripcionFuente, colorFuente FROM fuente WHERE tipoFuente = '$prospecto'";
+                                                $result = mysqli_query($con, $query);
+
+                                                if ($result && mysqli_num_rows($result) > 0) {
+                                                    $row = mysqli_fetch_assoc($result);
+                                                    $descripcionFuente = $row['descripcionFuente'];
+                                                    $colorFuente = $row['colorFuente'];
+
+                                                    echo '<span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';">' . $descripcionFuente . '</span>';
+                                                } else {
+                                                    echo '<span class="badge rounded-pill">SIN FUENTE</span>';
+                                                }
+
+                                                mysqli_close($con);
+                                                ?>
+
                                             </div>
                                             <div class="mb-12">
                                                 <label class="form-label">Estado</label>
