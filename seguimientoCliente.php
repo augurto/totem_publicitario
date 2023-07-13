@@ -588,13 +588,23 @@ mysqli_close($con);
                                                 </div>
                                             </div>
                                             <br>
-                                            <div class="row mb-6">
-                                                            <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                            <div class="col-sm-10">
-                                                                <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento?>" readonly>
-                                                            </div>
-                                            </div>
                                             
+                                            <?php if (empty($documento)) : ?>
+                                                <div class="row mb-6">
+                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
+                                                    </div>
+                                                </div>
+                                            <?php else : ?>
+                                                <div class="row mb-6">
+                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
+
 
                                             <script>
                                                 document.getElementById("example-number-input").addEventListener("input", function() {
@@ -646,6 +656,7 @@ mysqli_close($con);
                                                 ?>
 
                                             </div>
+                                            <br>
                                             <div class="mb-12">
                                                 <label class="form-label">Estado</label>
                                                 <select class="form-control select2" id="tipoCliente" name="tipoCliente">
@@ -702,7 +713,7 @@ mysqli_close($con);
                                             }
                                             // Restar 5 horas a la fecha
                                             $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
-                                            echo "\nAtendido por : ".ucwords($nombreUserEdicion)."\nFecha : ".$nuevaFecha ; ?>
+                                            echo "Atendido por : ".ucwords($nombreUserEdicion)."\nFecha : ".$nuevaFecha ; ?>
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
                                             <script>
