@@ -8,7 +8,13 @@ $telefono = $_POST['telefono'];
 $email = $_POST['email'];
 $fuente = $_POST['fuente'];
 /* estado es igual a tipo cliente */
-$tipoCliente = $_POST['tipoCliente'];
+// Asignar el valor a $tipoCliente según el valor de $documento
+if (empty($documento)) {
+    $tipoCliente = 4;
+} else {
+    $tipoCliente = $_POST['tipoCliente'];
+}
+
 $comentario = $_POST['comentario'];
 /* FIN datos obtenidos de los inputs */
 $idweb = $_POST['idweb'];
@@ -28,7 +34,7 @@ $prospecto = $_POST['prospecto'];
 
 
 $estadoWeb = 0;
-$estadoCliente = ($documento == '') ? 4 : $tipoCliente;
+
 
 $query = "INSERT INTO web_formularios 
 (documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, id_user, estado_web, mensaje, estadoCliente, idEmpresa) 
