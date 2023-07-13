@@ -635,12 +635,12 @@ mysqli_close($con);
                                             <!-- end row -->
                                             <div class="mb-12">
                                                 <label class="form-label">Tipo de Cliente</label>
-                                                
-                                                <select class="form-control select2" id="tipoCliente" name="tipoCliente">
+                                                                                                
+                                                <select class="form-control select2" id="fuenteDato" name="fuenteDato">
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query = "SELECT * FROM tipoCliente";
+                                                $query = "SELECT * FROM tipoClienteCliente";
                                                 $result = mysqli_query($con, $query);
 
                                                 // Verificar si se encontraron resultados
