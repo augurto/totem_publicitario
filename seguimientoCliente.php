@@ -576,7 +576,8 @@ mysqli_close($con);
                                 <h4 class="card-title">Datos del  Cliente</h4>
                                 <br>
 
-                                <form id="myForm" action="includes/guardar_user.php" method="post">
+                              <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
+                                <form id="myForm" action="includes/guardar_webformActualizado.php" method="post">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             
@@ -619,7 +620,7 @@ mysqli_close($con);
                                                 <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
                                                 <div class="col-sm-10">
                                                 <a href="https://api.whatsapp.com/send?phone=<?php echo $telefono; ?>" target="_blank"><?php echo $telefono; ?></a>
-
+                                                <input type="text" class="form-control" name="telefono" value="<?php echo $telefono ?>" readonly>
                                                 </div>
                                             </div>
                                             <!-- end row -->
@@ -635,8 +636,8 @@ mysqli_close($con);
                                             <div class="mt-6">
                                                 <label class="mb-1">Fuente</label>
                                                 
-                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                id="example-text-input" name="datos" value="<?php echo $prospecto; ?>" readonly>
+                                                <input class="form-control" type="text" 
+                                                id="example-text-input" name="fuente" value="<?php echo $prospecto; ?>" readonly>
                                                 <?php
                                                 include 'includes/conexion.php';
                                                 $query = "SELECT descripcionFuente, colorFuente FROM fuente WHERE tipoFuente = '$prospecto'";
@@ -691,13 +692,13 @@ mysqli_close($con);
                                             
                                            
                                             <div class="mt-6">
-                                                <label class="mb-1">Comentario </label>
+                                                <label class="mb-1">Mensaje </label>
                                                 
                                                 <textarea  id="textarea" class="form-control" maxlength="225" rows="3"  readonly><?php echo $mensaje; ?></textarea>
 
                                             </div>
                                             <div class="mt-6">
-                                                <label class="mb-1">Nuevo Comentario</label>
+                                                <label class="mb-1">Comentario</label>
                                                 
                                                 <textarea  id="textarea" class="form-control" maxlength="225" rows="3" name="comentario" ></textarea>
 
@@ -724,7 +725,7 @@ mysqli_close($con);
                                                 // Establecer el valor en el input
                                                 document.getElementById('id-input').value = id;
                                             </script>
-                                            <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+                                            <input type="text" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
 
                                             <input type="text" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
                                             <input type="text" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
@@ -744,8 +745,14 @@ mysqli_close($con);
 
 
 
-                                            <input type="text" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
-                                            <input type="text" id="prospectoExistente" name="empresaUser" class="form-control" value="<?php echo $prospectoExistente ; ?>" readonly>
+                                            <input type="text" id="iduser" name="empresaUser" class="form-control" value="<?php echo $_SESSION['empresaUser'] ; ?>" readonly>
+                                            <?php if (empty($mensajeOriginal)) : ?>
+                                                <input type="text" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensaje; ?>" readonly>
+                                                
+                                            <?php else : ?>
+                                                <input type="text" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensajeOriginal; ?>" readonly>
+                                            <?php endif; ?>
+
                                             <br>
                                             <br>
                                             
