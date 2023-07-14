@@ -668,9 +668,9 @@ mysqli_close($con);
                                                 <?php
                                                 include 'includes/conexion.php';
                                                 if (empty($id_user)) {
-                                                    if ($a == "Google ADS") {
+                                                    if ($_GET['pr'] == "Google ADS") {
                                                         $fuenteOriginal = 2;
-                                                    } elseif ($a == "Meta ADS") {
+                                                    } elseif ($_GET['pr'] == "Meta ADS") {
                                                         $fuenteOriginal = 3;
                                                     } else {
                                                         $fuenteOriginal = 1;
