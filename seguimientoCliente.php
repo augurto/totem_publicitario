@@ -664,7 +664,7 @@ mysqli_close($con);
                                                 <label class="mb-1">Fuente</label>
                                                 
                                                 <input class="form-control" type="text" 
-                                                id="example-text-input" name="fuente" value="<?php echo $fuenteOriginal; ?>" readonly>
+                                               
                                                 <?php
                                                 include 'includes/conexion.php';
                                                 if (empty($id_user)) {
@@ -678,7 +678,7 @@ mysqli_close($con);
                                                 } else {
                                                     $fuenteOriginal = $prospecto;
                                                 }
-                                                $query = "SELECT descripcionFuente, colorFuente FROM fuente WHERE tipoFuente = '$prospecto'";
+                                                $query = "SELECT descripcionFuente, colorFuente FROM fuente WHERE tipoFuente = '$fuenteOriginal'";
                                                 $result = mysqli_query($con, $query);
 
                                                 if ($result && mysqli_num_rows($result) > 0) {
