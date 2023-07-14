@@ -633,24 +633,24 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                 echo "<td>" . $row['datos_form'] . "</td>";
                                                             }
                                                             
-
-                                                        /* condicional para mostrar si es de facebook, google, organico o presencial */
-                                                        if ($row["id_user"] == 0) {
-                                                            if ($a == "Google ADS") {
-                                                              echo '<td><span class="badge rounded-pill bg-danger">Google ADS</span></td>';
-                                                            } elseif ($a == "Meta ADS") {
-                                                              echo '<td><span class="badge rounded-pill bg-primary">Facebook ADS</span></td>';
-                                                            } elseif (empty($a)) {
-                                                              echo '<td><span class="badge rounded-pill bg-success">Organico</span></td>';
-                                                            } else {
-                                                              echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
-                                                            }
-                                                          } else {
-                                                            if (empty($a)) {
-
-                                                               
                                                         
-                                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$prospecto'";
+                                                            if (empty($row["id_user"])) {
+                                                                if ($a == "Google ADS") {
+                                                                    $fuenteOriginal = 2;
+                                                                } elseif ($a == "Meta ADS") {
+                                                                    $fuenteOriginal = 3;
+                                                                } else {
+                                                                    $fuenteOriginal = 1;
+                                                                }
+                                                            } else {
+                                                                $fuenteOriginal = $row["prospecto"];
+                                                            }
+                                                            
+                                                        /* condicional para mostrar si es de facebook, google, organico o presencial */
+                                                      
+
+                                                                                                                     
+                                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$fuenteOriginal'";
                                                                 $resultFuente = mysqli_query($conn, $queryFuente);
 
                                                                 $rowFuente = mysqli_fetch_assoc($resultFuente);
@@ -661,18 +661,6 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
 
 
-                                                            } elseif ($row["id_user"]>0){
-                                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$prospecto'";
-                                                                $resultFuente = mysqli_query($conn, $queryFuente);
-
-                                                                $rowFuente = mysqli_fetch_assoc($resultFuente);
-                                                                $descripcionFuente = $rowFuente['descripcionFuente'];
-                                                                $colorFuente = $rowFuente['colorFuente'];
-                                                                echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';color:white;">' . $descripcionFuente . '</span></td>';
-                                                            }else {
-                                                                echo '<td><span class="badge rounded-pill bg-info">Otro</span></td>';
-                                                              }
-                                                          }
                                                           
 
                                                         echo "<td>" . $row["email"] . "</td>";
