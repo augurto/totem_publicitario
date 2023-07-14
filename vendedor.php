@@ -573,6 +573,13 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                  FROM web_formularios where estado_web != 99 ORDER BY fecha DESC";
                                                 
                                                 $result = $conn->query($sql);
+                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$fuenteOriginal'";
+                                                                $resultFuente = mysqli_query($conn, $queryFuente);
+
+                                                                $rowFuente = mysqli_fetch_assoc($resultFuente);
+                                                                $descripcionFuente = $rowFuente['descripcionFuente'];
+                                                                $colorFuente = $rowFuente['colorFuente'];
+                                                                $tipoFuente = $rowFuente['tipoFuente'];
 
                                                 // Verificar si se obtuvieron resultados
                                                 if ($result->num_rows > 0) {
@@ -607,9 +614,11 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                             if ($estado_web == 0 && !empty($a)) {
                                                                 echo "<td>
-                                                                <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
+                                                                
+                                                                <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "&f=" . $tipoFuente . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
                                                                     Atender
                                                                 </a>
+
                                                             
                                                                         " . "
                                                                     </td>";
@@ -617,16 +626,18 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                 </td>";
                                                             } elseif ($estado_web == 1) {
                                                                 echo "<td>
-                                                                        <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a. "' target='_blank' class='btn btn-primary waves-effect waves-light'>
+                                                                        
+                                                                            <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "&f=" . $tipoFuente . "' target='_blank' class='btn btn-primary waves-effect waves-light'>
                                                                             Atendido
                                                                             </a>
+
                                                                             " . "
                                                                         </td>";
                                                                     echo "<td>" . $row['datos_form'] . "
                                                                     </td>";
                                                             } elseif (empty($a) && $estado_web == 0  ) {
                                                                 echo "<td>
-                                                                    <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=Organico' target='_blank' class='btn btn-danger waves-effect waves-light'>
+                                                                    <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "&f=" . $tipoFuente . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
                                                                         Atender
                                                                     </a>
                                                                 </td>";
@@ -650,12 +661,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                       
 
                                                                                                                      
-                                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$fuenteOriginal'";
-                                                                $resultFuente = mysqli_query($conn, $queryFuente);
-
-                                                                $rowFuente = mysqli_fetch_assoc($resultFuente);
-                                                                $descripcionFuente = $rowFuente['descripcionFuente'];
-                                                                $colorFuente = $rowFuente['colorFuente'];
+                                                                
 
                                                                 echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';color:white;">' . $descripcionFuente . '</span></td>';
 
