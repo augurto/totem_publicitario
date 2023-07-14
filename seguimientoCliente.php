@@ -748,9 +748,9 @@ mysqli_close($con);
                                                 $prospectoExistente = $_GET['pr'];
                                                 
                                                 if (empty($mensajeOriginal)) {
-                                                    echo $mensaje . "<br>";
+                                                    echo "Mensaje Original :".$mensaje . "<br>";
                                                 } else {
-                                                    echo $mensajeOriginal . "<br>";
+                                                    echo "Mensaje Original :".$mensajeOriginal . "<br>";
                                                 }
                                                 
                                                 // Restar 5 horas a la fecha
