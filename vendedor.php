@@ -607,7 +607,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                             if ($estado_web == 0 && !empty($a)) {
                                                                 echo "<td>
-                                                                <a href='editarcliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
+                                                                <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "' target='_blank' class='btn btn-danger waves-effect waves-light'>
                                                                     Atender
                                                                 </a>
                                                             
@@ -617,7 +617,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                 </td>";
                                                             } elseif ($estado_web == 1) {
                                                                 echo "<td>
-                                                                        <a href='editarcliente.php?id=" . $row['id_form_web'] . "&pr=" . $a. "' target='_blank' class='btn btn-primary waves-effect waves-light'>
+                                                                        <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a. "' target='_blank' class='btn btn-primary waves-effect waves-light'>
                                                                             Atendido
                                                                             </a>
                                                                             " . "
@@ -626,7 +626,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                                     </td>";
                                                             } elseif (empty($a) && $estado_web == 0  ) {
                                                                 echo "<td>
-                                                                    <a href='editarcliente.php?id=" . $row['id_form_web'] . "&pr=Organico' target='_blank' class='btn btn-danger waves-effect waves-light'>
+                                                                    <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=Organico' target='_blank' class='btn btn-danger waves-effect waves-light'>
                                                                         Atender
                                                                     </a>
                                                                 </td>";
