@@ -663,8 +663,7 @@ mysqli_close($con);
                                             <div class="mt-6">
                                                 <label class="mb-1">Fuente</label>
                                                 
-                                                <input class="form-control" type="text" 
-                                               
+                                                                                               
                                                 <?php
                                                 include 'includes/conexion.php';
                                                 if (empty($id_user)) {
