@@ -30,6 +30,7 @@ $aterrizaje = $_POST['aterrizaje'];
 $formActualizado = $_POST['formActualizado'];
 $empresa = $_POST['empresaUser'];
 $mensajeOriginal = $_POST['mensajeOriginal'];
+$idOriginal = $_POST['idOriginal'];
 
 $estadoWeb = 1;
 
