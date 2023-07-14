@@ -675,8 +675,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         echo "<td><a href='https://wa.me/51$telefonooo' target='_blank'>$telefonooo</a></td>";
                                                      
                                                         
-                                                        $estadoCliente = $row["estadoCliente"];
-
+                                                        $estadoCliente = $row["tipoCliente"];
+                                                        
                                                         // Realizar la consulta a la base de datos para obtener la descripción del tipo de cliente
                                                         $queryTipoCliente = "SELECT * FROM tipoCliente WHERE valorTipoCliente = $estadoCliente";
                                                         $resultTipoCliente = mysqli_query($conn, $queryTipoCliente);
