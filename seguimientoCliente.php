@@ -748,15 +748,16 @@ mysqli_close($con);
                                                 $prospectoExistente = $_GET['pr'];
                                                 
                                                 if (empty($mensajeOriginal)) {
-                                                    echo $mensaje . "\n";
+                                                    echo $mensaje . "<br>";
                                                 } else {
-                                                    echo $mensajeOriginal . "\n";
+                                                    echo $mensajeOriginal . "<br>";
                                                 }
                                                 
                                                 // Restar 5 horas a la fecha
                                                 $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
-                                                echo "Atendido por: " . ucwords($nombreUserEdicion) . "\nFecha: " . $nuevaFecha;
+                                                echo "Atendido por: " . ucwords($nombreUserEdicion) . "<br>Fecha: " . $nuevaFecha;
                                             ?>
+
 
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
