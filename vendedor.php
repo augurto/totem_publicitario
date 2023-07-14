@@ -573,13 +573,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                  FROM web_formularios where estado_web != 99 ORDER BY fecha DESC";
                                                 
                                                 $result = $conn->query($sql);
-                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$fuenteOriginal'";
-                                                                $resultFuente = mysqli_query($conn, $queryFuente);
-
-                                                                $rowFuente = mysqli_fetch_assoc($resultFuente);
-                                                                $descripcionFuente = $rowFuente['descripcionFuente'];
-                                                                $colorFuente = $rowFuente['colorFuente'];
-                                                                $tipoFuente = $rowFuente['tipoFuente'];
+                                                
 
                                                 // Verificar si se obtuvieron resultados
                                                 if ($result->num_rows > 0) {
@@ -660,8 +654,14 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         /* condicional para mostrar si es de facebook, google, organico o presencial */
                                                       
 
-                                                                                                                     
-                                                                
+                                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$fuenteOriginal'";
+                                                                $resultFuente = mysqli_query($conn, $queryFuente);
+
+                                                                $rowFuente = mysqli_fetch_assoc($resultFuente);
+                                                                $descripcionFuente = $rowFuente['descripcionFuente'];
+                                                                $colorFuente = $rowFuente['colorFuente'];
+                                                                $tipoFuente = $rowFuente['tipoFuente'];                                            
+                                                                        
 
                                                                 echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';color:white;">' . $descripcionFuente . '</span></td>';
 
