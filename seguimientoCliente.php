@@ -664,9 +664,20 @@ mysqli_close($con);
                                                 <label class="mb-1">Fuente</label>
                                                 
                                                 <input class="form-control" type="text" 
-                                                id="example-text-input" name="fuente" value="<?php echo $prospecto; ?>" readonly>
+                                                id="example-text-input" name="fuente" value="<?php echo $fuenteOriginal; ?>" readonly>
                                                 <?php
                                                 include 'includes/conexion.php';
+                                                if (empty($id_user)) {
+                                                    if ($a == "Google ADS") {
+                                                        $fuenteOriginal = 2;
+                                                    } elseif ($a == "Meta ADS") {
+                                                        $fuenteOriginal = 3;
+                                                    } else {
+                                                        $fuenteOriginal = 1;
+                                                    }
+                                                } else {
+                                                    $fuenteOriginal = $prospecto;
+                                                }
                                                 $query = "SELECT descripcionFuente, colorFuente FROM fuente WHERE tipoFuente = '$prospecto'";
                                                 $result = mysqli_query($con, $query);
 
@@ -674,9 +685,11 @@ mysqli_close($con);
                                                     $row = mysqli_fetch_assoc($result);
                                                     $descripcionFuente = $row['descripcionFuente'];
                                                     $colorFuente = $row['colorFuente'];
-
+                                                
                                                     echo '<span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';">' . $descripcionFuente . '</span>';
-                                                } else {
+                                                    echo '<input class="form-control" type="text" id="example-text-input" name="fuente" value="' . $fuenteOriginal . '" readonly>';
+                                                }
+                                                 else {
                                                     echo '<span class="badge rounded-pill">SIN FUENTE</span>';
                                                 }
 
