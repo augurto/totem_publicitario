@@ -661,7 +661,7 @@ mysqli_close($con);
 
                                             </div>
                                             <div class="mt-6">
-                                                <label class="mb-1">Fuente</label>
+                                                <label class="mb-1">Fuente : </label>
                                                 
                                                                                                
                                                 <?php
@@ -686,7 +686,7 @@ mysqli_close($con);
                                                     $colorFuente = $row['colorFuente'];
                                                 
                                                     echo '<span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';">' . $descripcionFuente . '</span>';
-                                                    echo '<input class="form-control" type="text" id="example-text-input" name="fuente" value="' . $fuenteOriginal . '" readonly>';
+                                                    echo '<input class="form-control" type="hidden" id="example-text-input" name="fuente" value="' . $fuenteOriginal . '" readonly>';
                                                 }
                                                  else {
                                                     echo '<span class="badge rounded-pill">SIN FUENTE</span>';
@@ -764,40 +764,40 @@ mysqli_close($con);
                                                 // Establecer el valor en el input
                                                 document.getElementById('id-input').value = id;
                                             </script>
-                                            <input type="text" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+                                            <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
 
-                                            <input type="text" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
-                                            <input type="text" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
-                                            <input type="text"  name="URL" class="form-control" value="<?php echo $url; ?>" readonly>
-                                            <input type="text"  name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
-                                            <input type="text"  name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
-                                            <input type="text" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
+                                            <input type="hidden" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
+                                            <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+                                            <input type="hidden"  name="URL" class="form-control" value="<?php echo $url; ?>" readonly>
+                                            <input type="hidden"  name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
+                                            <input type="hidden"  name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
+                                            <input type="hidden" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
                                             
                                             <?php
                                             // Verificar si $formActualizado está vacío
                                             if (empty($formActualizado)) {
-                                                echo '<input type="text" name="formActualizado" class="form-control" value="1" readonly>';
+                                                echo '<input type="hidden" name="formActualizado" class="form-control" value="1" readonly>';
                                             } else {
-                                                echo '<input type="text" name="formActualizado" class="form-control" value="' . $formActualizado . '" readonly>';
+                                                echo '<input type="hidden" name="formActualizado" class="form-control" value="' . $formActualizado . '" readonly>';
                                             }
                                             ?>
 
 
 
-                                            <input type="text" id="iduser" name="empresaUser" class="form-control" value="<?php echo $_SESSION['empresaUser'] ; ?>" readonly>
+                                            <input type="hidden" id="iduser" name="empresaUser" class="form-control" value="<?php echo $_SESSION['empresaUser'] ; ?>" readonly>
                                             <?php if (empty($mensajeOriginal)) : ?>
-                                                <input type="text" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensaje; ?>" readonly>
+                                                <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensaje; ?>" readonly>
                                                 
                                             <?php else : ?>
-                                                <input type="text" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensajeOriginal; ?>" readonly>
+                                                <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensajeOriginal; ?>" readonly>
                                             <?php endif; ?>
 
                                             <br>
                                             <?php if (empty($idOriginal)) : ?>
-                                                <input type="text" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+                                                <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
                                                 
                                             <?php else : ?>
-                                                <input type="text" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $idOriginal; ?>" readonly>
+                                                <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $idOriginal; ?>" readonly>
                                             <?php endif; ?>
                                             <br>
                                           
