@@ -46,7 +46,7 @@ if (mysqli_query($con, $query)) {
     $updateQuery = "UPDATE web_formularios SET estado_web = 99 WHERE id_form_web = $idweb";
     mysqli_query($con, $updateQuery);
 
-    if ($tipoCliente == 4) {
+    if ($tipoCliente == 5) {
         // Redireccionar a seguimientoCliente.php con variables en la URL
         header("Location: ../seguimientoCliente.php?id=$id&pr=$pr");
     } else {
