@@ -621,7 +621,7 @@ mysqli_close($con);
                                                 <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
                                                 <div class="col-sm-10">
                                                 <a href="https://api.whatsapp.com/send?phone=<?php echo $telefono; ?>" target="_blank"><?php echo $telefono; ?></a>
-                                                <input type="text" class="form-control" name="telefono" value="<?php echo $telefono ?>" readonly>
+                                                <input type="hidden" class="form-control" name="telefono" value="<?php echo $telefono ?>" readonly>
                                                 </div>
                                             </div>
                                             <!-- end row -->
@@ -745,16 +745,19 @@ mysqli_close($con);
                                             </div>
                                             <br>
                                             <?php 
-                                            $prospectoExistente = $_GET['pr'];
-                                            
-                                            if (empty($mensajeOriginal)) {
-                                                echo $mensaje;
-                                            } else {
-                                                echo $mensajeOriginal;
-                                            }
-                                            // Restar 5 horas a la fecha
-                                            $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
-                                            echo "Atendido por : ".ucwords($nombreUserEdicion)."\nFecha : ".$nuevaFecha ; ?>
+                                                $prospectoExistente = $_GET['pr'];
+                                                
+                                                if (empty($mensajeOriginal)) {
+                                                    echo $mensaje . "\n";
+                                                } else {
+                                                    echo $mensajeOriginal . "\n";
+                                                }
+                                                
+                                                // Restar 5 horas a la fecha
+                                                $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
+                                                echo "Atendido por: " . ucwords($nombreUserEdicion) . "\nFecha: " . $nuevaFecha;
+                                            ?>
+
                                             <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
                                             <script>
