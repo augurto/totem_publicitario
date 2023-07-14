@@ -36,6 +36,7 @@ if (mysqli_num_rows($selectResult) > 0) {
     $prospecto= $selectRow['prospecto'];
     $tipoCliente= $selectRow['tipoCliente'];
     $mensajeOriginal= $selectRow['mensajeOriginal'];
+    $idOriginal= $selectRow['idOriginal'];
 
    
     $aterrizajeURL = '';
@@ -780,7 +781,14 @@ mysqli_close($con);
                                             <?php endif; ?>
 
                                             <br>
+                                            <?php if (empty($idOriginal)) : ?>
+                                                <input type="text" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+                                                
+                                            <?php else : ?>
+                                                <input type="text" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $idOriginal; ?>" readonly>
+                                            <?php endif; ?>
                                             <br>
+                                          
                                             
                                                 <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>

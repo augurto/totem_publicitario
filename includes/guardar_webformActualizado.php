@@ -39,15 +39,23 @@ $query = "INSERT INTO web_formularios
 VALUES ('$documento', '$datos', '$telefono', '$email', '$tipoCliente', '$fuente', '$iduser', '$estadoWeb', '$comentario', '$estadoCliente', '$empresa','$fuenteDato','$idweb','$URL','$nombreFormulario', '$ipFormulario','$formActualizado','$aterrizaje','$mensajeOriginal')";
 
 if (mysqli_query($con, $query)) {
-    // La inserción fue exitosa, redirecciona a editarcliente.php con el parámetro id
+    // La inserción fue exitosa, obtener el ID insertado
     $id = mysqli_insert_id($con);
-    header("Location: ../vendedor.php?p=0");
+
+    // Actualizar el estado_web a 99 en la tabla web_formularios
+    $updateQuery = "UPDATE web_formularios SET estado_web = 99 WHERE id_form_web = $idweb";
+    mysqli_query($con, $updateQuery);
+
+    if ($tipoCliente == 4) {
+        // Redireccionar a seguimientoCliente.php con variables en la URL
+        header("Location: ../seguimientoCliente.php?id=$id&pr=$pr");
+    } else {
+        // Redireccionar a vendedor.php con el parámetro p=0
+        header("Location: ../vendedor.php?p=0");
+    }
+
     exit();
 } else {
     // Manejar el caso de error en la inserción
     echo "Error en la inserción de datos: " . mysqli_error($con);
 }
-
-// Cerrar la conexión a la base de datos
-mysqli_close($con);
-?>
