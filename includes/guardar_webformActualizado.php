@@ -49,7 +49,7 @@ if (mysqli_query($con, $query)) {
 
     if ($tipoCliente == 5) {
         // Redireccionar a seguimientoCliente.php con variables en la URL
-        header("Location: ../seguimientoCliente.php?id=$id&pr=$pr");
+        header("Location: ../seguimientoClienteVendido.php?id=$id&pr=$pr");
     } else {
         // Redireccionar a vendedor.php con el parámetro p=0
         header("Location: ../vendedor.php?p=0");
