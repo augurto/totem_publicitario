@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'includes/conexion.php'; // Incluir el archivo de conexión
 
 if (!isset($_SESSION['usuario'])) {
     // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
