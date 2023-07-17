@@ -551,6 +551,8 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                             <p class="card-text">idUser: <?php echo $idUser; ?></p>
                                             <p class="card-text">nombreArchivo: <?php echo $nombreArchivo; ?></p>
                                             <p class="card-text">observacionVenta: <?php echo $observacionVenta; ?></p>
+                                            <a href="<?php echo $rutaArchivo; ?>" download>Descargar archivo</a>
+        </div>
                                         </div>
                                     </div>
                                 </div>
