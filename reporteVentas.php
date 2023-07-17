@@ -500,14 +500,15 @@ $idSesion=$_SESSION['idUser'];
                                 <ol class="breadcrumb m-0">
                                         <?php
                                         if ($idSesion == 3) {
-                                            echo '<li class="breadcrumb-item"><a href="index.php">Inicio</a></li>';
+                                            
+                                            echo '<li class="breadcrumb-item"><a href="index.php">Inicio1</a></li>';
                                         } elseif ($idSesion == 2) {
-                                            echo '<li class="breadcrumb-item"><a href="administrador.php">Inicio</a></li>';
+                                            echo '<li class="breadcrumb-item"><a href="administrador.php">Inicio2</a></li>';
                                         } elseif ($idSesion == 1) {
-                                            echo '<li class="breadcrumb-item"><a href="vendedor.php">Inicio</a></li>';
+                                            echo '<li class="breadcrumb-item"><a href="vendedor.php">Inicio3</a></li>';
                                         } else {
                                             // Mostrar una opción genérica o un mensaje de error
-                                            echo '<li class="breadcrumb-item"><a href="login.php">Inicio</a></li>';
+                                            echo '<li class="breadcrumb-item"><a href="login.php">Inicio4</a></li>';
                                         }
                                         ?>
 
