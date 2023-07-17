@@ -493,50 +493,23 @@ mysqli_close($con);
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Atencion de Cliente </h4>
+                            <h4 class="mb-sm-0">Reporte de Ventas </h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                    <li class="breadcrumb-item active">Form Advanced</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Inicio</a></li>
+                                    <li class="breadcrumb-item active">Reporte de ventas</li>
                                 </ol>
                             </div>
 
-                        </div>
+                        </div>  
                     </div>
                 </div>
                 <!-- end page title -->
 
 
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card border border-primary">
-                            <div class="card-header bg-transparent border-primary">
-                                <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Primary outline
-                                    Card</h5>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title mt-0">card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-lg-4">
-                        <div class="card border border-danger">
-                            <div class="card-header bg-transparent border-danger">
-                                <h5 class="my-0 text-danger"><i class="mdi mdi-block-helper me-3"></i>Danger outline
-                                    Card</h5>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title mt-0">card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
+                    
                     <div class="col-lg-4">
                         <div class="card border border-success">
                             <div class="card-header bg-transparent border-success">
