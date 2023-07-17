@@ -605,7 +605,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             ?>
                                             </a>
                                                     </h5>
-                                            <p class="text-muted mb-0">
+                                            <p class="text-muted mb-0" style="font-size: 12px;">
                                                 <i class="mdi mdi-account me-1"></i> 
                                                 <?php
                                               
@@ -618,7 +618,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     $customNombreUser = $customRow['nombre_user'];
 
                                                     // Imprimir el nombre del usuario
-                                                    echo $customNombreUser;
+                                                    echo ucwords($customNombreUser);
                                                 } else {
                                                     echo "No se encontró el usuario";
                                                 }
