@@ -552,7 +552,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                         
 
                         // Realizar la consulta para obtener los datos de la tabla "venta"
-                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta, empresaUser FROM ventas";
+                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta, empresaUser,tipoMoneda FROM ventas";
                         $result = mysqli_query($con, $query);
 
                         // Verificar si se obtuvieron resultados
@@ -571,6 +571,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                 $nuevaFecha = date('Y-m-d H:i:s', strtotime($fechaVenta . ' -5 hours'));
                                 $empresaUser = $row['empresaUser'];
                                 $estadoVenta = $row['estadoVenta'];
+                                $tipoMoneda = $row['tipoMoneda'];
                                 $idUser = $row['idUser'];
                                 $nombreArchivo = $row['nombreArchivo'];
                                 $observacionVenta = $row['observacionVenta'];
@@ -655,7 +656,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     }
                                                     ?>
                                                         </p>
-                                                    <h5 class="font-size-16 mb-0"><?php echo $cantidadProducto; ?></h5>
+                                                    <h5 class="font-size-16 mb-0"><?php echo 'Cant: '.$cantidadProducto; ?></h5>
                                                 </div>
                                             </div>
                                             <!-- end col -->
@@ -663,8 +664,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <div class="mt-3">
                                                     <p class="text-muted mb-2">Total</p>
                                                     <h5 class="font-size-16 mb-0"><?php
-                                                     $tipoMoneda = ($empresaUser == 2) ? '$' : 'S/';
-                                                     echo $tipoMoneda . $montoTotal;
+                                                     $tipoMonedaF = ($tipoMoneda == 2) ? '$' : 'S/';
+                                                     echo $tipoMonedaF . $montoTotal;
                                                      ?></h5>
                                                 </div>
                                             </div>
