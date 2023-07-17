@@ -518,8 +518,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title mt-0">card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
+                                <p class="card-text">Cambio de texto</p>
                                     <?php 
                 // Cerrar la conexión a la base de datos
                 // Realizar la consulta para obtener los datos de la tabla "venta"
