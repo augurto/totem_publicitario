@@ -18,7 +18,9 @@ if ($resultNoAtendidos) {
 } else {
     $noAtendidos = 0; // Si hay un error en la consulta, establecemos el valor en 0
 }
-
+$usuario = $_SESSION['usuario'];
+$dni = $_SESSION['dni'];
+$tipoUsuario = $_SESSION['tipoUsuario'];   
 ?>
 
 
