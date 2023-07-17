@@ -499,11 +499,11 @@ $idSesion=$_SESSION['idUser'];
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                         <?php
-                                        if ($_SESSION['idUser'] == 3) {
+                                        if ($idSesion == 3) {
                                             echo '<li class="breadcrumb-item"><a href="index.php">Inicio</a></li>';
-                                        } elseif ($_SESSION['idUser'] == 2) {
+                                        } elseif ($idSesion == 2) {
                                             echo '<li class="breadcrumb-item"><a href="administrador.php">Inicio</a></li>';
-                                        } elseif ($_SESSION['idUser'] == 1) {
+                                        } elseif ($idSesion == 1) {
                                             echo '<li class="breadcrumb-item"><a href="vendedor.php">Inicio</a></li>';
                                         } else {
                                             // Mostrar una opción genérica o un mensaje de error
