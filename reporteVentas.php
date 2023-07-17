@@ -8,65 +8,6 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 include 'includes/conexion.php'; // Incluir el archivo de conexión
-
-// Obtener el valor de $idUrl desde la URL
-$idUrl = $_GET['id'];
-
-// Realizar la consulta SQL para obtener los valores de email, telefono, mensaje, fecha e id_user
-$selectQuery = "SELECT * FROM web_formularios WHERE id_form_web = $idUrl";
-$selectResult = mysqli_query($con, $selectQuery);
-
-// Verificar si se obtuvieron resultados
-if (mysqli_num_rows($selectResult) > 0) {
-    // Obtener el primer resultado de la consulta
-    $selectRow = mysqli_fetch_assoc($selectResult);
-
-    // Obtener los valores y almacenarlos en variables
-    $datosForm = $selectRow['datos_form'];
-    $email = $selectRow['email'];
-    $telefono = $selectRow['telefono'];
-    $mensaje = $selectRow['mensaje'];
-    $fecha = $selectRow['fecha'];
-    $id_user = $selectRow['id_user'];
-    $documento = $selectRow['documentoCliente'];
-    $formActualizado=$selectRow['formActualizado'];
-    $url= $selectRow['URL'];
-    $nombreFormulario= $selectRow['nombre_formulario'];
-    $ipFormulario= $selectRow['ip_formulario'];
-    $prospecto= $selectRow['prospecto'];
-    $tipoCliente= $selectRow['tipoCliente'];
-    $mensajeOriginal= $selectRow['mensajeOriginal'];
-    $idOriginal= $selectRow['idOriginal'];
-
-   
-    $aterrizajeURL = '';
-
-    $parts = parse_url($url);
-    if (isset($parts['query'])) {
-        parse_str($parts['query'], $query);
-        if (isset($query['utm_campaign'])) {
-            $aterrizajeURL = $query['utm_campaign'];
-        }
-    }
-
- 
-
-        
-} else {
-    // Si no se encontraron resultados, asignar valores predeterminados a las variables
-    $datosForm = "";
-    $email = "";
-    $telefono = "";
-    $mensaje = "";
-    $fecha = "";
-    $id_user = "";
-}
-// Realizar la consulta a la base de datos
-$queryUser = "SELECT nombre_user FROM user WHERE id_user = '$id_user'";
-$resultUser = mysqli_query($con, $queryUser);
-$rowUser = mysqli_fetch_assoc($resultUser);
-$nombreUserEdicion = $rowUser['nombre_user'];
-
 // Cerrar la conexión a la base de datos
 mysqli_close($con);                    
 
