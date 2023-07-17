@@ -600,11 +600,12 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <div class="pb-1">
                                         <h5 class="text-truncate font-size-16 mb-1">
                                             <a href="<?php echo $rutaArchivoNuevo; ?>" download class="text-dark"  style="font-size:15px;">
-                                                <i class="ri-download-line"></i> <!-- Icono de descarga -->
+                                               
                                                 <?php
                                                 $nombreCorto = strlen($nombreArchivo) > 25 ? substr($nombreArchivo, 0, 25) . '...' : $nombreArchivo;
                                                 echo $nombreCorto;
                                                 ?>
+                                                 <i class="ri-download-line"></i> <!-- Icono de descarga -->
                                             </a>
                                         </h5>
 
