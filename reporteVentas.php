@@ -11,6 +11,16 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
 $idSesion=$_SESSION['idUser'];
 $tipoUsuario=$_SESSION['tipoUsuario'];
 
+$queryNoAtendidos = "SELECT COUNT(*) AS countNoAtendidos FROM web_formularios WHERE estado_web = 0";
+$resultNoAtendidos = mysqli_query($con, $queryNoAtendidos);
+
+if ($resultNoAtendidos) {
+    $rowNoAtendidos = mysqli_fetch_assoc($resultNoAtendidos);
+    $noAtendidos = $rowNoAtendidos['countNoAtendidos'];
+} else {
+    $noAtendidos = 0; // Si hay un error en la consulta, establecemos el valor en 0
+}
+
 ?>
 
 
@@ -463,28 +473,28 @@ $tipoUsuario=$_SESSION['tipoUsuario'];
 
                             <li>
                             <?php
-                            if ($tipoUsuario == 3) {
-                                echo '<a href="inicio.php" class="waves-effect">
-                                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
-                                        <span>Inicio</span>
-                                    </a>';
-                            } elseif ($tipoUsuario == 2) {
-                                echo '<a href="administrador.php" class="waves-effect">
-                                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
-                                        <span>Inicio</span>
-                                    </a>';
-                            } elseif ($tipoUsuario == 1) {
-                                echo '<a href="vendedor.php" class="waves-effect">
-                                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
-                                        <span>Inicio</span>
-                                    </a>';
-                            } else {
-                                echo '<a href="login.php" class="waves-effect">
-                                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
-                                        <span>Inicio</span>
-                                    </a>';
-                            }
-                            ?>
+                                if ($tipoUsuario == 3) {
+                                    echo '<a href="inicio.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio3</span>
+                                        </a>';
+                                } elseif ($tipoUsuario == 2) {
+                                    echo '<a href="administrador.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio2</span>
+                                        </a>';
+                                } elseif ($tipoUsuario == 1) {
+                                    echo '<a href="vendedor.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio1</span>
+                                        </a>';
+                                } else {
+                                    echo '<a href="login.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio0</span>
+                                        </a>';
+                                }
+                                ?>
 
                             </li>
                             <!-- end li -->
