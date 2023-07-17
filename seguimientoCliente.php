@@ -7,8 +7,9 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-include 'includes/conexion.php'; // Incluir el archivo de conexión
 
+include 'includes/conexion.php'; // Incluir el archivo de conexión
+$empresaUser =$_SESSION['empresaUser'] ;
 // Obtener el valor de $idUrl desde la URL
 $idUrl = $_GET['id'];
 
@@ -676,7 +677,7 @@ mysqli_close($con);
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query = "SELECT * FROM tipoClienteCliente";
+                                                $query = "SELECT * FROM tipoClienteCliente  WHERE   empresaEstado = $empresaUser ";
                                                 $result = mysqli_query($con, $query);
 
                                                 // Verificar si se encontraron resultados
