@@ -512,8 +512,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                         
 
                         // Realizar la consulta para obtener los datos de la tabla "venta"
-                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta 
-                        FROM ventas WHERE idUser ='$idUser' ";
+                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM ventas";
                         $result = mysqli_query($con, $query);
 
                         // Verificar si se obtuvieron resultados
