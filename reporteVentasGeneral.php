@@ -716,7 +716,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 <div class="rightbar-overlay"></div>
 
 <!-- JAVASCRIPT -->
-<script>
+<!-- <script>
     var optionsSpark3 = {
         series: [
             { name: "series1.3", data: [20, 60, 29, 96, 25, 62, 17] },
@@ -903,7 +903,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
         chart.render();
 
 
-</script>
+</script> -->
 <script src="assets/libs/jquery/jquery.min.js"></script>
 <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/libs/metismenu/metisMenu.min.js"></script>
@@ -918,6 +918,24 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 <script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
 <script src="assets/js/pages/form-advanced.init.js"></script>
 <script src="assets/js/app.js"></script>
+
+<!-- apexcharts -->
+<script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+<!-- jquery.vectormap map -->
+<script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
+
+<!-- Required datatable js -->
+<script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Responsive examples -->
+<script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+<script src="assets/js/pages/dashboard.init.js"></script>
+
 
 </body>
 
