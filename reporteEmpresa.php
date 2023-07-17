@@ -599,7 +599,11 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     <div class="flex-1 align-self-center">
                                         <div class="pb-1">
                                             <h5 class="text-truncate font-size-16 mb-1"><a href="<?php echo $rutaArchivoNuevo; ?>" download 
-                                                    class="text-dark"><?php echo $nombreArchivo; ?></a>
+                                                    class="text-dark"><?php
+                                            $nombreCorto = strlen($nombreArchivo) > 30 ? substr($nombreArchivo, 0, 30) . '...' : $nombreArchivo;
+                                            echo $nombreCorto;
+                                            ?>
+                                            </a>
                                                     </h5>
                                             <p class="text-muted mb-0">
                                                 <i class="mdi mdi-account me-1"></i> <?php echo $idUser; ?>
