@@ -988,6 +988,46 @@ mysqli_close($con);
                                                 mysqli_close($con);
                                                 ?>
                                                 </select>
+                                                <select class="form-control select2">
+                                                <option>Select</option>
+
+                                                <?php
+                                                 include 'includes/conexion.php'; 
+                                                // Realizar la consulta a la tabla "tipoServicio" y obtener los resultados
+                                                $queryTipoServicio = "SELECT idTipoClienteCliente, nombreTipoServicio FROM tipoServicio";
+                                                $resultTipoServicio = mysqli_query($conn, $queryTipoServicio);
+
+                                                // Crear un array para almacenar los grupos y las opciones
+                                                $grupos = array();
+
+                                                // Recorrer los resultados de la consulta
+                                                while ($rowTipoServicio = mysqli_fetch_assoc($resultTipoServicio)) {
+                                                    $idTipoClienteCliente = $rowTipoServicio['idTipoClienteCliente'];
+                                                    $nombreTipoServicio = $rowTipoServicio['nombreTipoServicio'];
+
+                                                    // Agregar el idTipoClienteCliente al grupo correspondiente en el array $grupos
+                                                    if (!isset($grupos[$idTipoClienteCliente])) {
+                                                        $grupos[$idTipoClienteCliente] = array();
+                                                    }
+
+                                                    // Agregar el nombreTipoServicio como opción dentro del grupo correspondiente
+                                                    $grupos[$idTipoClienteCliente][] = $nombreTipoServicio;
+                                                }
+
+                                                // Mostrar los grupos y opciones en el select
+                                                foreach ($grupos as $idTipoClienteCliente => $opciones) {
+                                                    echo '<optgroup label="' . $idTipoClienteCliente . '">';
+
+                                                    foreach ($opciones as $opcion) {
+                                                        echo '<option>' . $opcion . '</option>';
+                                                    }
+
+                                                    echo '</optgroup>';
+                                                }
+                                                ?>
+
+                                            </select>
+
                                             </div>
                                         </div>
                                         <!-- end col -->
