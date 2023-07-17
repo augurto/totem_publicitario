@@ -8,34 +8,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 include 'includes/conexion.php'; // Incluir el archivo de conexión
-// Realizar la consulta para obtener los datos de la tabla "venta"
-$query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM ventas";
-$result = mysqli_query($con, $query);
 
-
-
-// Verificar si se obtuvieron resultados
-if (mysqli_num_rows($result) > 0) {
-    // Obtener los datos de cada columna en variables separadas
-    while ($row = mysqli_fetch_assoc($result)) {
-        $idVenta = $row['idVenta'];
-        $idProducto = $row['idProducto'];
-        $nombreProducto = $row['nombreProducto'];
-        $precioProducto = $row['precioProducto'];
-        $cantidadProducto = $row['cantidadProducto'];
-        $montoAdicional = $row['montoAdicional'];
-        $montoTotal = $row['montoTotal'];
-        $id_web_formularios = $row['id_web_formularios'];
-        $rutaArchivo = $row['rutaArchivo'];
-        $fechaVenta = $row['fechaVenta'];
-        $estadoVenta = $row['estadoVenta'];
-        $idUser = $row['idUser'];
-        $nombreArchivo = $row['nombreArchivo'];
-        $observacionVenta = $row['observacionVenta'];
-    }
-    } else {
-        echo "No se encontraron resultados.";
-    }
 
 ?>
 
@@ -534,49 +507,64 @@ if (mysqli_num_rows($result) > 0) {
                     </div>
                 </div>
                 <!-- end page title -->
-
-
-                <div class="row">
-                    
-                    <div class="col-lg-4">
-                        <div class="card border border-success">
-                            <div class="card-header bg-transparent border-success">
-                                <h5 class="my-0 text-success"><i class="mdi mdi-check-all me-3"></i>Success Card</h5>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title mt-0">card title</h5>
-                                <p class="card-text">Cambio de texto</p>
-                                    <?php 
-                // Cerrar la conexión a la base de datos
-                
-                        // Imprimir cada columna en una variable, una debajo de otra
-                        echo "idVenta: " . $idVenta . "<br>";
-                        echo "idProducto: " . $idProducto . "<br>";
-                        echo "nombreProducto: " . $nombreProducto . "<br>";
-                        echo "precioProducto: " . $precioProducto . "<br>";
-                        echo "cantidadProducto: " . $cantidadProducto . "<br>";
-                        echo "montoAdicional: " . $montoAdicional . "<br>";
-                        echo "montoTotal: " . $montoTotal . "<br>";
-                        echo "id_web_formularios: " . $id_web_formularios . "<br>";
-                        echo "rutaArchivo: " . $rutaArchivo . "<br>";
-                        echo "fechaVenta: " . $fechaVenta . "<br>";
-                        echo "estadoVenta: " . $estadoVenta . "<br>";
-                        echo "idUser: " . $idUser . "<br>";
-                        echo "nombreArchivo: " . $nombreArchivo . "<br>";
-                        echo "observacionVenta: " . $observacionVenta . "<br>";
-                        echo "<br>"; // Agregar un salto de línea adicional
-
+             
+                    <?php
                         
-                  
-                // Cerrar la conexión a la base de datos
-                mysqli_close($con);
-                ?>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                </div>
-              
+
+                        // Realizar la consulta para obtener los datos de la tabla "venta"
+                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM venta";
+                        $result = mysqli_query($con, $query);
+
+                        // Verificar si se obtuvieron resultados
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $idVenta = $row['idVenta'];
+                                $idProducto = $row['idProducto'];
+                                $nombreProducto = $row['nombreProducto'];
+                                $precioProducto = $row['precioProducto'];
+                                $cantidadProducto = $row['cantidadProducto'];
+                                $montoAdicional = $row['montoAdicional'];
+                                $montoTotal = $row['montoTotal'];
+                                $id_web_formularios = $row['id_web_formularios'];
+                                $rutaArchivo = $row['rutaArchivo'];
+                                $fechaVenta = $row['fechaVenta'];
+                                $estadoVenta = $row['estadoVenta'];
+                                $idUser = $row['idUser'];
+                                $nombreArchivo = $row['nombreArchivo'];
+                                $observacionVenta = $row['observacionVenta'];
+                    ?>
+                                <div class="col-lg-4">
+                                    <div class="card border border-success">
+                                        <div class="card-header bg-transparent border-success">
+                                            <h5 class="my-0 text-success"><i class="mdi mdi-check-all me-3"></i><?php echo $nombreProducto . " - " . $estadoVenta; ?></h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-0"><?php echo $rutaArchivo; ?></h5>
+                                            <p class="card-text">idVenta: <?php echo $idVenta; ?></p>
+                                            <p class="card-text">idProducto: <?php echo $idProducto; ?></p>
+                                            <p class="card-text">precioProducto: <?php echo $precioProducto; ?></p>
+                                            <p class="card-text">cantidadProducto: <?php echo $cantidadProducto; ?></p>
+                                            <p class="card-text">montoAdicional: <?php echo $montoAdicional; ?></p>
+                                            <p class="card-text">montoTotal: <?php echo $montoTotal; ?></p>
+                                            <p class="card-text">id_web_formularios: <?php echo $id_web_formularios; ?></p>
+                                            <p class="card-text">fechaVenta: <?php echo $fechaVenta; ?></p>
+                                            <p class="card-text">idUser: <?php echo $idUser; ?></p>
+                                            <p class="card-text">nombreArchivo: <?php echo $nombreArchivo; ?></p>
+                                            <p class="card-text">observacionVenta: <?php echo $observacionVenta; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                    <?php
+                            }
+                        } else {
+                            echo "No se encontraron resultados.";
+                        }
+
+                        // Cerrar la conexión a la base de datos
+                        mysqli_close($con);
+                    ?>
+          
+
                 <!-- end row -->
                 
 
