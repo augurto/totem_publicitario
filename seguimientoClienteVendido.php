@@ -972,7 +972,7 @@ mysqli_close($con);
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la tabla "tipoServicio" y obtener los resultados
-                                                $queryTipoServicio = "SELECT tc.idTipoClienteCliente, tc.nombreTipoServicio,cc.descripcionTipoCliente FROM tipoServicio tc INNER JOIN tipoClienteCliente cc ON tc.idTipoClienteCliente=cc.valorTipoCliente ";
+                                                $queryTipoServicio = "SELECT tc.idTipoClienteCliente, tc.nombreTipoServicio as nombreUno ,cc.descripcionTipoCliente as descripcionUno FROM tipoServicio tc INNER JOIN tipoClienteCliente cc ON tc.idTipoClienteCliente=cc.valorTipoCliente ";
                                                 $resultTipoServicio = mysqli_query($con, $queryTipoServicio);
 
                                                 // Crear un array para almacenar los grupos y las opciones
@@ -980,8 +980,8 @@ mysqli_close($con);
 
                                                 // Recorrer los resultados de la consulta
                                                 while ($rowTipoServicio = mysqli_fetch_assoc($resultTipoServicio)) {
-                                                    $idTipoClienteCliente = $rowTipoServicio['cc.descripcionTipoCliente'];
-                                                    $nombreTipoServicio = $rowTipoServicio['tc.nombreTipoServicio'];
+                                                    $idTipoClienteCliente = $rowTipoServicio['descripcionUno'];
+                                                    $nombreTipoServicio = $rowTipoServicio['nombreUno'];
 
                                                     // Agregar el idTipoClienteCliente al grupo correspondiente en el array $grupos
                                                     if (!isset($grupos[$idTipoClienteCliente])) {
