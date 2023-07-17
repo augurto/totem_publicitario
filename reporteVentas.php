@@ -507,7 +507,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                     </div>
                 </div>
                 <!-- end page title -->
-             
+                <div class="row">
                     <?php
                         
 
@@ -564,7 +564,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                         mysqli_close($con);
                     ?>
           
-
+                </div>
                 <!-- end row -->
                 
 
