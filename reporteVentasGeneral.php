@@ -608,7 +608,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                         // Cerrar la conexión a la base de datos
                         mysqli_close($con);
                     ?>
-
+                        <div class="card">
+                            <div class="card-body">
                                 <div>
                                     <h4 class="card-title mb-4">Grafica </h4>
                                 </div>
@@ -628,13 +629,16 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         </div>
                                     </div>
                                     <!-- end tab -->
-                                </div>
+                                    </div>
+                                    </div>
+                                    </div>
                 </div>
                 <!-- end row -->
                 
 
             </div>
             <!-- container-fluid -->
+
         </div>
         <!-- End Page-content -->
 
