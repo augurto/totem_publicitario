@@ -994,7 +994,9 @@ mysqli_close($con);
 
                                                 // Mostrar los grupos y opciones en el select
                                                 foreach ($grupos as $idTipoClienteCliente => $opciones) {
-                                                    echo '<optgroup label="' . $idTipoClienteCliente . '">';
+                                                    
+                                                    echo '<optgroup label="' . '<strong>' . strtoupper($idTipoClienteCliente) . '</strong>' . '">';
+
 
                                                     foreach ($opciones as $opcion) {
                                                         echo '<option>' . $opcion . '</option>';
