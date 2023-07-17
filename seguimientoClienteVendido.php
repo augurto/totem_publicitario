@@ -995,7 +995,7 @@ mysqli_close($con);
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la tabla "tipoServicio" y obtener los resultados
                                                 $queryTipoServicio = "SELECT idTipoClienteCliente, nombreTipoServicio FROM tipoServicio";
-                                                $resultTipoServicio = mysqli_query($conn, $queryTipoServicio);
+                                                $resultTipoServicio = mysqli_query($con, $queryTipoServicio);
 
                                                 // Crear un array para almacenar los grupos y las opciones
                                                 $grupos = array();
