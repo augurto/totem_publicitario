@@ -498,7 +498,19 @@ $idSesion=$_SESSION['idUser'];
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Inicio</a></li>
+                                        <?php
+                                        if ($_SESSION['idUser'] == 3) {
+                                            echo '<li class="breadcrumb-item"><a href="index.php">Inicio</a></li>';
+                                        } elseif ($_SESSION['idUser'] == 2) {
+                                            echo '<li class="breadcrumb-item"><a href="administrador.php">Inicio</a></li>';
+                                        } elseif ($_SESSION['idUser'] == 1) {
+                                            echo '<li class="breadcrumb-item"><a href="vendedor.php">Inicio</a></li>';
+                                        } else {
+                                            // Mostrar una opción genérica o un mensaje de error
+                                            echo '<li class="breadcrumb-item"><a href="login.php">Inicio</a></li>';
+                                        }
+                                        ?>
+
                                     <li class="breadcrumb-item active">Reporte de ventas</li>
                                 </ol>
                             </div>
