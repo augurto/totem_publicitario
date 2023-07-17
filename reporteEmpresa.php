@@ -617,8 +617,14 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     $customRow = mysqli_fetch_assoc($customResult);
                                                     $customNombreUser = $customRow['nombre_user'];
 
-                                                    // Imprimir el nombre del usuario
-                                                    echo ucwords($customNombreUser);
+                                                     // Convertir el nombre del usuario a minúsculas
+                                                    $customNombreUser = strtolower($customNombreUser);
+
+                                                    // Convertir solo las iniciales a mayúsculas
+                                                    $customNombreUser = ucwords($customNombreUser);
+
+                                                    // Imprimir el nombre del usuario con las iniciales en mayúsculas
+                                                    echo $customNombreUser;
                                                 } else {
                                                     echo "No se encontró el usuario";
                                                 }
