@@ -631,24 +631,46 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     <!-- end tab -->
                                     </div>
                                     <script>
-                                        var options = {
+                                        var optionsSpark3 = {
                                             series: [
-                                                { name: "series1", data: [28, 65, 32, 86, 38, 71, 40, 60, 20] },
-                                                { name: "series22", data: [52, 60, 35, 56, 34, 52, 41] }
+                                                { name: "series1.3", data: [20, 60, 29, 96, 25, 62, 17] },
+                                                { name: "series20", data: [50, 22, 82, 20, 86, 36, 71] }
                                             ],
-                                            colors: ["#5867c3", "#34c38f"],
-                                            xaxis: {
-                                                type: "month",
-                                                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
+                                            chart: {
+                                                type: "area",
+                                                height: 50,
+                                                sparkline: { enabled: true }
                                             },
-                                            grid: { borderColor: "#f1f1f1" },
-                                            tooltip: { x: { format: "dd/MM/yy HH:mm" }
-                                            }
+                                            stroke: { show: false, curve: "smooth" },
+                                            colors: ["#5867c3", "#34c38f"],
+                                            xaxis: { crosshairs: { width: 1 } },
+                                            yaxis: { min: 0 },
+                                            subtitle: { offsetX: 0, style: { fontSize: "14px" } }
                                         };
 
-                                        var chart = new ApexCharts(document.querySelector("#spline_area_month"), options);
-                                        chart.render();
+                                        var chartSpark3 = new ApexCharts(document.querySelector("#spline_area_month"), optionsSpark3);
+                                        chartSpark3.render();
 
+                                        var optionsSparkYear = {
+                                            series: [
+                                                { name: "series1", data: [70, 40, 75, 38, 88, 50, 90] },
+                                                { name: "series21", data: [42, 60, 38, 66, 44, 69, 45] }
+                                            ],
+                                            chart: {
+                                                type: "year",
+                                                height: 368,
+                                                toolbar: { show: false }
+                                            },
+                                            dataLabels: { enabled: false },
+                                            stroke: { curve: "smooth", width: 3 },
+                                            colors: ["#5867c3", "#34c38f"],
+                                            xaxis: { type: "year", categories: ["2015", "2016", "2017", "2018", "2019", "2020", "2021"] },
+                                            grid: { borderColor: "#f1f1f1" },
+                                            tooltip: { x: { format: "dd/MM/yy HH:mm" } }
+                                        };
+
+                                        var chartSparkYear = new ApexCharts(document.querySelector("#spline_area_year"), optionsSparkYear);
+                                        chartSparkYear.render();
                                     </script>
                                     </div>
                                     </div>
