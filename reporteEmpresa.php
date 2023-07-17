@@ -663,7 +663,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <div class="col-6">
                                                 <div class="mt-3">
                                                     <p class="text-muted mb-2">Total</p>
-                                                    <h5 class="font-size-16 mb-0"><?php
+                                                    <h5 class="font-size-12 mb-0"><?php
                                                      $tipoMonedaF = ($tipoMoneda == 2) ? '$' : 'S/';
                                                      echo $tipoMonedaF . $montoTotal;
                                                      ?></h5>
@@ -673,7 +673,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         </div>
                                         <div class="row">
 
-                                        <h5 class="font-size-16 mb-0"><?php echo $nuevaFecha; ?></h5>
+                                        <h5 class="font-size-12 mb-0"><?php echo $nuevaFecha; ?></h5>
                                         </div>
                                         <!-- end row -->
                                     </div>
