@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuario'])) {
 include 'includes/conexion.php'; // Incluir el archivo de conexión
 $idSesion=$_SESSION['idUser'];
 $tipoUsuario=$_SESSION['tipoUsuario'];
-
+$noAtendidos=3;
 ?>
 
 
@@ -462,10 +462,30 @@ $tipoUsuario=$_SESSION['tipoUsuario'];
                             <li class="menu-title">Menu</li>
 
                             <li>
-                                <a href="inicio.php" class="waves-effect">
-                                    <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">69</span>
-                                    <span>Inicio</span>
-                                </a>
+                            <?php
+                                if ($tipoUsuario == 3) {
+                                    echo '<a href="inicio.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio</span>
+                                        </a>';
+                                } elseif ($tipoUsuario == 2) {
+                                    echo '<a href="administrador.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio</span>
+                                        </a>';
+                                } elseif ($tipoUsuario == 1) {
+                                    echo '<a href="vendedor.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio</span>
+                                        </a>';
+                                } else {
+                                    echo '<a href="login.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio</span>
+                                        </a>';
+                                }
+                                ?>
+
                             </li>
                             <!-- end li -->
                             
@@ -501,7 +521,6 @@ $tipoUsuario=$_SESSION['tipoUsuario'];
                                 <ol class="breadcrumb m-0">
                                         <?php
                                         if ($tipoUsuario == 3) {
-                                            
                                             echo '<li class="breadcrumb-item"><a href="index.php">Inicio1</a></li>';
                                         } elseif ($tipoUsuario == 2) {
                                             echo '<li class="breadcrumb-item"><a href="administrador.php">Inicio2</a></li>';
