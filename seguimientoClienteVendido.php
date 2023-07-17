@@ -910,7 +910,7 @@ mysqli_close($con);
                                     <input type="text" id="idProductoInput" name="idProductoInput" class="form-control" readonly>
                                     <label class="form-label">Nombre Producto</label>
                                     <input type="text" id="nombreInput" class="form-control" name="nombreInput" readonly>
-                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                    <label for="example-number-input" class="col-sm-2 col-form-label">Tipo de Moneda </label>
                                     <div class="row">
                                     <div class="col-md-5">
                                         <div>
