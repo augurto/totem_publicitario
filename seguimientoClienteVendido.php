@@ -911,79 +911,71 @@ mysqli_close($con);
                                     <label class="form-label">Nombre Producto</label>
                                     <input type="text" id="nombreInput" class="form-control" name="nombreInput" readonly>
 
-                                    <label for="example-number-input" class="col-sm-2 col-form-label">Tipo de Moneda </label>
+                                    <label for="example-number-input" class="col-sm-2 col-form-label">Tipo de Moneda</label>
                                     <div class="row">
-                                    <div class="col-md-5">
-                                        <div>
-                                            
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" type="radio" name="formRadios"
-                                                    id="formRadios1" checked>
-                                                <label class="form-check-label" for="formRadios1">
-                                                    Precio Dolares
-                                                </label>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-md-5">
-                                        <div>
-                                            
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="formRadios"
-                                                    id="formRadios2">
-                                                <label class="form-check-label" for="formRadios2">
-                                                    Precio Soles
-                                                </label>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="radio" name="formRadios" id="formRadios1" checked>
+                                                    <label class="form-check-label" for="formRadios1">
+                                                        Precio Dolares
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- end col -->
+                                        <!-- end col -->
+                                        <div class="col-md-5">
+                                            <div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="formRadios" id="formRadios2">
+                                                    <label class="form-check-label" for="formRadios2">
+                                                        Precio Soles
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
                                     </div>
 
-                                    
                                     <div class="row">
-                                    <div class="col-md-4">
-                                        <div>
-                                        <h5 class="font-size-14 mb-4">Plan de servicio</h5>
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" type="radio" name="formRadios"
-                                                    id="formRadios1" checked>
-                                                <label class="form-check-label" for="formRadios1">
-                                                    Precio Dolares
-                                                </label>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-md-4">
-                                        <div>
-                                            <h5 class="font-size-14 mb-4">...</h5>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="formRadios"
-                                                    id="formRadios2">
-                                                <label class="form-check-label" for="formRadios2">
-                                                    Precio Soles
-                                                </label>
+                                        <div class="col-md-4">
+                                            <div>
+                                                <h5 class="font-size-14 mb-4">Plan de servicio</h5>
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" checked>
+                                                    <label class="form-check-label" for="formRadiosPlan1">
+                                                        Plan 1
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-md-4">
-                                        <div>
-                                        <h5 class="font-size-14 mb-4">Tipo Servicio</h5>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="formRadios"
-                                                    id="formRadios2">
-                                                <label class="form-check-label" for="formRadios2">
-                                                    Precio Soles
-                                                </label>
+                                        <!-- end col -->
+                                        <div class="col-md-4">
+                                            <div>
+                                                <h5 class="font-size-14 mb-4">...</h5>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2">
+                                                    <label class="form-check-label" for="formRadiosPlan2">
+                                                        Plan 2
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
+                                        <!-- end col -->
+                                        <div class="col-md-4">
+                                            <div>
+                                                <h5 class="font-size-14 mb-4">Tipo Servicio</h5>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="formRadiosTipoServicio" id="formRadiosTipoServicio1" checked>
+                                                    <label class="form-check-label" for="formRadiosTipoServicio1">
+                                                        Servicio 1
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
                                     </div>
-                                    <!-- end col -->
+
                                     </div>
                                     <label class="form-label">Precio del Producto</label>
                                     <input type="text" id="precioInput" name="precioInput" class="form-control" readonly>
