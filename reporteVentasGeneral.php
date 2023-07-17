@@ -599,7 +599,27 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                         // Cerrar la conexión a la base de datos
                         mysqli_close($con);
                     ?>
-          
+
+                                <div>
+                                    <h4 class="card-title mb-4">Grafica </h4>
+                                </div>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                        aria-labelledby="pills-home-tab">
+                                        <div>
+                                            <div id="spline_area_month" class="column-charts" dir="ltr">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end tab -->
+                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                        <div>
+                                            <div id="spline_area_year" class="column-charts" dir="ltr">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end tab -->
+                                </div>
                 </div>
                 <!-- end row -->
                 
