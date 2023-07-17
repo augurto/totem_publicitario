@@ -716,7 +716,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 <div class="rightbar-overlay"></div>
 
 <!-- JAVASCRIPT -->
-<!-- <script>
+<script>
     var optionsSpark3 = {
         series: [
             { name: "series1.3", data: [20, 60, 29, 96, 25, 62, 17] },
@@ -903,7 +903,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
         chart.render();
 
 
-</script> -->
+</script>
 <script src="assets/libs/jquery/jquery.min.js"></script>
 <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/libs/metismenu/metisMenu.min.js"></script>
