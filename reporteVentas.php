@@ -545,6 +545,22 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                         $idUser = $row['idUser'];
                         $nombreArchivo = $row['nombreArchivo'];
                         $observacionVenta = $row['observacionVenta'];
+                        // Imprimir cada columna en una variable, una debajo de otra
+                        echo "idVenta: " . $idVenta . "<br>";
+                        echo "idProducto: " . $idProducto . "<br>";
+                        echo "nombreProducto: " . $nombreProducto . "<br>";
+                        echo "precioProducto: " . $precioProducto . "<br>";
+                        echo "cantidadProducto: " . $cantidadProducto . "<br>";
+                        echo "montoAdicional: " . $montoAdicional . "<br>";
+                        echo "montoTotal: " . $montoTotal . "<br>";
+                        echo "id_web_formularios: " . $id_web_formularios . "<br>";
+                        echo "rutaArchivo: " . $rutaArchivo . "<br>";
+                        echo "fechaVenta: " . $fechaVenta . "<br>";
+                        echo "estadoVenta: " . $estadoVenta . "<br>";
+                        echo "idUser: " . $idUser . "<br>";
+                        echo "nombreArchivo: " . $nombreArchivo . "<br>";
+                        echo "observacionVenta: " . $observacionVenta . "<br>";
+                        echo "<br>"; // Agregar un salto de línea adicional
 
                         
                     }
