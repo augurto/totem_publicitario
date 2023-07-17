@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario'])) {
 
 include 'includes/conexion.php'; // Incluir el archivo de conexión
 
-mysqli_close($con);
+
 ?>
 
 
