@@ -552,7 +552,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                         
 
                         // Realizar la consulta para obtener los datos de la tabla "venta"
-                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM ventas";
+                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta, empresaUser FROM ventas";
                         $result = mysqli_query($con, $query);
 
                         // Verificar si se obtuvieron resultados
@@ -569,7 +569,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                 $rutaArchivo = $row['rutaArchivo'];
                                 $fechaVenta = $row['fechaVenta'];
                                 $nuevaFecha = date('Y-m-d H:i:s', strtotime($fechaVenta . ' -5 hours'));
-
+                                $empresaUser = $row['empresaUser'];
                                 $estadoVenta = $row['estadoVenta'];
                                 $idUser = $row['idUser'];
                                 $nombreArchivo = $row['nombreArchivo'];
@@ -585,9 +585,9 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <span
                                             class="avatar-title bg-soft-primary text-primary font-size-16 rounded-circle">
                                             <?php
-                                            if ($_SESSION['empresaUser'] == 1) {
+                                            if ($empresaUser == 1) {
                                                 echo "E";
-                                            } elseif ($_SESSION['empresaUser'] == 2) {
+                                            } elseif ($empresaUser == 2) {
                                                 echo "G";
                                             }
                                             ?>
@@ -620,7 +620,10 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <div class="col-6">
                                                 <div class="mt-3">
                                                     <p class="text-muted mb-2">Total</p>
-                                                    <h5 class="font-size-16 mb-0"><?php echo $montoTotal; ?></h5>
+                                                    <h5 class="font-size-16 mb-0"><?php
+                                                     $tipoMoneda = ($empresaUser == 2) ? '$' : 'S/';
+                                                     echo $tipoMoneda . $montoTotal;
+                                                     ?></h5>
                                                 </div>
                                             </div>
                                             <!-- end col -->
