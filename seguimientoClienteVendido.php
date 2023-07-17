@@ -918,7 +918,7 @@ mysqli_close($con);
                                                 <div class="form-check mb-3">
                                                     <input class="form-check-input" type="radio" name="formRadios" id="formRadios1" checked>
                                                     <label class="form-check-label" for="formRadios1">
-                                                        Precio Dolares
+                                                        Precio Dólares
                                                     </label>
                                                 </div>
                                             </div>
