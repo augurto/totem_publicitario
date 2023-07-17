@@ -910,6 +910,7 @@ mysqli_close($con);
                                     <input type="text" id="idProductoInput" name="idProductoInput" class="form-control" readonly>
                                     <label class="form-label">Nombre Producto</label>
                                     <input type="text" id="nombreInput" class="form-control" name="nombreInput" readonly>
+
                                     <label for="example-number-input" class="col-sm-2 col-form-label">Tipo de Moneda </label>
                                     <div class="row">
                                     <div class="col-md-5">
@@ -940,8 +941,44 @@ mysqli_close($con);
                                     </div>
                                     <!-- end col -->
                                     </div>
-                                    <label class="form-label">Tipo Moneda</label>
-                                    <input type="text" id="precioInput" name="precioInput" class="form-control" readonly>
+
+                                    
+                                    <div class="row">
+                                    <div class="col-md-5">
+                                        <div>
+                                        <h5 class="font-size-14 mb-4">Plan de Servicio</h5>
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="radio" name="formRadios"
+                                                    id="formRadios1" checked>
+                                                <label class="form-check-label" for="formRadios1">
+                                                    Precio Dolares
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="radio" name="formRadios"
+                                                    id="formRadios1" checked>
+                                                <label class="form-check-label" for="formRadios1">
+                                                    Precio Dolares
+                                                </label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col-md-5">
+                                        <div>
+                                        <h5 class="font-size-14 mb-4">Tipo Servicio</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="formRadios"
+                                                    id="formRadios2">
+                                                <label class="form-check-label" for="formRadios2">
+                                                    Precio Soles
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                    </div>
                                     <label class="form-label">Precio del Producto</label>
                                     <input type="text" id="precioInput" name="precioInput" class="form-control" readonly>
                                     <label class="form-label">Cantidad Producto</label>
