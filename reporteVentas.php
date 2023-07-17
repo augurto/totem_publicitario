@@ -8,10 +8,8 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 include 'includes/conexion.php'; // Incluir el archivo de conexión
-
-$usuario = $_SESSION['usuario'];
-$dni = $_SESSION['dni'];
-$tipoUsuario = $_SESSION['tipoUsuario'];
+$idSesion=$_SESSION['idUser'];
+$tipoUsuario=$_SESSION['tipoUsuario'];
 
 $queryNoAtendidos = "SELECT COUNT(*) AS countNoAtendidos FROM web_formularios WHERE estado_web = 0";
 $resultNoAtendidos = mysqli_query($con, $queryNoAtendidos);
@@ -33,7 +31,7 @@ if ($resultNoAtendidos) {
 <head>
 
     <meta charset="utf-8" />
-    <title>Reporte de Ventas - <?php echo $_SESSION['idUser']; ?></title>
+    <title>Reporte de Ventas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
