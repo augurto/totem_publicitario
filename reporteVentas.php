@@ -9,6 +9,7 @@ if (!isset($_SESSION['usuario'])) {
 
 include 'includes/conexion.php'; // Incluir el archivo de conexión
 $idSesion=$_SESSION['idUser'];
+$tipoUsuario=$_SESSION['tipoUsuario'];
 
 ?>
 
@@ -499,12 +500,12 @@ $idSesion=$_SESSION['idUser'];
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                         <?php
-                                        if ($idSesion == 3) {
+                                        if ($tipoUsuario == 3) {
                                             
                                             echo '<li class="breadcrumb-item"><a href="index.php">Inicio1</a></li>';
-                                        } elseif ($idSesion == 2) {
+                                        } elseif ($tipoUsuario == 2) {
                                             echo '<li class="breadcrumb-item"><a href="administrador.php">Inicio2</a></li>';
-                                        } elseif ($idSesion == 1) {
+                                        } elseif ($tipoUsuario == 1) {
                                             echo '<li class="breadcrumb-item"><a href="vendedor.php">Inicio3</a></li>';
                                         } else {
                                             // Mostrar una opción genérica o un mensaje de error
