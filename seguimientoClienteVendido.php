@@ -944,7 +944,7 @@ mysqli_close($con);
                                                 <div class="form-check mb-3">
                                                     <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" checked>
                                                     <label class="form-check-label" for="formRadiosPlan1">
-                                                        Plan 1
+                                                        Mensual
                                                     </label>
                                                 </div>
                                             </div>
@@ -956,7 +956,7 @@ mysqli_close($con);
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2">
                                                     <label class="form-check-label" for="formRadiosPlan2">
-                                                        Plan 2
+                                                        Anual
                                                     </label>
                                                 </div>
                                             </div>
@@ -966,7 +966,7 @@ mysqli_close($con);
                                             <div>
                                                 <h5 class="font-size-14 mb-4">Tipo Servicio</h5>
                                                 
-                                                <select class="form-control select2">
+                                                <select class="form-control select2" id="tipoServicio" name="tipoServicio">
                                                 <option>Selecciona Tipo Servicio</option>
 
                                                 <?php
