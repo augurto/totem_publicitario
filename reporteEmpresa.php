@@ -606,7 +606,23 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             </a>
                                                     </h5>
                                             <p class="text-muted mb-0">
-                                                <i class="mdi mdi-account me-1"></i> <?php echo $idUser; ?>
+                                                <i class="mdi mdi-account me-1"></i> 
+                                                <?php
+                                              
+                                                 // Obtener el nombre del usuario correspondiente al $idUser
+                                                $queryUser = "SELECT nombre_user FROM user WHERE id_user = $idUser";
+                                                $customResult = mysqli_query($con, $queryUser);
+
+                                                if ($customResult && mysqli_num_rows($customResult) > 0) {
+                                                    $customRow = mysqli_fetch_assoc($customResult);
+                                                    $customNombreUser = $customRow['nombre_user'];
+
+                                                    // Imprimir el nombre del usuario
+                                                    echo $customNombreUser;
+                                                } else {
+                                                    echo "No se encontró el usuario";
+                                                }
+                                                 ?>
                                             </p>
                                         </div>
                                         <div class="row">
