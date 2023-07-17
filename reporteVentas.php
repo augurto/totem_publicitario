@@ -9,9 +9,16 @@ if (!isset($_SESSION['usuario'])) {
 
 include 'includes/conexion.php'; // Incluir el archivo de conexión
 // Cerrar la conexión a la base de datos
-mysqli_close($con);                    
+    // Realizar la consulta para obtener los datos de la tabla "venta"
+    $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM venta";
+    $result = mysqli_query($con, $query);
 
+    
+    // Cerrar la conexión a la base de datos
+    mysqli_close($con);
 ?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -526,7 +533,32 @@ mysqli_close($con);
                 </div>
               
                 <!-- end row -->
+                <?php 
+                // Verificar si se obtuvieron resultados
+                if (mysqli_num_rows($result) > 0) {
+                    // Obtener los datos de cada columna en variables separadas
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $idVenta = $row['idVenta'];
+                        $idProducto = $row['idProducto'];
+                        $nombreProducto = $row['nombreProducto'];
+                        $precioProducto = $row['precioProducto'];
+                        $cantidadProducto = $row['cantidadProducto'];
+                        $montoAdicional = $row['montoAdicional'];
+                        $montoTotal = $row['montoTotal'];
+                        $id_web_formularios = $row['id_web_formularios'];
+                        $rutaArchivo = $row['rutaArchivo'];
+                        $fechaVenta = $row['fechaVenta'];
+                        $estadoVenta = $row['estadoVenta'];
+                        $idUser = $row['idUser'];
+                        $nombreArchivo = $row['nombreArchivo'];
+                        $observacionVenta = $row['observacionVenta'];
 
+                        
+                    }
+                } else {
+                    echo "No se encontraron resultados.";
+                }
+                ?>
 
             </div>
             <!-- container-fluid -->
