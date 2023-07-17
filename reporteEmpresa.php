@@ -647,7 +647,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                     if ($customProducto && mysqli_num_rows($customProducto) > 0) {
                                                         $productoRow = mysqli_fetch_assoc($customProducto);
-                                                        $ProductoNombre = $productoRow['nombre_user'];
+                                                        $ProductoNombre = $productoRow['nombreProducto'];
                                                         // Imprimir el nombre del usuario con las iniciales en mayúsculas
                                                         echo $ProductoNombre;
                                                     } else {
