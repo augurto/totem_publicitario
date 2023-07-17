@@ -8,7 +8,34 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 include 'includes/conexion.php'; // Incluir el archivo de conexión
+// Realizar la consulta para obtener los datos de la tabla "venta"
+$query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM ventas";
+$result = mysqli_query($con, $query);
 
+
+
+// Verificar si se obtuvieron resultados
+if (mysqli_num_rows($result) > 0) {
+    // Obtener los datos de cada columna en variables separadas
+    while ($row = mysqli_fetch_assoc($result)) {
+        $idVenta = $row['idVenta'];
+        $idProducto = $row['idProducto'];
+        $nombreProducto = $row['nombreProducto'];
+        $precioProducto = $row['precioProducto'];
+        $cantidadProducto = $row['cantidadProducto'];
+        $montoAdicional = $row['montoAdicional'];
+        $montoTotal = $row['montoTotal'];
+        $id_web_formularios = $row['id_web_formularios'];
+        $rutaArchivo = $row['rutaArchivo'];
+        $fechaVenta = $row['fechaVenta'];
+        $estadoVenta = $row['estadoVenta'];
+        $idUser = $row['idUser'];
+        $nombreArchivo = $row['nombreArchivo'];
+        $observacionVenta = $row['observacionVenta'];
+    }
+    } else {
+        echo "No se encontraron resultados.";
+    }
 
 ?>
 
@@ -521,30 +548,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                 <p class="card-text">Cambio de texto</p>
                                     <?php 
                 // Cerrar la conexión a la base de datos
-                // Realizar la consulta para obtener los datos de la tabla "venta"
-                $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM ventas";
-                $result = mysqli_query($con, $query);
-
                 
-                
-                // Verificar si se obtuvieron resultados
-                if (mysqli_num_rows($result) > 0) {
-                    // Obtener los datos de cada columna en variables separadas
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $idVenta = $row['idVenta'];
-                        $idProducto = $row['idProducto'];
-                        $nombreProducto = $row['nombreProducto'];
-                        $precioProducto = $row['precioProducto'];
-                        $cantidadProducto = $row['cantidadProducto'];
-                        $montoAdicional = $row['montoAdicional'];
-                        $montoTotal = $row['montoTotal'];
-                        $id_web_formularios = $row['id_web_formularios'];
-                        $rutaArchivo = $row['rutaArchivo'];
-                        $fechaVenta = $row['fechaVenta'];
-                        $estadoVenta = $row['estadoVenta'];
-                        $idUser = $row['idUser'];
-                        $nombreArchivo = $row['nombreArchivo'];
-                        $observacionVenta = $row['observacionVenta'];
                         // Imprimir cada columna en una variable, una debajo de otra
                         echo "idVenta: " . $idVenta . "<br>";
                         echo "idProducto: " . $idProducto . "<br>";
@@ -563,10 +567,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                         echo "<br>"; // Agregar un salto de línea adicional
 
                         
-                    }
-                } else {
-                    echo "No se encontraron resultados.";
-                }
+                  
                 // Cerrar la conexión a la base de datos
                 mysqli_close($con);
                 ?>
