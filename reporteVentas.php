@@ -520,14 +520,7 @@ mysqli_close($con);
                                 <h5 class="card-title mt-0">card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                </div>
-              
-                <!-- end row -->
-                <?php 
+                                    <?php 
                 // Cerrar la conexión a la base de datos
                 // Realizar la consulta para obtener los datos de la tabla "venta"
                 $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM venta";
@@ -562,6 +555,14 @@ mysqli_close($con);
                 // Cerrar la conexión a la base de datos
                 mysqli_close($con);
                 ?>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+              
+                <!-- end row -->
+                
 
             </div>
             <!-- container-fluid -->
