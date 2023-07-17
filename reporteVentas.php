@@ -8,14 +8,8 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 include 'includes/conexion.php'; // Incluir el archivo de conexión
-// Cerrar la conexión a la base de datos
-    // Realizar la consulta para obtener los datos de la tabla "venta"
-    $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM venta";
-    $result = mysqli_query($con, $query);
 
-    
-    // Cerrar la conexión a la base de datos
-    mysqli_close($con);
+mysqli_close($con);
 ?>
 
 
@@ -534,6 +528,13 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
               
                 <!-- end row -->
                 <?php 
+                // Cerrar la conexión a la base de datos
+                // Realizar la consulta para obtener los datos de la tabla "venta"
+                $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta FROM venta";
+                $result = mysqli_query($con, $query);
+
+                
+                
                 // Verificar si se obtuvieron resultados
                 if (mysqli_num_rows($result) > 0) {
                     // Obtener los datos de cada columna en variables separadas
@@ -558,6 +559,8 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                 } else {
                     echo "No se encontraron resultados.";
                 }
+                // Cerrar la conexión a la base de datos
+                mysqli_close($con);
                 ?>
 
             </div>
