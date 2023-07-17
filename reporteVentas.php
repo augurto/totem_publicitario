@@ -532,6 +532,8 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                 $idUser = $row['idUser'];
                                 $nombreArchivo = $row['nombreArchivo'];
                                 $observacionVenta = $row['observacionVenta'];
+                                $rutaArchivoNuevo = str_replace("../", "", $rutaArchivo);
+
                     ?>
                                 <div class="col-lg-4">
                                     <div class="card border border-success">
@@ -551,8 +553,8 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                             <p class="card-text">idUser: <?php echo $idUser; ?></p>
                                             <p class="card-text">nombreArchivo: <?php echo $nombreArchivo; ?></p>
                                             <p class="card-text">observacionVenta: <?php echo $observacionVenta; ?></p>
-                                            <a href="<?php echo $rutaArchivo; ?>" download>Descargar archivo</a>
-        </div>
+                                            <a href="<?php echo $rutaArchivoNuevo; ?>" download>Descargar archivo</a>
+    
                                         </div>
                                     </div>
                                 </div>
