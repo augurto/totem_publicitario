@@ -942,7 +942,7 @@ mysqli_close($con);
                                             <div>
                                                 <h5 class="font-size-14 mb-4">Plan de servicio</h5>
                                                 <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" checked>
+                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" >
                                                     <label class="form-check-label" for="formRadiosPlan1">
                                                         Mensual
                                                     </label>
