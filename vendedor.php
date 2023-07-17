@@ -470,10 +470,29 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                             <li class="menu-title">Menu</li>
 
                             <li>
-                                <a href="inicio.php" class="waves-effect">
-                                    <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">69</span>
-                                    <span>Inicio</span>
-                                </a>
+                            <?php
+                                if ($tipoUsuario == 3) {
+                                    echo '<a href="inicio.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio</span>
+                                        </a>';
+                                } elseif ($tipoUsuario == 2) {
+                                    echo '<a href="administrador.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio</span>
+                                        </a>';
+                                } elseif ($tipoUsuario == 1) {
+                                    echo '<a href="vendedor.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio</span>
+                                        </a>';
+                                } else {
+                                    echo '<a href="login.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio</span>
+                                        </a>';
+                                }
+                                ?>
                             </li>
                             <!-- end li -->
                             

@@ -11,6 +11,8 @@ $montoTotal = $_POST['montoTotal'];
 $observacion = $_POST['observacion'];
 $idVenta = $_POST['idid'];
 $idUsuario = $_POST['iduser'];
+$empresaUser = $_POST['empresaUser'];
+
 $estado = 0;
 
 // Obtener información sobre el archivo subido
@@ -42,12 +44,13 @@ if ($_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
 
 if (move_uploaded_file($archivoRutaTemp, $rutaDestino)) {
     // Preparar la consulta SQL para insertar los datos en la tabla de ventas
-    $query = "INSERT INTO ventas (idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, observacionVenta, id_web_formularios, idUser, rutaArchivo, nombreArchivo, estadoVenta) VALUES ('$idProducto', '$nombreProducto', '$precioProducto', '$cantidad', '$montoAdicional', '$montoTotal', '$observacion', '$idVenta', '$idUsuario', '$rutaDestino', '$archivoNombre', '$estado')";
+    $query = "INSERT INTO ventas (idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, observacionVenta, id_web_formularios, idUser, rutaArchivo, nombreArchivo, estadoVenta,empresaUser) 
+    VALUES ('$idProducto', '$nombreProducto', '$precioProducto', '$cantidad', '$montoAdicional', '$montoTotal', '$observacion', '$idVenta', '$idUsuario', '$rutaDestino', '$archivoNombre', '$estado','$empresaUser')";
 
     // Ejecutar la consulta
     if (mysqli_query($con, $query)) {
        // Redireccionar a ventas.php con el ID de la venta en la URL
-        header("Location: ../ventas.php?idVenta=" . $idVenta);
+        header("Location: ../reporteVentas.php?idVenta=" . $idVenta);
         exit();
     } else {
         echo "Error al guardar los datos: " . mysqli_error($con);

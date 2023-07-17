@@ -519,10 +519,29 @@ mysqli_close($con);
                             <li class="menu-title">Menu</li>
 
                             <li>
-                                <a href="inicio.php" class="waves-effect">
-                                    <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">69</span>
-                                    <span>Inicio</span>
-                                </a>
+                            <?php
+                                if ($tipoUsuario == 3) {
+                                    echo '<a href="inicio.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio3</span>
+                                        </a>';
+                                } elseif ($tipoUsuario == 2) {
+                                    echo '<a href="administrador.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio2</span>
+                                        </a>';
+                                } elseif ($tipoUsuario == 1) {
+                                    echo '<a href="vendedor.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio1</span>
+                                        </a>';
+                                } else {
+                                    echo '<a href="login.php" class="waves-effect">
+                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
+                                            <span>Inicio0</span>
+                                        </a>';
+                                }
+                                ?>
                             </li>
                             <!-- end li -->
                             
@@ -805,7 +824,7 @@ mysqli_close($con);
                                                 <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $idOriginal; ?>" readonly>
                                             <?php endif; ?>
                                             <br>
-                                          
+                                           
                                             
                                                 <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
@@ -929,6 +948,7 @@ mysqli_close($con);
                                                     placeholder="Observacion al Cliente"></textarea>
                                             </div>
                                             <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+                                            <input type="hidden" id="iduser" name="empresaUser" class="form-control" value="<?php echo $_SESSION['empresaUser'] ; ?>" readonly>
 
 
                                             <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
