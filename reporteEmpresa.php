@@ -638,7 +638,23 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="mt-3 border-end">
-                                                    <p class="text-muted mb-2"><?php echo $idProducto; ?></p>
+                                                    <p class="text-muted mb-2">
+                                                    <?php
+                                                    
+                                                    // Obtener el nombre del usuario correspondiente al $idUser
+                                                    $queryProducto = "SELECT nombreProducto FROM producto WHERE idProducto = $idProducto";
+                                                    $customProducto = mysqli_query($con, $queryProducto);
+
+                                                    if ($customProducto && mysqli_num_rows($customProducto) > 0) {
+                                                        $productoRow = mysqli_fetch_assoc($customProducto);
+                                                        $ProductoNombre = $productoRow['nombre_user'];
+                                                        // Imprimir el nombre del usuario con las iniciales en mayúsculas
+                                                        echo $ProductoNombre;
+                                                    } else {
+                                                        echo "No se encontró el Producto";
+                                                    }
+                                                    ?>
+                                                        </p>
                                                     <h5 class="font-size-16 mb-0"><?php echo $cantidadProducto; ?></h5>
                                                 </div>
                                             </div>
