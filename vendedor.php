@@ -72,63 +72,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
             
         <?php
         include './parts/nav.php';
+        include './parts/menuVertical.php'
         ?>
-        
-        
-
-            <!-- ========== Left Sidebar Start ========== -->
-            <div class="vertical-menu">
-
-                <div data-simplebar class="h-100">
-
-                    <!--- Sidemenu -->
-                    <div id="sidebar-menu">
-                        <!-- Left Menu Start -->
-                        <ul class="metismenu list-unstyled" id="side-menu">
-                            <li class="menu-title">Menu</li>
-
-                            <li>
-                            <?php
-                                if ($tipoUsuario == 3) {
-                                    echo '<a href="inicio.php" class="waves-effect">
-                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
-                                            <span>Inicio</span>
-                                        </a>';
-                                } elseif ($tipoUsuario == 2) {
-                                    echo '<a href="administrador.php" class="waves-effect">
-                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
-                                            <span>Inicio</span>
-                                        </a>';
-                                } elseif ($tipoUsuario == 1) {
-                                    echo '<a href="vendedor.php" class="waves-effect">
-                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
-                                            <span>Inicio</span>
-                                        </a>';
-                                } else {
-                                    echo '<a href="login.php" class="waves-effect">
-                                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$noAtendidos.'</span>
-                                            <span>Inicio</span>
-                                        </a>';
-                                }
-                                ?>
-                            </li>
-                            <!-- end li -->
-                            
-                            
-                           
-                         
-                           
-                            <!-- end li -->
-                        </ul>
-                        <!-- end ul -->
-                    </div>
-                    <!-- Sidebar -->
-                </div>
-            </div>
-            <!-- Left Sidebar End -->
-
-            
-
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
@@ -389,128 +334,20 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                 });
                             });
                         </script>
-
-                       
-                        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
-                                            aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title mt-0">Agregar comentario </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                    <form action="includes/guardar_datos_atender.php" method="POST">
-                                                    <input type="text" name="id_form_web" id="id_form_web" readonly>
-                                                    <input type="text" name="id_usuario" id="id_usuario" value="2" readonly>
-                                                    <input type="text" class="form-control" name="datos_form" id="datos_form" readonly>
-                                                    <br>
-                                                    <label for="">Estado</label>
-                                                        <select class="form-control select2">
-                                                            <option value="0" selected>Pendiente</option>
-                                                            <option value="1">Observado</option>
-                                                            <option value="2">Atendido</option>
-                                                        </select>
-                                                        <br>
-                                                        <label for="">Usario Asignado</label>
-                                                        <select class="form-control select2">
-                                                            <option value="0" selected>Usuario1</option>
-                                                            <option value="1">Usuario 2 </option>
-                                                            <option value="2">Usuario 3</option>
-                                                        </select>
-                                                        <br>
-                                                        <label for="">Comentario</label>
-                                                        <textarea class="form-control"></textarea>
-                                                        <br>
-                                                        <input type="text" class="form-control" name="valor" id="valor">
-                                                        <button type="submit" class="btn btn-primary">Enviar</button>
-                                                    </form>
-
-                                                    </div>
-                                                </div><!-- /.modal-content -->
-                                            </div><!-- /.modal-dialog -->
-                                        </div><!-- /.modal -->
-                        <!-- FIN MODAL -->
                         
                     </div> <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->
 
                 
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © GEO.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-end d-none d-sm-block">
-                                    Creado con  <i class="mdi mdi-heart text-danger"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                <?php include './parts/footer.php';?>
             </div>
             <!-- end main content-->
 
         </div>
         <!-- END layout-wrapper -->
 
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div data-simplebar class="h-100">
-                <div class="rightbar-title d-flex align-items-center px-3 py-4">
-
-                    <h5 class="m-0 me-2">Settings</h5>
-
-                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                        <i class="mdi mdi-close noti-icon"></i>
-                    </a>
-                </div>
-
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <h6 class="text-center mb-0">Choose Layouts</h6>
-
-                <div class="p-4">
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="layout-1">
-                    </div>
-
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
-                        <label class="form-check-label" for="light-mode-switch">Light Mode</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="layout-2">
-                    </div>
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch"
-                            data-bsStyle="assets/css/bootstrap-dark.min.css" data-appStyle="assets/css/app-dark.min.css">
-                        <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="layout-3">
-                    </div>
-                    <div class="form-check form-switch mb-5">
-                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch"
-                            data-appStyle="assets/css/app-rtl.min.css">
-                        <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
-                    </div>
-
-
-                </div>
-
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
-
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+        <?php include './parts/sidebar.php';?>
 
         <!-- JAVASCRIPT -->
         <script src="assets/libs/jquery/jquery.min.js"></script>
