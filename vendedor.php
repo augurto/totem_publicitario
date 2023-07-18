@@ -119,8 +119,14 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                            
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="assets/images/ebikerLogo.webp"
-                                    alt="Header Avatar">
+                                <?php
+                                if ($_SESSION['empresaUser'] == 1) {
+                                    echo '<img class="rounded-circle header-profile-user" src="assets/images/ebikerLogo.webp" alt="Header Avatar">';
+                                } elseif ($_SESSION['empresaUser'] == 2) {
+                                    echo '<img class="rounded-circle header-profile-user" src="assets/images/geoFondo.webp" alt="Header Avatar">';
+                                }
+                                ?>
+
                                 <span class="d-none d-xl-inline-block ms-1"><?php echo $_SESSION['empresaUser']; ?></span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
