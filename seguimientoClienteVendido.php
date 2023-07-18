@@ -917,7 +917,7 @@ mysqli_close($con);
                                     <div class="col-md-5">
                                         <div>
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="formRadios" id="formRadios1" required>
+                                            <input class="form-check-input" type="radio" name="formRadios" id="formRadios1" value="dolares" required>
                                             <label class="form-check-label" for="formRadios1">
                                             Precio Dólares
                                             </label>
@@ -928,7 +928,7 @@ mysqli_close($con);
                                     <div class="col-md-5">
                                         <div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="formRadios" id="formRadios2" required>
+                                            <input class="form-check-input" type="radio" name="formRadios" id="formRadios2" value="soles" required>
                                             <label class="form-check-label" for="formRadios2">
                                             Precio Soles
                                             </label>
@@ -937,13 +937,13 @@ mysqli_close($con);
                                     </div>
                                     <!-- end col -->
                                     </div>
+
                                     <label for="example-number-input" class="col-sm-2 col-form-label">Plan de servicio</label>
                                     <div class="row">
                                     <div class="col-md-4">
                                         <div>
-                                      
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" required>
+                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" value="mensual" required>
                                             <label class="form-check-label" for="formRadiosPlan1">
                                             Mensual
                                             </label>
@@ -953,9 +953,8 @@ mysqli_close($con);
                                     <!-- end col -->
                                     <div class="col-md-4">
                                         <div>
-                                     
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2" required>
+                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2" value="anual" required>
                                             <label class="form-check-label" for="formRadiosPlan2">
                                             Anual
                                             </label>
@@ -963,6 +962,7 @@ mysqli_close($con);
                                         </div>
                                     </div>
                                     </div>
+
 
                                         <!-- end col -->
                                         <div class="col-md-8">
@@ -975,7 +975,7 @@ mysqli_close($con);
                                                 <?php
                                                  include 'includes/conexion.php'; 
                                                 // Realizar la consulta a la tabla "tipoServicio" y obtener los resultados
-                                                $queryTipoServicio = "SELECT tc.idTipoClienteCliente, tc.nombreTipoServicio as nombreUno ,cc.descripcionTipoCliente as descripcionUno FROM tipoServicio tc INNER JOIN tipoClienteCliente cc ON tc.idTipoClienteCliente=cc.valorTipoCliente ";
+                                                $queryTipoServicio = "SELECT tc.idTipoClienteCliente as idClienteCLiente, tc.nombreTipoServicio as nombreUno ,cc.descripcionTipoCliente as descripcionUno FROM tipoServicio tc INNER JOIN tipoClienteCliente cc ON tc.idTipoClienteCliente=cc.valorTipoCliente ";
                                                 $resultTipoServicio = mysqli_query($con, $queryTipoServicio);
 
                                                 // Crear un array para almacenar los grupos y las opciones
@@ -983,8 +983,9 @@ mysqli_close($con);
 
                                                 // Recorrer los resultados de la consulta
                                                 while ($rowTipoServicio = mysqli_fetch_assoc($resultTipoServicio)) {
-                                                    $idTipoClienteCliente = $rowTipoServicio['descripcionUno'];
+                                                    $idTipoClienteCliente = $rowTipoServicio['idClienteCLiente'];
                                                     $nombreTipoServicio = $rowTipoServicio['nombreUno'];
+                                                    $descripcionUno = $rowTipoServicio['descripcionUno'];
 
                                                     // Agregar el idTipoClienteCliente al grupo correspondiente en el array $grupos
                                                     if (!isset($grupos[$idTipoClienteCliente])) {
@@ -1023,7 +1024,7 @@ mysqli_close($con);
                                     <label class="form-label">Cantidad Producto</label>
                                     <input type="text" id="cantidad" name="cantidad" class="form-control" oninput="calcularMontoTotal()" required>
                                     <label class="form-label">Monto adicional</label>
-                                    <input type="text" id="montoAdicional" name="montoAdicional" class="form-control" oninput="calcularMontoTotal()">
+                                    <input type="text" id="montoAdicional" name="montoAdicional" value="0" class="form-control" oninput="calcularMontoTotal()">
                                     <label class="form-label">Monto Total</label>
                                     <input type="text" id="montoTotal" name="montoTotal" class="form-control" readonly>
                                     <div class="mb-3">
