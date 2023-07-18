@@ -917,7 +917,7 @@ mysqli_close($con);
                                     <div class="col-md-5">
                                         <div>
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="formRadios" id="formRadios1" value="dolares" required>
+                                            <input class="form-check-input" type="radio" name="formRadios" id="formRadios1" value="1" required>
                                             <label class="form-check-label" for="formRadios1">
                                             Precio Dólares
                                             </label>
@@ -928,7 +928,7 @@ mysqli_close($con);
                                     <div class="col-md-5">
                                         <div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="formRadios" id="formRadios2" value="soles" required>
+                                            <input class="form-check-input" type="radio" name="formRadios" id="formRadios2" value="2" required>
                                             <label class="form-check-label" for="formRadios2">
                                             Precio Soles
                                             </label>
@@ -943,7 +943,7 @@ mysqli_close($con);
                                     <div class="col-md-4">
                                         <div>
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" value="mensual" required>
+                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" value="1" required>
                                             <label class="form-check-label" for="formRadiosPlan1">
                                             Mensual
                                             </label>
@@ -954,7 +954,7 @@ mysqli_close($con);
                                     <div class="col-md-4">
                                         <div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2" value="anual" required>
+                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2" value="2" required>
                                             <label class="form-check-label" for="formRadiosPlan2">
                                             Anual
                                             </label>
@@ -969,48 +969,46 @@ mysqli_close($con);
                                             <div>
                                                 <h5 class="font-size-14 mb-4">Tipo Servicio</h5>
                                                 
-                                                <select class="form-control select2" id="tipoServicio" name="tipoServicio" required >
-                                                <option>Selecciona Tipo Servicio</option>
+                                                <select class="form-control select2" id="tipoServicio" name="tipoServicio" required>
+                                                    <option value="" disabled selected hidden>Selecciona Tipo Servicio</option>
 
-                                                <?php
-                                                 include 'includes/conexion.php'; 
-                                                // Realizar la consulta a la tabla "tipoServicio" y obtener los resultados
-                                                $queryTipoServicio = "SELECT tc.idTipoClienteCliente as idClienteCLiente, tc.nombreTipoServicio as nombreUno ,cc.descripcionTipoCliente as descripcionUno FROM tipoServicio tc INNER JOIN tipoClienteCliente cc ON tc.idTipoClienteCliente=cc.valorTipoCliente ";
-                                                $resultTipoServicio = mysqli_query($con, $queryTipoServicio);
+                                                    <?php
+                                                    include 'includes/conexion.php'; 
+                                                    // Realizar la consulta a la tabla "tipoServicio" y obtener los resultados
+                                                    $queryTipoServicio = "SELECT tc.idTipoClienteCliente as idClienteCLiente, tc.nombreTipoServicio as nombreUno ,cc.descripcionTipoCliente as descripcionUno FROM tipoServicio tc INNER JOIN tipoClienteCliente cc ON tc.idTipoClienteCliente=cc.valorTipoCliente ";
+                                                    $resultTipoServicio = mysqli_query($con, $queryTipoServicio);
 
-                                                // Crear un array para almacenar los grupos y las opciones
-                                                $grupos = array();
+                                                    // Crear un array para almacenar los grupos y las opciones
+                                                    $grupos = array();
 
-                                                // Recorrer los resultados de la consulta
-                                                while ($rowTipoServicio = mysqli_fetch_assoc($resultTipoServicio)) {
-                                                    $idTipoClienteCliente = $rowTipoServicio['idClienteCLiente'];
-                                                    $nombreTipoServicio = $rowTipoServicio['nombreUno'];
-                                                    $descripcionUno = $rowTipoServicio['descripcionUno'];
+                                                    // Recorrer los resultados de la consulta
+                                                    while ($rowTipoServicio = mysqli_fetch_assoc($resultTipoServicio)) {
+                                                        $idTipoClienteCliente = $rowTipoServicio['idClienteCLiente'];
+                                                        $nombreTipoServicio = $rowTipoServicio['nombreUno'];
+                                                        $descripcionUno = $rowTipoServicio['descripcionUno'];
 
-                                                    // Agregar el idTipoClienteCliente al grupo correspondiente en el array $grupos
-                                                    if (!isset($grupos[$descripcionUno])) {
-                                                        $grupos[$descripcionUno] = array();
+                                                        // Agregar el idTipoClienteCliente al grupo correspondiente en el array $grupos
+                                                        if (!isset($grupos[$descripcionUno])) {
+                                                            $grupos[$descripcionUno] = array();
+                                                        }
+
+                                                        // Agregar el nombreTipoServicio y el idTipoClienteCliente como opción dentro del grupo correspondiente
+                                                        $grupos[$descripcionUno][] = array('nombre' => $nombreTipoServicio, 'id' => $idTipoClienteCliente);
                                                     }
 
-                                                    // Agregar el nombreTipoServicio como opción dentro del grupo correspondiente
-                                                    $grupos[$descripcionUno][] = $nombreTipoServicio;
-                                                }
+                                                    // Mostrar los grupos y opciones en el select
+                                                    foreach ($grupos as $descripcionUno => $opciones) {
+                                                        echo '<optgroup label="' . strtoupper($descripcionUno) . '">';
 
-                                                // Mostrar los grupos y opciones en el select
-                                                foreach ($grupos as $descripcionUno => $opciones) {
-                                                    echo '<optgroup label="' . strtoupper($descripcionUno) . '">';
-                                                   
+                                                        foreach ($opciones as $opcion) {
+                                                            echo '<option value="' . $opcion['id'] . '">' . $opcion['nombre'] . '</option>';
+                                                        }
 
-
-                                                    foreach ($opciones as $opcion) {
-                                                        echo '<option>' . $opcion . '</option>';
+                                                        echo '</optgroup>';
                                                     }
+                                                    ?>
+                                                </select>
 
-                                                    echo '</optgroup>';
-                                                }
-                                                ?>
-
-                                            </select>
 
                                             </div>
                                         </div>
@@ -1024,13 +1022,13 @@ mysqli_close($con);
                                     <label class="form-label">Cantidad Producto</label>
                                     <input type="text" id="cantidad" name="cantidad" class="form-control" oninput="calcularMontoTotal()" required>
                                     <label class="form-label">Monto adicional</label>
-                                    <input type="text" id="montoAdicional" name="montoAdicional" value="0" class="form-control" oninput="calcularMontoTotal()">
+                                    <input type="text" id="montoAdicional" name="montoAdicional" required class="form-control" oninput="calcularMontoTotal()">
                                     <label class="form-label">Monto Total</label>
                                     <input type="text" id="montoTotal" name="montoTotal" class="form-control" readonly>
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Adjuntar archivo</label>
                                         
-                                        <input class="form-control" type="file" id="archivo" name="archivo">
+                                        <input class="form-control" type="file" id="archivo" name="archivo" required>
 
                                     </div>
 
