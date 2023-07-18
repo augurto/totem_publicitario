@@ -904,10 +904,11 @@ mysqli_close($con);
                                         ?>
                                         </select>
                                         <button onclick="buscar()"  class="form-control" >Buscar</button>
+                                        <br>
                                     </div>
                                     
                                     <form action="includes/ventasProducto.php" method="post" enctype="multipart/form-data">
-                                    <input type="text" id="idProductoInput" name="idProductoInput" class="form-control" readonly>
+                                    <input type="hidden" id="idProductoInput" name="idProductoInput" class="form-control" readonly>
                                     <label class="form-label">Nombre Producto</label>
                                     <input type="text" id="nombreInput" class="form-control" name="nombreInput" readonly>
 
@@ -936,11 +937,11 @@ mysqli_close($con);
                                     </div>
                                     <!-- end col -->
                                     </div>
-
+                                    <label for="example-number-input" class="col-sm-2 col-form-label">Plan de servicio</label>
                                     <div class="row">
                                     <div class="col-md-4">
                                         <div>
-                                        <h5 class="font-size-14 mb-4">Plan de servicio</h5>
+                                      
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" required>
                                             <label class="form-check-label" for="formRadiosPlan1">
@@ -952,7 +953,7 @@ mysqli_close($con);
                                     <!-- end col -->
                                     <div class="col-md-4">
                                         <div>
-                                        <h5 class="font-size-14 mb-4">...</h5>
+                                     
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2" required>
                                             <label class="form-check-label" for="formRadiosPlan2">
@@ -1016,10 +1017,11 @@ mysqli_close($con);
                                     </div>
 
                                     </div>
+                                    <br>
                                     <label class="form-label">Precio del Producto</label>
                                     <input type="text" id="precioInput" name="precioInput" class="form-control" readonly>
                                     <label class="form-label">Cantidad Producto</label>
-                                    <input type="text" id="cantidad" name="cantidad" class="form-control" oninput="calcularMontoTotal()">
+                                    <input type="text" id="cantidad" name="cantidad" class="form-control" oninput="calcularMontoTotal()" required>
                                     <label class="form-label">Monto adicional</label>
                                     <input type="text" id="montoAdicional" name="montoAdicional" class="form-control" oninput="calcularMontoTotal()">
                                     <label class="form-label">Monto Total</label>
