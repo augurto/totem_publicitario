@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
 }
-$empresaUser =$_SESSION['empresaUser'] ;
+$idEmpresa =$_SESSION['empresaUser'] ;
 include 'includes/conexion.php'; // Incluir el archivo de conexión
 
 // Obtener el valor de $idUrl desde la URL
