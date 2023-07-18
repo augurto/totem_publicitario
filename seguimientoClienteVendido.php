@@ -489,6 +489,8 @@ mysqli_close($con);
                                     <!-- end col -->
                                     </div>
 
+                                    <?php if ($idEmpresa == 2): ?>
+                                    <!-- Mostrar solo en GEO -->
                                     <label for="example-number-input" class="col-sm-2 col-form-label">Plan de servicio</label>
                                     <div class="row">
                                     <div class="col-md-4">
@@ -564,6 +566,9 @@ mysqli_close($con);
                                             </div>
                                         </div>
                                         <!-- end col -->
+                                        <!-- FIN mostrar solo GEO -->
+                                        <?php endif; ?>
+
                                     </div>
 
                                     </div>
