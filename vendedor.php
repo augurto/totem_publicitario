@@ -98,36 +98,23 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                             <i class="ri-menu-2-line align-middle"></i>
                         </button>
 
-                        <!-- App Search-->
-                        <form class="app-search d-none d-lg-block">
-                            <div class="input-group">
-                                <button class="btn btn-rounded dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">Projects <i class="mdi mdi-chevron-down ms-2"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Jobs</a></li>
-                                    <li><a class="dropdown-item" href="#">Users</a></li>
-                                    <li><a class="dropdown-item" href="#">Projects</a></li>
-                                </ul>
-                                <input type="text" class="form-control bg-transparent" placeholder="Search.."
-                                    aria-label="Text input with dropdown button">
-                                <span class="mdi mdi-magnify"></span>
-                            </div>
-
-                        </form>
-
                         <div class="dropdown dropdown-mega d-none d-xl-block ms-2">
                            
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php
                                 if ($_SESSION['empresaUser'] == 1) {
-                                    echo '<img class="rounded-circle header-profile-user" src="assets/images/ebikerLogo.webp" alt="Header Avatar">';
+                                    echo '<img class="rounded-circle header-profile-user" src="assets/images/ebikerLogo.webp" alt="Header Avatar">
+                                    <span class="d-none d-xl-inline-block ms-1">EBIKER</span>'
+                                    ;
                                 } elseif ($_SESSION['empresaUser'] == 2) {
-                                    echo '<img class="rounded-circle header-profile-user" src="assets/images/geoFondo.webp" alt="Header Avatar">';
+                                    echo '<img class="rounded-circle header-profile-user" src="assets/images/geoFondo.webp" alt="Header Avatar">
+                                    <span class="d-none d-xl-inline-block ms-1">GEOSATELITAL</span>'
+                                    ;
                                 }
                                 ?>
 
-                                <span class="d-none d-xl-inline-block ms-1"><?php echo $_SESSION['empresaUser']; ?></span>
+                                
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             
