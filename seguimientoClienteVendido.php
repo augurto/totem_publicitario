@@ -961,14 +961,14 @@ mysqli_close($con);
                                         </div>
                                         </div>
                                     </div>
-                                    
+                                    </div>
 
                                         <!-- end col -->
-                                        <div class="col-md-4">
+                                        <div class="col-md-8">
                                             <div>
                                                 <h5 class="font-size-14 mb-4">Tipo Servicio</h5>
                                                 
-                                                <select class="form-control select2" id="tipoServicio" name="tipoServicio" required>
+                                                <select class="form-control select2" id="tipoServicio" name="tipoServicio" required >
                                                 <option>Selecciona Tipo Servicio</option>
 
                                                 <?php
@@ -1013,7 +1013,6 @@ mysqli_close($con);
                                             </div>
                                         </div>
                                         <!-- end col -->
-                                        </div>
                                     </div>
 
                                     </div>
