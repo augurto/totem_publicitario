@@ -116,139 +116,15 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                         </form>
 
                         <div class="dropdown dropdown-mega d-none d-xl-block ms-2">
-                            <h3><?php echo $_SESSION['empresaUser']; ?></h3>
-                            <div class="dropdown-menu dropdown-megamenu">
-                                <div class="row">
-                                    <div class="col-sm-8">
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <h5 class="font-size-14 mt-0">UI Components</h5>
-                                                <ul class="list-unstyled megamenu-list">
-                                                    <li>
-                                                        <a href="javascript:void(0);">Lightbox</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Range Slider</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Sweet Alert</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Rating</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Forms</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Tables</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Charts</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- end col -->
-                                            <div class="col-md-4">
-                                                <h5 class="font-size-14 mt-0">Applications</h5>
-                                                <ul class="list-unstyled megamenu-list">
-                                                    <li>
-                                                        <a href="javascript:void(0);">Ecommerce</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Calendar</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Email</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Projects</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Tasks</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Contacts</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- end col -->
-                                            <div class="col-md-4">
-                                                <h5 class="font-size-14 mt-0">Extra Pages</h5>
-                                                <ul class="list-unstyled megamenu-list">
-                                                    <li>
-                                                        <a href="javascript:void(0);">Light Sidebar</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Compact Sidebar</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Horizontal layout</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Maintenance</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Coming Soon</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Timeline</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">FAQs</a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                            <!-- end col -->
-                                        </div>
-                                        <!-- end row -->
-                                    </div>
-                                    <!-- end col -->
-
-                                    <div class="col-sm-4">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5 class="font-size-14 mt-0">UI Components</h5>
-                                                <ul class="list-unstyled megamenu-list">
-                                                    <li>
-                                                        <a href="javascript:void(0);">Lightbox</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Range Slider</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Sweet Alert</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Rating</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Forms</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Tables</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);">Charts</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- end col -->
-                                            <div class="col-sm-5">
-                                                <div>
-                                                    <img src="assets/images/megamenu-img.png" alt="megamenu-img"
-                                                        class="img-fluid mx-auto d-block">
-                                                </div>
-                                            </div>
-                                            <!-- end col -->
-                                        </div>
-                                        <!-- end row -->
-                                    </div>
-                                    <!-- end col -->
-                                </div>
-
-                            </div>
+                           
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="assets/images/ebikerLogo.webp"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1"><?php echo $_SESSION['empresaUser']; ?></span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            
                         </div>
                     </div>
 
