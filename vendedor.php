@@ -70,7 +70,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
         <div id="layout-wrapper">
 
             
-        <?php include 'parts/nav.php';?>
+        <?php require  'parts/nav.php';?>
+        
 
             <!-- ========== Left Sidebar Start ========== -->
             <div class="vertical-menu">
