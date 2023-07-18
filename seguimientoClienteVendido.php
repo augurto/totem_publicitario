@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
 }
-$idEmpresa =$_SESSION['empresaUser'] ;
+$empresaUser =$_SESSION['empresaUser'] ;
 include 'includes/conexion.php'; // Incluir el archivo de conexión
 
 // Obtener el valor de $idUrl desde la URL
@@ -489,7 +489,7 @@ mysqli_close($con);
                                     <!-- end col -->
                                     </div>
 
-                                    <?php if ($idEmpresa == 2): ?>
+                                    <?php if ($empresaUser == 2): ?>
                                     <!-- Mostrar solo en GEO -->
                                     <label for="example-number-input" class="col-sm-2 col-form-label">Plan de servicio</label>
                                     <div class="row">
