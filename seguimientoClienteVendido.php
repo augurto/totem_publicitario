@@ -988,17 +988,17 @@ mysqli_close($con);
                                                     $descripcionUno = $rowTipoServicio['descripcionUno'];
 
                                                     // Agregar el idTipoClienteCliente al grupo correspondiente en el array $grupos
-                                                    if (!isset($grupos[$idTipoClienteCliente])) {
-                                                        $grupos[$idTipoClienteCliente] = array();
+                                                    if (!isset($grupos[$descripcionUno])) {
+                                                        $grupos[$descripcionUno] = array();
                                                     }
 
                                                     // Agregar el nombreTipoServicio como opción dentro del grupo correspondiente
-                                                    $grupos[$idTipoClienteCliente][] = $nombreTipoServicio;
+                                                    $grupos[$descripcionUno][] = $nombreTipoServicio;
                                                 }
 
                                                 // Mostrar los grupos y opciones en el select
-                                                foreach ($grupos as $idTipoClienteCliente => $opciones) {
-                                                    echo '<optgroup label="' . strtoupper($idTipoClienteCliente) . '">';
+                                                foreach ($grupos as $descripcionUno => $opciones) {
+                                                    echo '<optgroup label="' . strtoupper($descripcionUno) . '">';
                                                    
 
 
