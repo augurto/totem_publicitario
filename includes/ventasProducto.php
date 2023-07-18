@@ -12,6 +12,10 @@ $observacion = $_POST['observacion'];
 $idVenta = $_POST['idid'];
 $idUsuario = $_POST['iduser'];
 $empresaUser = $_POST['empresaUser'];
+//nuevos datos
+$formRadiosValue = $_POST['formRadios'];
+$formRadiosPlanValue = $_POST['formRadiosPlan'];
+$tipoServicio = $_POST['tipoServicio'];
 
 $estado = 0;
 
@@ -44,8 +48,8 @@ if ($_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
 
 if (move_uploaded_file($archivoRutaTemp, $rutaDestino)) {
     // Preparar la consulta SQL para insertar los datos en la tabla de ventas
-    $query = "INSERT INTO ventas (idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, observacionVenta, id_web_formularios, idUser, rutaArchivo, nombreArchivo, estadoVenta,empresaUser) 
-    VALUES ('$idProducto', '$nombreProducto', '$precioProducto', '$cantidad', '$montoAdicional', '$montoTotal', '$observacion', '$idVenta', '$idUsuario', '$rutaDestino', '$archivoNombre', '$estado','$empresaUser')";
+    $query = "INSERT INTO ventas (idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, observacionVenta, id_web_formularios, idUser, rutaArchivo, nombreArchivo, estadoVenta,empresaUser,valor1,valor2,valor3) 
+    VALUES ('$idProducto', '$nombreProducto', '$precioProducto', '$cantidad', '$montoAdicional', '$montoTotal', '$observacion', '$idVenta', '$idUsuario', '$rutaDestino', '$archivoNombre', '$estado','$empresaUser','$formRadiosValue ','$formRadiosPlanValue ','$tipoServicio ')";
 
     // Ejecutar la consulta
     if (mysqli_query($con, $query)) {
