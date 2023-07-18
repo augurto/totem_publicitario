@@ -961,14 +961,14 @@ mysqli_close($con);
                                         </div>
                                         </div>
                                     </div>
-                                    </div>
+                                    
 
                                         <!-- end col -->
                                         <div class="col-md-4">
                                             <div>
                                                 <h5 class="font-size-14 mb-4">Tipo Servicio</h5>
                                                 
-                                                <select class="form-control select2" id="tipoServicio" name="tipoServicio">
+                                                <select class="form-control select2" id="tipoServicio" name="tipoServicio" required>
                                                 <option>Selecciona Tipo Servicio</option>
 
                                                 <?php
@@ -1013,6 +1013,7 @@ mysqli_close($con);
                                             </div>
                                         </div>
                                         <!-- end col -->
+                                        </div>
                                     </div>
 
                                     </div>
@@ -1097,12 +1098,7 @@ mysqli_close($con);
                         <!-- end card -->
 
 
-                       <!--  agregando otra columna -->
-                       <div class="checkbox-container">
-                            <input type="checkbox" id="switch1" switch="none" onchange="toggleElement()" />
-                            <label for="switch1" data-on-label="CON " data-off-label="SIN "></label>
-                            <p>FACTURACIÓN</p>
-                        </div>
+                       
                         <style>
                             .checkbox-container {
                                 display: flex;
