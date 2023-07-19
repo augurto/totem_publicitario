@@ -35,7 +35,32 @@
                 ?>
             </li>
             <!-- end li -->
-            
+            <li>
+            <<?php
+                if ($tipoUsuario == 3) {
+                    echo '<a href="vendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$vendidos.'</span>
+                            <span>Vendidos</span>
+                        </a>';
+                } elseif ($tipoUsuario == 2) {
+                    echo '<a href="vendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$vendidos.'</span>
+                            <span>Vendidos</span>
+                        </a>';
+                } elseif ($tipoUsuario == 1) {
+                    echo '<a href="vendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$vendidos.'</span>
+                            <span>Vendidos</span>
+                        </a>';
+                } else {
+                    echo '<a href="vendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$vendidos.'</span>
+                            <span>Vendidos</span>
+                        </a>';
+                }
+                ?>
+
+            </li>
             
            
          
