@@ -38,6 +38,7 @@ if (mysqli_num_rows($selectResult) > 0) {
     $tipoCliente= $selectRow['tipoCliente'];
     $mensajeOriginal= $selectRow['mensajeOriginal'];
     $idOriginal= $selectRow['idOriginal'];
+    $fuenteDato= $selectRow['fuente_dato'];
 
    
     $aterrizajeURL = '';
