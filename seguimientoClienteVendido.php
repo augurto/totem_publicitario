@@ -221,28 +221,7 @@ mysqli_close($con);
                                             <!-- end row -->
                                             <div class="mb-12">
                                                 <label class="form-label">Tipo de Cliente</label>
-                                                                                                
-                                                <select class="form-control select2" id="fuenteDato" name="fuenteDato">
-                                                <?php
-                                                 include 'includes/conexion.php'; 
-                                                // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                $query = "SELECT * FROM tipoClienteCliente WHERE   empresaEstado = $empresaUser  ";
-                                                $result = mysqli_query($con, $query);
-
-                                                // Verificar si se encontraron resultados
-                                                if (mysqli_num_rows($result) > 0) {
-                                                    // Generar las opciones dentro del select
-                                                    while ($row = mysqli_fetch_assoc($result)) {
-                                                    $value = $row['valorTipoCliente'];
-                                                    $text = $row['descripcionTipoCliente'];
-                                                    echo "<option value='" . $value . "'>" . $text . "</option>";
-                                                    }
-                                                }
-
-                                                // Cerrar la conexión a la base de datos
-                                                mysqli_close($con);
-                                                ?>
-                                                </select>
+                                                
                                                 <select class="form-control select2" id="fuenteDato" name="fuenteDato">
                                                     <?php
                                                     include 'includes/conexion.php'; 
