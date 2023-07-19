@@ -209,7 +209,7 @@
                 <!-- end -->
 
 
-                <div class="dropdown d-none d-lg-inline-block">
+                <!-- <div class="dropdown d-none d-lg-inline-block">
                     <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <div class="top-icon">
@@ -261,7 +261,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- end -->
 
                 <div class="dropdown d-none d-lg-inline-block">
@@ -273,7 +273,7 @@
                 </div>
                 <!-- end  -->
 
-                <div class="dropdown d-inline-block">
+                <!-- <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item noti-icon waves-effect"
                         id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="top-icon">
@@ -362,7 +362,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- end notification -->
 
                 <div class="dropdown d-inline-block user-dropdown">
