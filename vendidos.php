@@ -190,28 +190,15 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                             $estado_web = $row["estado_web"];
 
                                                             if ($estado_web == 0 && !empty($a)) {
-                                                                echo "<td>
                                                                 
-                                                                
-
-                                                            
-                                                                        " . "
-                                                                    </td>";
                                                                 echo "<td>" . $row['datos_form'] . "
                                                                 </td>";
                                                             } elseif ($estado_web == 1) {
-                                                                echo "<td>
-                                                                        
-                                                                            
-
-                                                                            " . "
-                                                                        </td>";
-                                                                    echo "<td>" . $row['datos_form'] . "
+                                                                
+                                                                echo "<td>" . $row['datos_form'] . "
                                                                     </td>";
                                                             } elseif (empty($a) && $estado_web == 0  ) {
-                                                                echo "<td>
-                                                                   
-                                                                </td>";
+                                                                
                                                                 echo "<td>" . $row['datos_form'] . "</td>";
                                                             }
                                                             
