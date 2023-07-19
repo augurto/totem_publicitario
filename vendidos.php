@@ -117,7 +117,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Accion</th>
+                                                    <!-- <th>Accion</th> -->
                                                     <th>Nombres</th>
                                                     <th>Fuente</th>
                                                     <th>Email</th>
@@ -192,9 +192,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                             if ($estado_web == 0 && !empty($a)) {
                                                                 echo "<td>
                                                                 
-                                                                <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "&f=" . $tipoFuente . "'  class='btn btn-danger waves-effect waves-light'>
-                                                                    Atender
-                                                                </a>
+                                                                
 
                                                             
                                                                         " . "
@@ -204,9 +202,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                             } elseif ($estado_web == 1) {
                                                                 echo "<td>
                                                                         
-                                                                            <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "&f=" . $tipoFuente . "'  class='btn btn-primary waves-effect waves-light'>
-                                                                            Atendido
-                                                                            </a>
+                                                                            
 
                                                                             " . "
                                                                         </td>";
@@ -214,9 +210,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                                     </td>";
                                                             } elseif (empty($a) && $estado_web == 0  ) {
                                                                 echo "<td>
-                                                                    <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "&f=" . $tipoFuente . "'  class='btn btn-danger waves-effect waves-light'>
-                                                                        Atender
-                                                                    </a>
+                                                                   
                                                                 </td>";
                                                                 echo "<td>" . $row['datos_form'] . "</td>";
                                                             }
