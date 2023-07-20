@@ -123,7 +123,7 @@ $idUser=$_SESSION['idUser'];
                                 $empresaUser = $row['empresaUser'];
                                 $estadoVenta = $row['estadoVenta'];
                                 $tipoMoneda = $row['tipoMoneda'];
-                                $idUser = $row['idUser'];
+                                $idUser2 = $row['idUser'];
                                 $nombreArchivo = $row['nombreArchivo'];
                                 $observacionVenta = $row['observacionVenta'];
                                 $rutaArchivoNuevo = str_replace("../", "", $rutaArchivo);
@@ -166,7 +166,7 @@ $idUser=$_SESSION['idUser'];
                                                 <?php
                                               
                                                  // Obtener el nombre del usuario correspondiente al $idUser
-                                                $queryUser = "SELECT nombre_user FROM user WHERE id_user = $idUser";
+                                                $queryUser = "SELECT nombre_user FROM user WHERE id_user = $idUser2";
                                                 $customResult = mysqli_query($con, $queryUser);
 
                                                 if ($customResult && mysqli_num_rows($customResult) > 0) {
