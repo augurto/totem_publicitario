@@ -1,8 +1,9 @@
 <?php
 include 'includes/conexion.php';
 
+$empresaUser2=$_SESSION['empresaUser'];
 // Consulta SQL para contar los registros con prospecto igual a 4
-$queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM web_formularios WHERE prospecto = 4";
+$queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM ventas WHERE empresaUser = $empresaUser2 ";
 $resultContarVendidos = mysqli_query($con, $queryContarVendidos);
 
 // Verificar si se ejecutó la consulta correctamente
