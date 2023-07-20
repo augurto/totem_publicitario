@@ -113,7 +113,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                     <div class="card-body">
                                         <p>dato</p>
                                     <?php
-                        
+                                        include './includes/conexion.php';
 
                                         // Realizar la consulta para obtener los datos de la tabla "venta"
                                         $query = "SELECT * FROM ventas ";
