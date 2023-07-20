@@ -103,7 +103,7 @@ $idUser=$_SESSION['idUser'];
                         
 
                         // Realizar la consulta para obtener los datos de la tabla "venta"
-                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta, empresaUser,tipoMoneda FROM ventas where idUser= $idUser ";
+                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta, empresaUser,tipoMoneda FROM ventas ";
                         $result = mysqli_query($con, $query);
 
                         // Verificar si se obtuvieron resultados
