@@ -111,6 +111,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
+                                        <p>dato</p>
                                     <?php
                         
 
@@ -132,7 +133,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 $rutaArchivo = $row['rutaArchivo'];
                                                 $fechaVenta = $row['fechaVenta'];
                                                 $nuevaFecha = date('Y-m-d H:i:s', strtotime($fechaVenta . ' -5 hours'));
-                                                $empresaUser = $row['empresaUser'];
+                                                $empresaUser2 = $row['empresaUser'];
                                                 $estadoVenta = $row['estadoVenta'];
                                                 $tipoMoneda = $row['tipoMoneda'];
                                                 $idUser2 = $row['idUser'];
@@ -149,9 +150,9 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                         <span
                                                             class="avatar-title bg-soft-primary text-primary font-size-16 rounded-circle">
                                                             <?php
-                                                            if ($empresaUser == 1) {
+                                                            if ($empresaUser2 == 1) {
                                                                 echo "E";
-                                                            } elseif ($empresaUser == 2) {
+                                                            } elseif ($empresaUser2 == 2) {
                                                                 echo "G";
                                                             }
                                                             ?>
