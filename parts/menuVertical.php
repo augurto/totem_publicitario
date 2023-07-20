@@ -1,5 +1,5 @@
 <?php
-include 'includes/conexion.php';
+include '../includes/conexion.php';
 
 $empresaUser2=$_SESSION['empresaUser'];
 // Consulta SQL para contar los registros con prospecto igual a 4
