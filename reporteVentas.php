@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-include 'includes/conexion.php'; // Incluir el archivo de conexión
+include './includes/conexion.php'; // Incluir el archivo de conexión
 
 $queryNoAtendidos = "SELECT COUNT(*) AS countNoAtendidos FROM web_formularios WHERE estado_web = 0";
 $resultNoAtendidos = mysqli_query($con, $queryNoAtendidos);
