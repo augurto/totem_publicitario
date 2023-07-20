@@ -147,6 +147,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                             <div class="card-body">
                                                 <div class="d-flex align-items-start">
                                                     <div class="avatar-sm me-4">
+                                                        <p>prueba textito</p>
                                                         <span
                                                             class="avatar-title bg-soft-primary text-primary font-size-16 rounded-circle">
                                                             <?php
