@@ -1,3 +1,26 @@
+<?php
+include 'includes/conexion.php';
+
+// Consulta SQL para contar los registros con prospecto igual a 4
+$queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM web_formularios WHERE prospecto = 4";
+$resultContarVendidos = mysqli_query($con, $queryContarVendidos);
+
+// Verificar si se ejecutó la consulta correctamente
+if ($resultContarVendidos) {
+    // Obtener el resultado como un arreglo asociativo
+    $rowContarVendidos = mysqli_fetch_assoc($resultContarVendidos);
+    
+    // Extraer el valor de la columna "totalVendidos" y almacenarlo en la variable $vendidos
+    $vendidos = $rowContarVendidos['totalVendidos'];
+} else {
+    // Si hubo un error en la consulta, asignar 0 a la variable $vendidos
+    $vendidos = 0;
+}
+
+// Cerrar la conexión a la base de datos
+mysqli_close($con);
+?>
+
 <!-- ========== Left Sidebar Start ========== -->
 <div class="vertical-menu">
 
