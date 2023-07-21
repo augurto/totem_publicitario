@@ -69,16 +69,6 @@ $rowUser = mysqli_fetch_assoc($resultUser);
 $nombreUserEdicion = $rowUser['nombre_user'];
 
 
-$queryNoAtendidos = "SELECT COUNT(*) AS countNoAtendidos FROM web_formularios WHERE estado_web = 0";
-$resultNoAtendidos = mysqli_query($con, $queryNoAtendidos);
-
-if ($resultNoAtendidos) {
-    $rowNoAtendidos = mysqli_fetch_assoc($resultNoAtendidos);
-    $noAtendidos = $rowNoAtendidos['countNoAtendidos'];
-} else {
-    $noAtendidos = 0; // Si hay un error en la consulta, establecemos el valor en 0
-}
-
 // Cerrar la conexión a la base de datos
 $usuario = $_SESSION['usuario'];
 $dni = $_SESSION['dni'];
