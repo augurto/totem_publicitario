@@ -667,16 +667,16 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             var cantidad = parseInt(cantidadInput.value) || 0;
                                             var precio = parseFloat(precioInput.value) || 0;
                                             var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
-
                                             // Verificamos el valor de $empresaUser y aplicamos la lógica correspondiente
                                             if (empresaUser == 2) {
                                                 var precioPlan = (precioPlanInput === "1") ? 40 : (precioPlanInput === "2") ? 408 : 0;
                                                 var montoTotal = (cantidad * precio) + montoAdicional + precioPlan;
                                                 montoTotalInput.value = montoTotal.toFixed(2);
+                                                console.log("empresaUser es igual a 2, precioPlan: " + precioPlan);
                                             } else {
-                                                var precioPlan = 0;
                                                 var montoTotal = (cantidad * precio) + montoAdicional;
                                                 montoTotalInput.value = montoTotal.toFixed(2);
+                                                console.log("empresaUser es diferente de 2");
                                             }
 
                                             // Incluye el valor de precioPlan en el cálculo del montoTotal
