@@ -83,7 +83,7 @@ if ($resultNoAtendidos) {
 $usuario = $_SESSION['usuario'];
 $dni = $_SESSION['dni'];
 $tipoUsuario = $_SESSION['tipoUsuario'];   
-mysqli_close($con);                    
+                    
 
 ?>
 
