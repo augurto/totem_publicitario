@@ -627,7 +627,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             nombreInput.value = partes[0];
                                             precioInput.value = partes[1];
                                         }
-                                        function calcularMontoTotal() {
+                                        /* function calcularMontoTotal() {
                                             var cantidadInput = document.getElementById("cantidad");
                                             var precioInput = document.getElementById("precioInput");
                                             var montoAdicionalInput = document.getElementById("montoAdicional");
@@ -638,6 +638,22 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
 
                                             var montoTotal = (cantidad * precio) + montoAdicional;
+                                            montoTotalInput.value = montoTotal.toFixed(2);
+                                        } */
+                                        function calcularMontoTotal() {
+                                            var cantidadInput = document.getElementById("cantidad");
+                                            var precioInput = document.getElementById("precioInput");
+                                            var montoAdicionalInput = document.getElementById("montoAdicional");
+                                            var montoTotalInput = document.getElementById("montoTotal");
+                                            var precioPlanInput = document.getElementById("precioPlan"); // Agrega el campo precioPlan
+
+                                            var cantidad = parseInt(cantidadInput.value) || 0;
+                                            var precio = parseFloat(precioInput.value) || 0;
+                                            var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
+                                            var precioPlan = parseFloat(precioPlanInput.value) || 0; // Agrega el valor del campo precioPlan
+
+                                            // Incluye el valor de precioPlan en el cálculo del montoTotal
+                                            var montoTotal = (cantidad * precio) + montoAdicional + precioPlan;
                                             montoTotalInput.value = montoTotal.toFixed(2);
                                         }
                                     </script>
