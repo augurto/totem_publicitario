@@ -683,7 +683,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                         // Verificar el valor de empresaUser y aplicar la lógica correspondiente
                                         if (empresaUser == 2) {
-                                            precioPlan = (precioPlan === "1") ? 41 : (precioPlan === "2") ? 408 : 0;
+                                            precioPlan = (precioPlan === "1") ? 40 : (precioPlan === "2") ? 408 : 0;
                                         }
 
                                         var montoTotal = (cantidad * precio) + montoAdicional + parseFloat(precioPlan);
