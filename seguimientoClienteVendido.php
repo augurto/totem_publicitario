@@ -640,7 +640,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             var montoTotal = (cantidad * precio) + montoAdicional;
                                             montoTotalInput.value = montoTotal.toFixed(2);
                                         } */
-                                        function calcularMontoTotal() {
+                                        /* function calcularMontoTotal() {
                                             var cantidadInput = document.getElementById("cantidad");
                                             var precioInput = document.getElementById("precioInput");
                                             var montoAdicionalInput = document.getElementById("montoAdicional");
@@ -651,6 +651,29 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             var precio = parseFloat(precioInput.value) || 0;
                                             var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
                                             var precioPlan = (precioPlanInput === "1") ? 40 : (precioPlanInput === "2") ? 408 : 0;
+
+                                            // Incluye el valor de precioPlan en el cálculo del montoTotal
+                                            var montoTotal = (cantidad * precio) + montoAdicional + precioPlan;
+                                            montoTotalInput.value = montoTotal.toFixed(2);
+                                        } */
+                                        function calcularMontoTotal() {
+                                            var cantidadInput = document.getElementById("cantidad");
+                                            var precioInput = document.getElementById("precioInput");
+                                            var montoAdicionalInput = document.getElementById("montoAdicional");
+                                            var montoTotalInput = document.getElementById("montoTotal");
+                                            var precioPlanInput = document.querySelector('input[name="formRadiosPlan"]:checked').value;
+                                            var empresaUser = <?php echo $empresaUser; ?>;
+
+                                            var cantidad = parseInt(cantidadInput.value) || 0;
+                                            var precio = parseFloat(precioInput.value) || 0;
+                                            var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
+
+                                            // Verificamos el valor de $empresaUser y aplicamos la lógica correspondiente
+                                            if (empresaUser == 2) {
+                                                var precioPlan = (precioPlanInput === "1") ? 40 : (precioPlanInput === "2") ? 408 : 0;
+                                            } else {
+                                                var precioPlan = 0;
+                                            }
 
                                             // Incluye el valor de precioPlan en el cálculo del montoTotal
                                             var montoTotal = (cantidad * precio) + montoAdicional + precioPlan;
