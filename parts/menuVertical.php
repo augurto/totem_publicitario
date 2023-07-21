@@ -1,5 +1,5 @@
 <?php
-include '../includes/conexion.php';
+
 
 $empresaUser2=$_SESSION['empresaUser'];
 $idUsuarioSesion=$_SESSION['idUser'];
