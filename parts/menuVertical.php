@@ -33,7 +33,8 @@ if ($resultContarVendidos) {
     $vendidos = 0;
 }
 
-$queryNoAtendidos = "SELECT COUNT(*) AS countNoAtendidos FROM web_formularios WHERE estado_web = 0 and idEmpresa= $empresaUser2  ";
+$queryNoAtendidos = "SELECT COUNT(*) AS countNoAtendidos FROM web_formularios where estado_web != 99 and prospecto !=4 and idEmpresa=$empresaUser2  ";
+
 $resultNoAtendidos = mysqli_query($con, $queryNoAtendidos);
 
 if ($resultNoAtendidos) {
