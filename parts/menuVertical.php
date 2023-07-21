@@ -90,22 +90,22 @@ mysqli_close($con);
             <?php
                 if ($tipoUsuario == 3) {
                     echo '<a href="reporteEmpresa.php" class="waves-effect">
-                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$vendidos2.'</span>
+                            <i class="ri-dashboard-line"></i>
                             <span>Reportes</span>
                         </a>';
                 } elseif ($tipoUsuario == 2) {
                     echo '<a href="reporteVentasGeneral.php" class="waves-effect">
-                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$vendidos2.'</span>
+                            <i class="ri-dashboard-line"></i>
                             <span>Reportes</span>
                         </a>';
                 } elseif ($tipoUsuario == 1) {
                     echo '<a href="reporteVentas.php" class="waves-effect">
-                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$vendidos2.'</span>
+                            <i class="ri-dashboard-line"></i>
                             <span>Reportes</span>
                         </a>';
                 } else {
                     echo '<a href="Reportes.php" class="waves-effect">
-                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">'.$vendidos2.'</span>
+                            <i class="ri-dashboard-line"></i>
                             <span>Reportes</span>
                         </a>';
                 }
