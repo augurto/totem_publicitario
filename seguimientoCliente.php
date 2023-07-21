@@ -72,7 +72,7 @@ if (mysqli_num_rows($selectResult) > 0) {
     $id_user = "";
 }
 // Realizar la consulta a la base de datos
-$queryUser = "SELECT nombre_user FROM user WHERE id_user = '$id_user'";
+$queryUser = "SELECT nombre_user FROM user WHERE id_user = '$idUsuarioSesion'";
 $resultUser = mysqli_query($con, $queryUser);
 $rowUser = mysqli_fetch_assoc($resultUser);
 $nombreUserEdicion = $rowUser['nombre_user'];
