@@ -91,7 +91,7 @@ if ($resultNoAtendidos) {
 
 $usuario = $_SESSION['usuario'];
 $dni = $_SESSION['dni'];
-$tipoUsuario = $_SESSION['tipoUsuario'];   
+  
 // Cerrar la conexión a la base de datos
 mysqli_close($con);        
          
