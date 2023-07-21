@@ -657,16 +657,21 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             montoTotalInput.value = montoTotal.toFixed(2);
                                         } */
                                         function calcularMontoTotal() {
+                                            
                                             var cantidadInput = document.getElementById("cantidad");
                                             var precioInput = document.getElementById("precioInput");
                                             var montoAdicionalInput = document.getElementById("montoAdicional");
                                             var montoTotalInput = document.getElementById("montoTotal");
-                                            var precioPlanInput = document.querySelector('input[name="formRadiosPlan"]:checked').value;
-                                            var empresaUser = <?php echo $empresaUser; ?>;
+                                            var precioPlanInput = document.querySelector('input[name="formRadiosPlan"]:checked');
+
+
 
                                             var cantidad = parseInt(cantidadInput.value) || 0;
                                             var precio = parseFloat(precioInput.value) || 0;
                                             var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
+
+                                            var empresaUser = <?php echo $empresaUser; ?>;
+
                                             // Verificar si se seleccionó algún radio button
                                         if (precioPlanInput !== null) {
                                             // Si se seleccionó un radio button, obtener su valor
