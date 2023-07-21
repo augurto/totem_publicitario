@@ -460,7 +460,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         mysqli_close($con);
                                         ?>
                                         </select>
-                                        <button onclick="buscar()"  class="form-control" >Buscar</button>
+                                        <button onclick="buscar()"  class="form-control" style="background: #fd9c3bab;" >BUSCAR</button>
                                         <br>
                                     </div>
                                     
@@ -469,7 +469,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     <label class="form-label">Nombre Producto</label>
                                     <input type="text" id="nombreInput" class="form-control" name="nombreInput" readonly>
 
-                                    <label for="example-number-input" class="col-sm-2 col-form-label">Tipo de Moneda</label>
+                                    <!-- <label for="example-number-input" class="col-sm-2 col-form-label">Tipo de Moneda</label>
                                     <div class="row">
                                     <div class="col-md-5">
                                         <div>
@@ -481,7 +481,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         </div>
                                         </div>
                                     </div>
-                                    <!-- end col -->
+                                   
                                     <div class="col-md-5">
                                         <div>
                                         <div class="form-check">
@@ -492,8 +492,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         </div>
                                         </div>
                                     </div>
-                                    <!-- end col -->
-                                    </div>
+                                
+                                    </div> -->
 
                                     <?php if ($empresaUser == 2): ?>
                                     <!-- Mostrar solo en GEO -->
