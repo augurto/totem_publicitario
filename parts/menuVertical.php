@@ -4,7 +4,21 @@ $empresaUser2 = $_SESSION['empresaUser'];
 $idUsuarioSesion = $_SESSION['idUser'];
 $tipoUsuario = $_SESSION['tipoUsuario'];
 // Consulta SQL para contar los registros con prospecto igual a 4
-$queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM ventas  ";
+// Verificar el valor de $tipoUsuario y ajustar la consulta en consecuencia
+if ($tipoUsuario == 1) {
+    // Usuario de tipo 1
+    $queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM ventas WHERE idUser = $idUsuarioSesion";
+} elseif ($tipoUsuario == 2) {
+    // Usuario de tipo 2
+    $queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM ventas WHERE empresaUser = $empresaUser2";
+} elseif ($tipoUsuario == 3) {
+    // Usuario de tipo 3
+    $queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM ventas";
+} else {
+    // Valor de $tipoUsuario no reconocido, se puede asignar un valor predeterminado
+    $queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM ventas";
+}
+/* $queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM ventas where idUser =$idUsuarioSesion "; */
 $resultContarVendidos = mysqli_query($con, $queryContarVendidos);
 
 // Verificar si se ejecutó la consulta correctamente
