@@ -432,7 +432,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         include 'includes/conexion.php'; 
                                         
                                         // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                        $queryp = "SELECT * FROM producto empresaProducto = $empresaUser2";
+                                        $queryp = "SELECT * FROM producto WHERE empresaProducto = $empresaUser2";
                                         $resultp = mysqli_query($con, $queryp);
 
                                         // Verificar si se encontraron resultados
