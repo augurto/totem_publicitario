@@ -133,7 +133,7 @@ mysqli_close($con);
             
         <?php
         include './parts/nav.php';
-       /*  include './parts/menuVertical.php' */
+        include './parts/menuVertical.php'
         ?>
     <!-- ============================================================== -->
     <!-- Start right Content here -->
