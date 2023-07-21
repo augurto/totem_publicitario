@@ -489,27 +489,27 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     <!-- Mostrar solo en GEO -->
                                     <label for="example-number-input" class="col-sm-2 col-form-label">Plan de servicio</label>
                                     <div class="row">
-                                    <div class="col-md-4">
-                                        <div>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" value="1" required>
-                                            <label class="form-check-label" for="formRadiosPlan1">
-                                            Mensual
-                                            </label>
+                                        <div class="col-md-4">
+                                            <div>
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" value="1" required oninput="calcularMontoTotal()">
+                                                    <label class="form-check-label" for="formRadiosPlan1">
+                                                        Mensual
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <!-- end col -->
+                                        <div class="col-md-4">
+                                            <div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2" value="2" required oninput="calcularMontoTotal()">
+                                                    <label class="form-check-label" for="formRadiosPlan2">
+                                                        Anual
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-md-4">
-                                        <div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2" value="2" required>
-                                            <label class="form-check-label" for="formRadiosPlan2">
-                                            Anual
-                                            </label>
-                                        </div>
-                                        </div>
-                                    </div>
                                     </div>
 
 
@@ -650,7 +650,16 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             var cantidad = parseInt(cantidadInput.value) || 0;
                                             var precio = parseFloat(precioInput.value) || 0;
                                             var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
-                                            var precioPlan = parseFloat(precioPlanInput.value) || 0; // Agrega el valor del campo precioPlan
+                                            var precioPlan = 0; // Inicializa el precioPlan en 0
+
+                                            // Obtén el valor seleccionado del radio para asignar el precioPlan correspondiente
+                                            var radios = document.getElementsByName("formRadiosPlan");
+                                            for (var i = 0; i < radios.length; i++) {
+                                                if (radios[i].checked) {
+                                                    precioPlan = parseFloat(radios[i].value);
+                                                    break;
+                                                }
+                                            }
 
                                             // Incluye el valor de precioPlan en el cálculo del montoTotal
                                             var montoTotal = (cantidad * precio) + montoAdicional + precioPlan;
