@@ -667,21 +667,24 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             var cantidad = parseInt(cantidadInput.value) || 0;
                                             var precio = parseFloat(precioInput.value) || 0;
                                             var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
-                                            // Verificamos el valor de $empresaUser y aplicamos la lógica correspondiente
-                                            if (empresaUser == 2) {
-                                                var precioPlan = (precioPlanInput === "1") ? 40 : (precioPlanInput === "2") ? 408 : 0;
-                                                var montoTotal = (cantidad * precio) + montoAdicional + precioPlan;
-                                                montoTotalInput.value = montoTotal.toFixed(2);
-                                                console.log("empresaUser es igual a 2, precioPlan: " + precioPlan);
-                                            } else {
-                                                var montoTotal = (cantidad * precio) + montoAdicional;
-                                                montoTotalInput.value = montoTotal.toFixed(2);
-                                                console.log("empresaUser es diferente de 2");
-                                            }
-
-                                            // Incluye el valor de precioPlan en el cálculo del montoTotal
-                                            
+                                            // Verificar si se seleccionó algún radio button
+                                        if (precioPlanInput !== null) {
+                                            // Si se seleccionó un radio button, obtener su valor
+                                            var precioPlan = precioPlanInput.value;
+                                        } else {
+                                            // Si no se seleccionó ningún radio button, asignar el valor por defecto (0)
+                                            var precioPlan = 0;
                                         }
+
+                                        // Verificar el valor de empresaUser y aplicar la lógica correspondiente
+                                        if (empresaUser == 2) {
+                                            precioPlan = (precioPlan === "1") ? 41 : (precioPlan === "2") ? 408 : 0;
+                                        }
+
+                                        var montoTotal = (cantidad * precio) + montoAdicional + parseFloat(precioPlan);
+                                        montoTotalInput.value = montoTotal.toFixed(2);
+                                    }
+                                        
                                     </script>
 
                                             
