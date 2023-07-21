@@ -52,7 +52,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
        <?php
         include './parts/nav.php';
-        /* include './parts/menuVertical.php' */
+        include './parts/menuVertical.php'
         ?>
 
           
