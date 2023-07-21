@@ -671,13 +671,16 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             // Verificamos el valor de $empresaUser y aplicamos la lógica correspondiente
                                             if (empresaUser == 2) {
                                                 var precioPlan = (precioPlanInput === "1") ? 40 : (precioPlanInput === "2") ? 408 : 0;
+                                                var montoTotal = (cantidad * precio) + montoAdicional + precioPlan;
+                                                montoTotalInput.value = montoTotal.toFixed(2);
                                             } else {
                                                 var precioPlan = 0;
+                                                var montoTotal = (cantidad * precio) + montoAdicional;
+                                                montoTotalInput.value = montoTotal.toFixed(2);
                                             }
 
                                             // Incluye el valor de precioPlan en el cálculo del montoTotal
-                                            var montoTotal = (cantidad * precio) + montoAdicional + precioPlan;
-                                            montoTotalInput.value = montoTotal.toFixed(2);
+                                            
                                         }
                                     </script>
 
