@@ -17,7 +17,7 @@ if ($resultNoAtendidos) {
     $noAtendidos = 0; // Si hay un error en la consulta, establecemos el valor en 0
 }
 
-$empresaUser =$_SESSION['empresaUser'] ;
+
 // Obtener el valor de $idUrl desde la URL
 $idUrl = $_GET['id'];
 
@@ -133,7 +133,7 @@ mysqli_close($con);
             
         <?php
         include './parts/nav.php';
-       /*  include './parts/menuVertical.php' */
+        include './parts/menuVertical.php'
         ?>
         
     <!-- ============================================================== -->
@@ -237,7 +237,7 @@ mysqli_close($con);
                                                     <?php
                                                     include 'includes/conexion.php'; 
                                                     // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                    $query = "SELECT * FROM tipoClienteCliente WHERE empresaEstado = $empresaUser";
+                                                    $query = "SELECT * FROM tipoClienteCliente WHERE empresaEstado = $empresaUser2";
                                                     $result = mysqli_query($con, $query);
 
                                                     // Verificar si se encontraron resultados
