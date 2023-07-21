@@ -575,6 +575,10 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     <input type="text" id="cantidad" name="cantidad" class="form-control" oninput="calcularMontoTotal()" required>
                                     <label class="form-label">Monto adicional</label>
                                     <input type="text" id="montoAdicional" name="montoAdicional" required class="form-control" oninput="calcularMontoTotal()">
+                                    <?php if ($empresaUser == 2): ?>
+                                    <label class="form-label">Precio Plan Servicio</label>
+                                    <input type="text" id="precioPlan" name="precioPlan" class="form-control" readonly>
+                                    <?php endif; ?>
                                     <label class="form-label">Monto Total</label>
                                     <input type="text" id="montoTotal" name="montoTotal" class="form-control" readonly>
                                     <div class="mb-3">
@@ -583,6 +587,31 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <input class="form-control" type="file" id="archivo" name="archivo" required>
 
                                     </div>
+                                    <script>
+                                        // Obtener los elementos de los radios
+                                        var radioMensual = document.getElementById('formRadiosPlan1');
+                                        var radioAnual = document.getElementById('formRadiosPlan2');
+
+                                        // Obtener el elemento del campo de precioPlan
+                                        var campoPrecioPlan = document.getElementById('precioPlan');
+
+                                        // Agregar un evento al cambio de selección del radio
+                                        radioMensual.addEventListener('change', function() {
+                                            // Si se selecciona el radio Mensual, establecer el valor del campo precioPlan a 40
+                                            if (radioMensual.checked) {
+                                                campoPrecioPlan.value = '40';
+                                            }
+                                        });
+
+                                        // Agregar un evento al cambio de selección del radio
+                                        radioAnual.addEventListener('change', function() {
+                                            // Si se selecciona el radio Anual, establecer el valor del campo precioPlan a 408
+                                            if (radioAnual.checked) {
+                                                campoPrecioPlan.value = '408';
+                                            }
+                                        });
+                                    </script>
+
 
                                     <script>
                                         function buscar() {
