@@ -492,7 +492,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <div class="col-md-4">
                                             <div>
                                                 <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" value="1" required >
+                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan1" value="1" required oninput="calcularMontoTotal()">
                                                     <label class="form-check-label" for="formRadiosPlan1">
                                                         Mensual
                                                     </label>
@@ -503,7 +503,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <div class="col-md-4">
                                             <div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2" value="2" required >
+                                                    <input class="form-check-input" type="radio" name="formRadiosPlan" id="formRadiosPlan2" value="2" required oninput="calcularMontoTotal()">
                                                     <label class="form-check-label" for="formRadiosPlan2">
                                                         Anual
                                                     </label>
@@ -645,12 +645,12 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             var precioInput = document.getElementById("precioInput");
                                             var montoAdicionalInput = document.getElementById("montoAdicional");
                                             var montoTotalInput = document.getElementById("montoTotal");
-                                            var precioPlanInput = document.getElementById("precioPlan"); // Agrega el campo precioPlan
+                                            var precioPlanInput = document.querySelector('input[name="formRadiosPlan"]:checked').value;
 
                                             var cantidad = parseInt(cantidadInput.value) || 0;
                                             var precio = parseFloat(precioInput.value) || 0;
                                             var montoAdicional = parseFloat(montoAdicionalInput.value) || 0;
-                                            var precioPlan = parseFloat(precioPlanInput.value) || 0; // Agrega el valor del campo precioPlan
+                                            var precioPlan = (precioPlanInput === "1") ? 40 : (precioPlanInput === "2") ? 408 : 0;
 
                                             // Incluye el valor de precioPlan en el cálculo del montoTotal
                                             var montoTotal = (cantidad * precio) + montoAdicional + precioPlan;
