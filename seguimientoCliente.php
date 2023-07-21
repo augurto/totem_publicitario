@@ -6,8 +6,6 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
 }
-
-
 include 'includes/conexion.php'; // Incluir el archivo de conexión
 $queryNoAtendidos = "SELECT COUNT(*) AS countNoAtendidos FROM web_formularios WHERE estado_web = 0";
 $resultNoAtendidos = mysqli_query($con, $queryNoAtendidos);
@@ -18,6 +16,7 @@ if ($resultNoAtendidos) {
 } else {
     $noAtendidos = 0; // Si hay un error en la consulta, establecemos el valor en 0
 }
+
 $empresaUser =$_SESSION['empresaUser'] ;
 // Obtener el valor de $idUrl desde la URL
 $idUrl = $_GET['id'];
