@@ -1,18 +1,13 @@
-
 <?php
 session_start();
-
 if (!isset($_SESSION['usuario'])) {
     // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
     header("Location: login.php");
     exit();
 }
-
 include 'includes/conexion.php'; // Incluir el archivo de conexión
-
 $queryNoAtendidos = "SELECT COUNT(*) AS countNoAtendidos FROM web_formularios WHERE estado_web = 0";
 $resultNoAtendidos = mysqli_query($con, $queryNoAtendidos);
-
 if ($resultNoAtendidos) {
     $rowNoAtendidos = mysqli_fetch_assoc($resultNoAtendidos);
     $noAtendidos = $rowNoAtendidos['countNoAtendidos'];
@@ -21,18 +16,11 @@ if ($resultNoAtendidos) {
 }
 $usuario = $_SESSION['usuario'];
 $dni = $_SESSION['dni'];
-$tipoUsuario = $_SESSION['tipoUsuario'];
-$idUser=$_SESSION['idUser'];   
-$empresaUser=$_SESSION['empresaUser'];
+$tipoUsuario = $_SESSION['tipoUsuario'];   
 ?>
-
-
-
 <!doctype html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8" />
     <title>Reporte de Ventas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,56 +33,47 @@ $empresaUser=$_SESSION['empresaUser'];
         type="text/css" />
     <!-- DataTables -->
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-
     <!-- Responsive datatable examples -->
     <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
         type="text/css" />
-
     <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
     <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="assets/libs/spectrum-colorpicker2/spectrum.min.css" rel="stylesheet" type="text/css">
     <link href="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
-
     <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
 </head>
-
 <body data-topbar="dark">
        <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
-        <!-- Begin page -->
-        <div id="layout-wrapper">
-    	<?php
+       <?php
         include './parts/nav.php';
         include './parts/menuVertical.php'
         ?>
-     
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
-    <div class="main-content">
 
+          
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
-
                 <!-- start page title -->
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                             <h4 class="mb-sm-0">Reporte de Ventas </h4>
-
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Inicio</a></li>
                                     <li class="breadcrumb-item active">Reporte de ventas</li>
                                 </ol>
                             </div>
-
                         </div>  
                     </div>
                 </div>
@@ -102,11 +81,10 @@ $empresaUser=$_SESSION['empresaUser'];
                 <div class="row">
                     <?php
                         
-
                         // Realizar la consulta para obtener los datos de la tabla "venta"
-                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta, empresaUser,tipoMoneda FROM ventas where empresaUser= $empresaUser ";
+                        $query = "SELECT idVenta, idProducto, nombreProducto, precioProducto, cantidadProducto, montoAdicional, montoTotal, id_web_formularios, rutaArchivo, fechaVenta, estadoVenta, idUser, nombreArchivo, observacionVenta, empresaUser,tipoMoneda 
+                        FROM ventas WHERE empresaUser =$empresaUser2";
                         $result = mysqli_query($con, $query);
-
                         // Verificar si se obtuvieron resultados
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -128,7 +106,6 @@ $empresaUser=$_SESSION['empresaUser'];
                                 $nombreArchivo = $row['nombreArchivo'];
                                 $observacionVenta = $row['observacionVenta'];
                                 $rutaArchivoNuevo = str_replace("../", "", $rutaArchivo);
-
                     ?>
                     <div class="col-xl-3 col-sm-6">
                         <div class="card">
@@ -144,7 +121,6 @@ $empresaUser=$_SESSION['empresaUser'];
                                                 echo "G";
                                             }
                                             ?>
-
                                         </span>
                                         <!-- <img src="assets/images/companies/img-2.png" alt="img-2"
                                             class="avatar-sm mt-2 mb-4"> -->
@@ -161,7 +137,6 @@ $empresaUser=$_SESSION['empresaUser'];
                                                  <i class="ri-download-line"></i> <!-- Icono de descarga -->
                                             </a>
                                         </h5>
-
                                             <p class="text-muted mb-0" style="font-size: 12px;">
                                                 <i class="mdi mdi-account me-1"></i> 
                                                 <?php
@@ -169,17 +144,13 @@ $empresaUser=$_SESSION['empresaUser'];
                                                  // Obtener el nombre del usuario correspondiente al $idUser
                                                 $queryUser = "SELECT nombre_user FROM user WHERE id_user = $idUser";
                                                 $customResult = mysqli_query($con, $queryUser);
-
                                                 if ($customResult && mysqli_num_rows($customResult) > 0) {
                                                     $customRow = mysqli_fetch_assoc($customResult);
                                                     $customNombreUser = $customRow['nombre_user'];
-
                                                      // Convertir el nombre del usuario a minúsculas
                                                     $customNombreUser = strtolower($customNombreUser);
-
                                                     // Convertir solo las iniciales a mayúsculas
                                                     $customNombreUser = ucwords($customNombreUser);
-
                                                     // Imprimir el nombre del usuario con las iniciales en mayúsculas
                                                     echo $customNombreUser;
                                                 } else {
@@ -197,7 +168,6 @@ $empresaUser=$_SESSION['empresaUser'];
                                                     // Obtener el nombre del usuario correspondiente al $idUser
                                                     $queryProducto = "SELECT nombreProducto FROM producto WHERE idProducto = $idProducto";
                                                     $customProducto = mysqli_query($con, $queryProducto);
-
                                                     if ($customProducto && mysqli_num_rows($customProducto) > 0) {
                                                         $productoRow = mysqli_fetch_assoc($customProducto);
                                                         $ProductoNombre = $productoRow['nombreProducto'];
@@ -224,7 +194,6 @@ $empresaUser=$_SESSION['empresaUser'];
                                             <!-- end col -->
                                         </div>
                                         <div class="row">
-
                                         <h5 class="font-size-12 mb-0"><?php echo $nuevaFecha; ?></h5>
                                         </div>
                                         <!-- end row -->
@@ -243,7 +212,6 @@ $empresaUser=$_SESSION['empresaUser'];
                         } else {
                             echo "No se encontraron resultados.";
                         }
-
                         // Cerrar la conexión a la base de datos
                         mysqli_close($con);
                     ?>
@@ -251,53 +219,52 @@ $empresaUser=$_SESSION['empresaUser'];
                 </div>
                 <!-- end row -->
                 
-
             </div>
             <!-- container-fluid -->
-
         </div>
         <!-- End Page-content -->
 
-        <?php include './parts/footer.php';?>
+
+            <?php include './parts/footer.php'; ?>
+        </div>
+        <!-- end main content-->
+
     </div>
-    <!-- end main content-->
-</div>
-<!-- END layout-wrapper -->
-<?php include './parts/sidebar.php';?>
+    <!-- END layout-wrapper -->
 
+    <?php include './parts/sidebar.php'; ?>
 
-<script src="assets/libs/jquery/jquery.min.js"></script>
-<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/libs/metismenu/metisMenu.min.js"></script>
-<script src="assets/libs/simplebar/simplebar.min.js"></script>
-<script src="assets/libs/node-waves/waves.min.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
 
-<script src="assets/libs/select2/js/select2.min.js"></script>
-<script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="assets/libs/spectrum-colorpicker2/spectrum.min.js"></script>
-<script src="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-<script src="assets/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
-<script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
-<script src="assets/js/pages/form-advanced.init.js"></script>
-<script src="assets/js/app.js"></script>
+    <!-- Required datatable js -->
+    <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="assets/libs/jszip/jszip.min.js"></script>
+    <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
+    <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
+    <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
 
-<!-- apexcharts -->
-<script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
 
-<!-- jquery.vectormap map -->
-<script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
+    <!-- Responsive examples -->
+    <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
-<!-- Required datatable js -->
-<script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Datatable init js -->
+    <script src="assets/js/pages/datatables.init.js"></script>
 
-<!-- Responsive examples -->
-<script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-
-<!-- <script src="assets/js/pages/dashboard.init.js"></script> -->
-
+    <script src="assets/js/app.js"></script>
 
 </body>
 

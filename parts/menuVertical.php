@@ -2,6 +2,7 @@
 include '../includes/conexion.php';
 
 $empresaUser2=$_SESSION['empresaUser'];
+$idUsuarioSesion=$_SESSION['idUser'];
 // Consulta SQL para contar los registros con prospecto igual a 4
 $queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM ventas  ";
 $resultContarVendidos = mysqli_query($con, $queryContarVendidos);
