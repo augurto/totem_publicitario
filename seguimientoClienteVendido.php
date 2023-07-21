@@ -441,7 +441,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             while ($rowp = mysqli_fetch_assoc($resultp)) {
                                                 $valuep = $rowp['idProducto'];
                                                 $textp = $rowp['nombreProducto'];
-                                                $preciop = $rowp['precioProducto'];
+                                                $preciop = $rowp['precioProductoSoles'];
                                                 echo "<option value='" . $valuep . "'>" . $textp . " - Precio: " . $preciop . "</option>";
                                             }
                                         }
