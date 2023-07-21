@@ -7,6 +7,21 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 include 'includes/conexion.php'; // Incluir el archivo de conexión
+// Consulta SQL para contar los registros con prospecto igual a 4
+$queryContarVendidos = "SELECT COUNT(*) AS totalVendidos FROM ventas  ";
+$resultContarVendidos = mysqli_query($con, $queryContarVendidos);
+
+// Verificar si se ejecutó la consulta correctamente
+if ($resultContarVendidos) {
+    // Obtener el resultado como un arreglo asociativo
+    $rowContarVendidos = mysqli_fetch_assoc($resultContarVendidos);
+
+    // Extraer el valor de la columna "totalVendidos" y almacenarlo en la variable $vendidos
+    $vendidos = $rowContarVendidos['totalVendidos'];
+} else {
+    // Si hubo un error en la consulta, asignar 0 a la variable $vendidos
+    $vendidos = 0;
+}
 $queryNoAtendidos = "SELECT COUNT(*) AS countNoAtendidos FROM web_formularios WHERE estado_web = 0";
 $resultNoAtendidos = mysqli_query($con, $queryNoAtendidos);
 
