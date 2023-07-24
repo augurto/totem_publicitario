@@ -129,7 +129,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 }
 
                                                 // Consulta SQL para obtener los datos de la tabla "formulario_totem"
-                                                $sql = "SELECT * FROM ventas where empresaUser= $empresaUser and prospecto=4  ORDER BY fechaVenta DESC";
+                                                $sql = "SELECT * FROM ventas where empresaUser= $empresaUser  ORDER BY fechaVenta DESC";
                                                 
                                                 $result = $conn->query($sql);
                                                 
