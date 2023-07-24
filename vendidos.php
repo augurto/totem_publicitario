@@ -103,17 +103,12 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 <tr>
                                                     <th>ID</th>
                                                     <!-- <th>Accion</th> -->
-                                                    <th>Nombres</th>
-                                                    <th>Fuente</th>
-                                                    <th>Email</th>
-                                                    <th>Teléfono</th>
-                                                    <th>Estado</th>
-                                                    <th>Mensaje</th>
-                                                    <th>Fecha </th>
-                                                    <th>URL</th>
-                                                    <th>Nombre Formulario</th>
-                                                    <th>IP</th>
-                                                    <th>Aterrizaje</th>
+                                                    <th>Nombre Producto</th>
+                                                    <th>Precio</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Total</th>
+                                                    <th>Fecha</th>
+                                                    
                                                     
                                                     
                                                 </tr>
@@ -134,11 +129,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 }
 
                                                 // Consulta SQL para obtener los datos de la tabla "formulario_totem"
-                                                $sql = "SELECT 
-                                                id_form_web,date_create,datos_form,email,telefono,mensaje,fecha,URL,nombre_formulario,ip_formulario,
-                                                time,estado_web,estado_web,fuente_dato,id_user,idEmpresa,documentoCliente,tipoCliente,prospecto,
-                                                observacionCliente,idid,estadoCliente
-                                                 FROM web_formularios where estado_web != 99 and idEmpresa= $empresaUser and prospecto=4  ORDER BY fecha DESC";
+                                                $sql = "SELECT * FROM ventas where empresaUser= $empresaUser and prospecto=4  ORDER BY fechaVenta DESC";
                                                 
                                                 $result = $conn->query($sql);
                                                 
@@ -149,106 +140,20 @@ $empresaUser =$_SESSION['empresaUser'] ;
 
                                                     // Mostrar los datos en filas de la tabla
                                                     while ($row = $result->fetch_assoc()) {
-                                                        $prospecto=$row["prospecto"];
+                                                        $nombreProducto=$row["nombreProducto"];
+                                                        $precioProducto=$row["precioProducto"];
+                                                        $cantidadProducto=$row["cantidadProducto"];
+                                                        $montoTotal=$row["montoTotal"];
+                                                        $fechaVenta=$row["fechaVenta"];
+
                                                         echo "<tr>";
                                                         echo "<td>" . $id . "</td>";
-                                                        /* echo "<td>" . $row["datos_form"] . "</td>"; */
-                                                        $url_dato = $row["URL"];
-                                                        // Obtener los parámetros de la URL
-                                                        $params = parse_url($url_dato, PHP_URL_QUERY);
-
-                                                        // Convertir los parámetros en un arreglo asociativo
-                                                        parse_str($params, $query);
-
-                                                        // Obtener los valores de las variables específicas
-                                                        $a = $query['utm_source'];
-                                                        $b = $query['utm_medium'];
-                                                        $c = $query['utm_campaign'];
-
-                                                        // Imprimir los valores
-                                                                                                           
-                                                        $documentoCliente=$row["documentoCliente"];
-                                                        $fuente_dato = $row["fuente_dato"];
-
-                                                       
-                                                            // Obtener el valor de $row["estado_web"]
-                                                            $estado_web = $row["estado_web"];
-
-                                                            if ($estado_web == 0 && !empty($a)) {
-                                                                
-                                                                echo "<td>" . $row['datos_form'] . "
-                                                                </td>";
-                                                            } elseif ($estado_web == 1) {
-                                                                
-                                                                echo "<td>" . $row['datos_form'] . "
-                                                                    </td>";
-                                                            } elseif (empty($a) && $estado_web == 0  ) {
-                                                                
-                                                                echo "<td>" . $row['datos_form'] . "</td>";
-                                                            }
-                                                            
-                                                        
-                                                            if (empty($row["id_user"])) {
-                                                                if ($a == "Google ADS") {
-                                                                    $fuenteOriginal = 2;
-                                                                } elseif ($a == "Meta ADS") {
-                                                                    $fuenteOriginal = 3;
-                                                                } else {
-                                                                    $fuenteOriginal = 1;
-                                                                }
-                                                            } else {
-                                                                $fuenteOriginal = $row["prospecto"];
-                                                            }
-                                                            
-                                                        /* condicional para mostrar si es de facebook, google, organico o presencial */
-                                                      
-
-                                                                $queryFuente = "SELECT colorFuente,descripcionFuente FROM fuente WHERE tipoFuente = '$fuenteOriginal'";
-                                                                $resultFuente = mysqli_query($conn, $queryFuente);
-
-                                                                $rowFuente = mysqli_fetch_assoc($resultFuente);
-                                                                $descripcionFuente = $rowFuente['descripcionFuente'];
-                                                                $colorFuente = $rowFuente['colorFuente'];
-                                                                $tipoFuente = $rowFuente['tipoFuente'];                                            
-                                                                        
-
-                                                                echo '<td><span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';color:white;">' . $descripcionFuente . '</span></td>';
-
-
-
-                                                          
-
-                                                        echo "<td>" . $row["email"] . "</td>";
-                                                       
-                                                        $telefonooo = $row["telefono"];
-                                                        echo "<td><a href='https://wa.me/51$telefonooo' target='_blank'>$telefonooo</a></td>";
-                                                     
-                                                        
-                                                        $estadoCliente = $row["tipoCliente"];
-                                                        
-                                                        // Realizar la consulta a la base de datos para obtener la descripción del tipo de cliente
-                                                        $queryTipoCliente = "SELECT * FROM tipoCliente WHERE valorTipoCliente = $estadoCliente";
-                                                        $resultTipoCliente = mysqli_query($conn, $queryTipoCliente);
-
-                                                        if ($resultTipoCliente && mysqli_num_rows($resultTipoCliente) > 0) {
-                                                            $rowTipoCliente = mysqli_fetch_assoc($resultTipoCliente);
-                                                            $descripcionTipoCliente = $rowTipoCliente["descripcionTipoCliente"];
-                                                            $colorTipoCliente = $rowTipoCliente["colorTipoCliente"];
-
-                                                            echo "<td><span class=\"badge rounded-pill\" style=\"background-color: $colorTipoCliente;\">$descripcionTipoCliente</span></td>";
-                                                        } else {
-                                                            
-                                                            echo '<td><span class="badge rounded-pill" style="background-color: black; color: white;">Prospecto Venta</span></td>';
-
-                                                        }
-
-
-                                                        echo "<td>" . $row["mensaje"] . "</td>";
-                                                        echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fecha"] . '-5 hours')) . "</td>";
-                                                        echo "<td>" . $row["URL"] . "</td>";
-                                                        echo "<td>" . $row["nombre_formulario"] . "</td>";
-                                                        echo "<td>" . $row["ip_formulario"] . "</td>";
-                                                        echo "<td>" . $c . "</td>";
+                                                        echo "<td>" . $nombreProducto. "</td>";
+                                                        echo "<td>" . $precioProducto. "</td>";
+                                                        echo "<td>" . $cantidadProducto . "</td>";
+                                                        echo "<td>" . $montoTotal . "</td>";
+                                                       /*  echo "<td>" . $fechaVenta . "</td>"; */
+                                                        echo "<td>" . date('Y-m-d H:i:s', strtotime($fechaVenta . '-5 hours')) . "</td>";
                                                                                                
                                                         echo "</tr>";
                                         
