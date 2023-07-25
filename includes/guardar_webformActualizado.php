@@ -13,8 +13,8 @@ $fuenteDato = $_POST['fuenteDato'];
 // Asignar el valor a $tipoCliente según el valor de $documento
 
 if($_POST['tipoCliente'] == 3) {
-    $tipoCliente = $_POST['tipoCliente']
-}else {
+    $tipoCliente = $_POST['tipoCliente'];
+}else{
     // Verificamos si $documento está vacío
     if (empty($documento)) {
         $tipoCliente = 4; // Asignamos el valor 4 a $tipoCliente si $documento está vacío
