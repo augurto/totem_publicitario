@@ -17,6 +17,17 @@ if (empty($documento)) {
     $tipoCliente = $_POST['tipoCliente'];
 }
 
+if ($_POST['tipoCliente'] == 3) {
+    $tipoCliente = $_POST['tipoCliente']
+} else {
+    // Verificamos si $documento está vacío
+    if (empty($documento)) {
+        $tipoCliente = 4; // Asignamos el valor 4 a $tipoCliente si $documento está vacío
+    } else {
+        $tipoCliente = $_POST['tipoCliente']; // En caso contrario, utilizamos el valor recibido por POST
+    }
+}
+
 $comentario = $_POST['comentario'];
 /* FIN datos obtenidos de los inputs */
 $idweb = $_POST['idweb'];
