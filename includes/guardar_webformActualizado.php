@@ -11,15 +11,10 @@ $fuenteDato = $_POST['fuenteDato'];
 
 /* estado es igual a tipo cliente */
 // Asignar el valor a $tipoCliente según el valor de $documento
-if (empty($documento)) {
-    $tipoCliente = 4;
-} else {
-    $tipoCliente = $_POST['tipoCliente'];
-}
 
-if ($_POST['tipoCliente'] == 3) {
+if($_POST['tipoCliente'] == 3) {
     $tipoCliente = $_POST['tipoCliente']
-} else {
+}else {
     // Verificamos si $documento está vacío
     if (empty($documento)) {
         $tipoCliente = 4; // Asignamos el valor 4 a $tipoCliente si $documento está vacío
