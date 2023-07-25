@@ -137,6 +137,12 @@ if ($resultNoAtendidos) {
 
                 </li>
                 <!-- end li -->
+                <li>
+                        <a href="vendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"> 3</span>
+                            <span>Atendidos</span>
+                        </a>
+                </li>
             </ul>
             <!-- end ul -->
         </div>
