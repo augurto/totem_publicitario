@@ -8,11 +8,11 @@ $telefono = $_POST['telefono'];
 $email = $_POST['email'];
 $fuente = $_POST['fuente'];
 $fuenteDato = $_POST['fuenteDato'];
-
+$tipoCliente = $_POST['tipoCliente'];
 /* estado es igual a tipo cliente */
 // Asignar el valor a $tipoCliente según el valor de $documento
 
-if($_POST['tipoCliente'] == 3) {
+/* if($_POST['tipoCliente'] == 3) {
     $tipoCliente = $_POST['tipoCliente'];
 }else{
     // Verificamos si $documento está vacío
@@ -21,7 +21,7 @@ if($_POST['tipoCliente'] == 3) {
     } else {
         $tipoCliente = $_POST['tipoCliente']; // En caso contrario, utilizamos el valor recibido por POST
     }
-}
+} */
 
 $comentario = $_POST['comentario'];
 /* FIN datos obtenidos de los inputs */
