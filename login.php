@@ -59,8 +59,8 @@
                                             <div class="form-checkbox">
                                                 <input type="checkbox" class="form-check-input me-1"
                                                     id="customControlInline">
-                                                <label class="form-label" class="form-check-label"
-                                                    for="customControlInline">Recuerdame</label>
+                                                <!-- <label class="form-label" class="form-check-label"
+                                                    for="customControlInline">Recuerdame</label> -->
                                             </div>
                                         </div>
                                         <!-- end col -->
