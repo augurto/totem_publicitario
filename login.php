@@ -33,8 +33,8 @@
                             <div class="text-center mt-4">
                                 <div class="mb-3">
                                     <a href="index.html" class="">
-                                        <img src="assets/images/adfusion.png" alt="" height="22" class="auth-logo logo-dark mx-auto"  style="background: #b0b0b0; border-radius: 12px;">
-                                        <img src="assets/images/adfusion.png" alt="" height="22" class="auth-logo logo-light mx-auto"  style="background: #b0b0b0; border-radius: 12px;">
+                                        <img src="assets/images/adNuevo.png" alt="" height="22" class="auth-logo logo-dark mx-auto"  style="background: #b0b0b0; border-radius: 12px;">
+                                        <img src="assets/images/adNuevo.png" alt="" height="22" class="auth-logo logo-light mx-auto"  style="background: #b0b0b0; border-radius: 12px;">
                                     </a>
                                 </div>
                             </div>
