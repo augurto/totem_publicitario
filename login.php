@@ -33,8 +33,8 @@
                             <div class="text-center mt-4">
                                 <div class="mb-3">
                                     <a href="index.html" class="">
-                                        <img src="assets/images/adNuevo.png" alt="" height="22" class="auth-logo logo-dark mx-auto"  style="background: #b0b0b0; border-radius: 12px;">
-                                        <img src="assets/images/adNuevo.png" alt="" height="22" class="auth-logo logo-light mx-auto"  style="background: #b0b0b0; border-radius: 12px;">
+                                        <img src="assets/images/adNuevo.png" alt="" height="22" class="auth-logo logo-dark mx-auto" >
+                                        <img src="assets/images/adNuevo.png" alt="" height="22" class="auth-logo logo-light mx-auto" >
                                     </a>
                                 </div>
                             </div>
@@ -65,8 +65,8 @@
                                         </div>
                                         <!-- end col -->
                                         <div class="col-sm-6 text-end">
-                                            <a href="auth-recoverpw.html" class="text-muted"><i
-                                                    class="mdi mdi-lock"></i> Olvidaste tu contraseña?</a>
+                                            <!-- <a href="auth-recoverpw.html" class="text-muted"><i
+                                                    class="mdi mdi-lock"></i> Olvidaste tu contraseña?</a> -->
                                         </div>
                                         <!-- end col -->
                                     </div>
@@ -87,8 +87,8 @@
                     </div>
                     <!-- end card -->
                     <div class="mt-5 text-center">
-                        <p>No tienes una cuenta ?<a href="auth-register.html" class="fw-bold text-primary"> Registrate ahora                              Now </a></p>
-                        <p>©
+                        <!-- <p>No tienes una cuenta ?<a href="auth-register.html" class="fw-bold text-primary"> Registrate ahora                              Now </a></p>
+ -->                        <p>©
                             <script>document.write(new Date().getFullYear())</script> Adfusion <i
                                 class="mdi mdi-heart text-danger"></i> 
                         </p>
