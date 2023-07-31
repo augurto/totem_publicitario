@@ -3,6 +3,7 @@
 $empresaUser2 = $_SESSION['empresaUser'];
 $idUsuarioSesion = $_SESSION['idUser'];
 $tipoUsuario = $_SESSION['tipoUsuario'];
+
 // Consulta SQL para contar los registros con prospecto igual a 4
 // Verificar el valor de $tipoUsuario y ajustar la consulta en consecuencia
 if ($tipoUsuario == 1) {
@@ -44,6 +45,21 @@ if ($resultNoAtendidos) {
     $noAtendidos = 0; // Si hay un error en la consulta, establecemos el valor en 0
 }
 
+// Definir la consulta SQL con los filtros requeridos
+$consulta = "SELECT COUNT(*) AS totalRegistros FROM web_formularios WHERE estado_web = 1 AND idEmpresa = $empresaUser AND id_user = $idUsuarioSesion";
+
+// Ejecutar la consulta y obtener el resultado
+$resultadoContarFormularios = mysqli_query($con, $consulta);
+
+// Verificar si se ejecutó la consulta correctamente
+if ($resultadoContarFormularios) {
+    // Obtener el valor del conteo utilizando la función mysqli_fetch_assoc()
+    $fila = mysqli_fetch_assoc($resultadoContarFormularios);
+    $conteoRegistros = $fila['totalRegistros'];
+} else {
+    // Si hubo un error en la consulta, asignar 0 al conteo
+    $conteoRegistros = 0;
+}
 ?>
 
 <!-- ========== Left Sidebar Start ========== -->
@@ -137,6 +153,12 @@ if ($resultNoAtendidos) {
 
                 </li>
                 <!-- end li -->
+                <li>
+                        <a href="atendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"> <?php echo $conteoRegistros ; ?></span>
+                            <span>Atendidos</span>
+                        </a>
+                </li>
             </ul>
             <!-- end ul -->
         </div>

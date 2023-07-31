@@ -8,14 +8,20 @@ $telefono = $_POST['telefono'];
 $email = $_POST['email'];
 $fuente = $_POST['fuente'];
 $fuenteDato = $_POST['fuenteDato'];
-
+$tipoCliente = $_POST['tipoCliente'];
 /* estado es igual a tipo cliente */
 // Asignar el valor a $tipoCliente según el valor de $documento
-if (empty($documento)) {
-    $tipoCliente = 4;
-} else {
+
+/* if($_POST['tipoCliente'] == 3) {
     $tipoCliente = $_POST['tipoCliente'];
-}
+}else{
+    // Verificamos si $documento está vacío
+    if (empty($documento)) {
+        $tipoCliente = 4; // Asignamos el valor 4 a $tipoCliente si $documento está vacío
+    } else {
+        $tipoCliente = $_POST['tipoCliente']; // En caso contrario, utilizamos el valor recibido por POST
+    }
+} */
 
 $comentario = $_POST['comentario'];
 /* FIN datos obtenidos de los inputs */
@@ -47,12 +53,14 @@ if (mysqli_query($con, $query)) {
     $updateQuery = "UPDATE web_formularios SET estado_web = 99 WHERE id_form_web = $idweb";
     mysqli_query($con, $updateQuery);
 
-    if ($tipoCliente == 5) {
+    if ($tipoCliente == 5 && $empresa == 1) {
         // Redireccionar a seguimientoCliente.php con variables en la URL
         header("Location: ../seguimientoClienteVendido.php?id=$id&pr=$pr");
+        exit;
     } else {
         // Redireccionar a vendedor.php con el parámetro p=0
         header("Location: ../vendedor.php?p=0");
+        exit;
     }
 
     exit();
