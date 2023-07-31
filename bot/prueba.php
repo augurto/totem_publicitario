@@ -13,7 +13,7 @@ if (!$conn) {
 // Consulta SQL
 $id_producto = 91076;
 
-$sql = "SELECT * from productos";
+$sql = "SELECT * from productos where idProducto=2";
 
 $resultado = mysqli_query($conn, $sql);
 
