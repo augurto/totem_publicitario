@@ -115,7 +115,7 @@
                                                 }
 
                                                 // Consulta SQL para obtener los datos de la tabla "formulario_totem"
-                                                $sql = "SELECT 
+                                                $sql = "SELECT * 
                                                  FROM mensajes ORDER BY fechaCreacionMensaje DESC";
                                                 
                                                 $result = $conn->query($sql);
