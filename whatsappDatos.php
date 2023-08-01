@@ -102,7 +102,7 @@
                                             <tbody>
                                                 <?php
                                                 // Establecer la conexión con la base de datos
-                                                $servername = "localhost";
+                                                $servername = "127.0.0.1:3306";
                                                 $username = "u291982824_bot";
                                                 $password = "Bot*#6969";
                                                 $dbname = "u291982824_bot";
