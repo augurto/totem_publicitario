@@ -41,6 +41,13 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
+<style>
+    @media print {
+        body {
+            display: none;
+        }
+    }
+</style>
 
 <body data-topbar="dark">
        <!-- <body data-layout="horizontal" data-topbar="dark"> -->
