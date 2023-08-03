@@ -45,8 +45,8 @@
                                 <form class="form-horizontal" action="includes/guardar_datos_usuario.php" method="POST">
 
                                     <div class="mb-3">
-                                        <label class="form-label" for="username">DNI</label>
-                                        <input type="text" class="form-control" id="username" name="dni" placeholder="Documento">
+                                        <label class="form-label" for="username">DNI o Usuario</label>
+                                        <input type="text" class="form-control" id="username" name="dni" placeholder="Documento o Usuario">
                                     </div>
 
                                     <div class="mb-3">
