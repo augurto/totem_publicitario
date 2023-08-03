@@ -149,6 +149,36 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <?php
                                             }
                                             ?>
+                                            <?php
+                                            // Realizar la conexión a la base de datos (asumiendo que ya has definido las variables de conexión)
+                                            
+
+                                            // Inicializar un array con los valores permitidos
+                                            $valoresPermitidos = array(7, 9, 10);
+                                            
+                                            // Realizar una búsqueda en el array para verificar si el último valor es uno de los permitidos
+                                            if (isset($_SESSION['ultimaValorRandom']) && in_array($_SESSION['ultimaValorRandom'], $valoresPermitidos)) {
+                                                // Obtener el índice del último valor
+                                                $indiceUltimoValor = array_search($_SESSION['ultimaValorRandom'], $valoresPermitidos);
+                                            
+                                                // Calcular el índice del siguiente valor, considerando el ciclo entre los valores permitidos
+                                                $indiceSiguienteValor = ($indiceUltimoValor + 1) % count($valoresPermitidos);
+                                            
+                                                // Obtener el siguiente valor
+                                                $siguienteValor = $valoresPermitidos[$indiceSiguienteValor];
+                                            } else {
+                                                // Si no hay un último valor o no es uno de los permitidos, iniciar en el primer valor (7)
+                                                $siguienteValor = $valoresPermitidos[0];
+                                            }
+                                            
+                                            // Guardar el último valor en la sesión
+                                            $_SESSION['ultimaValorRandom'] = $siguienteValor;
+                                            
+                                            // Mostrar el valor en el input
+                                            echo '<input class="form-control" type="number" id="example-email-input" name="userRandom" value="' . $siguienteValor . '" readonly>';
+                                            ?>
+                                            
+
 
 
                                             <!-- end row -->
