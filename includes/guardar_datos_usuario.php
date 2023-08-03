@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     
     // Realizar la consulta a la base de datos
-    $query = "SELECT * FROM user WHERE documento = '$dni' AND pass_user = '$password'";
+    $query = "SELECT * FROM user WHERE documento = '$dni' OR userName = '$dni' AND pass_user = '$password'";
     $result = mysqli_query($con, $query);
     
     // Verificar si se encontraron resultados
