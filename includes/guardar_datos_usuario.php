@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Obtener los datos de inicio de sesión de la variable de sesión
         $usuario = $row['nombre_user'];
         $userName = $row['userName'];
-
         $dni = $row['documento'];
         $idUser = $row['id_user'];
         $empresaUsuario = $row['empresaUser'];

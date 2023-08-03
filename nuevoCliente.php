@@ -135,6 +135,22 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                         id="example-email-input" name="email">
                                                 </div>
                                             </div>
+
+                                            <?php
+                                            // Comprobar si $_SESSION['empresaUser'] es igual a 1
+                                            if ($_SESSION['empresaUser'] == 1) {
+                                                ?>
+                                                <div class="row mb-3">
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label">Usuario Random</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="number" id="example-email-input" name="userRandom">
+                                                    </div>
+                                                </div>
+                                                <?php
+                                            }
+                                            ?>
+
+
                                             <!-- end row -->
                                             <div class="mb-12">
                                                 <label class="form-label">Tipo de Cliente</label>
