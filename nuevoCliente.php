@@ -129,7 +129,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                              <div class="row mb-6">
                                                 <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="tel" placeholder="999-555-555"
+                                                    <input class="form-control" type="tel" 
                                                         id="example-tel-input" name="telefono">
                                                 </div>
                                             </div>
