@@ -1,2 +1,0 @@
-git add .gitignore
-git commit -m "Agregar regla para ignorar includes/conexion.php"
