@@ -492,9 +492,10 @@ $dni = $_SESSION['dni'];
                                     <ul class="list-unstyled activity-wid">
 
                                         <?php
-                                        $idURL = $_GET['id'];  // Obtén el valor de id desde $_GET
+                                        /* $idURL = $_GET['id'];   */// Obtén el valor de id desde $_GET
+                                        $idURL = 4183;  // Cambia el valor de idOriginal que desees mostrar
 
-                                        $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = 4183";
+                                        $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = '$idURL'";
                                         $resultLinea = mysqli_query($con, $queryLinea);
 
                                         if ($resultLinea) {
