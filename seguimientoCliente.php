@@ -479,17 +479,54 @@ $dni = $_SESSION['dni'];
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
                                         <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                        <a href="javascript:void(0);" class="dropdown-item">Accion 1</a>
                                         <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                        <a href="javascript:void(0);" class="dropdown-item">Accion 2</a>
                                         <!-- item-->
                                     </div>
                                 </div>
                                 <!-- end dropdown -->
-                                <h4 class="card-title mb-4">Recent Activity Feed</h4>
+                                <h4 class="card-title mb-4">Eventos</h4>
 
                                 <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
                                     <ul class="list-unstyled activity-wid">
+                                    <?php
+                                    $idURL = $_GET['id'];  // Obtén el valor de id desde $_GET
+
+                                    $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = '$idURL'";
+                                    $resultLinea = mysqli_query($con, $queryLinea);
+
+                                    while ($rowLinea = mysqli_fetch_array($resultLinea)) {
+                                        $fechaLinea = $rowLinea["Fecha"];  // Cambia "Fecha" por el nombre real de la columna de fecha
+                                        $mensajeLinea = $rowLinea["mensaje"];  // Cambia "mensaje" por el nombre real de la columna de mensaje
+                                        $idUsuarioLinea = $rowLinea["id_user"];  // Cambia "id_user" por el nombre real de la columna de ID de usuario
+
+                                        echo '<li class="activity-list border-left">
+                                                <div class="activity-icon avatar-xs">
+                                                    <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                        <i class="ri-edit-2-fill"></i>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <div class="d-flex">
+                                                        <div class="flex-1">
+                                                            <h5 class="font-size-13">' . $fechaLinea . ' - 5 horas</h5>
+                                                        </div>
+                                                        <div>
+                                                            <small class="text-muted">' . date("h:i a", strtotime($fechaLinea)) . '</small>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="text-muted mb-0">' . $mensajeLinea . '</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="text-muted mb-0">' . $idUsuarioLinea . '</p>
+                                                    </div>
+                                                </div>
+                                            </li>';
+                                    }
+                                    ?>
+
                                         <!-- start li -->
                                         <li class="activity-list border-left">
                                             <div class="activity-icon avatar-xs">
