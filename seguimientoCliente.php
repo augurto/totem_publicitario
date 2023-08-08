@@ -181,7 +181,7 @@ $dni = $_SESSION['dni'];
                                             
                                             $curl = curl_init();
                                             curl_setopt_array($curl, array(
-                                                CURLOPT_URL => "https://apiperu.dev/api/dni/$documento?api_token=219965b4c7c3cc8d5437576f507f3d5f6ffde004e27580e83f8fd3e1a35f1c09",
+                                                CURLOPT_URL => "https://apiperu.dev/api/dni/$documento?api_token=asd",
                                                 CURLOPT_RETURNTRANSFER => true,
                                                 CURLOPT_CUSTOMREQUEST => "GET",
                                                 CURLOPT_SSL_VERIFYPEER => false
@@ -464,6 +464,196 @@ $dni = $_SESSION['dni'];
                                 <!-- end form -->
                             </div>
                             <!-- end cardbody -->
+                        </div>
+                        <!-- end card -->
+                    </div>
+
+                    <!-- end col -->
+                    <div class="col-xl-4">
+                        <div class="card">
+                            <div class="card-body bg-transparent">
+                                <div class="dropdown float-end">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="mdi mdi-dots-vertical text-muted"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                        <!-- item-->
+                                    </div>
+                                </div>
+                                <!-- end dropdown -->
+                                <h4 class="card-title mb-4">Recent Activity Feed</h4>
+
+                                <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
+                                    <ul class="list-unstyled activity-wid">
+                                        <!-- start li -->
+                                        <li class="activity-list border-left">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-edit-2-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">28 Apr, 2021 </h5>
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted">12:07 am</small>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0">Responded to need “Volunteer Activities”
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+                                        <li class="activity-list">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-user-2-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">21 Apr, 2021</h5>
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted">08:01 pm</small>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0">Added an interest “Volunteer Activities”
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+                                        <li class="activity-list">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-bar-chart-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">17 Apr, 2021</h5>
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted">09:23 am</small>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0">Joined the group “Boardsmanship
+                                                        Forum”
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+
+                                        <li class="activity-list">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-mail-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">11 Apr, 2021 </h5>
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted">05:10 pm</small>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0">Responded to need “In-Kind Opportunity”
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+                                        <li class="activity-list">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-calendar-2-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">07 Apr, 2021</h5>
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted">12:47 pm</small>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <p class="text-muted mb-0">Created need “Volunteer Activities”</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+                                        <li class="activity-list">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-edit-2-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">05 Apr, 2021 </h5>
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted">03:09 pm</small>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0">Attending the event “Some New Event”</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+                                        <li class="activity-list">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-user-2-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">02 Apr, 2021 </h5>
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted">12:07 am</small>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0">Responded to need “In-Kind Opportunity”
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+                                    </ul>
+                                    <!-- end ul -->
+                                </div>
+                            </div>
+                            <!-- end body -->
+                            <div>
+
+                            </div>
                         </div>
                         <!-- end card -->
                     </div>
