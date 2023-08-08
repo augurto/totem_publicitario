@@ -1,5 +1,5 @@
 <?php
-$token = "xoxb-16060872976-5733378532096-ME5NLPxqlG7UDjsMx0jguCKM";
+$token = "9fCGhLRbtKwPLGnd2ne8T0j9";
 $channel = "C05LF94CS07";
 $message = "Hola, este es un mensaje enviado desde PHP.";
 
