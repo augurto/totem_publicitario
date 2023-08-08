@@ -533,7 +533,7 @@ $dni = $_SESSION['dni'];
                                                     <p class="text-muted mb-0"><?php 
                                                     $nombreUsuarioAtencion = ucwords(strtolower($userData["nombre_user"]));
                                                                                                        
-                                                    echo $nombreUsuarioAtencion["nombre_user"]; ?></p>
+                                                    echo $nombreUsuarioAtencion; ?></p>
                                                 </div>
                                             </div>
                                         </li>
