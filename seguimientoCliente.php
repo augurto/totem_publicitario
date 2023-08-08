@@ -176,6 +176,39 @@ $dni = $_SESSION['dni'];
                                                 id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" readonly>
                                                 </div>
                                             </div>
+                                            <?php
+                                            
+                                            $curl = curl_init();
+                                            curl_setopt_array($curl, array(
+                                                CURLOPT_URL => "https://apiperu.dev/api/dni/$documento?api_token=219965b4c7c3cc8d5437576f507f3d5f6ffde004e27580e83f8fd3e1a35f1c09",
+                                                CURLOPT_RETURNTRANSFER => true,
+                                                CURLOPT_CUSTOMREQUEST => "GET",
+                                                CURLOPT_SSL_VERIFYPEER => false
+                                            ));
+                                            $response = curl_exec($curl);
+                                            $err = curl_error($curl);
+                                            curl_close($curl);
+                                            if ($err) {
+                                                echo "cURL Error #:" . $err;
+                                            } else {
+                                                $data = json_decode($response, true);
+                                                if ($data['success']) {
+                                                    $nombreCompleto = $data['data']['nombre_completo'];
+                                                    
+                                                    echo '
+                                                    <div class="row mb-6">
+                                                        <label for="example-text-input" class="col-sm-2 col-form-label">Datos Reniec</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" placeholder="Nombres y Apellidos"
+                                                                id="example-text-input" name="datos" value="' . $nombreCompleto . '" readonly>
+                                                        </div>
+                                                    </div>';
+
+                                                } else {
+                                                    echo "No se pudo obtener información para el DNI proporcionado.";
+                                                }
+                                            }
+                                            ?>
                                             <br>
                                             
                                             <?php if (empty($documento)) : ?>
@@ -418,30 +451,7 @@ $dni = $_SESSION['dni'];
                                     <!-- end row -->
                                     
                                 </form>
-                                <?php
-                                $dniEgo = 71656695;
-                                $curl = curl_init();
-                                curl_setopt_array($curl, array(
-                                    CURLOPT_URL => "https://apiperu.dev/api/dni/$dniEgo?api_token=219965b4c7c3cc8d5437576f507f3d5f6ffde004e27580e83f8fd3e1a35f1c09",
-                                    CURLOPT_RETURNTRANSFER => true,
-                                    CURLOPT_CUSTOMREQUEST => "GET",
-                                    CURLOPT_SSL_VERIFYPEER => false
-                                ));
-                                $response = curl_exec($curl);
-                                $err = curl_error($curl);
-                                curl_close($curl);
-                                if ($err) {
-                                    echo "cURL Error #:" . $err;
-                                } else {
-                                    $data = json_decode($response, true);
-                                    if ($data['success']) {
-                                        $nombreCompleto = $data['data']['nombre_completo'];
-                                        echo "Nombre Completo: " . $nombreCompleto;
-                                    } else {
-                                        echo "No se pudo obtener información para el DNI proporcionado.";
-                                    }
-                                }
-                                ?>
+                                
 
                                 
 
