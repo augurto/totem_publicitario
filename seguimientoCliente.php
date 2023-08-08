@@ -487,205 +487,75 @@ $dni = $_SESSION['dni'];
                                 </div>
                                 <!-- end dropdown -->
                                 <h4 class="card-title mb-4">Eventos</h4>
+                                <div class="col-xl-4">
+                                    <div class="card">
+                                        <div class="card-body bg-transparent">
+                                            <div class="dropdown float-end">
+                                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical text-muted"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <!-- item-->
+                                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                                    <!-- item-->
+                                                    <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                                    <!-- item-->
+                                                </div>
+                                            </div>
+                                            <!-- end dropdown -->
+                                            <h4 class="card-title mb-4">Recent Activity Feed</h4>
 
-                                <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
-                                    <ul class="list-unstyled activity-wid">
-                                    <?php
-                                    $idURL = $_GET['id'];  // Obtén el valor de id desde $_GET
+                                            <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
+                                                <ul class="list-unstyled activity-wid">
+                                                    <?php
+                                                    $idURL = $_GET['id'];  // Obtén el valor de id desde $_GET
 
-                                    $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = '$idURL'";
-                                    $resultLinea = mysqli_query($con, $queryLinea);
+                                                    $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = '$idURL'";
+                                                    $resultLinea = mysqli_query($con, $queryLinea);
 
-                                    while ($rowLinea = mysqli_fetch_array($resultLinea)) {
-                                        $fechaLinea = $rowLinea["fecha"];  // Cambia "Fecha" por el nombre real de la columna de fecha
-                                        $mensajeLinea = $rowLinea["mensaje"];  // Cambia "mensaje" por el nombre real de la columna de mensaje
-                                        $idUsuarioLinea = $rowLinea["id_user"];  // Cambia "id_user" por el nombre real de la columna de ID de usuario
+                                                    while ($rowLinea = mysqli_fetch_array($resultLinea)) {
+                                                        $fechaLinea = $rowLinea["fecha"];  // Cambia "Fecha" por el nombre real de la columna de fecha
+                                                        $mensajeLinea = $rowLinea["mensaje"];  // Cambia "mensaje" por el nombre real de la columna de mensaje
+                                                        $idUsuarioLinea = $rowLinea["id_user"];  // Cambia "id_user" por el nombre real de la columna de ID de usuario
 
-                                        echo '<li class="activity-list border-left">
-                                                <div class="activity-icon avatar-xs">
-                                                    <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                        <i class="ri-edit-2-fill"></i>
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <div class="d-flex">
-                                                        <div class="flex-1">
-                                                            <h5 class="font-size-13">' . $fechaLinea . ' - 5 horas</h5>
-                                                        </div>
-                                                        <div>
-                                                            <small class="text-muted">' . date("h:i a", strtotime($fechaLinea)) . '</small>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="text-muted mb-0">' . $mensajeLinea . '</p>
-                                                    </div>
-                                                    <div>
-                                                        <p class="text-muted mb-0">' . $idUsuarioLinea . '</p>
-                                                    </div>
-                                                </div>
-                                            </li>';
-                                    }
-                                    ?>
-
-                                        <!-- start li -->
-                                        <li class="activity-list border-left">
-                                            <div class="activity-icon avatar-xs">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                    <i class="ri-edit-2-fill"></i>
-                                                </span>
+                                                        echo '<li class="activity-list border-left">
+                                                                <div class="activity-icon avatar-xs">
+                                                                    <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                                        <i class="ri-edit-2-fill"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="d-flex">
+                                                                        <div class="flex-1">
+                                                                            <h5 class="font-size-13">' . $fechaLinea . ' - 5 horas</h5>
+                                                                        </div>
+                                                                        <div>
+                                                                            <small class="text-muted">' . date("h:i a", strtotime($fechaLinea)) . '</small>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="text-muted mb-0">' . $mensajeLinea . '</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="text-muted mb-0">' . $idUsuarioLinea . '</p>
+                                                                    </div>
+                                                                </div>
+                                                            </li>';
+                                                    }
+                                                    ?>
+                                                </ul>
+                                                <!-- end ul -->
                                             </div>
-                                            <div>
-                                                <div class="d-flex">
-                                                    <div class="flex-1">
-                                                        <h5 class="font-size-13">28 Apr, 2021 </h5>
-                                                    </div>
-                                                    <div>
-                                                        <small class="text-muted">12:07 am</small>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p class="text-muted mb-0">Responded to need “Volunteer Activities”
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- end li -->
-                                        <li class="activity-list">
-                                            <div class="activity-icon avatar-xs">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                    <i class="ri-user-2-fill"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <div class="d-flex">
-                                                    <div class="flex-1">
-                                                        <h5 class="font-size-13">21 Apr, 2021</h5>
-                                                    </div>
-                                                    <div>
-                                                        <small class="text-muted">08:01 pm</small>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p class="text-muted mb-0">Added an interest “Volunteer Activities”
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- end li -->
-                                        <li class="activity-list">
-                                            <div class="activity-icon avatar-xs">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                    <i class="ri-bar-chart-fill"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <div class="d-flex">
-                                                    <div class="flex-1">
-                                                        <h5 class="font-size-13">17 Apr, 2021</h5>
-                                                    </div>
-                                                    <div>
-                                                        <small class="text-muted">09:23 am</small>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p class="text-muted mb-0">Joined the group “Boardsmanship
-                                                        Forum”
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- end li -->
-
-                                        <li class="activity-list">
-                                            <div class="activity-icon avatar-xs">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                    <i class="ri-mail-fill"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <div class="d-flex">
-                                                    <div class="flex-1">
-                                                        <h5 class="font-size-13">11 Apr, 2021 </h5>
-                                                    </div>
-                                                    <div>
-                                                        <small class="text-muted">05:10 pm</small>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p class="text-muted mb-0">Responded to need “In-Kind Opportunity”
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- end li -->
-                                        <li class="activity-list">
-                                            <div class="activity-icon avatar-xs">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                    <i class="ri-calendar-2-fill"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <div class="d-flex">
-                                                    <div class="flex-1">
-                                                        <h5 class="font-size-13">07 Apr, 2021</h5>
-                                                    </div>
-                                                    <div>
-                                                        <small class="text-muted">12:47 pm</small>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-                                                    <p class="text-muted mb-0">Created need “Volunteer Activities”</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- end li -->
-                                        <li class="activity-list">
-                                            <div class="activity-icon avatar-xs">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                    <i class="ri-edit-2-fill"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <div class="d-flex">
-                                                    <div class="flex-1">
-                                                        <h5 class="font-size-13">05 Apr, 2021 </h5>
-                                                    </div>
-                                                    <div>
-                                                        <small class="text-muted">03:09 pm</small>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p class="text-muted mb-0">Attending the event “Some New Event”</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- end li -->
-                                        <li class="activity-list">
-                                            <div class="activity-icon avatar-xs">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                    <i class="ri-user-2-fill"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <div class="d-flex">
-                                                    <div class="flex-1">
-                                                        <h5 class="font-size-13">02 Apr, 2021 </h5>
-                                                    </div>
-                                                    <div>
-                                                        <small class="text-muted">12:07 am</small>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p class="text-muted mb-0">Responded to need “In-Kind Opportunity”
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- end li -->
-                                    </ul>
-                                    <!-- end ul -->
+                                        </div>
+                                        <!-- end body -->
+                                        <div></div>
+                                    </div>
+                                    <!-- end card -->
                                 </div>
+                                <!-- end col -->
+
+
+                                
                             </div>
                             <!-- end body -->
                             <div>
