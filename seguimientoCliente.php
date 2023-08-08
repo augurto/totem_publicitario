@@ -503,6 +503,11 @@ $dni = $_SESSION['dni'];
                                         $fechaRestada = date("Y-m-d H:i:s", strtotime($row["fecha"]) - 5 * 3600);
                                         
                                         $fecha2 = substr($fechaRestada, 0, 10);
+                                        // Consulta para obtener los detalles del usuario
+                                        $userId = $row["id_user"];
+                                        $userQuery = "SELECT * FROM user WHERE id_user = '$userId'";
+                                        $userResult = mysqli_query($con, $userQuery);
+                                        $userData = mysqli_fetch_assoc($userResult);
                                         
                                         ?>
                                         <!-- start li -->
@@ -525,7 +530,7 @@ $dni = $_SESSION['dni'];
                                                     <p class="text-muted mb-0"><?php echo $row["mensaje"]; ?></p>
                                                 </div>
                                                 <div>
-                                                    <p class="text-muted mb-0"><?php echo $row["id_user"]; ?></p>
+                                                    <p class="text-muted mb-0"><?php echo $userData["nombre_user"]; ?></p>
                                                 </div>
                                             </div>
                                         </li>
