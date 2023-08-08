@@ -491,8 +491,15 @@ $dni = $_SESSION['dni'];
                                 <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
                                     <ul class="list-unstyled activity-wid">
                                         <?php
-                                        $numActivities = 4; // Cambiar a la cantidad deseada de elementos
-                                        for ($i = 0; $i < $numActivities; $i++) {
+                                        // Incluye el archivo con la conexión
+                                        include 'includes/conexion.php';  // Asegúrate de cambiar el nombre del archivo
+
+                                        // Consulta a la base de datos
+                                        $sql = "SELECT * FROM web_formularios WHERE idOriginal = 4183";  // Modifica la consulta según tus necesidades
+                                        $result = mysqli_query($con, $sql);
+
+                                        // Generar elementos para cada fila de la consulta
+                                        while ($row = mysqli_fetch_assoc($result)) {
                                         ?>
                                         <!-- start li -->
                                         <li class="activity-list border-left">
@@ -504,23 +511,27 @@ $dni = $_SESSION['dni'];
                                             <div>
                                                 <div class="d-flex">
                                                     <div class="flex-1">
-                                                        <h5 class="font-size-13">28 Apr, 2021</h5>
+                                                        <h5 class="font-size-13"><?php echo $row["fecha"]; ?></h5>
                                                     </div>
                                                     <div>
-                                                        <small class="text-muted">12:07 am</small>
+                                                        <small class="text-muted"><?php echo date("h:i a", strtotime($row["fecha"])); ?></small>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <p class="text-muted mb-0">Responded to need “Volunteer Activities”
-                                                    </p>
+                                                    <p class="text-muted mb-0"><?php echo $row["mensaje"]; ?></p>
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0"><?php echo $row["id_user"]; ?></p>
                                                 </div>
                                             </div>
                                         </li>
                                         <!-- end li -->
                                         <?php
                                         }
+
+                                        // Cierra la conexión
+                                        mysqli_close($con);
                                         ?>
-                                        <!-- ... (other li elements) ... -->
                                     </ul>
                                     <!-- end ul -->
                                 </div>
@@ -533,6 +544,7 @@ $dni = $_SESSION['dni'];
                         <!-- end card -->
                     </div>
                     <!-- end col -->
+
 
 
                     <!-- FIN LINEA TIEMPO -->
