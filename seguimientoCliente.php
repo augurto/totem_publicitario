@@ -508,6 +508,7 @@ $dni = $_SESSION['dni'];
                                         $userQuery = "SELECT * FROM user WHERE id_user = '$userId'";
                                         $userResult = mysqli_query($con, $userQuery);
                                         $userData = mysqli_fetch_assoc($userResult);
+
                                         $tipoClienteLinea=$row["tipoCliente"];
                                         $clienteQuery = "SELECT * FROM tipoCliente WHERE idTipoCliente = '$tipoClienteLinea'";
                                         $clienteResult = mysqli_query($con, $clienteQuery);
@@ -538,7 +539,7 @@ $dni = $_SESSION['dni'];
                                                     <?php
 
                                                     $descrpCliente=$clienteData["descripcionTipoCliente"];
-                                                    $colorCliente=$clienteData["descripcionTipoCliente"];
+                                                    $colorCliente=$clienteData["colorTipoCliente"];
                                                     
                                                     echo "<td><span class=\"badge rounded-pill\" style=\"background-color: $colorCliente;\">$descrpCliente</span></td>";
                                                     ?>
