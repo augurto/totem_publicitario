@@ -101,9 +101,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             </div>
                             <!-- end col -->
                                                         
-                        </div>
-                        <!-- end row -->
-                        <div class="row">
+                        
                             <div class="col-xl-4 col-md-6">
                                 <div class="card">
                                     <div class="card-body p-0">
@@ -129,9 +127,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             </div>
                             <!-- end col -->
                                                         
-                        </div>
-                        <!-- end row -->
-                        <div class="row">
+                        
                             <div class="col-xl-4 col-md-6">
                                 <div class="card">
                                     <div class="card-body p-0">
@@ -157,9 +153,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             </div>
                             <!-- end col -->
                                                         
-                        </div>
-                        <!-- end row -->
-                        <div class="row">
+                        
                             <div class="col-xl-4 col-md-6">
                                 <div class="card">
                                     <div class="card-body p-0">
