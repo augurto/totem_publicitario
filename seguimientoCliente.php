@@ -419,25 +419,24 @@ $dni = $_SESSION['dni'];
                                     
                                 </form>
                                 <?php
-                                $dni = $_GET['dni']; // Obtén el DNI desde la URL o formulario
-
-                                $url = "https://api.sunat.gob.pe/v1/dni/{$dni}";
-                                $response = file_get_contents($url);
-
-                                if ($response !== false) {
-                                    $data = json_decode($response, true);
-                                    if (isset($data['nombres'])) {
-                                        echo "Nombres: " . $data['nombres'] . "<br>";
-                                        echo "Apellido Paterno: " . $data['apellidoPaterno'] . "<br>";
-                                        echo "Apellido Materno: " . $data['apellidoMaterno'] . "<br>";
-                                        // Otros datos disponibles en la respuesta de la API
-                                    } else {
-                                        echo "No se pudo obtener información para el DNI proporcionado.";
-                                    }
-                                } else {
-                                    echo "Error al consultar la API de la Sunat.";
-                                }
+                                $dniEgo=70668404;
+                                   $curl = curl_init();
+                                   curl_setopt_array($curl, array(
+                                       CURLOPT_URL => "https://apiperu.dev/api/dni/$dniEgo?api_token=219965b4c7c3cc8d5437576f507f3d5f6ffde004e27580e83f8fd3e1a35f1c09",
+                                       CURLOPT_RETURNTRANSFER => true,
+                                       CURLOPT_CUSTOMREQUEST => "GET",
+                                       CURLOPT_SSL_VERIFYPEER => false
+                                   ));
+                                   $response = curl_exec($curl);
+                                   $err = curl_error($curl);
+                                   curl_close($curl);
+                                   if ($err) {
+                                       echo "cURL Error #:" . $err;
+                                   } else {
+                                       echo $response;
+                                   }
                                 ?>
+                                
 
                                 
 
