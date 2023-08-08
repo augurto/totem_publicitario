@@ -418,6 +418,27 @@ $dni = $_SESSION['dni'];
                                     <!-- end row -->
                                     
                                 </form>
+                                <?php
+                                $dni = $_GET['dni']; // Obtén el DNI desde la URL o formulario
+
+                                $url = "https://api.sunat.gob.pe/v1/dni/{$dni}";
+                                $response = file_get_contents($url);
+
+                                if ($response !== false) {
+                                    $data = json_decode($response, true);
+                                    if (isset($data['nombres'])) {
+                                        echo "Nombres: " . $data['nombres'] . "<br>";
+                                        echo "Apellido Paterno: " . $data['apellidoPaterno'] . "<br>";
+                                        echo "Apellido Materno: " . $data['apellidoMaterno'] . "<br>";
+                                        // Otros datos disponibles en la respuesta de la API
+                                    } else {
+                                        echo "No se pudo obtener información para el DNI proporcionado.";
+                                    }
+                                } else {
+                                    echo "Error al consultar la API de la Sunat.";
+                                }
+                                ?>
+
                                 
 
                                 <!-- end form -->
