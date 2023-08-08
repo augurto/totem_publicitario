@@ -468,27 +468,7 @@ $dni = $_SESSION['dni'];
                         <!-- end card -->
                     </div>
 
-                    <!-- end col -->
-                    <div class="col-xl-4">
-                        <div class="card">
-                            <div class="card-body bg-transparent">
-                                <div class="dropdown float-end">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical text-muted"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Accion 1</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Accion 2</a>
-                                        <!-- item-->
-                                    </div>
-                                </div>
-                                <!-- end dropdown -->
-                                <h4 class="card-title mb-4">Eventos</h4>
-                                <div class="col-xl-4">
-                                    <div class="card">
+                    <div class="card">
                                         <div class="card-body bg-transparent">
                                             <div class="dropdown float-end">
                                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
@@ -510,7 +490,7 @@ $dni = $_SESSION['dni'];
                                                     <?php
                                                     $idURL = $_GET['id'];  // Obtén el valor de id desde $_GET
 
-                                                    $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = '$idOriginal'";
+                                                    $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = '$idURL'";
                                                     $resultLinea = mysqli_query($con, $queryLinea);
 
                                                     while ($rowLinea = mysqli_fetch_array($resultLinea)) {
@@ -553,18 +533,7 @@ $dni = $_SESSION['dni'];
                                     <!-- end card -->
                                 </div>
                                 <!-- end col -->
-
-
-                                
-                            </div>
-                            <!-- end body -->
-                            <div>
-
-                            </div>
-                        </div>
-                        <!-- end card -->
-                    </div>
-                    <!-- end col -->
+                   
 
                     </div>
                     <!-- end col -->
