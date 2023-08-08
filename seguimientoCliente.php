@@ -500,6 +500,7 @@ $dni = $_SESSION['dni'];
 
                                         // Generar elementos para cada fila de la consulta
                                         while ($row = mysqli_fetch_assoc($result)) {
+                                        $fechaRestada = date("Y-m-d H:i:s", strtotime($row["fecha"]) - 5 * 3600);
                                         ?>
                                         <!-- start li -->
                                         <li class="activity-list border-left">
@@ -511,10 +512,10 @@ $dni = $_SESSION['dni'];
                                             <div>
                                                 <div class="d-flex">
                                                     <div class="flex-1">
-                                                        <h5 class="font-size-13"><?php echo $row["fecha"]; ?></h5>
+                                                        <h5 class="font-size-13"><?php echo $fechaRestada; ?></h5>
                                                     </div>
                                                     <div>
-                                                        <small class="text-muted"><?php echo date("h:i a", strtotime($row["fecha"])); ?></small>
+                                                        <small class="text-muted"><?php echo date("h:i a", strtotime($fechaRestada)); ?></small>
                                                     </div>
                                                 </div>
                                                 <div>
