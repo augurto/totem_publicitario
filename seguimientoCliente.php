@@ -497,11 +497,13 @@ $dni = $_SESSION['dni'];
                                         $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = 4183";
                                         $resultLinea = mysqli_query($con, $queryLinea);
 
-                                        while ($rowLinea = mysqli_fetch_array($resultLinea)) {
-                                            $fechaLinea = $rowLinea["fecha"];  // Cambia "Fecha" por el nombre real de la columna de fecha
+                                        if ($resultLinea) {
+                                            if (mysqli_num_rows($resultLinea) > 0) {
+                                                while ($rowLinea = mysqli_fetch_array($resultLinea)) {
+                                            $fechaLinea = $rowLinea["fecha"];  // Cambia "fecha" por el nombre real de la columna de fecha
                                             $mensajeLinea = $rowLinea["mensaje"];  // Cambia "mensaje" por el nombre real de la columna de mensaje
                                             $idUsuarioLinea = $rowLinea["id_user"];  // Cambia "id_user" por el nombre real de la columna de ID de usuario
-
+                    
                                             echo '<li class="activity-list border-left">
                                                     <div class="activity-icon avatar-xs">
                                                         <span class="avatar-title bg-soft-primary text-primary rounded-circle">
@@ -525,7 +527,13 @@ $dni = $_SESSION['dni'];
                                                         </div>
                                                     </div>
                                                 </li>';
-                                        }
+                                                    }
+                                                } else {
+                                                    echo "No se encontraron registros para el ID $idURL.";
+                                                }
+                                            } else {
+                                                echo "Error en la consulta: " . mysqli_error($con);
+                                            }
                                         ?>
 
                                     </ul>
