@@ -1,6 +1,6 @@
 <?php
 $token = "xoxb-16060872976-5733378532096-ME5NLPxqlG7UDjsMx0jguCKM";
-$channel = "C05G7CUT2GG";
+$channel = "C05LF94CS07";
 $message = "Hola, este es un mensaje enviado desde PHP.";
 
 $data = array(
