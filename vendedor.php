@@ -268,23 +268,28 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                             echo '<td><span class="badge rounded-pill" style="background-color: black; color: white;">Prospecto Venta</span></td>';
 
                                                         }
-                                                        echo "<td>" . $row["documentoCliente"] . "</td>";
+                                                        
                                                            
                                                             // Obtener los datos de la tabla cliente para comparar
                                                             $dniCliente = $row["documentoCliente"];  // Valor de la tabla web_formularios
-                                                            
-                                                            // Realizar la consulta SQL para obtener el valor de la columna documentoCliente de la tabla cliente
-                                                            $queryDNI = "SELECT documentoCliente FROM cliente WHERE documentoCliente = '$dniCliente'";
-                                                            $clienteResultDNI = mysqli_query($con, $queryDNI);
-                                                            
-                                                            if ($clienteResultDNI && mysqli_num_rows($clienteResultDNI) > 0) {
-                                                                // Si hay coincidencia en la tabla cliente, cambiar el fondo de la celda
-                                                                echo '<td style="background-color: blue;">' . $row["documentoCliente"] . '</td>';
+                                                            if (empty($documentoCliente)) {
+                                                                // Si el valor está vacío, cambiar el fondo de la celda a #ff5b5b (rojo claro)
+                                                                echo '<td style="background-color: #ff5b5b;">' . $row["documentoCliente"] . '</td>';
                                                             } else {
-                                                                // Si no hay coincidencia en la tabla cliente, mantener el fondo normal
-                                                                echo "<td>" . $row["documentoCliente"] . "</td>";
-                                                            }
                                                             
+                                                                // Realizar la consulta SQL para obtener el valor de la columna documentoCliente de la tabla cliente
+                                                                $queryDNI = "SELECT documentoCliente FROM cliente WHERE documentoCliente = '$dniCliente'";
+                                                                $clienteResultDNI = mysqli_query($con, $queryDNI);
+                                                                
+                                                                if ($clienteResultDNI && mysqli_num_rows($clienteResultDNI) > 0) {
+                                                                    // Si hay coincidencia en la tabla cliente, cambiar el fondo de la celda
+                                                                    echo '<td style="background-color: #0000ff69;">' . $row["documentoCliente"] . '</td>';
+                                                                } else {
+                                                                    // Si no hay coincidencia en la tabla cliente, mantener el fondo normal
+                                                                    echo "<td>" . $row["documentoCliente"] . "</td>";
+                                                                }
+                                                            }
+
                                                   
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fecha"] . '-5 hours')) . "</td>";
