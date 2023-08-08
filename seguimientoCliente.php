@@ -469,12 +469,12 @@ $dni = $_SESSION['dni'];
                     </div>
 
                     <!-- inicio linea del tiempo -->
-                    <!-- end col -->
                     <div class="col-xl-4">
                         <div class="card">
                             <div class="card-body bg-transparent">
                                 <div class="dropdown float-end">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
                                         <i class="mdi mdi-dots-vertical text-muted"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
@@ -490,53 +490,76 @@ $dni = $_SESSION['dni'];
 
                                 <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
                                     <ul class="list-unstyled activity-wid">
-
-                                        <?php
-                                        /* $idURL = $_GET['id'];   */// Obtén el valor de id desde $_GET
-                                        $idURL = 4183;  // Cambia el valor de idOriginal que desees mostrar
-
-                                        $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = '$idURL'";
-                                        $resultLinea = mysqli_query($con, $queryLinea);
-
-                                        if ($resultLinea) {
-                                            if (mysqli_num_rows($resultLinea) > 0) {
-                                                while ($rowLinea = mysqli_fetch_array($resultLinea)) {
-                                            $fechaLinea = $rowLinea["fecha"];  // Cambia "fecha" por el nombre real de la columna de fecha
-                                            $mensajeLinea = $rowLinea["mensaje"];  // Cambia "mensaje" por el nombre real de la columna de mensaje
-                                            $idUsuarioLinea = $rowLinea["id_user"];  // Cambia "id_user" por el nombre real de la columna de ID de usuario
-                    
-                                            echo '<li class="activity-list border-left">
-                                                    <div class="activity-icon avatar-xs">
-                                                        <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                            <i class="ri-edit-2-fill"></i>
-                                                        </span>
+                                        <!-- start li -->
+                                        <li class="activity-list border-left">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-edit-2-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">28 Apr, 2021</h5>
                                                     </div>
                                                     <div>
-                                                        <div class="d-flex">
-                                                            <div class="flex-1">
-                                                                <h5 class="font-size-13">' . $fechaLinea . ' - 5 horas</h5>
-                                                            </div>
-                                                            <div>
-                                                                <small class="text-muted">' . date("h:i a", strtotime($fechaLinea)) . '</small>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <p class="text-muted mb-0">' . $mensajeLinea . '</p>
-                                                        </div>
-                                                        <div>
-                                                            <p class="text-muted mb-0">' . $idUsuarioLinea . '</p>
-                                                        </div>
+                                                        <small class="text-muted">12:07 am</small>
                                                     </div>
-                                                </li>';
-                                                    }
-                                                } else {
-                                                    echo "No se encontraron registros para el ID $idURL.";
-                                                }
-                                            } else {
-                                                echo "Error en la consulta: " . mysqli_error($con);
-                                            }
-                                        ?>
-
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0">Responded to need “Volunteer Activities”
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+                                        <!-- start li (repeated) -->
+                                        <li class="activity-list border-left">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-edit-2-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">28 Apr, 2021</h5>
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted">12:07 am</small>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0">Responded to need “Volunteer Activities”
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+                                        <!-- start li (repeated) -->
+                                        <li class="activity-list border-left">
+                                            <div class="activity-icon avatar-xs">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <i class="ri-edit-2-fill"></i>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="flex-1">
+                                                        <h5 class="font-size-13">28 Apr, 2021</h5>
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted">12:07 am</small>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-muted mb-0">Responded to need “Volunteer Activities”
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end li -->
+                                        <!-- ... (other li elements) ... -->
                                     </ul>
                                     <!-- end ul -->
                                 </div>
@@ -549,6 +572,7 @@ $dni = $_SESSION['dni'];
                         <!-- end card -->
                     </div>
                     <!-- end col -->
+
 
 
                     <!-- FIN LINEA TIEMPO -->
