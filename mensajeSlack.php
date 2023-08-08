@@ -2,7 +2,7 @@
 
 // Datos de tu aplicación en Slack
 $slackToken = 'xoxb-16060872976-5733378532096-ME5NLPxqlG7UDjsMx0jguCKM';  // Reemplaza con tu token de acceso
-$channel = 'C05G7CUT2GG';  // Reemplaza con el ID del canal de destino
+$channel = 'C05LF94CS07';  // Reemplaza con el ID del canal de destino
 $message = 'tada';  // El mensaje que deseas enviar
 
 // Construye los datos para la solicitud POST
