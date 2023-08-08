@@ -5,7 +5,7 @@ async function publishMessage(id, text) {
     // Call the chat.postMessage method using the built-in WebClient
     const result = await app.client.chat.postMessage({
       // The token you used to initialize your app
-      token: "9fCGhLRbtKwPLGnd2ne8T0j9",
+      token: "xoxb-16060872976-5733378532096-ME5NLPxqlG7UDjsMx0jguCKM",
       channel: id,
       text: text
       // You could also use a blocks[] array to send richer content
