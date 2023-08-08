@@ -486,7 +486,7 @@ $dni = $_SESSION['dni'];
                                     </div>
                                 </div>
                                 <!-- end dropdown -->
-                                <h4 class="card-title mb-4">Recent Activity Feed</h4>
+                                <h4 class="card-title mb-4">Eventos</h4>
 
                                 <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
                                     <ul class="list-unstyled activity-wid">
@@ -495,7 +495,7 @@ $dni = $_SESSION['dni'];
                                         include 'includes/conexion.php';  // Asegúrate de cambiar el nombre del archivo
 
                                         // Consulta a la base de datos
-                                        $sql = "SELECT * FROM web_formularios WHERE idOriginal = 4183";  // Modifica la consulta según tus necesidades
+                                        $sql = "SELECT * FROM web_formularios WHERE idOriginal = '$idOriginal'";  // Modifica la consulta según tus necesidades
                                         $result = mysqli_query($con, $sql);
 
                                         // Generar elementos para cada fila de la consulta
