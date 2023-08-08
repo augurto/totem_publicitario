@@ -118,8 +118,8 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 <?php
                                                 // Establecer la conexión con la base de datos
                                                 $servername = "localhost";
-                                                $username = "u291982824_bd_geo";
-                                                $password = "21.17.BDgeo";
+                                                $username = "u291982824_prueba";
+                                                $password = "21.17.Prueba";
                                                 $dbname = "u291982824_bd_geo";
 
                                                 $conn = new mysqli($servername, $username, $password, $dbname);
