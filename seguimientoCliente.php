@@ -535,7 +535,7 @@ $dni = $_SESSION['dni'];
                                                     <p class="text-muted mb-0"><?php echo $row["mensaje"]; ?></p>
                                                 </div>
                                                 <div>
-                                                    <p class="text-muted mb-0"><?php echo $row["tipoCliente"]; ?></p>
+                                                    
                                                     <?php
 
                                                     $descrpCliente=$clienteData["descripcionTipoCliente"];
