@@ -76,14 +76,14 @@ $empresaUser =$_SESSION['empresaUser'] ;
                         <!-- INICIO DATOS -->
 
                         <div class="row">
-                            <div class="col-xl-4 col-md-6">
+                            <div class="col-xl-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body p-0">
                                         <div class="p-4">
                                             <div class="d-flex">
                                                 <div class="flex-1">
 
-                                                    <h3 class="mb-3"><span class="counter_value" data-target="519545">20</span>
+                                                    <h3 class="mb-3"><span class="counter_value" data-target="20">20</span>
                                                     </h3>
                                                 </div>
                                                 <div class="">
@@ -102,14 +102,14 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             <!-- end col -->
                                                         
                         
-                            <div class="col-xl-4 col-md-6">
+                            <div class="col-xl-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body p-0">
                                         <div class="p-4">
                                             <div class="d-flex">
                                                 <div class="flex-1">
 
-                                                    <h3 class="mb-3"><span class="counter_value" data-target="519545">5</span>
+                                                    <h3 class="mb-3"><span class="counter_value" data-target="15">15</span>
                                                     </h3>
                                                 </div>
                                                 <div class="">
@@ -128,14 +128,14 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             <!-- end col -->
                                                         
                         
-                            <div class="col-xl-4 col-md-6">
+                            <div class="col-xl-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body p-0">
                                         <div class="p-4">
                                             <div class="d-flex">
                                                 <div class="flex-1">
 
-                                                    <h3 class="mb-3"><span class="counter_value" data-target="519545">25</span>
+                                                    <h3 class="mb-3"><span class="counter_value" data-target="25">25</span>
                                                     </h3>
                                                 </div>
                                                 <div class="">
@@ -154,14 +154,14 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             <!-- end col -->
                                                         
                         
-                            <div class="col-xl-4 col-md-6">
+                            <div class="col-xl-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body p-0">
                                         <div class="p-4">
                                             <div class="d-flex">
                                                 <div class="flex-1">
 
-                                                    <h3 class="mb-3"><span class="counter_value" data-target="519545">No Adriana, no me expl0tes</span>
+                                                    <h3 class="mb-3"><span class="counter_value" data-target="999999">No Adriana, no me expl0tes</span>
                                                     </h3>
                                                 </div>
                                                 <div class="">
