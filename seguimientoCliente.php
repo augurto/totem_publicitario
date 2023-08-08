@@ -510,7 +510,7 @@ $dni = $_SESSION['dni'];
                                                     <?php
                                                     $idURL = $_GET['id'];  // Obtén el valor de id desde $_GET
 
-                                                    $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = '$idURL'";
+                                                    $queryLinea = "SELECT * FROM web_formularios WHERE idOriginal = '$idOriginal'";
                                                     $resultLinea = mysqli_query($con, $queryLinea);
 
                                                     while ($rowLinea = mysqli_fetch_array($resultLinea)) {
