@@ -181,7 +181,7 @@ $dni = $_SESSION['dni'];
                                             
                                             $curl = curl_init();
                                             curl_setopt_array($curl, array(
-                                                CURLOPT_URL => "https://apiperu.dev/api/dni/$documento?api_token=asd",
+                                                CURLOPT_URL => "https://apiperu.dev/api/dni/$documento?api_token=219965b4c7c3cc8d5437576f507f3d5f6ffde004e27580e83f8fd3e1a35f1c09",
                                                 CURLOPT_RETURNTRANSFER => true,
                                                 CURLOPT_CUSTOMREQUEST => "GET",
                                                 CURLOPT_SSL_VERIFYPEER => false
