@@ -3,6 +3,7 @@ include 'conexion.php';
 
 // Obtener los datos enviados por el formulario
 $datos = $_POST['datos'];
+$datosSunat = $_POST['datosSunat'];
 $documento = $_POST['documento'];
 $telefono = $_POST['telefono'];
 $email = $_POST['email'];
@@ -42,8 +43,8 @@ $estadoWeb = 1;
 
 
 $query = "INSERT INTO web_formularios 
-(documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, id_user, estado_web, mensaje, estadoCliente, idEmpresa,fuente_dato,idid,URL,nombre_formulario,ip_formulario,formActualizado,aterrizajeFormulario,mensajeOriginal,idOriginal) 
-VALUES ('$documento', '$datos', '$telefono', '$email', '$tipoCliente', '$fuente', '$iduser', '$estadoWeb', '$comentario', '$estadoCliente', '$empresa','$fuenteDato','$idweb','$URL','$nombreFormulario', '$ipFormulario','$formActualizado','$aterrizaje','$mensajeOriginal','$idOriginal')";
+(documentoCliente, datos_form, telefono, email, tipoCliente, prospecto, id_user, estado_web, mensaje, estadoCliente, idEmpresa,fuente_dato,idid,URL,nombre_formulario,ip_formulario,formActualizado,aterrizajeFormulario,mensajeOriginal,idOriginal,datosSunat) 
+VALUES ('$documento', '$datos', '$telefono', '$email', '$tipoCliente', '$fuente', '$iduser', '$estadoWeb', '$comentario', '$estadoCliente', '$empresa','$fuenteDato','$idweb','$URL','$nombreFormulario', '$ipFormulario','$formActualizado','$aterrizaje','$mensajeOriginal','$idOriginal','$datosSunat')";
 
 if (mysqli_query($con, $query)) {
     // La inserción fue exitosa, obtener el ID insertado

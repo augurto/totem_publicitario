@@ -173,9 +173,10 @@ $dni = $_SESSION['dni'];
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                 <div class="col-sm-10">
                                                 <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" readonly>
+                                                id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" >
                                                 </div>
                                             </div>
+                                            <br>
                                             <?php
                                             
                                             $curl = curl_init();
@@ -200,7 +201,7 @@ $dni = $_SESSION['dni'];
                                                         <label for="example-text-input" class="col-sm-2 col-form-label">Datos Reniec</label>
                                                         <div class="col-sm-10">
                                                             <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                                id="example-text-input" name="datos" value="' . $nombreCompleto . '" readonly>
+                                                                id="example-text-input" name="datosSunat" value="' . $nombreCompleto . '" readonly>
                                                         </div>
                                                     </div>';
 

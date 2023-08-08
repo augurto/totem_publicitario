@@ -115,6 +115,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                     <th>Email</th>
                                                     <th>Teléfono</th>
                                                     <th>Estado</th>
+                                                    <th>DNI</th>
                                                     <th>Mensaje</th>
                                                     <th>Fecha </th>
                                                     <th>URL</th>
@@ -267,8 +268,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                             echo '<td><span class="badge rounded-pill" style="background-color: black; color: white;">Prospecto Venta</span></td>';
 
                                                         }
-
-
+                                                        echo "<td>" . $row["documentoCliente"] . "</td>";
                                                         echo "<td>" . $row["mensaje"] . "</td>";
                                                         echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fecha"] . '-5 hours')) . "</td>";
                                                         echo "<td>" . $row["URL"] . "</td>";
