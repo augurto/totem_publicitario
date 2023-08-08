@@ -274,7 +274,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                             $dniCliente = $row["documentoCliente"];  // Valor de la tabla web_formularios
                                                             if (empty($documentoCliente)) {
                                                                 // Si el valor está vacío, cambiar el fondo de la celda a #ff5b5b (rojo claro)
-                                                                echo '<td style="background-color: #ff5b5b;">' . $row["documentoCliente"] . '</td>';
+                                                                echo '<td style="background-color: #ff5b5b; ">Sin DNI </td>';
                                                             } else {
                                                             
                                                                 // Realizar la consulta SQL para obtener el valor de la columna documentoCliente de la tabla cliente
@@ -283,7 +283,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                                 
                                                                 if ($clienteResultDNI && mysqli_num_rows($clienteResultDNI) > 0) {
                                                                     // Si hay coincidencia en la tabla cliente, cambiar el fondo de la celda
-                                                                    echo '<td style="background-color: #0000ff69;">' . $row["documentoCliente"] . '</td>';
+                                                                    echo '<td style="background-color: #0000ff69;color:white;">' . $row["documentoCliente"] . '</td>';
                                                                 } else {
                                                                     // Si no hay coincidencia en la tabla cliente, mantener el fondo normal
                                                                     echo "<td>" . $row["documentoCliente"] . "</td>";
