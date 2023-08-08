@@ -490,6 +490,10 @@ $dni = $_SESSION['dni'];
 
                                 <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
                                     <ul class="list-unstyled activity-wid">
+                                        <?php
+                                        $numActivities = 4; // Cambiar a la cantidad deseada de elementos
+                                        for ($i = 0; $i < $numActivities; $i++) {
+                                        ?>
                                         <!-- start li -->
                                         <li class="activity-list border-left">
                                             <div class="activity-icon avatar-xs">
@@ -513,52 +517,9 @@ $dni = $_SESSION['dni'];
                                             </div>
                                         </li>
                                         <!-- end li -->
-                                        <!-- start li (repeated) -->
-                                        <li class="activity-list border-left">
-                                            <div class="activity-icon avatar-xs">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                    <i class="ri-edit-2-fill"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <div class="d-flex">
-                                                    <div class="flex-1">
-                                                        <h5 class="font-size-13">28 Apr, 2021</h5>
-                                                    </div>
-                                                    <div>
-                                                        <small class="text-muted">12:07 am</small>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p class="text-muted mb-0">Responded to need “Volunteer Activities”
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- end li -->
-                                        <!-- start li (repeated) -->
-                                        <li class="activity-list border-left">
-                                            <div class="activity-icon avatar-xs">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                    <i class="ri-edit-2-fill"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <div class="d-flex">
-                                                    <div class="flex-1">
-                                                        <h5 class="font-size-13">28 Apr, 2021</h5>
-                                                    </div>
-                                                    <div>
-                                                        <small class="text-muted">12:07 am</small>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p class="text-muted mb-0">Responded to need “Volunteer Activities”
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- end li -->
+                                        <?php
+                                        }
+                                        ?>
                                         <!-- ... (other li elements) ... -->
                                     </ul>
                                     <!-- end ul -->
@@ -572,7 +533,6 @@ $dni = $_SESSION['dni'];
                         <!-- end card -->
                     </div>
                     <!-- end col -->
-
 
 
                     <!-- FIN LINEA TIEMPO -->
