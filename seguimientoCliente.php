@@ -530,7 +530,10 @@ $dni = $_SESSION['dni'];
                                                     <p class="text-muted mb-0"><?php echo $row["mensaje"]; ?></p>
                                                 </div>
                                                 <div>
-                                                    <p class="text-muted mb-0"><?php echo $userData["nombre_user"]; ?></p>
+                                                    <p class="text-muted mb-0"><?php 
+                                                    $nombreUsuarioAtencion = ucwords(strtolower($userData["nombre_user"]));
+                                                                                                       
+                                                    echo $nombreUsuarioAtencion["nombre_user"]; ?></p>
                                                 </div>
                                             </div>
                                         </li>
