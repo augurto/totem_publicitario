@@ -497,7 +497,7 @@ $dni = $_SESSION['dni'];
                                     $resultLinea = mysqli_query($con, $queryLinea);
 
                                     while ($rowLinea = mysqli_fetch_array($resultLinea)) {
-                                        $fechaLinea = $rowLinea["Fecha"];  // Cambia "Fecha" por el nombre real de la columna de fecha
+                                        $fechaLinea = $rowLinea["fecha"];  // Cambia "Fecha" por el nombre real de la columna de fecha
                                         $mensajeLinea = $rowLinea["mensaje"];  // Cambia "mensaje" por el nombre real de la columna de mensaje
                                         $idUsuarioLinea = $rowLinea["id_user"];  // Cambia "id_user" por el nombre real de la columna de ID de usuario
 
