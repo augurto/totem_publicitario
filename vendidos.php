@@ -120,7 +120,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 $servername = "localhost";
                                                 $username = "u291982824_prueba";
                                                 $password = "21.17.Prueba";
-                                                $dbname = "u291982824_bd_geo";
+                                                $dbname = "u291982824_prueba";
 
                                                 $conn = new mysqli($servername, $username, $password, $dbname);
 
