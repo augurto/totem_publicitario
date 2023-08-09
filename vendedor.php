@@ -104,8 +104,22 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                     <div class="card-body">
         
                                         <h4 class="card-title">Data Clientes</h4>
-                                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <!-- <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> -->
+                                        
+                                        <?php
+                                        // Verifica el valor de $tipoUsuario
+                                        if ($tipoUsuario > 1) {
+                                            $tableId = 'datatable-buttons';
+                                            $tableClass = 'table table-striped table-bordered dt-responsive nowrap';
+                                        } else {
+                                            $tableId = 'datatable';
+                                            $tableClass = 'table table-bordered dt-responsive nowrap';
+                                        }
+                                        ?>
+
+                                        <!-- Genera el código HTML del <table> según el valor de $tipoUsuario -->
+                                        <table id="<?php echo $tableId; ?>" class="<?php echo $tableClass; ?>" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            
+ 
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
