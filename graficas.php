@@ -1,6 +1,5 @@
 <?php
-include 'conexion.php'; // Asegúrate de que el archivo de conexión tenga el nombre correcto
-
+include 'includes/conexion.php';
 $query = "SELECT tipoCliente, prospecto, fecha FROM web_formularios";
 $result = mysqli_query($con, $query);
 
