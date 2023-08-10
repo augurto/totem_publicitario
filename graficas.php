@@ -1,3 +1,17 @@
+<?php
+include 'conexion.php'; // Asegúrate de que el archivo de conexión tenga el nombre correcto
+
+$query = "SELECT tipoCliente, prospecto, fecha FROM web_formularios";
+$result = mysqli_query($con, $query);
+
+$data = array();
+while ($row = mysqli_fetch_assoc($result)) {
+    $data[] = $row;
+}
+
+mysqli_close($con);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,13 +40,15 @@
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Year', 'Sales', 'Expenses', 'Profit'],
-                ['2014', 1000, 400, 200],
-                ['2015', 1170, 460, 250],
-                ['2016', 660, 1120, 300],
-                ['2017', 1030, 540, 350]
-            ]);
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Tipo Cliente');
+            data.addColumn('number', 'Prospecto');
+            
+            <?php
+            foreach ($data as $row) {
+                echo "data.addRow(['" . $row['tipoCliente'] . "', " . $row['prospecto'] . "]);";
+            }
+            ?>
 
             var options = {
                 chart: {
@@ -61,6 +77,7 @@
                 }
             }
         }
+
     </script>
 </body>
 
