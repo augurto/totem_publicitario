@@ -1,13 +1,25 @@
 <?php
-include 'includes/conexion.php';
-$query = "SELECT tipoCliente, prospecto, fecha FROM web_formularios";
-$result = mysqli_query($con, $query);
+// Incluye el archivo con la conexión
+include 'includes/conexion.php';  // Asegúrate de cambiar el nombre del archivo
 
-$data = array();
+// Consulta a la base de datos para contar registros agrupados por mes
+$sql = "SELECT MONTH(fecha) AS mes, COUNT(*) AS cantidad FROM web_formularios GROUP BY MONTH(fecha)";
+$result = mysqli_query($con, $sql);
+
+// Preparar un array para almacenar los datos de la gráfica
+$chartData = array();
+$chartData[] = ['Mes', 'Cantidad'];
+
 while ($row = mysqli_fetch_assoc($result)) {
-    $data[] = $row;
+    $mes = $row['mes'];
+    $cantidad = (int) $row['cantidad'];
+    $chartData[] = ["Mes $mes", $cantidad];
 }
 
+// Convertir el array a formato JSON
+$chartJson = json_encode($chartData);
+
+// Cierra la conexión
 mysqli_close($con);
 ?>
 
@@ -32,52 +44,40 @@ mysqli_close($con);
         <button class="button button-blue" id="short">Short</button>
     </div>
 
-    <script>
-        google.charts.load('current', {
-            'packages': ['bar']
-        });
-        google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Tipo Cliente');
-            data.addColumn('number', 'Prospecto');
-            
-            <?php
-            foreach ($data as $row) {
-                echo "data.addRow(['" . $row['tipoCliente'] . "', " . $row['prospecto'] . "]);";
-            }
-            ?>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div id="chart_div"></div>
 
-            var options = {
-                chart: {
-                    title: 'Company Performance',
-                    subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-                },
-                bars: 'vertical',
-                vAxis: {
-                    format: 'decimal'
-                },
-                height: 400,
-                colors: ['#1b9e77', '#d95f02', '#7570b3']
-            };
+<script>
+    google.charts.load('current', {
+        'packages': ['bar']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-            var chart = new google.charts.Bar(document.getElementById('chart_div'));
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Mes');
+        data.addColumn('number', 'Cantidad');
+        data.addRows(<?php echo $chartJson; ?>);
 
-            chart.draw(data, google.charts.Bar.convertOptions(options));
+        var options = {
+            chart: {
+                title: 'Cantidad de Registros por Mes',
+                subtitle: 'Agrupados por Mes',
+            },
+            bars: 'vertical',
+            vAxis: {
+                format: 'decimal'
+            },
+            height: 400,
+            colors: ['#1b9e77', '#d95f02', '#7570b3']
+        };
 
-            var btns = document.getElementById('btn-group');
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
 
-            btns.onclick = function(e) {
-
-                if (e.target.tagName === 'BUTTON') {
-                    options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
-                    chart.draw(data, google.charts.Bar.convertOptions(options));
-                }
-            }
-        }
-
-    </script>
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+</script>
 </body>
 
 </html>
