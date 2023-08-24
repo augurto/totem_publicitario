@@ -7,7 +7,7 @@ class PDF extends FPDF
     function Header()
     {
         // Logo en la esquina derecha de la cabecera
-        $this->Image('assets/images/geoSinFondo', $this->GetPageWidth() - 40, 10, 30);
+        $this->Image('assets/images/geoSinFondo.png', $this->GetPageWidth() - 40, 10, 30);
 
         // Lugar en la esquina izquierda de la cabecera
         $parametro = 'Parametro 1';  // Cambia el valor del lugar aquí
