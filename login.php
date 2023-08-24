@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="p-3">
-                                <h4 class="font-size-18 text-muted mt-2 text-center">¡Bienvenido!</h4>
+                                <h4 class="font-size-18 text-muted mt-2 text-center">¡Bienvenido! </h4>
                                 <p class="text-muted text-center mb-4">Iniciar Sesion</p>
 
                                 <form class="form-horizontal" action="includes/guardar_datos_usuario.php" method="POST">
