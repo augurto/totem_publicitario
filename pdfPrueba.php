@@ -1,5 +1,5 @@
 <?php
- = $_GET['dato'];
+ $dato= $_GET['dato'];
 
 require('fpdf/fpdf.php');
 class PDF extends FPDF
