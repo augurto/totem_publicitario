@@ -419,6 +419,7 @@ $dni = $_SESSION['dni'];
                                             </script>
 
 
+
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
                                                 
