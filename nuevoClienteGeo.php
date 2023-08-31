@@ -99,7 +99,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                     <br>
 
-                                    <form action="./includes/nuevoClienteGeo.php" method="POST">
+                                    <form action="./includes/insertarClienteGeo.php" method="POST">
                                         <div class="row mb-6">
                                             <label for="DniCliente" class="col-sm-2 col-form-label">Documento</label>
                                             <div class="col-sm-10">
