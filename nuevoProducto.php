@@ -41,6 +41,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
+
 <style>
     @media print {
         body {
@@ -273,6 +274,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 <script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
 <script src="assets/js/pages/form-advanced.init.js"></script>
 <script src="assets/js/app.js"></script>
+
 
 </body>
 
