@@ -83,7 +83,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                 <br>
 
                               <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
-                              <form action="procesarNuevoProducto.php" method="POST">
+                              <form action="includes/registrarNuevoProducto.php" method="POST">
                                 <div class="row mb-6">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre del Producto:</label>
                                     <div class="col-sm-10">
