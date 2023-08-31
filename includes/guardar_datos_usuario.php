@@ -41,6 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         // Los datos no son válidos, mostrar un mensaje de error o redireccionar a una página de error
+        header("Location: ../login.php");
+            exit();
     }
 }
 
