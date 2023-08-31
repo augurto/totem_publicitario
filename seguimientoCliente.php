@@ -378,11 +378,15 @@ $dni = $_SESSION['dni'];
                                             ?>
 
                                             <!-- Campo de selección múltiple para atributos -->
+                                            
                                             <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
                                                 <?php foreach ($atributos as $atributo): ?>
                                                     <option value="<?php echo $atributo; ?>"><?php echo $atributo; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
+                                            <!-- Botón de búsqueda -->
+                                            <button class="btn btn-primary" id="buscarBtn">Buscar Producto</button>
+
 
                                             <!-- Campo de texto para mostrar el idAtributoProducto -->
                                             <div class="row mb-3">
@@ -391,6 +395,8 @@ $dni = $_SESSION['dni'];
                                                     <input class="form-control" type="text" id="producto" name="producto" readonly>
                                                 </div>
                                             </div>
+                                            <!-- Resultado de la búsqueda -->
+                                            <div id="resultado" class="mt-3"></div>
 
                                             <script>
                                                 // Agregar evento para manejar la selección de atributos
@@ -398,14 +404,34 @@ $dni = $_SESSION['dni'];
                                                     var selectedAtributos = this.selectedOptions;
                                                     var productoInput = document.getElementById('producto');
                                                     
-                                                    // Actualizar el campo de texto con el idAtributoProducto correspondiente
+                                                    // Actualizar el campo de texto con los atributos seleccionados
                                                     var atributosIds = Array.from(selectedAtributos).map(function(option) {
                                                         return option.value;
                                                     });
                                                     var atributosIdsString = atributosIds.join(', ');
                                                     productoInput.value = atributosIdsString;
                                                 });
+
+                                                // Agregar evento al botón de búsqueda
+                                                document.getElementById('buscarBtn').addEventListener('click', function() {
+                                                    var selectedAtributos = Array.from(document.getElementById('atributosSelect').selectedOptions).map(function(option) {
+                                                        return option.value;
+                                                    });
+
+                                                    // Realizar la consulta
+                                                    var xhr = new XMLHttpRequest();
+                                                    xhr.open('GET', 'includes/buscarProducto.php?atributos=' + encodeURIComponent(selectedAtributos.join(', ')), true);
+
+                                                    xhr.onreadystatechange = function() {
+                                                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                                            document.getElementById('resultado').innerHTML = xhr.responseText;
+                                                        }
+                                                    };
+
+                                                    xhr.send();
+                                                });
                                             </script>
+
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
                                                 
