@@ -14,7 +14,7 @@ class PDF extends FPDF
         $this->SetFont('Arial', 'B', 12);
         $this->Cell(0, 10, $parametro, 0, 1, 'L');  // Cambio en el parámetro aquí
 
-        // Espacio después de la cabecera
+        // Espacio después de la cabecera 
         $this->Ln(10);
     }
 
