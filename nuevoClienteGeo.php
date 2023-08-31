@@ -16,7 +16,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
