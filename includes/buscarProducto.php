@@ -1,28 +1,26 @@
 <?php
-include 'conexion.php';  
+require 'conexion.php';
 
-// Obtener atributos seleccionados del parámetro GET
-$atributosIds = isset($_GET['atributos']) ? $_GET['atributos'] : '';
-$atributosArray = explode(', ', $atributosIds);
+if (isset($_POST['atributos'])) {
+    $selectedAtributos = $_POST['atributos'];
+    $atributosCondition = implode(',', $selectedAtributos);
 
-// Construir la consulta SQL
-$consulta = "SELECT idAtributoProducto FROM atributosProducto WHERE ";
-foreach ($atributosArray as $atributo) {
-    $consulta .= "$atributo = 1 AND ";
-}
-$consulta = rtrim($consulta, " AND ");  // Quitar el último " AND "
+    $query = "SELECT p.Nombre FROM productos p
+              INNER JOIN producto_atributos pa ON p.ID = pa.Producto_ID
+              WHERE pa.Atributo_ID IN ($atributosCondition)
+              GROUP BY p.ID
+              HAVING COUNT(DISTINCT pa.Atributo_ID) = " . count($selectedAtributos);
 
-$resultado = mysqli_query($con, $consulta);
+    $result = mysqli_query($con, $query);
 
-// Mostrar resultados
-if ($resultado && mysqli_num_rows($resultado) > 0) {
-    echo "Los siguientes idAtributoProducto coinciden con los atributos seleccionados:<br>";
-    while ($row = mysqli_fetch_assoc($resultado)) {
-        echo $row['idAtributoProducto'] . "<br>";
+    if ($row = mysqli_fetch_assoc($result)) {
+        $producto = $row['Nombre'];
+        echo $producto;
+    } else {
+        echo 'Ningún producto coincide con los atributos seleccionados.';
     }
-} else {
-    echo "No se encontraron productos con los atributos seleccionados.";
-}
 
-mysqli_close($con);
+    mysqli_free_result($result);
+    mysqli_close($con);
+}
 ?>
