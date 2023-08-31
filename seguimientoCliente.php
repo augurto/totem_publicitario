@@ -360,7 +360,7 @@ $dni = $_SESSION['dni'];
                                             
                                             <!-- Campo de selección múltiple para atributos -->
                                             <div class="mb-12">
-                                            <label class="form-label">Estado</label>
+                                            <label class="form-label">Atributos</label>
                                             <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
                                                 <?php
                                                 require 'includes/conexion.php'; // Incluimos el archivo de conexión
