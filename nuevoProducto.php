@@ -106,6 +106,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <input class="form-control" type="text" id="nombre" name="nombre" required>
                                         </div>
                                     </div>
+                                    <br>
 
                                     <div class="row mb-6">
                                         <label for="descripcion" class="col-sm-2 col-form-label">Descripción del Producto:</label>
@@ -113,6 +114,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
                                         </div>
                                     </div>
+                                    <br>
 
                                     <div class="row mb-6">
                                         <label for="precio" class="col-sm-2 col-form-label">Precio del Producto:</label>
@@ -120,13 +122,14 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <input class="form-control" type="number" id="precio" name="precio" step="0.01" required>
                                         </div>
                                     </div>
+                                    <br>
 
                                     <div class="row mb-6">
                                         <label for="atributosSelect" class="col-sm-2 col-form-label">Atributos del Producto (selecciona varios):</label>
                                         <div class="col-sm-10">
                                             <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect" name="atributos[]">
                                                 <?php
-                                                require 'conexion.php';
+                                                require 'includes/conexion.php';
 
                                                 $query = "SELECT ID, Atributo FROM atributos";
                                                 $result = mysqli_query($con, $query);
@@ -143,6 +146,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             </select>
                                         </div>
                                     </div>
+                                    <br>
 
                                     <div class="row mb-6">
                                         <div class="col-sm-2"></div>
