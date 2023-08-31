@@ -406,7 +406,7 @@ $dni = $_SESSION['dni'];
 
                                                     // Realizar la consulta
                                                     var xhr = new XMLHttpRequest();
-                                                    xhr.open('GET', 'buscarProducto.php?atributos=' + encodeURIComponent(selectedAtributos.join(', ')), true);
+                                                    xhr.open('GET', 'includes/buscarProducto.php?atributos=' + encodeURIComponent(selectedAtributos.join(', ')), true);
 
                                                     xhr.onreadystatechange = function() {
                                                         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
