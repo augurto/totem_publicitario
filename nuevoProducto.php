@@ -232,12 +232,32 @@ $dni = $_SESSION['dni'];
                     <!-- inicio linea del tiempo -->
                     <div class="col-xl-4">
                         <div class="card">
-                        <form action="procesarNuevoAtributo.php" method="POST">
-                            <label for="atributo">Nombre del Atributo:</label>
-                            <input type="text" id="atributo" name="atributo" required><br>
+                            <div class="card-body bg-transparent">
+                                <div class="dropdown float-end">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="mdi mdi-dots-vertical text-muted"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                        <!-- item-->
+                                    </div>
+                                </div>
+                                <!-- end dropdown -->
+                                <h4 class="card-title mb-4">Eventos</h4>
 
-                            <input type="submit" value="Registrar Atributo">
-                        </form>
+                                <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
+                                <form action="procesarNuevoAtributo.php" method="POST">
+                                    <label for="atributo">Nombre del Atributo:</label>
+                                    <input type="text" id="atributo" name="atributo" required><br>
+
+                                    <input type="submit" value="Registrar Atributo">
+                                </form>
+                                </div>
+                            </div>
                             <!-- end body -->
                             <div>
 
