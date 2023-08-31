@@ -159,6 +159,13 @@ if ($resultadoContarFormularios) {
                             <span>Atendidos</span>
                         </a>
                 </li>
+                <li>
+                        <a href="productos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i>
+                            <span>Productos</span>
+                        </a>
+                </li>
+                
             </ul>
             <!-- end ul -->
         </div>
