@@ -357,84 +357,39 @@ $dni = $_SESSION['dni'];
                                             </div>
 
                                             <br>
-                                            <?php
-                                            include 'includes/conexion.php';  // Reemplaza con la ruta correcta de tu archivo de conexión
-
-                                            // Obtener los atributos disponibles
-                                            $query = "SELECT * FROM atributosProducto LIMIT 1";  // Solo necesitamos una fila para obtener los nombres de las columnas
-                                            $result = mysqli_query($con, $query);
-                                            $atributos = array();
-
-                                            if ($result) {
-                                                $row = mysqli_fetch_assoc($result);
-                                                foreach ($row as $column => $value) {
-                                                    if (strpos($column, 'atributo') === 0) {
-                                                        $atributos[] = $column;
-                                                    }
-                                                }
-                                            }
-
-                                            mysqli_close($con);
-                                            ?>
-
+                                            
                                             <!-- Campo de selección múltiple para atributos -->
                                             
                                             <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
-                                                <?php foreach ($atributos as $atributo): ?>
-                                                    <option value="<?php echo $atributo; ?>"><?php echo $atributo; ?></option>
-                                                <?php endforeach; ?>
+                                                <?php
+                                                require 'conexion.php'; // Incluimos el archivo de conexión
+
+                                                $query = "SELECT ID, Atributo FROM atributos";
+                                                $result = mysqli_query($con, $query);
+
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $atributoID = $row['ID'];
+                                                    $atributoNombre = $row['Atributo'];
+                                                    echo "<option value='$atributoID'>$atributoNombre</option>";
+                                                }
+
+                                                // Liberar el resultado
+                                                mysqli_free_result($result);
+
+                                                // Cerrar la conexión
+                                                mysqli_close($con);
+                                                ?>
                                             </select>
-                                            
+                                                                                        
 
 
                                             <!-- Campo de texto para mostrar el idAtributoProducto -->
                                             <div class="row mb-3">
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Producto</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text" id="producto" name="producto" readonly>
+                                                    <input class="form-control" type="text" id="producto" name="producto" >
                                                 </div>
                                             </div>
-                                            <!-- Resultado de la búsqueda -->
-                                            <div id="resultado" class="mt-3"></div>
-
-                                            <script>
-                                                // Función para realizar la consulta y mostrar el resultado
-                                                function realizarConsulta(selectedAtributos) {
-                                                    // Realizar la consulta
-                                                    var xhr = new XMLHttpRequest();
-                                                    xhr.open('GET', 'includes/buscarProducto.php?atributos=' + encodeURIComponent(selectedAtributos.join(', ')), true);
-
-                                                    xhr.onreadystatechange = function() {
-                                                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                                                            document.getElementById('resultado').innerHTML = xhr.responseText;
-                                                        }
-                                                    };
-
-                                                    xhr.send();
-                                                }
-
-                                                // Agregar evento para manejar la selección de atributos en tiempo real
-                                                var atributosSelect = document.getElementById('atributosSelect');
-                                                atributosSelect.addEventListener('change', function() {
-                                                    var selectedAtributos = Array.from(this.selectedOptions).map(function(option) {
-                                                        return option.value;
-                                                    });
-
-                                                    realizarConsulta(selectedAtributos);
-                                                });
-
-                                                // Al cargar la página, realizar la consulta con los atributos seleccionados
-                                                window.addEventListener('load', function() {
-                                                    var selectedAtributos = Array.from(atributosSelect.selectedOptions).map(function(option) {
-                                                        return option.value;
-                                                    });
-
-                                                    realizarConsulta(selectedAtributos);
-                                                });
-                                            </script>
-
-
-
 
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
