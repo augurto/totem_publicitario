@@ -610,7 +610,7 @@ $dni = $_SESSION['dni'];
                                             </div>
                                         </li>
                                         <!-- end li -->
-                                        <?php
+                                        <?php 
                                         }
 
                                         // Cierra la conexión
