@@ -165,351 +165,59 @@ $dni = $_SESSION['dni'];
                                 <br>
 
                               <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
-                                <form id="myForm" action="includes/guardar_webformActualizado.php" method="post">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            
-                                            <div class="row mb-6">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                <div class="col-sm-10">
-                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" >
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <?php
-                                            $toke="219965b4c7c3cc8d5437576f507f3d5f6ffde004e27580e83f8fd3e1a35f1c09";
-                                            $curl = curl_init();
-                                            curl_setopt_array($curl, array(
-                                                CURLOPT_URL => "https://apiperu.dev/api/dni/$documento?api_token=",
-                                                CURLOPT_RETURNTRANSFER => true,
-                                                CURLOPT_CUSTOMREQUEST => "GET",
-                                                CURLOPT_SSL_VERIFYPEER => false
-                                            ));
-                                            $response = curl_exec($curl);
-                                            $err = curl_error($curl);
-                                            curl_close($curl);
-                                            if ($err) {
-                                                echo "cURL Error #:" . $err;
-                                            } else {
-                                                $data = json_decode($response, true);
-                                                if ($data['success']) {
-                                                    $nombreCompleto = $data['data']['nombre_completo'];
-                                                    
-                                                    echo '
-                                                    <div class="row mb-6">
-                                                        <label for="example-text-input" class="col-sm-2 col-form-label">Datos Reniec</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                                id="example-text-input" name="datosSunat" value="' . $nombreCompleto . '" readonly>
-                                                        </div>
-                                                    </div>';
-
-                                                } else {
-                                                    echo "No se pudo obtener información para el DNI proporcionado.";
-                                                }
-                                            }
-                                            ?>
-                                            <br>
-                                            
-                                            <?php if (empty($documento)) : ?>
-                                                <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
-                                                    </div>
-                                                </div>
-                                            <?php else : ?>
-                                                <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
-                                                    </div>
-                                                </div>
-                                            <?php endif; ?>
-
-
-                                            <script>
-                                                document.getElementById("example-number-input").addEventListener("input", function() {
-                                                    if (this.value.length > 9) {
-                                                        this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
-                                                    }
-                                                });
-                                            </script>
-                                            <br>
-                                             <!-- end row -->
-                                             <div class="row mb-6">
-                                                <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
-                                                <div class="col-sm-10">
-                                                <a href="https://api.whatsapp.com/send?phone=<?php echo "51".$telefono; ?>" target="_blank"><?php echo $telefono; ?></a>
-                                                <input type="hidden" class="form-control" name="telefono" value="<?php echo $telefono ?>" readonly>
-                                                </div>
-                                            </div>
-                                            <!-- end row -->
-                                            <br>
-                                            <div class="row mb-3">
-                                                <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="email"  value="<?php echo $email  ; ?>" 
-                                                        id="example-email-input" name="email" readonly>
-                                                </div>
-                                            </div>
-                                            <!-- end row -->
-                                            <div class="mb-12">
-                                                <label class="form-label">Tipo de Cliente</label>
-                                                                                                
-                                                <select class="form-control select2" id="fuenteDato" name="fuenteDato">
-                                                    <?php
-                                                    include 'includes/conexion.php'; 
-                                                    // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                    $query = "SELECT * FROM tipoClienteCliente WHERE empresaEstado = $empresaUser2";
-                                                    $result = mysqli_query($con, $query);
-
-                                                    // Verificar si se encontraron resultados
-                                                    if (mysqli_num_rows($result) > 0) {
-                                                        // Generar las opciones dentro del select
-                                                        while ($row = mysqli_fetch_assoc($result)) {
-                                                            $value = $row['valorTipoCliente'];
-                                                            $text = $row['descripcionTipoCliente'];
-
-                                                            // Verificar si el valor coincide con $fuenteDato
-                                                            $selected = ($fuenteDato == $value) ? 'selected' : '';
-
-                                                            echo "<option value='" . $value . "' " . $selected . ">" . $text . "</option>";
-                                                        }
-                                                    }
-
-                                                    // Cerrar la conexión a la base de datos
-                                                    mysqli_close($con);
-                                                    ?>
-                                                </select>
-
-
-
-                                            </div>
-                                            <div class="mt-6">
-                                                <br>
-                                                <label class="mb-1">Fuente : </label>
-                                                
-                                                                                               
-                                                <?php
-                                                include 'includes/conexion.php';
-                                                if (empty($id_user)) {
-                                                    if ($_GET['pr'] == "Google ADS") {
-                                                        $fuenteOriginal = 2;
-                                                    } elseif ($_GET['pr'] == "Meta ADS") {
-                                                        $fuenteOriginal = 3;
-                                                    } else {
-                                                        $fuenteOriginal = 1;
-                                                    }
-                                                } else {
-                                                    $fuenteOriginal = $prospecto;
-                                                }
-                                                $query = "SELECT descripcionFuente, colorFuente FROM fuente WHERE tipoFuente = '$fuenteOriginal'";
-                                                $result = mysqli_query($con, $query);
-
-                                                if ($result && mysqli_num_rows($result) > 0) {
-                                                    $row = mysqli_fetch_assoc($result);
-                                                    $descripcionFuente = $row['descripcionFuente'];
-                                                    $colorFuente = $row['colorFuente'];
-                                                
-                                                    echo '<span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';">' . $descripcionFuente . '</span>';
-                                                    echo '<input class="form-control" type="hidden" id="example-text-input" name="fuente" value="' . $fuenteOriginal . '" readonly>';
-                                                }
-                                                 else {
-                                                    echo '<span class="badge rounded-pill">SIN FUENTE</span>';
-                                                }
-
-                                                mysqli_close($con);
-                                                ?>
-
-                                            </div>
-                                            <br>
-                                            <div class="mb-12">
-                                                <label class="form-label">Estado</label>
-                                                <select class="form-control select2" id="tipoCliente" name="tipoCliente">
-                                                    <?php
-                                                    include 'includes/conexion.php';
-                                                    // Realizar la consulta a la base de datos para obtener los datos de la tabla
-                                                    $query = "SELECT * FROM tipoCliente";
-                                                    $result = mysqli_query($con, $query);
-
-                                                    // Verificar si se encontraron resultados
-                                                    if (mysqli_num_rows($result) > 0) {
-                                                        // Generar las opciones dentro del select
-                                                        while ($row = mysqli_fetch_assoc($result)) {
-                                                            $value = $row['valorTipoCliente'];
-                                                            $text = $row['descripcionTipoCliente'];
-
-                                                            // Verificar si el valor actual coincide con $tipoCliente
-                                                            if ($value == $tipoCliente) {
-                                                                echo "<option value='" . $value . "' selected>" . $text . "</option>";
-                                                            } else {
-                                                                echo "<option value='" . $value . "'>" . $text . "</option>";
-                                                            }
-                                                        }
-                                                    }
-
-                                                    // Cerrar la conexión a la base de datos
-                                                    mysqli_close($con);
-                                                    ?>
-                                                </select>
-                                            </div>
-
-                                            <br>
-                                            
-                                            <!-- Campo de selección múltiple para atributos -->
-                                            <div class="mb-12">
-                                            <label class="form-label">Atributos</label>
-                                            <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
-                                                <?php
-                                                require 'includes/conexion.php'; // Incluimos el archivo de conexión
-
-                                                $query = "SELECT ID, Atributo FROM atributos";
-                                                $result = mysqli_query($con, $query);
-
-                                                while ($row = mysqli_fetch_assoc($result)) {
-                                                    $atributoID = $row['ID'];
-                                                    $atributoNombre = $row['Atributo'];
-                                                    echo "<option value='$atributoID'>$atributoNombre</option>";
-                                                }
-
-                                                // Liberar el resultado
-                                                mysqli_free_result($result);
-
-                                                // Cerrar la conexión
-                                                mysqli_close($con);
-                                                ?>
-                                            </select>
-                                            </div>                                    
-
-                                            <br>
-                                            <!-- Campo de texto para mostrar el idAtributoProducto -->
-                                            <div class="row mb-3">
-                                                <label for="example-email-input" class="col-sm-2 col-form-label">Producto</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" id="producto" name="producto" readonly>
-                                                </div>
-                                            </div>
-
-                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-                                            <script>
-                                                $(document).ready(function() {
-                                                    $('.select2-multiple').select2();
-
-                                                    $('.select2-multiple').on('change', function() {
-                                                        updateProduct();
-                                                    });
-
-                                                    function updateProduct() {
-                                                        var selectedAtributos = $('.select2-multiple').val();
-                                                        $.ajax({
-                                                            type: 'POST',
-                                                            url: 'includes/buscarProducto.php', // Archivo que procesará la solicitud
-                                                            data: { atributos: selectedAtributos },
-                                                            success: function(response) {
-                                                                $('#producto').val(response);
-                                                            }
-                                                        });
-                                                    }
-                                                });
-                                            </script>
-                                            <div class="mt-6">
-                                                <label class="mb-1">Mensaje </label>
-                                                
-                                                <textarea  class="form-control" maxlength="225" rows="3"  readonly><?php echo $mensaje; ?></textarea>
-
-                                            </div>
-                                            <div class="mt-6">
-                                                <label class="mb-1">Comentario</label>
-                                                
-                                                <textarea  id="textarea" class="form-control" maxlength="225" rows="3" name="comentario" ></textarea>
-
-                                            </div>
-                                            <br>
-                                            <?php 
-                                                $prospectoExistente = $_GET['pr'];
-                                                
-                                                if (empty($mensajeOriginal)) {
-                                                    echo "Mensaje Original : ".$mensaje . "<br>";
-                                                } else {
-                                                    echo "Mensaje Original : ".$mensajeOriginal . "<br>";
-                                                }
-                                                
-                                                // Restar 5 horas a la fecha
-                                                $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
-                                                echo "Atendido por: " . ucwords($nombreUserEdicion) . "<br>Fecha: " . $nuevaFecha;
-                                            ?>
-
-
-                                            <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
-
-                                            <script>
-                                                // Obtener el valor de la variable "id" de la URL
-                                                const urlParams = new URLSearchParams(window.location.search);
-                                                const id = urlParams.get('id');
-
-                                                // Establecer el valor en el input
-                                                document.getElementById('id-input').value = id;
-                                            </script>
-                                            <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
-
-                                            <input type="hidden" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
-                                            <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
-                                            <input type="hidden"  name="URL" class="form-control" value="<?php echo $url; ?>" readonly>
-                                            <input type="hidden"  name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
-                                            <input type="hidden"  name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
-                                            <input type="hidden" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
-                                            
-                                            <?php
-                                            // Verificar si $formActualizado está vacío
-                                            if (empty($formActualizado)) {
-                                                echo '<input type="hidden" name="formActualizado" class="form-control" value="1" readonly>';
-                                            } else {
-                                                echo '<input type="hidden" name="formActualizado" class="form-control" value="' . $formActualizado . '" readonly>';
-                                            }
-                                            ?>
-
-
-
-                                            <input type="hidden" id="iduser" name="empresaUser" class="form-control" value="<?php echo $_SESSION['empresaUser'] ; ?>" readonly>
-                                            <?php if (empty($mensajeOriginal)) : ?>
-                                                <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensaje; ?>" readonly>
-                                                
-                                            <?php else : ?>
-                                                <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensajeOriginal; ?>" readonly>
-                                            <?php endif; ?>
-
-                                            <br>
-                                            <?php if (empty($idOriginal)) : ?>
-                                                <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
-                                                
-                                            <?php else : ?>
-                                                <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $idOriginal; ?>" readonly>
-                                            <?php endif; ?>
-                                            <br>
-                                          
-                                            
-                                                <center>
-                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
-                                                </center>
-                                            
-
-
-
-
-
-                                                    
-                                        </div>
-                                        <!-- end col -->
-                                        
-                                        <!-- end col -->
+                              <form action="procesarNuevoProducto.php" method="POST">
+                                <div class="row mb-6">
+                                    <label for="nombre" class="col-sm-2 col-form-label">Nombre del Producto:</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="nombre" name="nombre" required>
                                     </div>
-                                    <!-- end row -->
-                                    
-                                </form>
-                                
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label for="descripcion" class="col-sm-2 col-form-label">Descripción del Producto:</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label for="precio" class="col-sm-2 col-form-label">Precio del Producto:</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="number" id="precio" name="precio" step="0.01" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label for="atributosSelect" class="col-sm-2 col-form-label">Atributos del Producto (selecciona múltiples):</label>
+                                    <div class="col-sm-10">
+                                        <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect" name="atributos[]">
+                                            <?php
+                                            require 'includes/conexion.php';
+
+                                            $query = "SELECT ID, Atributo FROM atributos";
+                                            $result = mysqli_query($con, $query);
+
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                $atributoID = $row['ID'];
+                                                $atributoNombre = $row['Atributo'];
+                                                echo "<option value='$atributoID'>$atributoNombre</option>";
+                                            }
+
+                                            mysqli_free_result($result);
+                                            mysqli_close($con);
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-10">
+                                        <input type="submit" value="Agregar Producto" class="btn btn-primary">
+                                    </div>
+                                </div>
+                            </form>
+                                                            
 
                                 
 
@@ -610,7 +318,7 @@ $dni = $_SESSION['dni'];
                                             </div>
                                         </li>
                                         <!-- end li -->
-                                        <?php 
+                                        <?php
                                         }
 
                                         // Cierra la conexión
