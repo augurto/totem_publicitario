@@ -21,7 +21,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 <head>
 
     <meta charset="utf-8" />
-    <title>Atencion Cliente</title>
+    <title>Nuevo Cliente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
@@ -106,24 +106,28 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <input class="form-control" type="text" id="DniCliente" name="DniCliente" maxlength="20" required>
                                             </div>
                                         </div>
+                                        <br>
                                         <div class="row mb-6">
                                             <label for="Nombre" class="col-sm-2 col-form-label">Nombre</label>
                                             <div class="col-sm-10">
                                                 <input class="form-control" type="text" id="Nombre" name="Nombre" maxlength="50" required>
                                             </div>
                                         </div>
+                                        <br>
                                         <div class="row mb-6">
                                             <label for="Apellido" class="col-sm-2 col-form-label">Apellido</label>
                                             <div class="col-sm-10">
                                                 <input class="form-control" type="text" id="Apellido" name="Apellido" maxlength="50" required>
                                             </div>
                                         </div>
+                                        <br>
                                         <div class="row mb-6">
                                             <label for="FechaNacimiento" class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
                                             <div class="col-sm-10">
                                                 <input class="form-control" type="date" id="FechaNacimiento" name="FechaNacimiento">
                                             </div>
                                         </div>
+                                        <br>
                                         <div class="row mb-6">
                                             <label for="Genero" class="col-sm-2 col-form-label">Género</label>
                                             <div class="col-sm-10">
@@ -134,6 +138,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 </select>
                                             </div>
                                         </div>
+                                        <br>
                                         <!-- Otros campos aquí: CorreoElectronico, Telefono, Direccion, etc. -->
                                         <div class="row mb-6">
                                             <div class="col-sm-10 offset-sm-2">
