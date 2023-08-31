@@ -398,12 +398,8 @@ $dni = $_SESSION['dni'];
                                             <div id="resultado" class="mt-3"></div>
 
                                             <script>
-                                                // Agregar evento para manejar la selección de atributos en tiempo real
-                                                document.getElementById('atributosSelect').addEventListener('change', function() {
-                                                    var selectedAtributos = Array.from(this.selectedOptions).map(function(option) {
-                                                        return option.value;
-                                                    });
-
+                                                // Función para realizar la consulta y mostrar el resultado
+                                                function realizarConsulta(selectedAtributos) {
                                                     // Realizar la consulta
                                                     var xhr = new XMLHttpRequest();
                                                     xhr.open('GET', 'includes/buscarProducto.php?atributos=' + encodeURIComponent(selectedAtributos.join(', ')), true);
@@ -415,8 +411,28 @@ $dni = $_SESSION['dni'];
                                                     };
 
                                                     xhr.send();
+                                                }
+
+                                                // Agregar evento para manejar la selección de atributos en tiempo real
+                                                var atributosSelect = document.getElementById('atributosSelect');
+                                                atributosSelect.addEventListener('change', function() {
+                                                    var selectedAtributos = Array.from(this.selectedOptions).map(function(option) {
+                                                        return option.value;
+                                                    });
+
+                                                    realizarConsulta(selectedAtributos);
+                                                });
+
+                                                // Al cargar la página, realizar la consulta con los atributos seleccionados
+                                                window.addEventListener('load', function() {
+                                                    var selectedAtributos = Array.from(atributosSelect.selectedOptions).map(function(option) {
+                                                        return option.value;
+                                                    });
+
+                                                    realizarConsulta(selectedAtributos);
                                                 });
                                             </script>
+
 
 
 
