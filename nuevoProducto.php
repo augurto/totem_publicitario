@@ -316,7 +316,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     </div>
 
                                     <div class="row mb-6">
-                                        <label for="atributosSelect" class="col-sm-2 col-form-label">Atributos del Producto (selecciona múltiples):</label>
+                                        <label for="atributosSelect" class="col-sm-2 col-form-label">Atributos del Producto (selecciona varios):</label>
                                         <div class="col-sm-10">
                                             <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect" name="atributos[]">
                                                 <?php
