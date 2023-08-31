@@ -173,9 +173,9 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                 <h4 class="card-title mb-4">Atributo</h4>
 
                                 <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
-                                <form action="procesarNuevoAtributo.php" method="POST">
+                                <form action="includes/registrarAtributoProducto.php" method="POST">
                                     <label for="atributo">Nombre del Atributo:</label>
-                                    <input type="text" id="atributo" name="atributo" required class="form-control" ><br>
+                                    <input type="text" id="atributo" name="atributo" required class="form-control" >
 
                                     <br>
                                     <input type="submit" value="Registrar Atributo" class="btn btn-primary">
