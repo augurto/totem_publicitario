@@ -254,7 +254,8 @@ $dni = $_SESSION['dni'];
                                     <label for="atributo">Nombre del Atributo:</label>
                                     <input type="text" id="atributo" name="atributo" required><br>
 
-                                    <input type="submit" value="Registrar Atributo">
+                                    <br>
+                                    <input type="submit" value="Registrar Atributo" class="btn btn-primary">
                                 </form>
                                 </div>
                             </div>
