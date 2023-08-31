@@ -192,7 +192,7 @@ $dni = $_SESSION['dni'];
                                     <div class="col-sm-10">
                                         <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect" name="atributos[]">
                                             <?php
-                                            require 'conexion.php';
+                                            require 'includes/conexion.php';
 
                                             $query = "SELECT ID, Atributo FROM atributos";
                                             $result = mysqli_query($con, $query);
