@@ -165,7 +165,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                         <!-- item-->
                                         
                                         <a href="#">Accion1</a>
-                                        <a href="#">Accion2</a>
+                                  
                                         
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                 <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
                                 <form action="procesarNuevoAtributo.php" method="POST">
                                     <label for="atributo">Nombre del Atributo:</label>
-                                    <input type="text" id="atributo" name="atributo" required><br>
+                                    <input type="text" id="atributo" name="atributo" required class="form-control" ><br>
 
                                     <br>
                                     <input type="submit" value="Registrar Atributo" class="btn btn-primary">
