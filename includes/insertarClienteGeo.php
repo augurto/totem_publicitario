@@ -24,7 +24,7 @@ $FechaNacimiento = $_POST['FechaNacimiento'];
 $Genero = $_POST['Genero'];
 
 // Insertar los datos en la base de datos
-$sql = "INSERT INTO Cliente (ClienteID, DniCliente, Nombre, Apellido, FechaNacimiento, Genero)
+$sql = "INSERT INTO ClienteGeo (ClienteID, DniCliente, Nombre, Apellido, FechaNacimiento, Genero)
         VALUES ('$cliente_id', '$DniCliente', '$Nombre', '$Apellido', '$FechaNacimiento', '$Genero')";
 
 if (mysqli_query($con, $sql)) {
