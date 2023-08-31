@@ -356,7 +356,7 @@ $dni = $_SESSION['dni'];
                                                 </select>
                                             </div>
 
-                                            <div id="campoOculto" style="display: none;">
+                                            <div class="mb-12">
                                                 <label class="form-label">Multiple Select</label>
                                                 <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Choose ...">
                                                     <!-- Tus opciones aquí -->
@@ -423,18 +423,6 @@ $dni = $_SESSION['dni'];
                                                 </select>
                                             </div>
 
-                                            <script>
-                                                // Obtener el valor seleccionado del primer select
-                                                var selectedValue = document.getElementById('tipoCliente').value;
-
-                                                // Mostrar el campo oculto si el valor es igual a 6
-                                                if (selectedValue == 6) {
-                                                    document.getElementById('campoOculto').style.display = 'block';
-                                                }
-                                            </script>
-
-                                            
-                                           
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
                                                 
