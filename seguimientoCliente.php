@@ -178,10 +178,10 @@ $dni = $_SESSION['dni'];
                                             </div>
                                             <br>
                                             <?php
-                                            
+                                            $toke="219965b4c7c3cc8d5437576f507f3d5f6ffde004e27580e83f8fd3e1a35f1c09";
                                             $curl = curl_init();
                                             curl_setopt_array($curl, array(
-                                                CURLOPT_URL => "https://apiperu.dev/api/dni/$documento?api_token=219965b4c7c3cc8d5437576f507f3d5f6ffde004e27580e83f8fd3e1a35f1c09",
+                                                CURLOPT_URL => "https://apiperu.dev/api/dni/$documento?api_token=",
                                                 CURLOPT_RETURNTRANSFER => true,
                                                 CURLOPT_CUSTOMREQUEST => "GET",
                                                 CURLOPT_SSL_VERIFYPEER => false
