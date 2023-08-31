@@ -359,7 +359,8 @@ $dni = $_SESSION['dni'];
                                             <br>
                                             
                                             <!-- Campo de selección múltiple para atributos -->
-                                            
+                                            <div class="mb-12">
+                                                <label class="form-label">Estado</label>
                                             <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
                                                 <?php
                                                 require 'includes/conexion.php'; // Incluimos el archivo de conexión
@@ -380,9 +381,9 @@ $dni = $_SESSION['dni'];
                                                 mysqli_close($con);
                                                 ?>
                                             </select>
-                                                                                        
+                                            </div>                                    
 
-
+                                            <br>
                                             <!-- Campo de texto para mostrar el idAtributoProducto -->
                                             <div class="row mb-3">
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Producto</label>
