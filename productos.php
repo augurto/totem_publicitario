@@ -115,7 +115,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                         </thead>
                                         <tbody>
                                             <?php
-                                            require 'conexion.php';
+                                            require 'includes/conexion.php';
 
                                             $query = "SELECT p.ID AS Producto_ID, p.Nombre AS Producto_Nombre, p.Descripcion AS Producto_Descripcion, p.Precio AS Producto_Precio,
                                                     GROUP_CONCAT(a.Atributo SEPARATOR ', ') AS Atributos
