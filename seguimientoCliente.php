@@ -385,11 +385,17 @@ $dni = $_SESSION['dni'];
 
                                             <br>
                                             <!-- Campo de texto para mostrar el idAtributoProducto -->
-                                            <div class="row mb-3">
-                                                <label for="example-email-input" class="col-sm-2 col-form-label">Producto</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" id="producto" name="producto" readonly>
-                                                </div>
+                                            
+                                            <!-- Campo de texto para mostrar el atributo erróneo -->
+                                            <div class="mb-3">
+                                                <label for="atributoError" class="form-label">Atributo Erróneo</label>
+                                                <input class="form-control" type="text" id="atributoError" name="atributoError" readonly>
+                                            </div>
+
+                                            <!-- Campo de texto para mostrar el último producto coincidente -->
+                                            <div class="mb-3">
+                                                <label for="producto" class="form-label">Último Producto Coincidente</label>
+                                                <input class="form-control" type="text" id="producto" name="producto" readonly>
                                             </div>
 
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
