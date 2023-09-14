@@ -113,6 +113,14 @@ $dni = $_SESSION['dni'];
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <style>
+        .atributo-no-coincide {
+    background-color: #ffcccc; /* Cambia el fondo a rojo claro */
+    font-weight: bold; /* Hace que el texto sea negrita */
+    color: red; /* Cambia el color del texto a rojo */
+}
+
+    </style>
 
 </head>
 
@@ -395,25 +403,26 @@ $dni = $_SESSION['dni'];
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                                             <script>
-                                                $(document).ready(function() {
-                                                    $('.select2-multiple').select2();
-
-                                                    $('.select2-multiple').on('change', function() {
-                                                        updateProduct();
-                                                    });
-
-                                                    function updateProduct() {
-                                                        var selectedAtributos = $('.select2-multiple').val();
-                                                        $.ajax({
-                                                            type: 'POST',
-                                                            url: 'includes/buscarProducto.php', // Archivo que procesará la solicitud
-                                                            data: { atributos: selectedAtributos },
-                                                            success: function(response) {
-                                                                $('#producto').val(response);
+                                                function updateProduct() {
+                                                    var selectedAtributos = $('.select2-multiple').val();
+                                                    $.ajax({
+                                                        type: 'POST',
+                                                        url: 'includes/buscarProducto.php',
+                                                        data: { atributos: selectedAtributos },
+                                                        success: function(response) {
+                                                            if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
+                                                                var atributoID = response.split('.').pop().trim();
+                                                                // Aplicar una clase CSS para marcar el atributo que no coincide
+                                                                $('#atributosSelect option[value="' + atributoID + '"]').addClass('atributo-no-coincide');
+                                                            } else {
+                                                                // Limpiar la clase CSS si no hay error
+                                                                $('#atributosSelect option').removeClass('atributo-no-coincide');
                                                             }
-                                                        });
-                                                    }
-                                                });
+                                                            $('#producto').val(response);
+                                                        }
+                                                    });
+                                                }
+
                                             </script>
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>

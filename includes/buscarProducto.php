@@ -5,7 +5,7 @@ if (isset($_POST['atributos'])) {
     $selectedAtributos = $_POST['atributos'];
     $atributosCondition = implode(',', $selectedAtributos);
 
-    $query = "SELECT p.Nombre FROM productos p
+    $query = "SELECT p.Nombre, pa.Atributo_ID FROM productos p
               INNER JOIN producto_atributos pa ON p.ID = pa.Producto_ID
               WHERE pa.Atributo_ID IN ($atributosCondition)
               GROUP BY p.ID
@@ -17,10 +17,12 @@ if (isset($_POST['atributos'])) {
         $producto = $row['Nombre'];
         echo $producto;
     } else {
-        echo 'Ningún producto coincide con los atributos seleccionados.';
+        // Devuelve el ID del atributo que no coincide junto con el mensaje de error
+        echo 'Ningún producto coincide con los atributos seleccionados.' . mysqli_real_escape_string($con, $atributosCondition);
     }
 
     mysqli_free_result($result);
     mysqli_close($con);
 }
+
 ?>
