@@ -385,44 +385,35 @@ $dni = $_SESSION['dni'];
 
                                             <br>
                                             <!-- Campo de texto para mostrar el idAtributoProducto -->
-                                            
-                                            <!-- Campo de texto para mostrar el atributo erróneo -->
-                                            <div class="mb-3">
-                                                <label for="atributoError" class="form-label">Atributo Erróneo</label>
-                                                <input class="form-control" type="text" id="atributoError" name="atributoError" readonly>
-                                            </div>
-
-                                            <!-- Campo de texto para mostrar el último producto coincidente -->
-                                            <div class="mb-3">
-                                                <label for="producto" class="form-label">Último Producto Coincidente</label>
-                                                <input class="form-control" type="text" id="producto" name="producto" readonly>
+                                            <div class="row mb-3">
+                                                <label for="example-email-input" class="col-sm-2 col-form-label">Producto</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" id="producto" name="producto" readonly>
+                                                </div>
                                             </div>
 
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                                             <script>
-                                                function updateProduct() {
-                                                var selectedAtributos = $('.select2-multiple').val();
-                                                $.ajax({
-                                                    type: 'POST',
-                                                    url: 'includes/buscarProducto.php',
-                                                    data: { atributos: selectedAtributos },
-                                                    success: function(response) {
-                                                        if (response === "Ningún producto coincide con los atributos seleccionados.") {
-                                                            // Si no se encontraron coincidencias, mostrar un mensaje de error.
-                                                            $('#producto').val(response);
+                                                $(document).ready(function() {
+                                                    $('.select2-multiple').select2();
 
-                                                            // Obtener el último atributo seleccionado que generó el error.
-                                                            var atributoErroneo = selectedAtributos.pop();
-                                                            alert("El atributo '" + $('#atributosSelect option[value="' + atributoErroneo + '"]').text() + "' generó el error.");
-                                                        } else {
-                                                            // Si se encontró un producto, mostrarlo.
-                                                            $('#producto').val(response);
-                                                        }
+                                                    $('.select2-multiple').on('change', function() {
+                                                        updateProduct();
+                                                    });
+
+                                                    function updateProduct() {
+                                                        var selectedAtributos = $('.select2-multiple').val();
+                                                        $.ajax({
+                                                            type: 'POST',
+                                                            url: 'includes/buscarProducto.php', // Archivo que procesará la solicitud
+                                                            data: { atributos: selectedAtributos },
+                                                            success: function(response) {
+                                                                $('#producto').val(response);
+                                                            }
+                                                        });
                                                     }
                                                 });
-                                            }
-
                                             </script>
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
