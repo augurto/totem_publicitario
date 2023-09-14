@@ -400,7 +400,7 @@ $dni = $_SESSION['dni'];
                                                     <input class="form-control" type="text" id="producto" name="producto" readonly>
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <button class="btn btn-primary" id="agregarProducto">Agregar</button>
+                                                    <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
                                                 </div>
                                             </div>
 
@@ -457,7 +457,7 @@ $dni = $_SESSION['dni'];
                                                 
                                             </script>
                                             <script>
-                                                $(document).ready(function() {
+                                               $(document).ready(function() {
                                                 $('#agregarProducto').on('click', function() {
                                                     agregarProductoATabla();
                                                 });
