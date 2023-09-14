@@ -501,8 +501,7 @@ $dni = $_SESSION['dni'];
                                                     // Eliminar la fila completa
                                                     $(this).closest('tr').remove();
                                                 });
-                                            });
-
+                                         
                                             </script>
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
