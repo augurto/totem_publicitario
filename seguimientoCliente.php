@@ -393,12 +393,31 @@ $dni = $_SESSION['dni'];
 
                                             <br>
                                             <!-- Campo de texto para mostrar el idAtributoProducto -->
+                                            <!-- Campo de texto para mostrar el producto -->
                                             <div class="row mb-3">
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Producto</label>
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-8">
                                                     <input class="form-control" type="text" id="producto" name="producto" readonly>
                                                 </div>
+                                                <div class="col-sm-2">
+                                                    <button class="btn btn-primary" id="agregarProducto">Agregar</button>
+                                                </div>
                                             </div>
+
+                                            <!-- Tabla para mostrar los productos -->
+                                            <table class="table" id="tablaProductos" style="display: none;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre del Producto</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Editar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Aquí se agregarán las filas de productos -->
+                                                </tbody>
+                                            </table>
+
 
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -434,6 +453,39 @@ $dni = $_SESSION['dni'];
                                                         updateProduct();
                                                     });
                                                 });
+
+                                                function agregarProductoATabla() {
+                                                var productoNombre = $('#producto').val();
+                                                var cantidad = prompt('Ingrese la cantidad:', '1'); // Puedes utilizar un cuadro de diálogo o un campo de entrada
+
+                                                if (cantidad !== null) {
+                                                    // Crear una nueva fila en la tabla
+                                                    var newRow = $('<tr>');
+                                                    newRow.append('<td>' + productoNombre + '</td>');
+                                                    newRow.append('<td>' + cantidad + '</td>');
+                                                    newRow.append('<td><button class="btn btn-secondary editar">Editar</button></td>');
+
+                                                    // Agregar la fila a la tabla
+                                                    $('#tablaProductos tbody').append(newRow);
+
+                                                    // Mostrar la tabla si no está visible
+                                                    $('#tablaProductos').show();
+                                                }
+                                            }
+
+                                            // Escuchar clics en botones "Editar" dentro de la tabla
+                                            $('#tablaProductos').on('click', '.editar', function() {
+                                                // Implementa la lógica de edición aquí (puedes abrir un cuadro de diálogo para editar la cantidad, por ejemplo)
+                                                var fila = $(this).closest('tr');
+                                                var productoNombre = fila.find('td:eq(0)').text();
+                                                var cantidad = fila.find('td:eq(1)').text();
+
+                                                var nuevaCantidad = prompt('Editar cantidad:', cantidad);
+                                                if (nuevaCantidad !== null) {
+                                                    fila.find('td:eq(1)').text(nuevaCantidad);
+                                                }
+                                            });
+                                     
                                             </script>
 
                                             <div class="mt-6">
