@@ -457,7 +457,7 @@ $dni = $_SESSION['dni'];
                                                 
                                             </script>
                                             <script>
-                                               $(document).ready(function() {
+                                            $(document).ready(function() {
                                                 $('.agregarProducto').on('click', function() {
                                                     agregarProductoATabla();
                                                 });
@@ -477,8 +477,13 @@ $dni = $_SESSION['dni'];
 
                                                     // Mostrar la tabla si no está visible
                                                     $('#tablaProductos').show();
+
+                                                    // Limpiar el campo de producto y los atributos
+                                                    $('#producto').val('');
+                                                    $('.select2-multiple').val(null).trigger('change');
                                                 }
                                             });
+
 
 
                                                 // Escuchar clics en botones "Eliminar" dentro de la tabla
