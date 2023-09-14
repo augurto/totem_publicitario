@@ -1,19 +1,18 @@
 <?php
 require 'conexion.php';
 
-require 'conexion.php';
-
 if (isset($_POST['atributos'])) {
     $selectedAtributos = $_POST['atributos'];
     $atributosCondition = implode(',', $selectedAtributos);
 
-    $query = "SELECT p.Nombre FROM productos p
+    // Consulta para obtener el último producto que cumple con la mayoría de los requisitos
+    $query = "SELECT p.Nombre, COUNT(pa.ID) AS contador
+              FROM productos p
               INNER JOIN producto_atributos pa ON p.ID = pa.Producto_ID
               WHERE pa.Atributo_ID IN ($atributosCondition)
               GROUP BY p.ID
-              HAVING COUNT(DISTINCT pa.Atributo_ID) = " . count($selectedAtributos) . "
-              ORDER BY p.ID DESC
-              LIMIT 1"; // Cambio aquí para obtener el último producto
+              ORDER BY contador DESC, p.ID DESC
+              LIMIT 1";
 
     $result = mysqli_query($con, $query);
 
@@ -25,6 +24,5 @@ if (isset($_POST['atributos'])) {
     mysqli_free_result($result);
     mysqli_close($con);
 }
-
 
 ?>
