@@ -414,11 +414,14 @@ $dni = $_SESSION['dni'];
                                                                 var atributoID = response.split('.').pop().trim();
                                                                 // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
                                                                 $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
+                                                                // Establecer un valor predeterminado en el campo de texto
+                                                                $('#producto').val('Ningún producto coincide');
                                                             } else {
                                                                 // Restablecer el fondo de todas las opciones
                                                                 $('#atributosSelect option').css('background-color', '');
+                                                                // Establecer el valor del producto si hay un resultado
+                                                                $('#producto').val(response);
                                                             }
-                                                            $('#producto').val(response);
                                                         }
                                                     });
                                                 }
