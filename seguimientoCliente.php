@@ -395,25 +395,28 @@ $dni = $_SESSION['dni'];
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                                             <script>
-                                                $(document).ready(function() {
-                                                    $('.select2-multiple').select2();
+                                                function updateProduct() {
+                                                var selectedAtributos = $('.select2-multiple').val();
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: 'includes/buscarProducto.php',
+                                                    data: { atributos: selectedAtributos },
+                                                    success: function(response) {
+                                                        if (response === "Ningún producto coincide con los atributos seleccionados.") {
+                                                            // Si no se encontraron coincidencias, mostrar un mensaje de error.
+                                                            $('#producto').val(response);
 
-                                                    $('.select2-multiple').on('change', function() {
-                                                        updateProduct();
-                                                    });
-
-                                                    function updateProduct() {
-                                                        var selectedAtributos = $('.select2-multiple').val();
-                                                        $.ajax({
-                                                            type: 'POST',
-                                                            url: 'includes/buscarProducto.php', // Archivo que procesará la solicitud
-                                                            data: { atributos: selectedAtributos },
-                                                            success: function(response) {
-                                                                $('#producto').val(response);
-                                                            }
-                                                        });
+                                                            // Obtener el último atributo seleccionado que generó el error.
+                                                            var atributoErroneo = selectedAtributos.pop();
+                                                            alert("El atributo '" + $('#atributosSelect option[value="' + atributoErroneo + '"]').text() + "' generó el error.");
+                                                        } else {
+                                                            // Si se encontró un producto, mostrarlo.
+                                                            $('#producto').val(response);
+                                                        }
                                                     }
                                                 });
+                                            }
+
                                             </script>
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>

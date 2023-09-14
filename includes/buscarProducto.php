@@ -5,11 +5,17 @@ if (isset($_POST['atributos'])) {
     $selectedAtributos = $_POST['atributos'];
     $atributosCondition = implode(',', $selectedAtributos);
 
-    $query = "SELECT p.Nombre FROM productos p
-              INNER JOIN producto_atributos pa ON p.ID = pa.Producto_ID
-              WHERE pa.Atributo_ID IN ($atributosCondition)
-              GROUP BY p.ID
-              HAVING COUNT(DISTINCT pa.Atributo_ID) = " . count($selectedAtributos);
+    $query = "SELECT p.Nombre
+              FROM productos p
+              WHERE p.ID = (
+                  SELECT pa.Producto_ID
+                  FROM producto_atributos pa
+                  WHERE pa.Atributo_ID IN ($atributosCondition)
+                  GROUP BY pa.Producto_ID
+                  HAVING COUNT(DISTINCT pa.Atributo_ID) = " . count($selectedAtributos) . "
+                  ORDER BY pa.Producto_ID DESC
+                  LIMIT 1
+              )";
 
     $result = mysqli_query($con, $query);
 
@@ -23,4 +29,5 @@ if (isset($_POST['atributos'])) {
     mysqli_free_result($result);
     mysqli_close($con);
 }
+
 ?>
