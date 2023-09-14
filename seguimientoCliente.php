@@ -412,11 +412,11 @@ $dni = $_SESSION['dni'];
                                                         success: function(response) {
                                                             if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
                                                                 var atributoID = response.split('.').pop().trim();
-                                                                // Aplicar una clase CSS para marcar el atributo que no coincide
-                                                                $('#atributosSelect option[value="' + atributoID + '"]').addClass('atributo-no-coincide');
+                                                                // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
+                                                                $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
                                                             } else {
-                                                                // Limpiar la clase CSS si no hay error
-                                                                $('#atributosSelect option').removeClass('atributo-no-coincide');
+                                                                // Restablecer el fondo de todas las opciones
+                                                                $('#atributosSelect option').css('background-color', '');
                                                             }
                                                             $('#producto').val(response);
                                                         }
