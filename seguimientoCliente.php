@@ -423,7 +423,16 @@ $dni = $_SESSION['dni'];
                                                     });
                                                 }
 
+                                                // Llamar a la función updateProduct() cuando cambia la selección de atributos
+                                                $(document).ready(function() {
+                                                    $('.select2-multiple').select2();
+
+                                                    $('.select2-multiple').on('change', function() {
+                                                        updateProduct();
+                                                    });
+                                                });
                                             </script>
+
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
                                                 
