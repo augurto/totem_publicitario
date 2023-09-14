@@ -23,6 +23,7 @@ if (isset($_POST['atributos'])) {
         $producto = $row['Nombre'];
         echo $producto;
     } else {
+        // No se encontró ningún producto coincidente, devuelve un mensaje.
         echo 'Ningún producto coincide con los atributos seleccionados.';
     }
 
