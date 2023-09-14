@@ -458,29 +458,31 @@ $dni = $_SESSION['dni'];
                                             </script>
                                             <script>
                                                $(document).ready(function() {
-                                                $('#agregarProducto').on('click', function() {
-                                                    agregarProductoATabla();
+                                                    $('.agregarProducto').on('click', function() {
+                                                        agregarProductoATabla();
+                                                    });
+
+                                                    function agregarProductoATabla() {
+                                                        var productoNombre = $('#producto').val();
+                                                        var cantidad = prompt('Ingrese la cantidad:', '1'); // Puedes utilizar un cuadro de diálogo o un campo de entrada
+
+                                                        if (cantidad !== null) {
+                                                            // Crear una nueva fila en la tabla
+                                                            var newRow = $('<tr>');
+                                                            newRow.append('<td>' + productoNombre + '</td>');
+                                                            newRow.append('<td>' + cantidad + '</td>');
+                                                            newRow.append('<td><button class="btn btn-secondary editar">Editar</button></td>');
+                                                            newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
+
+                                                            // Agregar la fila a la tabla
+                                                            $('#tablaProductos tbody').append(newRow);
+
+                                                            // Mostrar la tabla si no está visible
+                                                            $('#tablaProductos').show();
+                                                        }
+                                                    }
                                                 });
 
-                                                function agregarProductoATabla() {
-                                                    var productoNombre = $('#producto').val();
-                                                    var cantidad = prompt('Ingrese la cantidad:', '1'); // Puedes utilizar un cuadro de diálogo o un campo de entrada
-
-                                                    if (cantidad !== null) {
-                                                        // Crear una nueva fila en la tabla
-                                                        var newRow = $('<tr>');
-                                                        newRow.append('<td>' + productoNombre + '</td>');
-                                                        newRow.append('<td>' + cantidad + '</td>');
-                                                        newRow.append('<td><button class="btn btn-secondary editar">Editar</button></td>');
-                                                        newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
-
-                                                        // Agregar la fila a la tabla
-                                                        $('#tablaProductos tbody').append(newRow);
-
-                                                        // Mostrar la tabla si no está visible
-                                                        $('#tablaProductos').show();
-                                                    }
-                                                }
 
                                                 // Escuchar clics en botones "Editar" dentro de la tabla
                                                 $('#tablaProductos').on('click', '.editar', function() {
