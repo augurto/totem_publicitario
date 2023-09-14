@@ -454,40 +454,54 @@ $dni = $_SESSION['dni'];
                                                     });
                                                 });
 
-                                                function agregarProductoATabla() {
-                                                var productoNombre = $('#producto').val();
-                                                var cantidad = prompt('Ingrese la cantidad:', '1'); // Puedes utilizar un cuadro de diálogo o un campo de entrada
-
-                                                if (cantidad !== null) {
-                                                    // Crear una nueva fila en la tabla
-                                                    var newRow = $('<tr>');
-                                                    newRow.append('<td>' + productoNombre + '</td>');
-                                                    newRow.append('<td>' + cantidad + '</td>');
-                                                    newRow.append('<td><button class="btn btn-secondary editar">Editar</button></td>');
-
-                                                    // Agregar la fila a la tabla
-                                                    $('#tablaProductos tbody').append(newRow);
-
-                                                    // Mostrar la tabla si no está visible
-                                                    $('#tablaProductos').show();
-                                                }
-                                            }
-
-                                            // Escuchar clics en botones "Editar" dentro de la tabla
-                                            $('#tablaProductos').on('click', '.editar', function() {
-                                                // Implementa la lógica de edición aquí (puedes abrir un cuadro de diálogo para editar la cantidad, por ejemplo)
-                                                var fila = $(this).closest('tr');
-                                                var productoNombre = fila.find('td:eq(0)').text();
-                                                var cantidad = fila.find('td:eq(1)').text();
-
-                                                var nuevaCantidad = prompt('Editar cantidad:', cantidad);
-                                                if (nuevaCantidad !== null) {
-                                                    fila.find('td:eq(1)').text(nuevaCantidad);
-                                                }
-                                            });
-                                     
+                                                
                                             </script>
+                                            <script>
+                                                $(document).ready(function() {
+                                                $('#agregarProducto').on('click', function() {
+                                                    agregarProductoATabla();
+                                                });
 
+                                                function agregarProductoATabla() {
+                                                    var productoNombre = $('#producto').val();
+                                                    var cantidad = prompt('Ingrese la cantidad:', '1'); // Puedes utilizar un cuadro de diálogo o un campo de entrada
+
+                                                    if (cantidad !== null) {
+                                                        // Crear una nueva fila en la tabla
+                                                        var newRow = $('<tr>');
+                                                        newRow.append('<td>' + productoNombre + '</td>');
+                                                        newRow.append('<td>' + cantidad + '</td>');
+                                                        newRow.append('<td><button class="btn btn-secondary editar">Editar</button></td>');
+                                                        newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
+
+                                                        // Agregar la fila a la tabla
+                                                        $('#tablaProductos tbody').append(newRow);
+
+                                                        // Mostrar la tabla si no está visible
+                                                        $('#tablaProductos').show();
+                                                    }
+                                                }
+
+                                                // Escuchar clics en botones "Editar" dentro de la tabla
+                                                $('#tablaProductos').on('click', '.editar', function() {
+                                                    // Implementa la lógica de edición aquí (puedes abrir un cuadro de diálogo para editar la cantidad, por ejemplo)
+                                                    var fila = $(this).closest('tr');
+                                                    var cantidad = fila.find('td:eq(1)').text();
+
+                                                    var nuevaCantidad = prompt('Editar cantidad:', cantidad);
+                                                    if (nuevaCantidad !== null) {
+                                                        fila.find('td:eq(1)').text(nuevaCantidad);
+                                                    }
+                                                });
+
+                                                // Escuchar clics en botones "Eliminar" dentro de la tabla
+                                                $('#tablaProductos').on('click', '.eliminar', function() {
+                                                    // Eliminar la fila completa
+                                                    $(this).closest('tr').remove();
+                                                });
+                                            });
+
+                                            </script>
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
                                                 
