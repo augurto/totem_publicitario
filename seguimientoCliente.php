@@ -427,7 +427,6 @@ $dni = $_SESSION['dni'];
                                             <div>
                                                 <strong>Total: </strong><span id="total">0</span>
                                             </div>
-                                            
 
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -466,6 +465,9 @@ $dni = $_SESSION['dni'];
                                                     function agregarProducto(nombre, precio) {
                                                         productosSeleccionados.push({ nombre: nombre, precio: precio, cantidad: 1 });
                                                         actualizarTabla();
+
+                                                        // Limpiar la selección de atributos
+                                                        $('.select2-multiple').val(null).trigger('change');
                                                     }
 
                                                     function updateProduct() {
@@ -490,7 +492,6 @@ $dni = $_SESSION['dni'];
                                                                     // Establecer el valor del producto y el precio si hay un resultado
                                                                     $('#producto').val(productoInfo.Nombre);
                                                                     $('#precio').val(productoInfo.Precio);
-                                                                    agregarProducto(productoInfo.Nombre, parseFloat(productoInfo.Precio));
                                                                 }
                                                             }
                                                         });
@@ -527,6 +528,7 @@ $dni = $_SESSION['dni'];
                                                     });
                                                 });
                                             </script>
+
 
                                            
                                             <div class="mt-6">
