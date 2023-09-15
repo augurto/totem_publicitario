@@ -366,58 +366,47 @@ $dni = $_SESSION['dni'];
 
                                             <br>
                                             
-                                            <!-- Campo de selección múltiple para atributos -->
+                                          <!-- Campo de selección múltiple para atributos -->
                                             <div class="mb-12">
-                                            <label class="form-label">Atributos</label>
-                                            <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
-                                                <?php
-                                                require 'includes/conexion.php'; // Incluimos el archivo de conexión
+                                                <label class="form-label">Atributos</label>
+                                                <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
+                                                    <?php
+                                                    require 'includes/conexion.php'; // Incluimos el archivo de conexión
 
-                                                $query = "SELECT ID, Atributo FROM atributos";
-                                                $result = mysqli_query($con, $query);
+                                                    $query = "SELECT ID, Atributo FROM atributos";
+                                                    $result = mysqli_query($con, $query);
 
-                                                while ($row = mysqli_fetch_assoc($result)) {
-                                                    $atributoID = $row['ID'];
-                                                    $atributoNombre = $row['Atributo'];
-                                                    echo "<option value='$atributoID'>$atributoNombre</option>";
-                                                }
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                        $atributoID = $row['ID'];
+                                                        $atributoNombre = $row['Atributo'];
+                                                        echo "<option value='$atributoID'>$atributoNombre</option>";
+                                                    }
 
-                                                // Liberar el resultado
-                                                mysqli_free_result($result);
+                                                    // Liberar el resultado
+                                                    mysqli_free_result($result);
 
-                                                // Cerrar la conexión
-                                                mysqli_close($con);
-                                                ?>
-                                            </select>
-                                            </div>                                    
+                                                    // Cerrar la conexión
+                                                    mysqli_close($con);
+                                                    ?>
+                                                </select>
+                                            </div>
 
                                             <br>
-                                            <!-- Campo de texto para mostrar el idAtributoProducto -->
+
                                             <!-- Campo de texto para mostrar el producto -->
                                             <div class="row mb-3">
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Producto</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-4">
                                                     <input class="form-control" type="text" id="producto" name="producto" readonly>
+                                                </div>
+                                                <label for="example-email-input" class="col-sm-2 col-form-label">Precio</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" type="text" id="precio" name="precio" readonly>
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
                                                 </div>
                                             </div>
-
-                                            <!-- Tabla para mostrar los productos -->
-                                            <table class="table" id="tablaProductos" style="display: none;">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Nombre del Producto</th>
-                                                        <th>Cantidad</th>
-                                                        <th>Editar</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- Aquí se agregarán las filas de productos -->
-                                                </tbody>
-                                            </table>
-
 
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -433,13 +422,17 @@ $dni = $_SESSION['dni'];
                                                                 var atributoID = response.split('.').pop().trim();
                                                                 // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
                                                                 $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
-                                                                // Establecer un valor predeterminado en el campo de texto
+                                                                // Establecer un valor predeterminado en los campos de texto
                                                                 $('#producto').val('Ningún producto coincide');
+                                                                $('#precio').val('');
                                                             } else {
                                                                 // Restablecer el fondo de todas las opciones
                                                                 $('#atributosSelect option').css('background-color', '');
-                                                                // Establecer el valor del producto si hay un resultado
-                                                                $('#producto').val(response);
+                                                                // Parsear la respuesta JSON para obtener el nombre y el precio del producto
+                                                                var productoInfo = JSON.parse(response);
+                                                                // Establecer el valor del producto y el precio si hay un resultado
+                                                                $('#producto').val(productoInfo.Nombre);
+                                                                $('#precio').val(productoInfo.Precio);
                                                             }
                                                         }
                                                     });
@@ -454,45 +447,9 @@ $dni = $_SESSION['dni'];
                                                     });
                                                 });
 
-                                                
                                             </script>
-                                            <script>
-                                            $(document).ready(function() {
-                                                $('.agregarProducto').on('click', function() {
-                                                    agregarProductoATabla();
-                                                });
 
-                                                function agregarProductoATabla() {
-                                                    var productoNombre = $('#producto').val();
-                                                    var cantidad = 1; // Establecer la cantidad por defecto en 1
-
-                                                    // Crear una nueva fila en la tabla
-                                                    var newRow = $('<tr>');
-                                                    newRow.append('<td>' + productoNombre + '</td>');
-                                                    newRow.append('<td>' + cantidad + '</td>');
-                                                    newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
-
-                                                    // Agregar la fila a la tabla
-                                                    $('#tablaProductos tbody').append(newRow);
-
-                                                    // Mostrar la tabla si no está visible
-                                                    $('#tablaProductos').show();
-
-                                                    // Limpiar el campo de producto y los atributos
-                                                    $('#producto').val('');
-                                                    $('.select2-multiple').val(null).trigger('change');
-                                                }
-                                            });
-
-
-
-                                                // Escuchar clics en botones "Eliminar" dentro de la tabla
-                                                $('#tablaProductos').on('click', '.eliminar', function() {
-                                                    // Eliminar la fila completa
-                                                    $(this).closest('tr').remove();
-                                                });
-                                         
-                                            </script>
+                                           
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
                                                 
