@@ -496,6 +496,18 @@ $dni = $_SESSION['dni'];
                                                             }
                                                         });
                                                     }
+                                                    function agregarProducto(nombre, precio) {
+                                                        productosSeleccionados.push({ nombre: nombre, precio: precio, cantidad: 1 });
+                                                        actualizarTabla();
+
+                                                        // Limpiar los campos de producto y precio
+                                                        $('#producto').val('');
+                                                        $('#precio').val('');
+
+                                                        // Limpiar la selección de atributos
+                                                        $('.select2-multiple').val(null).trigger('change');
+                                                    }
+
 
                                                     // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                     $('.select2-multiple').on('change', function() {
