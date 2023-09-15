@@ -427,82 +427,118 @@ $dni = $_SESSION['dni'];
                                             </table>
 
 
-
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                                             <script>
-                                             $(document).ready(function() {
-                                                $('.agregarProducto').on('click', function() {
-                                                    agregarProductoATabla();
-                                                });
-
-                                                function agregarProductoATabla() {
-                                                    var productoNombre = $('#producto').val();
-                                                    var cantidad = 1; // Establecer la cantidad por defecto en 1
-
-                                                    // Hacer una llamada AJAX para obtener el precio del producto
+                                                function updateProduct() {
+                                                    var selectedAtributos = $('.select2-multiple').val();
                                                     $.ajax({
                                                         type: 'POST',
-                                                        url: 'obtenerPrecioProducto.php',
+                                                        url: 'includes/buscarProducto.php',
                                                         data: { atributos: selectedAtributos },
-                                                        success: function(precio) {
-                                                            // Verificar si se obtuvo un precio válido
-                                                            if (!isNaN(precio)) {
-                                                                // Calcular el subtotal
-                                                                var subtotal = cantidad * parseFloat(precio);
-
-                                                                // Crear una nueva fila en la tabla
-                                                                var newRow = $('<tr>');
-                                                                newRow.append('<td>' + productoNombre + '</td>');
-                                                                newRow.append('<td>' + cantidad + '</td>');
-                                                                newRow.append('<td>' + precio + '</td>');
-                                                                newRow.append('<td>' + subtotal + '</td>');
-                                                                newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
-
-                                                                // Agregar la fila a la tabla
-                                                                $('#tablaProductos tbody').append(newRow);
-
-                                                                // Mostrar la tabla si no está visible
-                                                                $('#tablaProductos').show();
-
-                                                                // Calcular el nuevo total
-                                                                calcularTotal();
-
-                                                                // Limpiar el campo de producto y los atributos
-                                                                $('#producto').val('');
-                                                                $('.select2-multiple').val(null).trigger('change');
+                                                        success: function(response) {
+                                                            if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
+                                                                var atributoID = response.split('.').pop().trim();
+                                                                // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
+                                                                $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
+                                                                // Establecer un valor predeterminado en el campo de texto
+                                                                $('#producto').val('Ningún producto coincide');
+                                                                // Limpiar el precio
+                                                                $('#precio').val('');
                                                             } else {
-                                                                // Manejar el caso en que no se obtuvo un precio válido
-                                                                alert('No se pudo obtener el precio del producto.');
+                                                                // Restablecer el fondo de todas las opciones
+                                                                $('#atributosSelect option').css('background-color', '');
+                                                                // Parsear la respuesta JSON
+                                                                var data = JSON.parse(response);
+                                                                // Establecer el valor del producto
+                                                                $('#producto').val(data.Nombre);
+
+                                                                // Consultar el precio del producto
+                                                                obtenerPrecioProducto(selectedAtributos);
                                                             }
                                                         }
                                                     });
                                                 }
 
-                                                // Función para calcular el total
-                                                function calcularTotal() {
-                                                    var total = 0;
-                                                    $('#tablaProductos tbody tr').each(function() {
-                                                        var subtotal = parseFloat($(this).find('td:eq(3)').text());
-                                                        total += subtotal;
+                                                function obtenerPrecioProducto(selectedAtributos) {
+                                                    $.ajax({
+                                                        type: 'POST',
+                                                        url: 'includes/obtenerPrecioProducto.php', // Cambia el nombre del archivo según tu estructura
+                                                        data: { atributos: selectedAtributos },
+                                                        success: function(response) {
+                                                            if (response !== 'Ningún producto coincide con los atributos seleccionados.') {
+                                                                $('#precio').val(response);
+                                                            }
+                                                        }
                                                     });
-
-                                                    // Actualizar el valor total en la tabla
-                                                    $('#total').text('Total: ' + total);
                                                 }
 
-                                                // Escuchar clics en botones "Eliminar" dentro de la tabla
-                                                $('#tablaProductos').on('click', '.eliminar', function() {
-                                                    // Eliminar la fila completa
-                                                    $(this).closest('tr').remove();
+                                                // Llamar a la función updateProduct() cuando cambia la selección de atributos
+                                                $(document).ready(function() {
+                                                    $('.select2-multiple').select2();
 
-                                                    // Recalcular el total después de eliminar un producto
-                                                    calcularTotal();
+                                                    $('.select2-multiple').on('change', function() {
+                                                        updateProduct();
+                                                    });
+
+                                                    $('.agregarProducto').on('click', function() {
+                                                        agregarProductoATabla();
+                                                    });
+
+                                                    function agregarProductoATabla() {
+                                                        var productoNombre = $('#producto').val();
+                                                        var cantidad = 1; // Establecer la cantidad por defecto en 1
+                                                        var precioUnitario = parseFloat($('#precio').val()); // Obtener el precio unitario
+
+                                                        // Calcular el subtotal
+                                                        var subtotal = cantidad * precioUnitario;
+
+                                                        // Crear una nueva fila en la tabla
+                                                        var newRow = $('<tr>');
+                                                        newRow.append('<td>' + productoNombre + '</td>');
+                                                        newRow.append('<td>' + cantidad + '</td>');
+                                                        newRow.append('<td>' + precioUnitario + '</td>');
+                                                        newRow.append('<td>' + subtotal + '</td>');
+                                                        newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
+
+                                                        // Agregar la fila a la tabla
+                                                        $('#tablaProductos tbody').append(newRow);
+
+                                                        // Mostrar la tabla si no está visible
+                                                        $('#tablaProductos').show();
+
+                                                        // Calcular el nuevo total
+                                                        calcularTotal();
+
+                                                        // Limpiar el campo de producto y los atributos
+                                                        $('#producto').val('');
+                                                        $('#precio').val('');
+                                                        $('.select2-multiple').val(null).trigger('change');
+                                                    }
+
+                                                    // Función para calcular el total
+                                                    function calcularTotal() {
+                                                        var total = 0;
+                                                        $('#tablaProductos tbody tr').each(function() {
+                                                            var subtotal = parseFloat($(this).find('td:eq(3)').text());
+                                                            total += subtotal;
+                                                        });
+
+                                                        // Actualizar el valor total en la tabla
+                                                        $('#total').text('Total: ' + total);
+                                                    }
+
+                                                    // Escuchar clics en botones "Eliminar" dentro de la tabla
+                                                    $('#tablaProductos').on('click', '.eliminar', function() {
+                                                        // Eliminar la fila completa
+                                                        $(this).closest('tr').remove();
+
+                                                        // Recalcular el total después de eliminar un producto
+                                                        calcularTotal();
+                                                    });
                                                 });
-                                            });
-
-
                                             </script>
+
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
                                                 
