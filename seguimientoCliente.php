@@ -424,37 +424,55 @@ $dni = $_SESSION['dni'];
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                                             <script>
-                                                function updateProduct() {
-                                                    var selectedAtributos = $('.select2-multiple').val();
-                                                    $.ajax({
-                                                        type: 'POST',
-                                                        url: 'includes/buscarProducto.php',
-                                                        data: { atributos: selectedAtributos },
-                                                        success: function(response) {
-                                                            if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
-                                                                var atributoID = response.split('.').pop().trim();
-                                                                // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
-                                                                $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
-                                                                // Establecer un valor predeterminado en el campo de texto
-                                                                $('#producto').val('Ningún producto coincide');
-                                                            } else {
-                                                                // Restablecer el fondo de todas las opciones
-                                                                $('#atributosSelect option').css('background-color', '');
-                                                                // Establecer el valor del producto si hay un resultado
-                                                                $('#producto').val(response);
-                                                            }
+                                            function updateProduct() {
+                                                var selectedAtributos = $('.select2-multiple').val();
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: 'includes/buscarProducto.php',
+                                                    data: { atributos: selectedAtributos },
+                                                    dataType: 'json', // Especificamos que esperamos una respuesta JSON
+                                                    success: function(response) {
+                                                        if (response.error) {
+                                                            var atributoID = response.error;
+                                                            // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
+                                                            $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
+                                                            // Establecer un valor predeterminado en el campo de texto
+                                                            $('#producto').val('Ningún producto coincide');
+                                                            // Limpiar la columna de precio
+                                                            $('#tablaProductos tbody').html('');
+                                                        } else {
+                                                            // Restablecer el fondo de todas las opciones
+                                                            $('#atributosSelect option').css('background-color', '');
+                                                            // Establecer el valor del producto si hay un resultado
+                                                            $('#producto').val(response.nombre);
+
+                                                            // Limpiar la columna de precio
+                                                            $('#tablaProductos tbody').html('');
+
+                                                            // Agregar el producto a la tabla de productos
+                                                            var newRow = '<tr>' +
+                                                                '<td>' + response.nombre + '</td>' +
+                                                                '<td>' + response.precio + '</td>' +
+                                                                '<td>1</td>' +
+                                                                '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
+                                                                '</tr>';
+                                                            $('#tablaProductos tbody').append(newRow);
+
+                                                            // Mostrar la tabla si no está visible
+                                                            $('#tablaProductos').show();
                                                         }
-                                                    });
-                                                }
-
-                                                // Llamar a la función updateProduct() cuando cambia la selección de atributos
-                                                $(document).ready(function() {
-                                                    $('.select2-multiple').select2();
-
-                                                    $('.select2-multiple').on('change', function() {
-                                                        updateProduct();
-                                                    });
+                                                    }
                                                 });
+                                            }
+
+                                            // Llamar a la función updateProduct() cuando cambia la selección de atributos
+                                            $(document).ready(function() {
+                                                $('.select2-multiple').select2();
+
+                                                $('.select2-multiple').on('change', function() {
+                                                    updateProduct();
+                                                });
+                                            });
 
                                                 
                                             </script>
