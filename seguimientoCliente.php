@@ -418,6 +418,7 @@ $dni = $_SESSION['dni'];
                                                 </tbody>
                                             </table>
 
+
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                                             <script>
@@ -427,73 +428,71 @@ $dni = $_SESSION['dni'];
                                                         type: 'POST',
                                                         url: 'includes/buscarProducto.php',
                                                         data: { atributos: selectedAtributos },
-                                                        dataType: 'json',
                                                         success: function(response) {
-                                                            if (response.error) {
-                                                                var atributoID = response.error;
+                                                            if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
+                                                                var atributoID = response.split('.').pop().trim();
+                                                                // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
                                                                 $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
+                                                                // Establecer un valor predeterminado en el campo de texto
                                                                 $('#producto').val('Ningún producto coincide');
-                                                                $('#tablaProductos tbody').html(''); // Limpiar la tabla de productos
                                                             } else {
+                                                                // Restablecer el fondo de todas las opciones
                                                                 $('#atributosSelect option').css('background-color', '');
-                                                                $('#producto').val(response.nombre);
-
-                                                                // Agregar el producto a la tabla de productos
-                                                                var productoNombre = response.nombre;
-                                                                var precio = response.precio;
-
-                                                                var newRow = '<tr>' +
-                                                                    '<td>' + productoNombre + '</td>' +
-                                                                    '<td>' + precio + '</td>' +
-                                                                    '<td>1</td>' +
-                                                                    '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
-                                                                    '</tr>';
-
-                                                                $('#tablaProductos tbody').html(newRow); // Reemplazar el contenido de la tabla
-
-                                                                $('#tablaProductos').show();
+                                                                // Establecer el valor del producto si hay un resultado
+                                                                $('#producto').val(response);
                                                             }
                                                         }
                                                     });
                                                 }
 
+                                                // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                 $(document).ready(function() {
                                                     $('.select2-multiple').select2();
 
                                                     $('.select2-multiple').on('change', function() {
                                                         updateProduct();
                                                     });
-
-                                                    $('.agregarProducto').on('click', function() {
-                                                        agregarProductoATabla();
-                                                    });
-
-                                                    function agregarProductoATabla() {
-                                                        var productoNombre = $('#producto').val();
-                                                        var cantidad = 1;
-
-                                                        var newRow = '<tr>' +
-                                                            '<td>' + productoNombre + '</td>' +
-                                                            '<td>' + precio + '</td>' +
-                                                            '<td>1</td>' +
-                                                            '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
-                                                            '</tr>';
-
-                                                        $('#tablaProductos tbody').append(newRow);
-
-                                                        $('#tablaProductos').show();
-
-                                                        $('#producto').val('');
-                                                        $('.select2-multiple').val(null).trigger('change');
-                                                    }
-
-                                                    $('#tablaProductos').on('click', '.eliminar', function() {
-                                                        $(this).closest('tr').remove();
-                                                    });
                                                 });
+
+                                                
                                             </script>
+                                            <script>
+                                            $(document).ready(function() {
+                                                $('.agregarProducto').on('click', function() {
+                                                    agregarProductoATabla();
+                                                });
+
+                                                function agregarProductoATabla() {
+                                                    var productoNombre = $('#producto').val();
+                                                    var cantidad = 1; // Establecer la cantidad por defecto en 1
+
+                                                    // Crear una nueva fila en la tabla
+                                                    var newRow = $('<tr>');
+                                                    newRow.append('<td>' + productoNombre + '</td>');
+                                                    newRow.append('<td>' + cantidad + '</td>');
+                                                    newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
+
+                                                    // Agregar la fila a la tabla
+                                                    $('#tablaProductos tbody').append(newRow);
+
+                                                    // Mostrar la tabla si no está visible
+                                                    $('#tablaProductos').show();
+
+                                                    // Limpiar el campo de producto y los atributos
+                                                    $('#producto').val('');
+                                                    $('.select2-multiple').val(null).trigger('change');
+                                                }
+                                            });
 
 
+
+                                                // Escuchar clics en botones "Eliminar" dentro de la tabla
+                                                $('#tablaProductos').on('click', '.eliminar', function() {
+                                                    // Eliminar la fila completa
+                                                    $(this).closest('tr').remove();
+                                                });
+                                         
+                                            </script>
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
                                                 
