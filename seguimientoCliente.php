@@ -433,6 +433,7 @@ $dni = $_SESSION['dni'];
                                                                 var atributoID = response.error;
                                                                 $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
                                                                 $('#producto').val('Ningún producto coincide');
+                                                                $('#tablaProductos tbody').html(''); // Limpiar la tabla de productos
                                                             } else {
                                                                 $('#atributosSelect option').css('background-color', '');
                                                                 $('#producto').val(response.nombre);
@@ -441,15 +442,15 @@ $dni = $_SESSION['dni'];
                                                                 var productoNombre = response.nombre;
                                                                 var precio = response.precio;
 
-                                                                var newRow = $('<tr>');
-                                                                newRow.append('<td>' + productoNombre + '</td>');
-                                                                newRow.append('<td>' + precio + '</td>');
-                                                                newRow.append('<td>1</td>');
-                                                                newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
+                                                                var newRow = '<tr>' +
+                                                                    '<td>' + productoNombre + '</td>' +
+                                                                    '<td>' + precio + '</td>' +
+                                                                    '<td>1</td>' +
+                                                                    '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
+                                                                    '</tr>';
 
-                                                                $('#tablaProductos tbody').html(newRow);
+                                                                $('#tablaProductos tbody').html(newRow); // Reemplazar el contenido de la tabla
 
-                                                                // Mostrar la tabla si no está visible
                                                                 $('#tablaProductos').show();
                                                             }
                                                         }
@@ -471,10 +472,12 @@ $dni = $_SESSION['dni'];
                                                         var productoNombre = $('#producto').val();
                                                         var cantidad = 1;
 
-                                                        var newRow = $('<tr>');
-                                                        newRow.append('<td>' + productoNombre + '</td>');
-                                                        newRow.append('<td>' + cantidad + '</td>');
-                                                        newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
+                                                        var newRow = '<tr>' +
+                                                            '<td>' + productoNombre + '</td>' +
+                                                            '<td>' + precio + '</td>' +
+                                                            '<td>1</td>' +
+                                                            '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
+                                                            '</tr>';
 
                                                         $('#tablaProductos tbody').append(newRow);
 
@@ -489,6 +492,7 @@ $dni = $_SESSION['dni'];
                                                     });
                                                 });
                                             </script>
+
 
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
