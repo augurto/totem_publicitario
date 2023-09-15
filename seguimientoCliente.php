@@ -410,13 +410,22 @@ $dni = $_SESSION['dni'];
                                                     <tr>
                                                         <th>Nombre del Producto</th>
                                                         <th>Cantidad</th>
-                                                        <th>Editar</th>
+                                                        <th>Precio Unitario</th>
+                                                        <th>Subtotal</th>
+                                                        <th>Eliminar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <!-- Aquí se agregarán las filas de productos -->
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="3"></td>
+                                                        <td id="total">Total: 0</td>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
+
 
 
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -458,40 +467,62 @@ $dni = $_SESSION['dni'];
                                             </script>
                                             <script>
                                             $(document).ready(function() {
-                                                $('.agregarProducto').on('click', function() {
-                                                    agregarProductoATabla();
-                                                });
-
-                                                function agregarProductoATabla() {
-                                                    var productoNombre = $('#producto').val();
-                                                    var cantidad = 1; // Establecer la cantidad por defecto en 1
-
-                                                    // Crear una nueva fila en la tabla
-                                                    var newRow = $('<tr>');
-                                                    newRow.append('<td>' + productoNombre + '</td>');
-                                                    newRow.append('<td>' + cantidad + '</td>');
-                                                    newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
-
-                                                    // Agregar la fila a la tabla
-                                                    $('#tablaProductos tbody').append(newRow);
-
-                                                    // Mostrar la tabla si no está visible
-                                                    $('#tablaProductos').show();
-
-                                                    // Limpiar el campo de producto y los atributos
-                                                    $('#producto').val('');
-                                                    $('.select2-multiple').val(null).trigger('change');
-                                                }
+                                            $('.agregarProducto').on('click', function() {
+                                                agregarProductoATabla();
                                             });
 
+                                            function agregarProductoATabla() {
+                                                var productoNombre = $('#producto').val();
+                                                var cantidad = 1; // Establecer la cantidad por defecto en 1
+                                                var precioUnitario = parseFloat($('#precioUnitario').val()); // Obtener el precio unitario
 
+                                                // Calcular el subtotal
+                                                var subtotal = cantidad * precioUnitario;
 
-                                                // Escuchar clics en botones "Eliminar" dentro de la tabla
-                                                $('#tablaProductos').on('click', '.eliminar', function() {
-                                                    // Eliminar la fila completa
-                                                    $(this).closest('tr').remove();
+                                                // Crear una nueva fila en la tabla
+                                                var newRow = $('<tr>');
+                                                newRow.append('<td>' + productoNombre + '</td>');
+                                                newRow.append('<td>' + cantidad + '</td>');
+                                                newRow.append('<td>' + precioUnitario + '</td>');
+                                                newRow.append('<td>' + subtotal + '</td>');
+                                                newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
+
+                                                // Agregar la fila a la tabla
+                                                $('#tablaProductos tbody').append(newRow);
+
+                                                // Mostrar la tabla si no está visible
+                                                $('#tablaProductos').show();
+
+                                                // Calcular el nuevo total
+                                                calcularTotal();
+
+                                                // Limpiar el campo de producto y los atributos
+                                                $('#producto').val('');
+                                                $('.select2-multiple').val(null).trigger('change');
+                                            }
+
+                                            // Función para calcular el total
+                                            function calcularTotal() {
+                                                var total = 0;
+                                                $('#tablaProductos tbody tr').each(function() {
+                                                    var subtotal = parseFloat($(this).find('td:eq(3)').text());
+                                                    total += subtotal;
                                                 });
-                                         
+
+                                                // Actualizar el valor total en la tabla
+                                                $('#total').text('Total: ' + total);
+                                            }
+
+                                            // Escuchar clics en botones "Eliminar" dentro de la tabla
+                                            $('#tablaProductos').on('click', '.eliminar', function() {
+                                                // Eliminar la fila completa
+                                                $(this).closest('tr').remove();
+
+                                                // Recalcular el total después de eliminar un producto
+                                                calcularTotal();
+                                            });
+                                        });
+
                                             </script>
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
