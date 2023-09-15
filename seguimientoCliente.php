@@ -113,6 +113,14 @@ $dni = $_SESSION['dni'];
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <style>
+        .atributo-no-coincide {
+    background-color: #ffcccc; /* Cambia el fondo a rojo claro */
+    font-weight: bold; /* Hace que el texto sea negrita */
+    color: red; /* Cambia el color del texto a rojo */
+}
+
+    </style>
 
 </head>
 
@@ -385,35 +393,105 @@ $dni = $_SESSION['dni'];
 
                                             <br>
                                             <!-- Campo de texto para mostrar el idAtributoProducto -->
+                                            <!-- Campo de texto para mostrar el producto -->
                                             <div class="row mb-3">
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Producto</label>
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-8">
                                                     <input class="form-control" type="text" id="producto" name="producto" readonly>
                                                 </div>
+                                                <div class="col-sm-2">
+                                                    <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
+                                                </div>
                                             </div>
+
+                                            <!-- Tabla para mostrar los productos -->
+                                            <table class="table" id="tablaProductos" style="display: none;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre del Producto</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Editar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Aquí se agregarán las filas de productos -->
+                                                </tbody>
+                                            </table>
+
 
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                                             <script>
+                                                function updateProduct() {
+                                                    var selectedAtributos = $('.select2-multiple').val();
+                                                    $.ajax({
+                                                        type: 'POST',
+                                                        url: 'includes/buscarProducto.php',
+                                                        data: { atributos: selectedAtributos },
+                                                        success: function(response) {
+                                                            if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
+                                                                var atributoID = response.split('.').pop().trim();
+                                                                // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
+                                                                $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
+                                                                // Establecer un valor predeterminado en el campo de texto
+                                                                $('#producto').val('Ningún producto coincide');
+                                                            } else {
+                                                                // Restablecer el fondo de todas las opciones
+                                                                $('#atributosSelect option').css('background-color', '');
+                                                                // Establecer el valor del producto si hay un resultado
+                                                                $('#producto').val(response);
+                                                            }
+                                                        }
+                                                    });
+                                                }
+
+                                                // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                 $(document).ready(function() {
                                                     $('.select2-multiple').select2();
 
                                                     $('.select2-multiple').on('change', function() {
                                                         updateProduct();
                                                     });
-
-                                                    function updateProduct() {
-                                                        var selectedAtributos = $('.select2-multiple').val();
-                                                        $.ajax({
-                                                            type: 'POST',
-                                                            url: 'includes/buscarProducto.php', // Archivo que procesará la solicitud
-                                                            data: { atributos: selectedAtributos },
-                                                            success: function(response) {
-                                                                $('#producto').val(response);
-                                                            }
-                                                        });
-                                                    }
                                                 });
+
+                                                
+                                            </script>
+                                            <script>
+                                            $(document).ready(function() {
+                                                $('.agregarProducto').on('click', function() {
+                                                    agregarProductoATabla();
+                                                });
+
+                                                function agregarProductoATabla() {
+                                                    var productoNombre = $('#producto').val();
+                                                    var cantidad = 1; // Establecer la cantidad por defecto en 1
+
+                                                    // Crear una nueva fila en la tabla
+                                                    var newRow = $('<tr>');
+                                                    newRow.append('<td>' + productoNombre + '</td>');
+                                                    newRow.append('<td>' + cantidad + '</td>');
+                                                    newRow.append('<td><button class="btn btn-danger eliminar">Eliminar</button></td>');
+
+                                                    // Agregar la fila a la tabla
+                                                    $('#tablaProductos tbody').append(newRow);
+
+                                                    // Mostrar la tabla si no está visible
+                                                    $('#tablaProductos').show();
+
+                                                    // Limpiar el campo de producto y los atributos
+                                                    $('#producto').val('');
+                                                    $('.select2-multiple').val(null).trigger('change');
+                                                }
+                                            });
+
+
+
+                                                // Escuchar clics en botones "Eliminar" dentro de la tabla
+                                                $('#tablaProductos').on('click', '.eliminar', function() {
+                                                    // Eliminar la fila completa
+                                                    $(this).closest('tr').remove();
+                                                });
+                                         
                                             </script>
                                             <div class="mt-6">
                                                 <label class="mb-1">Mensaje </label>
@@ -424,7 +502,7 @@ $dni = $_SESSION['dni'];
                                             <div class="mt-6">
                                                 <label class="mb-1">Comentario</label>
                                                 
-                                                <textarea  id="textarea" class="form-control" maxlength="225" rows="3" name="comentario" ></textarea>
+                                                <textarea  id="textarea" class="form-control" maxlength="30" rows="3" name="comentario" ></textarea>
 
                                             </div>
                                             <br>
