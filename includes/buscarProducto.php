@@ -6,7 +6,7 @@ if (isset($_POST['atributos'])) {
     $atributosCondition = implode(',', $selectedAtributos);
 
     // Consulta para obtener el último producto que cumple con la mayoría de los requisitos
-    $query = "SELECT p.Nombre, COUNT(pa.ID) AS contador
+    $query = "SELECT p.Nombre, p.Precio, COUNT(pa.ID) AS contador
               FROM productos p
               INNER JOIN producto_atributos pa ON p.ID = pa.Producto_ID
               WHERE pa.Atributo_ID IN ($atributosCondition)
@@ -18,11 +18,11 @@ if (isset($_POST['atributos'])) {
 
     if ($row = mysqli_fetch_assoc($result)) {
         $producto = $row['Nombre'];
-        echo $producto;
+        $precio = $row['Precio']; // Obtenemos el precio del producto
+        echo $producto . " - Precio: $" . $precio; // Mostramos el nombre del producto y su precio
     }
 
     mysqli_free_result($result);
     mysqli_close($con);
 }
-
 ?>

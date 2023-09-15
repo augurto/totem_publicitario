@@ -409,6 +409,7 @@ $dni = $_SESSION['dni'];
                                                 <thead>
                                                     <tr>
                                                         <th>Nombre del Producto</th>
+                                                        <th>Precio</th> <!-- Agregamos la columna Precio -->
                                                         <th>Cantidad</th>
                                                         <th>Editar</th>
                                                     </tr>
@@ -417,6 +418,7 @@ $dni = $_SESSION['dni'];
                                                     <!-- Aquí se agregarán las filas de productos -->
                                                 </tbody>
                                             </table>
+
 
 
                                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
