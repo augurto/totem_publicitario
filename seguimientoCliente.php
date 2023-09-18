@@ -169,7 +169,7 @@ $dni = $_SESSION['dni'];
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title">Datos del  Cliente</h4>
+                                <h4 class="card-title">Datos del  Cliente </h4>
                                 <br>
 
                               <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
