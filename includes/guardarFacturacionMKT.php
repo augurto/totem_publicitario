@@ -1,15 +1,9 @@
 <?php
+// Incluye el archivo de conexión
+include('conexion.php');
+
 // Verificar si se ha enviado el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Establecer la conexión a la base de datos (usando tu configuración)
-    $con = mysqli_connect('localhost', 'u291982824_prueba', '21.17.Prueba', 'u291982824_prueba');
-    mysqli_set_charset($con, "utf8");
-
-    // Verificar la conexión a la base de datos
-    if (!$con) {
-        die("Error al conectar a la base de datos: " . mysqli_connect_error());
-    }
-
     // Obtener valores del formulario
     $fuente = $_POST["fuente"];
     $start = $_POST["start"];
@@ -24,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_facturacionMKT = mysqli_insert_id($con);
 
         // Crear una carpeta con el nombre del ID de facturacionMKT
-        $carpeta_facturacion = "facturacionMKT/" . $id_facturacionMKT;
+        $carpeta_facturacion = "../facturacionMKT/" . $id_facturacionMKT;
         if (!is_dir($carpeta_facturacion)) {
             mkdir($carpeta_facturacion, 0777, true);
         }
@@ -42,8 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error al insertar datos en la tabla: " . mysqli_error($con);
     }
-
-    // Cerrar la conexión a la base de datos
-    mysqli_close($con);
 }
+
+// Cerrar la conexión a la base de datos (al final de tu script)
+mysqli_close($con);
 ?>
