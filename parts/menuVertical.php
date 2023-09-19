@@ -165,6 +165,12 @@ if ($resultadoContarFormularios) {
                             <span>Productos</span>
                         </a>
                 </li>
+                <li>
+                        <a href="reporteMKT.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i>
+                            <span>Reporte MKT</span>
+                        </a>
+                </li>
                 
             </ul>
             <!-- end ul -->
