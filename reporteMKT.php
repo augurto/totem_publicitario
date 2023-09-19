@@ -106,7 +106,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                 <div class="mb-3">
                                     <div>
                                         <label class="form-label">Fechas </label>
-                                        <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                        <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
                                             <input type="text" class="form-control" name="start" placeholder="Fecha Inicio" />
                                             <input type="text" class="form-control" name="end" placeholder="Fecha Fin" />
                                         </div>
