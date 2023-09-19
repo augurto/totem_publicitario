@@ -116,9 +116,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                 <div class="mb-3">
                                     <div>
                                         <label class="form-label">Inversión </label>
-                                        <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
                                             <input type="number" class="form-control" name="cantidad" />
-                                        </div>
                                     </div>
                                 </div>
 
