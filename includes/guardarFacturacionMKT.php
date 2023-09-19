@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      
         if (move_uploaded_file($archivo_temporal, $archivo_destino)) {
             // Redireccionar a reporteMKT.php
-            header("Location: reporteMKT.php");
+            header("Location: ../reporteMKT.php");
             exit; // Asegura que el script se detenga después de la redirección
         } else {
             echo "Error al subir el archivo.";
