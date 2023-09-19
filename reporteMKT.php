@@ -77,16 +77,33 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                             <div class="card-body">
                                 <div class="col-lg-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Fuente</label>
-                                        <select class="form-control select2">
-                                            <option>Select</option>
-                                            <option value="2">Google</option>
-                                            <option value="3">Facebook</option>
-                                            <option value="7">Linkedin</option>
-                                            <option value="11">Otro</option>
+                                    <?php
+                                    // Consulta SQL para obtener las filas donde idAterrizajeFuente = 0
+                                    $query = "SELECT id_fuente, descripcionFuente FROM fuente WHERE idAterrizajeFuente = 0";
+                                    $result = mysqli_query($con, $query);
 
-                                        </select>
-                                        <!-- end select -->
+                                    // Verificar si se encontraron resultados
+                                    if ($result) {
+                                        echo '<label class="form-label">Fuente</label>';
+                                        echo '<select class="form-control select2">';
+                                        echo '<option>Select</option>';
+
+                                        // Recorrer los resultados y generar las opciones del select
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $id_fuente = $row['id_fuente'];
+                                            $descripcionFuente = $row['descripcionFuente'];
+                                            echo "<option value='$id_fuente'>$descripcionFuente</option>";
+                                        }
+
+                                        echo '</select>';
+                                    } else {
+                                        echo "Error en la consulta: " . mysqli_error($con);
+                                    }
+
+                                    // Cerrar la conexión
+                                    mysqli_close($con);
+                                    ?>
+
 
                                     </div>
 
