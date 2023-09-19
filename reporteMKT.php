@@ -84,7 +84,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <option value="3">Facebook</option>
                                             <option value="7">Linkedin</option>
                                             <option value="11">Otro</option>
-                                            
+
                                         </select>
                                         <!-- end select -->
 
@@ -99,6 +99,10 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <input type="text" class="form-control" name="end" placeholder="End Date" />
                                             </div>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Default file input example</label>
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
 
                                     </div>
                                     <div class="mb-3">
@@ -107,7 +111,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <label class="form-label">Inversion </label>
                                             <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
                                                 <input type="number" class="form-control" name="cantidad" placeholder="Monto INvertido" />
-                                              
+
                                             </div>
                                         </div>
 
