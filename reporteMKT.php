@@ -75,7 +75,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="mb-3">
                                         <label class="form-label">Fuente</label>
                                         <select class="form-control select2">
@@ -99,10 +99,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <input type="text" class="form-control" name="end" placeholder="End Date" />
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="formFile" class="form-label">Default file input example</label>
-                                            <input class="form-control" type="file" id="formFile">
-                                        </div>
+
 
                                     </div>
                                     <div class="mb-3">
@@ -110,12 +107,17 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <div>
                                             <label class="form-label">Inversion </label>
                                             <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                                <input type="number" class="form-control" name="cantidad" placeholder="Monto INvertido" />
+                                                <input type="number" class="form-control" name="cantidad" />
 
                                             </div>
                                         </div>
 
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Facturacion</label>
+                                        <input class="form-control" type="file" id="formFile">
+                                    </div>
+
                                     <!-- end cardbody -->
                                 </div>
                                 <!-- end card -->
