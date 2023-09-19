@@ -100,8 +100,6 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         echo "Error en la consulta: " . mysqli_error($con);
                                     }
 
-                                    // Cerrar la conexión
-                                    mysqli_close($con);
                                     ?>
 
 
