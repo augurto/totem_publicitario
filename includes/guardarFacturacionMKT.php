@@ -9,9 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $start = $_POST["start"];
     $end = $_POST["end"];
     $cantidad = $_POST["cantidad"];
+    
+    // Obtener el nombre del archivo subido
+    $archivo_nombre = $_FILES["facturacion"]["name"];
 
     // Insertar datos en la tabla facturacionMKT
-    $insert_query = "INSERT INTO facturacionMKT (fuente, start, end, cantidad) VALUES ('$fuente', '$start', '$end', '$cantidad')";
+    $insert_query = "INSERT INTO facturacionMKT (fuente, start, end, cantidad, archivo) VALUES ('$fuente', '$start', '$end', '$cantidad', '$archivo_nombre')";
 
     if (mysqli_query($con, $insert_query)) {
         // Obtener el ID generado para esta inserción
@@ -24,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Mover el archivo subido a la carpeta
-        $archivo_nombre = $_FILES["facturacion"]["name"];
         $archivo_temporal = $_FILES["facturacion"]["tmp_name"];
         $archivo_destino = $carpeta_facturacion . "/" . $archivo_nombre;
 
