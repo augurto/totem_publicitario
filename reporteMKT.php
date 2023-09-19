@@ -75,8 +75,9 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
+                            <form action="includes/guardarFacturacionMKT.php" method="post" enctype="multipart/form-data">
+                            <div class="col-lg-4">
+                                <div class="mb-3">
                                     <?php
                                     // Consulta SQL para obtener las filas donde idAterrizajeFuente = 0
                                     $query = "SELECT id_fuente, descripcionFuente FROM fuente WHERE idAterrizajeFuente = 0";
@@ -85,8 +86,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     // Verificar si se encontraron resultados
                                     if ($result) {
                                         echo '<label class="form-label">Fuente</label>';
-                                        echo '<select class="form-control select2">';
-                                        echo '<option>Select</option>';
+                                        echo '<select class="form-control select2" name="fuente">';
+                                        echo '<option>Seleccione la fuente</option>';
 
                                         // Recorrer los resultados y generar las opciones del select
                                         while ($row = mysqli_fetch_assoc($result)) {
@@ -99,43 +100,39 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     } else {
                                         echo "Error en la consulta: " . mysqli_error($con);
                                     }
-
                                     ?>
-
-
-                                    </div>
-
-                                    <div class="mb-3">
-
-                                        <div>
-                                            <label class="form-label">Fechas </label>
-                                            <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                                <input type="text" class="form-control" name="start" placeholder="Start Date" />
-                                                <input type="text" class="form-control" name="end" placeholder="End Date" />
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="mb-3">
-
-                                        <div>
-                                            <label class="form-label">Inversion </label>
-                                            <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                                <input type="number" class="form-control" name="cantidad" />
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="formFile" class="form-label">Facturacion</label>
-                                        <input class="form-control" type="file" id="formFile">
-                                    </div>
-
-                                    <!-- end cardbody -->
                                 </div>
-                                <!-- end card -->
+
+                                <div class="mb-3">
+                                    <div>
+                                        <label class="form-label">Fechas </label>
+                                        <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                            <input type="text" class="form-control" name="start" placeholder="Fecha Inicio" />
+                                            <input type="text" class="form-control" name="end" placeholder="Fecha Fin" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div>
+                                        <label class="form-label">Inversión </label>
+                                        <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                            <input type="number" class="form-control" name="cantidad" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Facturación</label>
+                                    <input class="form-control" type="file" id="formFile" name="facturacion" />
+                                </div>
+
+                                <!-- Botón "Enviar" que enviará el formulario a guardarFacturacionMKT.php -->
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary" formaction="includes/guardarFacturacionMKT.php">Enviar</button>
+                                </div>
+                            </div>
+                        </form>
                             </div>
                             <!-- end col -->
                         </div>
