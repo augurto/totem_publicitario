@@ -77,8 +77,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                         <div class="card">
                             <div class="card-body">
                                 <div class="dropdown float-end">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="mdi mdi-dots-vertical text-muted"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
@@ -93,8 +92,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                 <!-- end dropdown -->
                                 <h4 class="card-title mb-4">Latest Transactions</h4>
                                 <div class="table-responsive">
-                                    <table class="table table-centered border table-nowrap mb-0"
-                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <table class="table table-centered border table-nowrap mb-0" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Customer ID</th>
@@ -115,12 +113,10 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="me-3">
-                                                            <img src="assets/images/users/avatar-1.jpg"
-                                                                class="avatar-xs h-auto rounded-circle" alt="Error">
+                                                            <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
                                                         </div>
                                                         <div>
-                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#"
-                                                                    class="text-dark">Julia Fox</a>
+                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#" class="text-dark">Julia Fox</a>
                                                             </h5>
                                                             <p class="text-muted mb-0 font-size-11 text-uppercase">
                                                                 Grenada</p>
@@ -130,8 +126,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">$32,960</h6>
-                                                    <p class="text-success text-uppercase  mb-0 font-size-11"><i
-                                                            class="mdi mdi-circle-medium"></i>paid</p>
+                                                    <p class="text-success text-uppercase  mb-0 font-size-11"><i class="mdi mdi-circle-medium"></i>paid</p>
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">Stock</h6>
@@ -159,8 +154,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 </td>
 
                                                 <td style="width: 134px">
-                                                    <div class="btn btn-soft-primary btn-sm">View more<i
-                                                            class="mdi mdi-arrow-right ms-1"></i></div>
+                                                    <div class="btn btn-soft-primary btn-sm">View more<i class="mdi mdi-arrow-right ms-1"></i></div>
                                                 </td>
                                             </tr>
                                             <!-- end /tr -->
@@ -172,12 +166,10 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="me-3">
-                                                            <img src="assets/images/users/avatar-2.jpg"
-                                                                class="avatar-xs h-auto rounded-circle" alt="Error">
+                                                            <img src="assets/images/users/avatar-2.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
                                                         </div>
                                                         <div>
-                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#"
-                                                                    class="text-dark">Max Jazz</a>
+                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#" class="text-dark">Max Jazz</a>
                                                             </h5>
                                                             <p class="text-muted mb-0 font-size-11 text-uppercase">
                                                                 Vatican City</p>
@@ -186,8 +178,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">$30,785</h6>
-                                                    <p class="text-success text-uppercase mb-0 font-size-11"><i
-                                                            class="mdi mdi-circle-medium "></i>paid</p>
+                                                    <p class="text-success text-uppercase mb-0 font-size-11"><i class="mdi mdi-circle-medium "></i>paid</p>
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">Out of Stock</h6>
@@ -215,8 +206,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 </td>
 
                                                 <td>
-                                                    <div class="btn btn-soft-primary btn-sm">View more<i
-                                                            class="mdi mdi-arrow-right ms-1"></i>
+                                                    <div class="btn btn-soft-primary btn-sm">View more<i class="mdi mdi-arrow-right ms-1"></i>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -229,12 +219,10 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="me-3">
-                                                            <img src="assets/images/users/avatar-3.jpg"
-                                                                class="avatar-xs h-auto rounded-circle" alt="Error">
+                                                            <img src="assets/images/users/avatar-3.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
                                                         </div>
                                                         <div>
-                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#"
-                                                                    class="text-dark">Jems Clarence</a>
+                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#" class="text-dark">Jems Clarence</a>
                                                             </h5>
                                                             <p class="text-muted mb-0 font-size-11 text-uppercase">
                                                                 Grenada</p>
@@ -243,8 +231,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">$19,191</h6>
-                                                    <p class="text-warning text-uppercase  mb-0 font-size-11"><i
-                                                            class="mdi mdi-circle-medium"></i>Pending</p>
+                                                    <p class="text-warning text-uppercase  mb-0 font-size-11"><i class="mdi mdi-circle-medium"></i>Pending</p>
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">Stock</h6>
@@ -271,8 +258,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     </ul>
                                                 </td>
                                                 <td>
-                                                    <div class="btn btn-soft-primary btn-sm">View more<i
-                                                            class="mdi mdi-arrow-right ms-1"></i>
+                                                    <div class="btn btn-soft-primary btn-sm">View more<i class="mdi mdi-arrow-right ms-1"></i>
                                                     </div>
                                                 </td>
 
@@ -286,12 +272,10 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="me-3">
-                                                            <img src="assets/images/users/avatar-4.jpg"
-                                                                class="avatar-xs h-auto rounded-circle" alt="Error">
+                                                            <img src="assets/images/users/avatar-4.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
                                                         </div>
                                                         <div>
-                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#"
-                                                                    class="text-dark">Prezy Summa</a>
+                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#" class="text-dark">Prezy Summa</a>
                                                             </h5>
                                                             <p class="text-muted mb-0 font-size-11 text-uppercase">
                                                                 Maldivse</p>
@@ -300,8 +284,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">$34,450</h6>
-                                                    <p class="text-success text-uppercase mb-0 font-size-11"><i
-                                                            class="mdi mdi-circle-medium "></i>paid</p>
+                                                    <p class="text-success text-uppercase mb-0 font-size-11"><i class="mdi mdi-circle-medium "></i>paid</p>
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">Out of Stock</h6>
@@ -328,8 +311,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     </ul>
                                                 </td>
                                                 <td>
-                                                    <div class="btn btn-soft-primary btn-sm">View more<i
-                                                            class="mdi mdi-arrow-right ms-1"></i>
+                                                    <div class="btn btn-soft-primary btn-sm">View more<i class="mdi mdi-arrow-right ms-1"></i>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -342,12 +324,10 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="me-3">
-                                                            <img src="assets/images/users/avatar-5.jpg"
-                                                                class="avatar-xs h-auto rounded-circle" alt="Error">
+                                                            <img src="assets/images/users/avatar-5.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
                                                         </div>
                                                         <div>
-                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#"
-                                                                    class="text-dark">Julia Fox</a>
+                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#" class="text-dark">Julia Fox</a>
                                                             </h5>
                                                             <p class="text-muted mb-0 font-size-11 text-uppercase">
                                                                 Glory
@@ -357,8 +337,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">$24,450</h6>
-                                                    <p class="text-danger text-uppercase mb-0 font-size-11"><i
-                                                            class="mdi mdi-circle-medium"></i>Canceled</p>
+                                                    <p class="text-danger text-uppercase mb-0 font-size-11"><i class="mdi mdi-circle-medium"></i>Canceled</p>
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-1 font-size-13">Stock</h6>
@@ -385,8 +364,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     </ul>
                                                 </td>
                                                 <td>
-                                                    <div class="btn btn-soft-primary btn-sm">View more<i
-                                                            class="mdi mdi-arrow-right ms-1"></i>
+                                                    <div class="btn btn-soft-primary btn-sm">View more<i class="mdi mdi-arrow-right ms-1"></i>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -414,16 +392,14 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <ul class="list-inline user-chat-nav text-end mb-2">
                                             <li class="list-inline-item">
                                                 <div class="dropdown">
-                                                    <a href="#" class="dropdown-toggle card-drop" data-bs-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <a href="#" class="dropdown-toggle card-drop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="mdi mdi-magnify text-muted"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-0">
                                                         <form class="p-2">
                                                             <div class="search-box">
                                                                 <div class="position-relative">
-                                                                    <input type="text" class="form-control rounded bg-light border-0"
-                                                                        placeholder="Search...">
+                                                                    <input type="text" class="form-control rounded bg-light border-0" placeholder="Search...">
                                                                     <i class="mdi mdi-magnify search-icon"></i>
                                                                 </div>
                                                             </div>
@@ -434,8 +410,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <!-- end li -->
                                             <li class="list-inline-item d-none d-sm-inline-block">
                                                 <div class="dropdown">
-                                                    <a href="#" class="dropdown-toggle card-drop" data-bs-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <a href="#" class="dropdown-toggle card-drop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="mdi mdi-cog text-muted"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-end">
@@ -454,7 +429,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                 <!-- end row -->
 
                                 <div class="table-responsive">
-                                <div class="mb-3">
+                                    <form action="includes/guardarFacturacionMKT.php" method="post" enctype="multipart/form-data">
+                                        <div class="mb-3">
                                             <?php
                                             // Consulta SQL para obtener las filas donde idAterrizajeFuente = 0
                                             $query = "SELECT id_fuente, descripcionFuente FROM fuente WHERE idAterrizajeFuente = 0";
@@ -506,6 +482,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <div class="mb-3">
                                             <button type="submit" class="btn btn-primary" formaction="includes/guardarFacturacionMKT.php">Enviar</button>
                                         </div>
+                                    </form>
                                 </div>
                                 <!-- end table-responsive -->
                             </div>
@@ -578,52 +555,52 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     </div>
                                 </form>
                                 <div class="col-lg-8">
-                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>Fuente</th>
-                                            <th>Fecha Inicio</th>
-                                            <th>Fecha Fin</th>
-                                            <th>Inversión</th>
-                                            <th>Archivo</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        // Consulta SQL para obtener los datos de facturacionMKT
-                                        $query = "SELECT fuente, start, end, cantidad, archivo FROM facturacionMKT";
-                                        $result = mysqli_query($con, $query);
+                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Fuente</th>
+                                                <th>Fecha Inicio</th>
+                                                <th>Fecha Fin</th>
+                                                <th>Inversión</th>
+                                                <th>Archivo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // Consulta SQL para obtener los datos de facturacionMKT
+                                            $query = "SELECT fuente, start, end, cantidad, archivo FROM facturacionMKT";
+                                            $result = mysqli_query($con, $query);
 
-                                        // Verificar si se encontraron resultados
-                                        if ($result) {
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                // Obtener los valores de la fila
-                                                $fuente = $row['fuente'];
-                                                $start = $row['start'];
-                                                $end = $row['end'];
-                                                $cantidad = $row['cantidad'];
-                                                $archivo = $row['archivo'];
+                                            // Verificar si se encontraron resultados
+                                            if ($result) {
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    // Obtener los valores de la fila
+                                                    $fuente = $row['fuente'];
+                                                    $start = $row['start'];
+                                                    $end = $row['end'];
+                                                    $cantidad = $row['cantidad'];
+                                                    $archivo = $row['archivo'];
 
-                                                // Imprimir una fila de la tabla con los datos recuperados
-                                                echo "<tr>";
-                                                echo "<td>$fuente</td>";
-                                                echo "<td>$start</td>";
-                                                echo "<td>$end</td>";
-                                                echo "<td>$cantidad</td>";
-                                                echo "<td>$archivo</td>";
-                                                echo "</tr>";
+                                                    // Imprimir una fila de la tabla con los datos recuperados
+                                                    echo "<tr>";
+                                                    echo "<td>$fuente</td>";
+                                                    echo "<td>$start</td>";
+                                                    echo "<td>$end</td>";
+                                                    echo "<td>$cantidad</td>";
+                                                    echo "<td>$archivo</td>";
+                                                    echo "</tr>";
+                                                }
+                                            } else {
+                                                echo "Error en la consulta: " . mysqli_error($con);
                                             }
-                                        } else {
-                                            echo "Error en la consulta: " . mysqli_error($con);
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
+                                            ?>
+                                        </tbody>
+                                    </table>
 
-                            </div>
+                                </div>
                             </div>
                             <!-- end col -->
-                            
+
                         </div>
                         <!-- end row -->
 
