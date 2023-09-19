@@ -77,19 +77,14 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                             <div class="card-body">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Single Select</label>
+                                        <label class="form-label">Fuente</label>
                                         <select class="form-control select2">
                                             <option>Select</option>
-
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI">Hawaii</option>
-
-                                            <option value="CA">California</option>
-                                            <option value="NV">Nevada</option>
-                                            <option value="OR">Oregon</option>
-                                            <option value="WA">Washington</option>
-
-
+                                            <option value="2">Google</option>
+                                            <option value="3">Facebook</option>
+                                            <option value="7">Linkedin</option>
+                                            <option value="11">Otro</option>
+                                            
                                         </select>
                                         <!-- end select -->
 
@@ -98,10 +93,21 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     <div class="mb-3">
 
                                         <div>
-                                            <label class="form-label">Date Range</label>
+                                            <label class="form-label">Fechas </label>
                                             <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
                                                 <input type="text" class="form-control" name="start" placeholder="Start Date" />
                                                 <input type="text" class="form-control" name="end" placeholder="End Date" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-3">
+
+                                        <div>
+                                            <label class="form-label">Inversion </label>
+                                            <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                                <input type="number" class="form-control" name="cantidad" placeholder="Monto INvertido" />
+                                              
                                             </div>
                                         </div>
 
