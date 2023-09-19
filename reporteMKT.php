@@ -75,64 +75,108 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                            <form action="includes/guardarFacturacionMKT.php" method="post" enctype="multipart/form-data">
-                            <div class="col-lg-4">
-                                <div class="mb-3">
-                                    <?php
-                                    // Consulta SQL para obtener las filas donde idAterrizajeFuente = 0
-                                    $query = "SELECT id_fuente, descripcionFuente FROM fuente WHERE idAterrizajeFuente = 0";
-                                    $result = mysqli_query($con, $query);
+                                <form action="includes/guardarFacturacionMKT.php" method="post" enctype="multipart/form-data">
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <?php
+                                            // Consulta SQL para obtener las filas donde idAterrizajeFuente = 0
+                                            $query = "SELECT id_fuente, descripcionFuente FROM fuente WHERE idAterrizajeFuente = 0";
+                                            $result = mysqli_query($con, $query);
 
-                                    // Verificar si se encontraron resultados
-                                    if ($result) {
-                                        echo '<label class="form-label">Fuente</label>';
-                                        echo '<select class="form-control select2" name="fuente">';
-                                        echo '<option>Seleccione la fuente</option>';
+                                            // Verificar si se encontraron resultados
+                                            if ($result) {
+                                                echo '<label class="form-label">Fuente</label>';
+                                                echo '<select class="form-control select2" name="fuente">';
+                                                echo '<option>Seleccione la fuente</option>';
 
-                                        // Recorrer los resultados y generar las opciones del select
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            $id_fuente = $row['id_fuente'];
-                                            $descripcionFuente = $row['descripcionFuente'];
-                                            echo "<option value='$id_fuente'>$descripcionFuente</option>";
-                                        }
+                                                // Recorrer los resultados y generar las opciones del select
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $id_fuente = $row['id_fuente'];
+                                                    $descripcionFuente = $row['descripcionFuente'];
+                                                    echo "<option value='$id_fuente'>$descripcionFuente</option>";
+                                                }
 
-                                        echo '</select>';
-                                    } else {
-                                        echo "Error en la consulta: " . mysqli_error($con);
-                                    }
-                                    ?>
-                                </div>
+                                                echo '</select>';
+                                            } else {
+                                                echo "Error en la consulta: " . mysqli_error($con);
+                                            }
+                                            ?>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <div>
-                                        <label class="form-label">Fechas </label>
-                                        <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                            <input type="text" class="form-control" name="start" placeholder="Fecha Inicio" />
-                                            <input type="text" class="form-control" name="end" placeholder="Fecha Fin" />
+                                        <div class="mb-3">
+                                            <div>
+                                                <label class="form-label">Fechas </label>
+                                                <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                                    <input type="text" class="form-control" name="start" placeholder="Fecha Inicio" />
+                                                    <input type="text" class="form-control" name="end" placeholder="Fecha Fin" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <div>
+                                                <label class="form-label">Inversión </label>
+                                                <input type="number" class="form-control" name="cantidad" />
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Facturación</label>
+                                            <input class="form-control" type="file" id="formFile" name="facturacion" />
+                                        </div>
+
+                                        <!-- Botón "Enviar" que enviará el formulario a guardarFacturacionMKT.php -->
+                                        <div class="mb-3">
+                                            <button type="submit" class="btn btn-primary" formaction="includes/guardarFacturacionMKT.php">Enviar</button>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <div>
-                                        <label class="form-label">Inversión </label>
-                                            <input type="number" class="form-control" name="cantidad" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Facturación</label>
-                                    <input class="form-control" type="file" id="formFile" name="facturacion" />
-                                </div>
-
-                                <!-- Botón "Enviar" que enviará el formulario a guardarFacturacionMKT.php -->
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary" formaction="includes/guardarFacturacionMKT.php">Enviar</button>
-                                </div>
-                            </div>
-                        </form>
+                                </form>
                             </div>
                             <!-- end col -->
+                            <div class="col-lg-8">
+                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Fuente</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Fin</th>
+                                            <th>Inversión</th>
+                                            <th>Archivo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        // Consulta SQL para obtener los datos de facturacionMKT
+                                        $query = "SELECT fuente, start, end, cantidad, archivo FROM facturacionMKT";
+                                        $result = mysqli_query($con, $query);
+
+                                        // Verificar si se encontraron resultados
+                                        if ($result) {
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                // Obtener los valores de la fila
+                                                $fuente = $row['fuente'];
+                                                $start = $row['start'];
+                                                $end = $row['end'];
+                                                $cantidad = $row['cantidad'];
+                                                $archivo = $row['archivo'];
+
+                                                // Imprimir una fila de la tabla con los datos recuperados
+                                                echo "<tr>";
+                                                echo "<td>$fuente</td>";
+                                                echo "<td>$start</td>";
+                                                echo "<td>$end</td>";
+                                                echo "<td>$cantidad</td>";
+                                                echo "<td>$archivo</td>";
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "Error en la consulta: " . mysqli_error($con);
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
                         <!-- end row -->
 
@@ -290,7 +334,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
         <!-- END layout-wrapper -->
 
         <?php include './parts/sidebar.php'; ?>
-       <!-- JAVASCRIPT -->
+        <!-- JAVASCRIPT -->
         <script src="assets/libs/jquery/jquery.min.js"></script>
         <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/libs/metismenu/metisMenu.min.js"></script>
