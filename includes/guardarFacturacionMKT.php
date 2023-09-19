@@ -29,12 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mover el archivo subido a la carpeta
         $archivo_temporal = $_FILES["facturacion"]["tmp_name"];
         $archivo_destino = $carpeta_facturacion . "/" . $archivo_nombre;
-
+     
         if (move_uploaded_file($archivo_temporal, $archivo_destino)) {
-            echo "Datos guardados y archivo subido con éxito.";
+            // Redireccionar a reporteMKT.php
+            header("Location: reporteMKT.php");
+            exit; // Asegura que el script se detenga después de la redirección
         } else {
             echo "Error al subir el archivo.";
         }
+        
     } else {
         echo "Error al insertar datos en la tabla: " . mysqli_error($con);
     }
