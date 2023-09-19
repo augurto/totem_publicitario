@@ -131,9 +131,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         </div>
                                     </div>
                                 </form>
-                            </div>
-                            <!-- end col -->
-                            <div class="col-lg-8">
+                                <div class="col-lg-8">
                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
@@ -177,6 +175,9 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                 </table>
 
                             </div>
+                            </div>
+                            <!-- end col -->
+                            
                         </div>
                         <!-- end row -->
 
