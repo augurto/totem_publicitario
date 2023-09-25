@@ -78,7 +78,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">TRAIDORAS  me botaron</h4>
+                                    <h4 class="mb-sm-0"> </h4>
                                     <div class="page-title-center">
                                     <button type="button" class="btn btn-primary waves-effect waves-light" style="height: 35px !important;" onclick="window.location.href = 'nuevoCliente.php';">
                                         Nuevo Cliente <i class="mdi mdi-emoticon-excited-outline font-size-16 align-middle ms-2"></i>
