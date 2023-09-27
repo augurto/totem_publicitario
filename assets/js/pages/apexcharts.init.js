@@ -146,7 +146,6 @@ options = {
   options
 )).render();
 /* inicio de datos de grafica */
-var data = <?php echo json_encode($data); ?>; // $data contiene los datos de tu consulta SQL en formato JSON
 
 var options = {
   chart: { height: 350, type: "bar", toolbar: { show: !1 } },

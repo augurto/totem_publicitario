@@ -109,7 +109,9 @@ mysqli_close($con);
                             </div>
                         </div>
                         <!-- end row -->
-                     
+                        <script>
+                            var data = <?php echo json_encode($data); ?>;
+                        </script>
                         <!-- FIN DATOS -->
                     </div> <!-- container-fluid -->
                 </div>
