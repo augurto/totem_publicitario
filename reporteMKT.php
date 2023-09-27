@@ -140,6 +140,61 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                 </div>
                 <!-- end page title -->
                 <!-- Inicio bloque 1 -->
+                <div class="row">
+                        <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Spline Area</h4>
+
+                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
+                                    </div>
+                                </div><!--end card-->
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Spline Area</h4>
+
+                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
+                                    </div>
+                                </div><!--end card-->
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Filtro por Fechas</h4>
+                                        
+                                        <div>
+                                                <label class="form-label">Fechas </label>
+                                                <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                                    <input type="text" class="form-control" name="start" placeholder="Fecha Inicio" />
+                                                    <input type="text" class="form-control" name="end" placeholder="Fecha Fin" />
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                                                            <i class="fa fa-search"></i> <!-- Icono de lupa -->
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <script type="text/javascript">
+                                                    document.addEventListener("DOMContentLoaded", function () {
+                                                        document.getElementById("searchButton").addEventListener("click", function () {
+                                                            var startDate = document.querySelector("input[name='start']").value;
+                                                            var endDate = document.querySelector("input[name='end']").value;
+                                                            
+                                                            // Construye la URL con las fechas y redirige a la página
+                                                            var url = "reporteMKT.php?start=" + startDate + "&end=" + endDate;
+                                                            window.location.href = url;
+                                                        });
+                                                    });
+                                                </script>
+
+                                            </div>                                   
+                                    </div>
+                                </div><!--end card-->
+                            </div>
+                        </div>
                 <!-- end row -->
                 <div class="row">
                             <div class="col-lg-6">
