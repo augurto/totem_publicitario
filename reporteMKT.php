@@ -145,7 +145,11 @@
             chart.draw(data, options);
         }
     </script>
+    <div id="second_chart" style="width: 800px; height: 500px;"></div>
+
+
     <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawSecondChart);
 
         function drawSecondChart() {
@@ -176,8 +180,7 @@
                 title: 'Conteo de Categorías de Fuente por Mes y Año',
                 hAxis: { title: 'Mes y Año' },
                 vAxis: { title: 'Conteo' },
-                seriesType: 'bars',
-                series: { 5: { type: 'line' } } // Opcional: para mostrar una línea
+                seriesType: 'bars' // Configuración para mostrar solo columnas
             };
 
             var chartFuente = new google.visualization.ComboChart(document.getElementById('second_chart'));
