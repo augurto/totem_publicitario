@@ -22,6 +22,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
             GROUP BY mes_anio, tc.descripcionTipoCliente
             ORDER BY mes_anio";
 
+            
+
 
    $result = mysqli_query($con, $sql);
 
@@ -75,41 +77,47 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <!-- google -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
+    <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
             var jsonData = <?php echo json_encode($data); ?>;
             var categorias = <?php echo json_encode($categorias); ?>;
+            
+            // Ordenar el array de categorías (meses y años) en orden cronológico
+            categorias.sort(function(a, b) {
+                return new Date(a) - new Date(b);
+            });
 
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Mes y Año');
-            
+
             for (var i = 0; i < categorias.length; i++) {
-            data.addColumn('number', categorias[i]);
+                data.addColumn('number', categorias[i]);
             }
 
             for (var mes_anio in jsonData) {
-            var row = [mes_anio];
-            for (var i = 0; i < categorias.length; i++) {
-                row.push(jsonData[mes_anio][categorias[i]] || 0);
-            }
-            data.addRow(row);
+                var row = [mes_anio];
+                for (var i = 0; i < categorias.length; i++) {
+                    row.push(jsonData[mes_anio][categorias[i]] || 0);
+                }
+                data.addRow(row);
             }
 
             var options = {
-            title: 'Conteo de Categorías por Mes y Año',
-            hAxis: {title: 'Mes y Año'},
-            vAxis: {title: 'Conteo'},
-            seriesType: 'bars',
-            series: {5: {type: 'line'}} // Opcional: para mostrar una línea
+                title: 'Conteo de Categorías por Mes y Año',
+                hAxis: { title: 'Mes y Año' },
+                vAxis: { title: 'Conteo' },
+                seriesType: 'bars',
+                series: { 5: { type: 'line' } } // Opcional: para mostrar una línea
             };
 
             var chart = new google.visualization.ComboChart(document.getElementById('columnchart_material'));
             chart.draw(data, options);
         }
-        </script>
+    </script>
+        
 
 </head>
 
