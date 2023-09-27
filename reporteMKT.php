@@ -11,12 +11,17 @@ $usuario = $_SESSION['usuario'];
 $dni = $_SESSION['dni'];
 $tipoUsuario = $_SESSION['tipoUsuario'];
 
-   // Realiza la consulta SQL
-   $sql = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, tc.descripcionTipoCliente, COUNT(wf.tipoCliente) AS conteo
-           FROM web_formularios wf
-           INNER JOIN tipoCliente tc ON wf.tipoCliente = tc.idTipoCliente
-           GROUP BY mes_anio, tc.descripcionTipoCliente
-           ORDER BY mes_anio, tc.descripcionTipoCliente";
+        // Realiza la consulta SQL
+        $start = $_GET['inicio']; // Obtén el valor de "start" desde la URL
+        $end = $_GET['fin']; // Obtén el valor de "end" desde la URL
+
+        $sql = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, tc.descripcionTipoCliente, COUNT(wf.tipoCliente) AS conteo
+            FROM web_formularios wf
+            INNER JOIN tipoCliente tc ON wf.tipoCliente = tc.idTipoCliente
+            WHERE wf.fecha BETWEEN '$start' AND '$end' 
+            GROUP BY mes_anio, tc.descripcionTipoCliente
+            ORDER BY mes_anio, tc.descripcionTipoCliente";
+
 
    $result = mysqli_query($con, $sql);
 
@@ -166,7 +171,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <h4 class="card-title mb-4">Filtro por Fechas</h4>
                                         
                                         <div>
-                                                <label class="form-label">Fechas </label>
+                                                
                                                 <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
                                                     <input type="text" class="form-control" name="start" placeholder="Fecha Inicio" />
                                                     <input type="text" class="form-control" name="end" placeholder="Fecha Fin" />
@@ -184,7 +189,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             var endDate = document.querySelector("input[name='end']").value;
                                                             
                                                             // Construye la URL con las fechas y redirige a la página
-                                                            var url = "reporteMKT.php?start=" + startDate + "&end=" + endDate;
+                                                            var url = "reporteMKT.php?inicio=" + startDate + "&fin=" + endDate;
                                                             window.location.href = url;
                                                         });
                                                     });
