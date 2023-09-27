@@ -43,7 +43,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
    }
 
    // Cierra la conexión a la base de datos
-
+   
 
 ?>
 
@@ -231,7 +231,6 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                 chart.render();
                             });
                         </script>
-
                         <!-- FIN DATOS -->
                     </div> <!-- container-fluid -->
                 </div>
