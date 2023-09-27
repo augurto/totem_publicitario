@@ -14,9 +14,28 @@ $dni = $_SESSION['dni'];
 $tipoUsuario = $_SESSION['tipoUsuario'];
 $empresaUser =$_SESSION['empresaUser'] ;
 
+// Realiza la consulta SQL
+$sql = "SELECT tc.descripcionTipoCliente, COUNT(wf.tipoCliente) AS conteo
+FROM web_formularios wf
+INNER JOIN tipoCliente tc ON wf.tipoCliente = tc.idTipoCliente
+GROUP BY tc.descripcionTipoCliente
+ORDER BY tc.descripcionTipoCliente";
 
+$result = mysqli_query($con, $sql);
 
+// Prepara los datos para el gráfico en formato JSON
+$data = array();
+while ($row = mysqli_fetch_assoc($result)) {
+$data[] = array(
+"categoria" => $row['descripcionTipoCliente'],
+"conteo" => (int)$row['conteo']
+);
+}
+
+// Cierra la conexión a la base de datos
+mysqli_close($con);
 ?>
+
 
 <!doctype html>
 <html lang="es">
@@ -90,7 +109,49 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             </div>
                         </div>
                         <!-- end row -->
-                
+                        <script>
+                            // Datos para el gráfico en formato JSON
+                            var data = <?php echo json_encode($data); ?>;
+
+                            var options = {
+                                chart: {
+                                    type: 'bar', // Tipo de gráfico de barras
+                                    height: 350,
+                                },
+                                plotOptions: {
+                                    bar: {
+                                        horizontal: false,
+                                        columnWidth: '55%',
+                                        endingShape: 'rounded'
+                                    },
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                series: [{
+                                    name: 'Conteo',
+                                    data: data.map(item => item.conteo)
+                                }],
+                                xaxis: {
+                                    categories: data.map(item => item.categoria)
+                                },
+                                yaxis: {
+                                    title: {
+                                        text: 'Conteo'
+                                    }
+                                },
+                                fill: {
+                                    opacity: 1
+                                },
+                            }
+
+                            var chart = new ApexCharts(
+                                document.querySelector("#column_chart"),
+                                options
+                            );
+
+                            chart.render();
+                        </script>
 
                         <!-- FIN DATOS -->
                     </div> <!-- container-fluid -->
@@ -142,33 +203,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
         <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
         
         <!-- apexcharts init -->
-        <script>
-            options = {
-            chart: { height: 350, type: "bar", toolbar: { show: !1 } },
-            plotOptions: { bar: { horizontal: !1, columnWidth: "45%", endingShape: "rounded" } },
-            dataLabels: { enabled: !1 },
-            stroke: { show: !0, width: 2, colors: ["transparent"] },
-            series: [
-                { name: "Net Profit", data: [46, 57, 59, 54, 62, 58, 64, 60, 66] },
-                { name: "Revenue", data: [74, 83, 102, 97, 86, 106, 93, 114, 94] },
-                { name: "Free Cash Flow", data: [37, 42, 38, 26, 47, 50, 54, 55, 43] },
-            ],
-            colors: ["#5867c3", "#34c38f", "#f9c341"],
-            xaxis: { categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"] },
-            yaxis: { title: { text: "$ (thousands)" } },
-            grid: { borderColor: "#f1f1f1", padding: { bottom: 10 } },
-            fill: { opacity: 1 },
-            tooltip: {
-                y: {
-                formatter: function (e) {
-                    return "$ " + e + " thousands";
-                },
-                },
-            },
-            legend: { offsetY: 7 },
-            };
-
-        </script>
+        <!-- <script src="assets/js/pages/apexcharts.init.js"></script> -->
 
 
  

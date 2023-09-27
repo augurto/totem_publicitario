@@ -145,6 +145,7 @@ options = {
   document.querySelector("#spline_area"),
   options
 )).render();
+/* inicio de datos de grafica */
 options = {
   chart: { height: 350, type: "bar", toolbar: { show: !1 } },
   plotOptions: {
@@ -177,6 +178,9 @@ options = {
   document.querySelector("#column_chart"),
   options
 )).render();
+
+/* fin de datos de grafica */
+
 options = {
   chart: { height: 350, type: "bar", toolbar: { show: !1 } },
   plotOptions: { bar: { dataLabels: { position: "top" } } },
