@@ -146,8 +146,7 @@ options = {
   options
 )).render();
 /* inicio de datos de grafica */
-
-var options = {
+options = {
   chart: { height: 350, type: "bar", toolbar: { show: !1 } },
   plotOptions: {
     bar: { horizontal: !1, columnWidth: "45%", endingShape: "rounded" },
@@ -155,11 +154,13 @@ var options = {
   dataLabels: { enabled: !1 },
   stroke: { show: !0, width: 2, colors: ["transparent"] },
   series: [
-    { name: "Conteo", data: data.map(item => item.conteo) } // Reemplaza los datos de "Net Profit" con tus datos
+    { name: "Net Profit", data: [46, 57, 59, 54, 62, 58, 64, 60, 66] },
+    { name: "Revenue", data: [74, 83, 102, 97, 86, 106, 93, 114, 94] },
+    { name: "Free Cash Flow", data: [37, 42, 38, 26, 47, 50, 54, 55, 43] },
   ],
   colors: ["#5867c3", "#34c38f", "#f9c341"],
   xaxis: {
-    categories: data.map(item => item.categoria) // Reemplaza las categorías con tus categorías
+    categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
   },
   yaxis: { title: { text: "$ (thousands)" } },
   grid: { borderColor: "#f1f1f1", padding: { bottom: 10 } },
@@ -173,15 +174,11 @@ var options = {
   },
   legend: { offsetY: 7 },
 };
-
 (chart = new ApexCharts(
   document.querySelector("#column_chart"),
   options
 )).render();
-
-
 /* fin de datos de grafica */
-
 options = {
   chart: { height: 350, type: "bar", toolbar: { show: !1 } },
   plotOptions: { bar: { dataLabels: { position: "top" } } },
