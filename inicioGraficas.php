@@ -140,7 +140,16 @@ $empresaUser =$_SESSION['empresaUser'] ;
                     <div class="container-fluid">
                         <!-- INICIO DATOS -->
                         <div class="row">
-                            <div class="col-lg-6">
+                        <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Spline Area</h4>
+
+                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
+                                    </div>
+                                </div><!--end card-->
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title mb-4">Spline Area</h4>
@@ -150,7 +159,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                 </div><!--end card-->
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title mb-4">Column Charts</h4>
@@ -171,12 +180,12 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             </div>
                             <div class="col-lg-6">
                                 <div class="card">
-                                    
-                                        <h4 class="card-title mb-4">Bar Chart</h4>
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Pie Chart</h4>
                                         
-                                        <div id="bar_chart" class="apex-charts" dir="ltr"></div>
-                                  
-                                </div><!--end card-->
+                                        <div id="pie_chart" class="apex-charts" dir="ltr"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>  
                         <!-- end row -->
