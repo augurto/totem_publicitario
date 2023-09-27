@@ -109,50 +109,7 @@ mysqli_close($con);
                             </div>
                         </div>
                         <!-- end row -->
-                        <script>
-                            // Datos para el gráfico en formato JSON
-                            var data = <?php echo json_encode($data); ?>;
-
-                            var options = {
-                                chart: {
-                                    type: 'bar', // Tipo de gráfico de barras
-                                    height: 350,
-                                },
-                                plotOptions: {
-                                    bar: {
-                                        horizontal: false,
-                                        columnWidth: '55%',
-                                        endingShape: 'rounded'
-                                    },
-                                },
-                                dataLabels: {
-                                    enabled: false
-                                },
-                                series: [{
-                                    name: 'Conteo',
-                                    data: data.map(item => item.conteo)
-                                }],
-                                xaxis: {
-                                    categories: data.map(item => item.categoria)
-                                },
-                                yaxis: {
-                                    title: {
-                                        text: 'Conteo'
-                                    }
-                                },
-                                fill: {
-                                    opacity: 1
-                                },
-                            }
-
-                            var chart = new ApexCharts(
-                                document.querySelector("#column_chart"),
-                                options
-                            );
-
-                            chart.render();
-                        </script>
-
+                     
                         <!-- FIN DATOS -->
                     </div> <!-- container-fluid -->
                 </div>
