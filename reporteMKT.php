@@ -1,51 +1,79 @@
 <?php
-session_start();
-if (!isset($_SESSION['usuario'])) {
-    // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
-    header("Location: login.php");
-    exit();
-}
-include 'includes/conexion.php'; // Incluir el archivo de conexión
+        session_start();
+        if (!isset($_SESSION['usuario'])) {
+            // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
+            header("Location: login.php");
+            exit();
+        }
+        include 'includes/conexion.php'; // Incluir el archivo de conexión
 
-$usuario = $_SESSION['usuario'];
-$dni = $_SESSION['dni'];
-$tipoUsuario = $_SESSION['tipoUsuario'];
+        $usuario = $_SESSION['usuario'];
+        $dni = $_SESSION['dni'];
+        $tipoUsuario = $_SESSION['tipoUsuario'];
 
-        // Realiza la consulta SQL
+
+        // Realiza la consulta SQL para el primer gráfico
         $start = $_GET['inicio']; // Obtén el valor de "start" desde la URL
         $end = $_GET['fin']; // Obtén el valor de "end" desde la URL
 
         $sql = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, tc.descripcionTipoCliente, COUNT(wf.tipoCliente) AS conteo
-            FROM web_formularios wf
-            INNER JOIN tipoCliente tc ON wf.tipoCliente = tc.idTipoCliente
-            WHERE wf.fecha BETWEEN '$start' AND '$end' 
-            GROUP BY mes_anio, tc.descripcionTipoCliente
-            ORDER BY mes_anio";
+        FROM web_formularios wf
+        INNER JOIN tipoCliente tc ON wf.tipoCliente = tc.idTipoCliente
+        WHERE wf.fecha BETWEEN '$start' AND '$end' 
+        GROUP BY mes_anio, tc.descripcionTipoCliente
+        ORDER BY mes_anio";
 
-            
+        $result = mysqli_query($con, $sql);
 
+        // Prepara los datos para el primer gráfico en formato JSON
+        $data = array();
+        $categorias = array();
 
-   $result = mysqli_query($con, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $mes_anio = $row['mes_anio'];
+            $descripcionTipoCliente = $row['descripcionTipoCliente'];
+            $conteo = (int)$row['conteo'];
 
-   // Prepara los datos para la gráfica en formato JSON
-   $data = array();
-   $categorias = array();
+            if (!in_array($descripcionTipoCliente, $categorias)) {
+                $categorias[] = $descripcionTipoCliente;
+            }
 
-   while ($row = mysqli_fetch_assoc($result)) {
-       $mes_anio = $row['mes_anio'];
-       $descripcionTipoCliente = $row['descripcionTipoCliente'];
-       $conteo = (int)$row['conteo'];
+            if (!isset($data[$mes_anio])) {
+                $data[$mes_anio] = array();
+            }
 
-       if (!in_array($descripcionTipoCliente, $categorias)) {
-           $categorias[] = $descripcionTipoCliente;
-       }
+            $data[$mes_anio][$descripcionTipoCliente] = $conteo;
+        }
 
-       if (!isset($data[$mes_anio])) {
-           $data[$mes_anio] = array();
-       }
+        // Realiza la consulta SQL para el nuevo gráfico
+        $sqlFuente = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, f.descripcionFuente, COUNT(*) AS conteo
+              FROM web_formularios wf
+              INNER JOIN fuente f ON wf.prospecto = f.id_fuente
+              WHERE wf.prospecto IS NOT NULL
+              GROUP BY mes_anio, f.descripcionFuente
+              ORDER BY mes_anio, f.descripcionFuente";
 
-       $data[$mes_anio][$descripcionTipoCliente] = $conteo;
-   }
+        $resultFuente = mysqli_query($con, $sqlFuente);
+
+        // Prepara los datos para el nuevo gráfico en formato JSON
+        $dataFuente = array();
+        $categoriasFuente = array();
+
+        while ($row = mysqli_fetch_assoc($resultFuente)) {
+            $mes_anio = $row['mes_anio'];
+            $descripcionFuente = $row['descripcionFuente'];
+            $conteo = (int)$row['conteo'];
+
+            if (!in_array($descripcionFuente, $categoriasFuente)) {
+                $categoriasFuente[] = $descripcionFuente;
+            }
+
+            if (!isset($dataFuente[$mes_anio])) {
+                $dataFuente[$mes_anio] = array();
+            }
+
+            $dataFuente[$mes_anio][$descripcionFuente] = $conteo;
+        }
 
 ?>
 <!doctype html>
@@ -53,7 +81,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
 <head>
     <meta charset="utf-8" />
-    <title>Reporte de Ventas</title>
+    <title>1Reporte de Ventas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
