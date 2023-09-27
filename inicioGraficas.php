@@ -142,7 +142,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
         <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
         
         <!-- apexcharts init -->
-        <script src="assets/js/pages/apexcharts2.init.js"></script>
+        <script src="assets/js/pages/apexcharts.init.js"></script>
 
 
  
