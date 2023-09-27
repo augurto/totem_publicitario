@@ -154,26 +154,8 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                 <!-- end page title -->
                 <!-- Inicio bloque 1 -->
                 <div class="row">
-                        <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">Spline Area</h4>
-
-                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
-                                    </div>
-                                </div><!--end card-->
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">Spline Area</h4>
-
-                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
-                                    </div>
-                                </div><!--end card-->
-                            </div>
-
-                            <div class="col-lg-4">
+                        
+                            <div class="col-lg-3">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title mb-4">Filtro por Fechas</h4>
@@ -207,6 +189,34 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                     </div>
                                 </div><!--end card-->
                             </div>
+                            <div class="col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Vendidos</h4>
+
+                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
+                                    </div>
+                                </div><!--end card-->
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">No gestionables</h4>
+
+                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
+                                    </div>
+                                </div><!--end card-->
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Spam</h4>
+
+                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
+                                    </div>
+                                </div><!--end card-->
+                            </div>
+
                         </div>
                 <!-- end row -->
                 <div class="row">
