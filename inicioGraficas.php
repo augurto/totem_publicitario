@@ -46,6 +46,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
         <!-- App Css-->
         <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <style>
             .btn {
                 line-height:0.3 !important;
@@ -179,6 +180,11 @@ $empresaUser =$_SESSION['empresaUser'] ;
         <script src="assets/js/pages/datatables.init.js"></script>
 
         <script src="assets/js/app.js"></script>
+        <!-- apexcharts -->
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+
+ 
 
     </body>
 </html>
