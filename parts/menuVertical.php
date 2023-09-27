@@ -166,7 +166,7 @@ if ($resultadoContarFormularios) {
                         </a>
                 </li>
                 <li>
-                        <a href="reporteMKT.php" class="waves-effect">
+                        <a href="reporteMKT.php?inicio=2023-01-01&fin=2023-12-31" class="waves-effect">
                             <i class="ri-dashboard-line"></i>
                             <span>Reporte MKT</span>
                         </a>
