@@ -20,7 +20,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
             INNER JOIN tipoCliente tc ON wf.tipoCliente = tc.idTipoCliente
             WHERE wf.fecha BETWEEN '$start' AND '$end' 
             GROUP BY mes_anio, tc.descripcionTipoCliente
-            ORDER BY mes_anio, tc.descripcionTipoCliente";
+            ORDER BY mes_anio";
 
 
    $result = mysqli_query($con, $sql);
