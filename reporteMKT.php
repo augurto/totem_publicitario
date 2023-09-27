@@ -10,6 +10,36 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
 $usuario = $_SESSION['usuario'];
 $dni = $_SESSION['dni'];
 $tipoUsuario = $_SESSION['tipoUsuario'];
+
+   // Realiza la consulta SQL
+   $sql = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, tc.descripcionTipoCliente, COUNT(wf.tipoCliente) AS conteo
+           FROM web_formularios wf
+           INNER JOIN tipoCliente tc ON wf.tipoCliente = tc.idTipoCliente
+           GROUP BY mes_anio, tc.descripcionTipoCliente
+           ORDER BY mes_anio, tc.descripcionTipoCliente";
+
+   $result = mysqli_query($con, $sql);
+
+   // Prepara los datos para la gráfica en formato JSON
+   $data = array();
+   $categorias = array();
+
+   while ($row = mysqli_fetch_assoc($result)) {
+       $mes_anio = $row['mes_anio'];
+       $descripcionTipoCliente = $row['descripcionTipoCliente'];
+       $conteo = (int)$row['conteo'];
+
+       if (!in_array($descripcionTipoCliente, $categorias)) {
+           $categorias[] = $descripcionTipoCliente;
+       }
+
+       if (!isset($data[$mes_anio])) {
+           $data[$mes_anio] = array();
+       }
+
+       $data[$mes_anio][$descripcionTipoCliente] = $conteo;
+   }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,6 +68,44 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- google -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var jsonData = <?php echo json_encode($data); ?>;
+            var categorias = <?php echo json_encode($categorias); ?>;
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Mes y Año');
+            
+            for (var i = 0; i < categorias.length; i++) {
+            data.addColumn('number', categorias[i]);
+            }
+
+            for (var mes_anio in jsonData) {
+            var row = [mes_anio];
+            for (var i = 0; i < categorias.length; i++) {
+                row.push(jsonData[mes_anio][categorias[i]] || 0);
+            }
+            data.addRow(row);
+            }
+
+            var options = {
+            title: 'Conteo de Categorías por Mes y Año',
+            hAxis: {title: 'Mes y Año'},
+            vAxis: {title: 'Conteo'},
+            seriesType: 'bars',
+            series: {5: {type: 'line'}} // Opcional: para mostrar una línea
+            };
+
+            var chart = new google.visualization.ComboChart(document.getElementById('columnchart_material'));
+            chart.draw(data, options);
+        }
+        </script>
+
 </head>
 
 <body data-topbar="dark">
