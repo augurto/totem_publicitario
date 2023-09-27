@@ -72,6 +72,67 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                 </div>
                 <!-- end page title -->
                 <!-- Inicio bloque 1 -->
+                <!-- end row -->
+                <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    
+                                    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+                                    
+                                </div><!--end card-->
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Pie Chart</h4>
+                                        
+                                        <div id="pie_chart" class="apex-charts" dir="ltr"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <script type="text/javascript">
+                            document.addEventListener("DOMContentLoaded", function () {
+                                var jsonData = <?php echo json_encode($data); ?>;
+                                var categorias = <?php echo json_encode($categorias); ?>;
+
+                                var options = {
+                                    chart: { height: 350, type: "bar", toolbar: { show: !1 } },
+                                    plotOptions: {
+                                        bar: { horizontal: !1, columnWidth: "45%", endingShape: "rounded" },
+                                    },
+                                    dataLabels: { enabled: !1 },
+                                    stroke: { show: !0, width: 2, colors: ["transparent"] },
+                                    colors: ["#5867c3", "#34c38f", "#f9c341"],
+                                    xaxis: {
+                                        categories: categorias, // Utiliza los meses y años como etiquetas
+                                    },
+                                    yaxis: { title: { text: "$ (thousands)" } },
+                                    grid: { borderColor: "#f1f1f1", padding: { bottom: 10 } },
+                                    fill: { opacity: 1 },
+                                    tooltip: {
+                                        y: {
+                                            formatter: function (e) {
+                                                return "$ " + e + " thousands";
+                                            },
+                                        },
+                                    },
+                                    legend: { offsetY: 7 },
+                                    series: jsonData.map(function (item) {
+                                        return {
+                                            name: item.categoria,
+                                            data: [item.conteo], // Utiliza el conteo correspondiente a cada categoría
+                                        };
+                                    }),
+                                };
+
+                                var chart = new ApexCharts(
+                                    document.querySelector("#column_chart"),
+                                    options
+                                );
+                                chart.render();
+                            });
+                        </script> 
                 <div class="row">
                     <div class="col-xl-7">
                         <div class="card">
