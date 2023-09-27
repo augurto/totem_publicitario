@@ -277,11 +277,6 @@ $empresaUser =$_SESSION['empresaUser'] ;
         <script src="assets/js/pages/datatables.init.js"></script>
 
         <script src="assets/js/app.js"></script>
-        
-
-        <!-- apexcharts -->
-        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-
         <!-- apexcharts init -->
         <script src="assets/js/pages/apexcharts.init.js"></script>
 
