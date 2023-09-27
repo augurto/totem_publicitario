@@ -14,11 +14,11 @@
    }
 
    // Realiza la consulta SQL
-   $sql = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, COUNT(wf.tipoCliente) AS conteo
+   $sql = "SELECT tc.descripcionTipoCliente, DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, COUNT(wf.tipoCliente) AS conteo
            FROM web_formularios wf
            INNER JOIN tipoCliente tc ON wf.tipoCliente = tc.idTipoCliente
-           GROUP BY mes_anio
-           ORDER BY wf.fecha";
+           GROUP BY tc.descripcionTipoCliente, mes_anio
+           ORDER BY tc.descripcionTipoCliente, wf.fecha";
 
    $result = mysqli_query($con, $sql);
 
@@ -26,6 +26,7 @@
    $data = array();
    while ($row = mysqli_fetch_assoc($result)) {
        $data[] = array(
+           "categoria" => $row['descripcionTipoCliente'],
            "mes_anio" => $row['mes_anio'],
            "conteo" => (int)$row['conteo']
        );
@@ -46,11 +47,11 @@
         var jsonData = <?php echo json_encode($data); ?>;
 
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Mes y Año');
+        data.addColumn('string', 'Categoría');
         data.addColumn('number', 'Conteo');
 
         for (var i = 0; i < jsonData.length; i++) {
-          data.addRow([jsonData[i].mes_anio, jsonData[i].conteo]);
+          data.addRow([jsonData[i].categoria, jsonData[i].conteo]);
         }
 
         var options = {
