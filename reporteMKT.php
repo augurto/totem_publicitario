@@ -49,7 +49,7 @@
         $sqlFuente = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, f.descripcionFuente, COUNT(*) AS conteo
               FROM web_formularios wf
               INNER JOIN fuente f ON wf.prospecto = f.id_fuente
-              WHERE wf.prospecto IS NOT NULL
+              WHERE wf.prospecto IS NOT NULL AND wf.fecha BETWEEN '$start' AND '$end'
               GROUP BY mes_anio, f.descripcionFuente
               ORDER BY mes_anio, f.descripcionFuente";
 
