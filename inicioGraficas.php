@@ -171,11 +171,11 @@ $empresaUser =$_SESSION['empresaUser'] ;
                             </div>
                             <div class="col-lg-6">
                                 <div class="card">
-                                    <div class="card-body">
+                                    
                                         <h4 class="card-title mb-4">Bar Chart</h4>
                                         
                                         <div id="bar_chart" class="apex-charts" dir="ltr"></div>
-                                    </div>
+                                  
                                 </div><!--end card-->
                             </div>
                         </div>  
