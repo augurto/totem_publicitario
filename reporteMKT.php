@@ -145,6 +145,45 @@
             chart.draw(data, options);
         }
     </script>
+    <script type="text/javascript">
+        google.charts.setOnLoadCallback(drawSecondChart);
+
+        function drawSecondChart() {
+            var jsonDataFuente = <?php echo json_encode($dataFuente); ?>;
+            var categoriasFuente = <?php echo json_encode($categoriasFuente); ?>;
+            
+            // Ordenar el array de categoríasFuente (meses y años) en orden cronológico
+            categoriasFuente.sort(function(a, b) {
+                return new Date(a) - new Date(b);
+            });
+
+            var dataFuente = new google.visualization.DataTable();
+            dataFuente.addColumn('string', 'Mes y Año');
+
+            for (var i = 0; i < categoriasFuente.length; i++) {
+                dataFuente.addColumn('number', categoriasFuente[i]);
+            }
+
+            for (var mes_anio in jsonDataFuente) {
+                var row = [mes_anio];
+                for (var i = 0; i < categoriasFuente.length; i++) {
+                    row.push(jsonDataFuente[mes_anio][categoriasFuente[i]] || 0);
+                }
+                dataFuente.addRow(row);
+            }
+
+            var optionsFuente = {
+                title: 'Conteo de Categorías de Fuente por Mes y Año',
+                hAxis: { title: 'Mes y Año' },
+                vAxis: { title: 'Conteo' },
+                seriesType: 'bars',
+                series: { 5: { type: 'line' } } // Opcional: para mostrar una línea
+            };
+
+            var chartFuente = new google.visualization.ComboChart(document.getElementById('second_chart'));
+            chartFuente.draw(dataFuente, optionsFuente);
+        }
+    </script>
 
         
 
