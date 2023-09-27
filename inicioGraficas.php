@@ -164,9 +164,9 @@ $empresaUser =$_SESSION['empresaUser'] ;
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="card">
-                                    <div class="card-body">
+                                    
                                     <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-                                    </div>
+                                    
                                 </div><!--end card-->
                             </div>
                             <div class="col-lg-6">
