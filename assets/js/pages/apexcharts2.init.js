@@ -1,7 +1,7 @@
 options = {
     chart: { height: 350, type: "bar", toolbar: { show: !1 } },
     plotOptions: { bar: { horizontal: !1, columnWidth: "45%", endingShape: "rounded" } },
-    dataLabels: { enabled: !1 },
+    dataLabels: { enabled: !0, offsetY: -20 }, // Habilitar las etiquetas de datos
     stroke: { show: !0, width: 2, colors: ["transparent"] },
     series: [
       { name: "Net Profit", data: [46, 57, 59, 54, 62, 58, 64, 60, 66] },
