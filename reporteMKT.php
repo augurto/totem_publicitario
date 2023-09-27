@@ -145,8 +145,6 @@
             chart.draw(data, options);
         }
     </script>
-    <div id="second_chart" style="width: 800px; height: 500px;"></div>
-
 
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
