@@ -4,9 +4,10 @@ require('fpdf/fpdf.php');
 class PDF extends FPDF {
     // Función para el encabezado
     function Header() {
-        // Encabezado si lo necesitas
+        $this->SetFont('Arial', '', 12);
+        $this->SetXY(0, 10);
+        $this->Cell(210, 10, utf8_decode('Año de la unidad, la paz y el desarrollo'), 0, 1, 'C');
     }
-
     // Función para el pie de página
     function Footer() {
         // Establecer la posición a 1.5 cm desde el final de la página
