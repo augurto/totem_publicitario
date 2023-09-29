@@ -1,43 +1,25 @@
 <?php
-
 require('fpdf/fpdf.php');
 
-// Función para generar el código QR y guardarlo como imagen
-function generateQRCode($text, $filename) {
-    include 'qrcode.js'; // Incluye la biblioteca qrcode.js (asegúrate de que la ruta sea correcta)
-    
-    // Crea una instancia de QRCode
-    var qrcode = new QRCode(-1, QRCode.ErrorCorrectLevel.H);
-    qrcode.addData(text);
-    qrcode.make();
-    
-    // Convierte el código QR en una imagen PNG
-    var imgData = qrcode.createDataURL();
-    
-    // Guarda la imagen como un archivo PNG
-    file_put_contents($filename, base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', imgData)));
-}
-
 class PDF extends FPDF {
-    // Cabecera de página
+    // Función para el encabezado
     function Header() {
         $this->SetFont('Arial', '', 12);
         $this->SetXY(0, 10);
         $this->Cell(210, 10, utf8_decode('Año de la unidad, la paz y el desarrollo'), 0, 1, 'C');
     }
-
-    // Resto del contenido del PDF
-    function Content() {
-        // Contenido del PDF
-        // ...
-        
-        // Generar y mostrar el código QR
-        $this->Image('qrcode.png', 80, 100, 50, 50);
+    // Función para el pie de página
+    function Footer() {
+        // Establecer la posición a 1.5 cm desde el final de la página
+        $this->SetY(-15);
+        // Configurar fuente y tamaño para la fecha
+        $this->SetFont('Arial', 'I', 8);
+        // Imprimir la fecha actual en la parte inferior
+        date_default_timezone_set('America/Lima');
+        $fechaActual = date('Y-m-d H:i:s');
+        $this->Cell(0, 10, 'Fecha: ' . $fechaActual, 0, 0, 'C');
     }
 }
-
-// Generar el código QR y guardarlo como una imagen
-generateQRCode("https://www.ejemplo.com", "qrcode.png");
 
 $pdf = new PDF();
 $pdf->AddPage();
