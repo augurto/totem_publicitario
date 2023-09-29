@@ -33,12 +33,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        .btn {
-            line-height: 0.3 !important;
-        }
-    </style>
-
+  
 </head>
 
 <body data-topbar="dark">
@@ -70,7 +65,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
 
                                     <h4 class="card-title">Prueba de PDF</h4>
 
-                                    <form id="documentoForm" action="generarPDF.php" method="POST">
+                                    <form id="documentoForm" action="generarPDF.php" method="POST"  target="_blank">
 
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Tipo de Documento</label>
