@@ -1,6 +1,26 @@
 <?php
 require('fpdf/fpdf.php');
-$pdf = new FPDF();
+
+class PDF extends FPDF {
+    // Función para el encabezado
+    function Header() {
+        // Encabezado si lo necesitas
+    }
+
+    // Función para el pie de página
+    function Footer() {
+        // Establecer la posición a 1.5 cm desde el final de la página
+        $this->SetY(-15);
+        // Configurar fuente y tamaño para la fecha
+        $this->SetFont('Arial', 'I', 8);
+        // Imprimir la fecha actual en la parte inferior
+        date_default_timezone_set('America/Lima');
+        $fechaActual = date('Y-m-d H:i:s');
+        $this->Cell(0, 10, 'Fecha: ' . $fechaActual, 0, 0, 'C');
+    }
+}
+
+$pdf = new PDF();
 $pdf->AddPage();
 
 $tipoDocumento = isset($_POST['tipoDocumento']) ? $_POST['tipoDocumento'] : '';
@@ -16,12 +36,8 @@ $pdf->SetFont('Arial', '', 12);
 $pdf->Cell(0, 10, 'Observaciones:', 0, 1);
 $pdf->MultiCell(0, 10, $observaciones);
 
-date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
-$fechaActual = date('Y-m-d H:i:s');
-
-$pdf->SetY(-15); // Posicionarse en el borde inferior de la página
-$pdf->SetFont('Arial', 'I', 8);
-$pdf->Cell(0, 10, 'Fecha: ' . $fechaActual, 0, 0, 'C');
+// Agregar imagen debajo de las observaciones
+$pdf->Image('assets/images/adfusion.png', 10, $pdf->GetY() + 10, 50); // Ajusta la posición y tamaño de la imagen según tus necesidades
 
 $pdf->Output();
 ?>
