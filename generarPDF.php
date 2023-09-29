@@ -36,8 +36,13 @@ $pdf->SetFont('Arial', '', 12);
 $pdf->Cell(0, 10, 'Observaciones:', 0, 1);
 $pdf->MultiCell(0, 10, $observaciones);
 
-// Agregar imagen debajo de las observaciones
-$pdf->Image('assets/images/adfusion.png', 10, $pdf->GetY() + 10, 50); // Ajusta la posición y tamaño de la imagen según tus necesidades
+// Calcular la posición X para centrar la imagen en el eje horizontal
+$imageWidth = 50; // Ancho de la imagen en puntos
+$pageWidth = $pdf->GetPageWidth(); // Ancho de la página en puntos
+$imageX = ($pageWidth - $imageWidth) / 2;
+
+$pdf->Image('assets/images/firma.png', $imageX, $pdf->GetY() + 10, $imageWidth); // Centra la imagen horizontalmente
+
 
 $pdf->Output();
 ?>
