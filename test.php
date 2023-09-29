@@ -63,7 +63,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">Prueba de PDF</h4>
+                                    <h4 class="card-title">Generar PDF</h4>
 
                                     <form id="documentoForm" action="generarPDF.php" method="POST"  target="_blank">
 
