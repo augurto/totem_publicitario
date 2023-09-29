@@ -84,38 +84,12 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Observaciones</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="textarea" name="observaciones" placeholder="Observaciones" id="example-text-input">
+                                                
+                                                <textarea  id="Observaciones" class="form-control" maxlength="30" rows="3" name="Observaciones" ></textarea>
                                             </div>
                                         </div>
 
-                                        <div class="row mb-3">
-                                            <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="email" name="email" placeholder="bootstrap@example.com" id="example-email-input">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="example-tel-input" class="col-sm-2 col-form-label">Telephone</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="tel" name="telephone" placeholder="1-(555)-555-5555" id="example-tel-input">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="example-number-input" class="col-sm-2 col-form-label">Number</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="number" name="number" value="42" id="example-number-input">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="example-color-input" class="col-sm-2 col-form-label">Color</label>
-                                            <div class="col-sm-10">
-                                                <input type="color" class="form-control form-control-color mw-100" name="color" id="example-color-input" value="#5664d2" title="Choose your color">
-                                            </div>
-                                        </div>
-
+                                      
                                         <div class="row mb-3">
                                             <div class="col-sm-10 offset-sm-2">
                                                 <button type="submit" class="btn btn-primary">Generar PDF</button>
