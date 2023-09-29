@@ -85,7 +85,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Observaciones</label>
                                             <div class="col-sm-10">
                                                 
-                                                <textarea  id="Observaciones" class="form-control" maxlength="30" rows="3" name="Observaciones" ></textarea>
+                                                <textarea  id="Observaciones" class="form-control" maxlength="250" rows="3" name="Observaciones" ></textarea>
                                             </div>
                                         </div>
 
