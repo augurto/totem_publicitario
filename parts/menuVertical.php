@@ -74,7 +74,79 @@ if ($resultadoContarFormularios) {
                 <li class="menu-title">Menu</li>
 
                 
-               
+                <!-- end li -->
+                <li>
+                    <?php
+                    if ($tipoUsuario == 3) {
+                        echo '<a href="vendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">' . $vendidos . '</span>
+                            <span>Vendidos</span>
+                        </a>';
+                    } elseif ($tipoUsuario == 2) {
+                        echo '<a href="vendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">' . $vendidos . '</span>
+                            <span>Vendidos</span>
+                        </a>';
+                    } elseif ($tipoUsuario == 1) {
+                        echo '<a href="vendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">' . $vendidos . '</span>
+                            <span>Vendidos</span>
+                        </a>';
+                    } else {
+                        echo '<a href="vendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">' . $vendidos . '</span>
+                            <span>Vendidos</span>
+                        </a>';
+                    }
+                    ?>
+
+                </li>
+                <!-- end li -->
+                <li>
+                    <?php
+                    if ($tipoUsuario == 3) {
+                        echo '<a href="reporteEmpresa.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i>
+                            <span>Reportes</span>
+                        </a>';
+                    } elseif ($tipoUsuario == 2) {
+                        echo '<a href="reporteVentasGeneral.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i>
+                            <span>Reportes</span>
+                        </a>';
+                    } elseif ($tipoUsuario == 1) {
+                        echo '<a href="reporteVentas.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i>
+                            <span>Reportes</span>
+                        </a>';
+                    } else {
+                        echo '<a href="Reportes.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i>
+                            <span>Reportes</span>
+                        </a>';
+                    }
+                    ?>
+
+                </li>
+                <!-- end li -->
+                <li>
+                        <a href="atendidos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"> <?php echo $conteoRegistros ; ?></span>
+                            <span>Atendidos</span>
+                        </a>
+                </li>
+                <li>
+                        <a href="productos.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i>
+                            <span>Productos</span>
+                        </a>
+                </li>
+                <li>
+                        <a href="reporteMKT.php?inicio=2023-01-01&fin=2023-12-31" class="waves-effect">
+                            <i class="ri-dashboard-line"></i>
+                            <span>Reporte MKT</span>
+                        </a>
+                </li>
                 
             </ul>
             <!-- end ul -->
