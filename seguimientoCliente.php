@@ -185,25 +185,8 @@ $dni = $_SESSION['dni'];
                                               
 
                                                 </div>
-                                                <div class="row mb-6">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                <div class="col-sm-10">
-                                              
-                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                id="datos" name="datos" value="<?php echo $datosForm; ?>"
-                                                oninput="actualizarInput()">
-
-                                                </div>
-                                                <script>
-                                                    function actualizarInput() {
-                                                    var input = document.getElementById('datos');
-                                                    var field = input.value;
-                                                    var validated = field.replace(/[^0-9a-zöüäèàéáéíóúA-ZÖÜÄÈÀÉÁÉÍÓÚÑ&,\-\."'\s]/g, "");
-                                                    var capitalized = validated.toUpperCase();
-                                                    input.value = capitalized;
-}
-
-                                                </script>
+                                                                                               
+                                                   
                                             </div>
                                             <br>
                                             <?php
