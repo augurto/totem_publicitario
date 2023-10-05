@@ -132,7 +132,8 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 echo "<tr>";
                                                 echo "<td>" . $row['Producto_ID'] . "</td>";
                                                 echo "<td>" . $row['Producto_Nombre'] . "</td>";
-                                                echo "<td>" . $row['Producto_Descripcion'] . "</td>";
+                                               
+                                                echo "<td>" . $row['Producto_Precio'] . "</td>";
                                                 echo "<td>" . $row['Producto_Precio'] . "</td>";
                                                 echo "<td>" . $row['Producto_Precio'] . "</td>";
                                                 echo "<td>" . $row['Atributos'] . "</td>";
