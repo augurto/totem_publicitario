@@ -108,9 +108,11 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                             <tr>
                                                 <th>ID Producto</th>
                                                 <th>Nombre Producto</th>
-                                                <th>Descripción Producto</th>
-                                                <th>Precio Producto</th>
+                                                <th>Precio Soles</th>
+                                                <th>Precio Dolares</th>
+                                                <th>Descuento</th>
                                                 <th>Atributos</th>
+                                                <th>Descripción Producto</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -132,7 +134,9 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 echo "<td>" . $row['Producto_Nombre'] . "</td>";
                                                 echo "<td>" . $row['Producto_Descripcion'] . "</td>";
                                                 echo "<td>" . $row['Producto_Precio'] . "</td>";
+                                                echo "<td>" . $row['Producto_Precio'] . "</td>";
                                                 echo "<td>" . $row['Atributos'] . "</td>";
+                                                echo "<td>" . $row['Producto_Descripcion'] . "</td>";
                                                 echo "</tr>";
                                             }
 
