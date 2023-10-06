@@ -6,7 +6,7 @@ if (isset($_POST['atributos'])) {
     $atributosCondition = implode(',', $selectedAtributos);
 
     // Consulta para obtener el último producto que cumple con la mayoría de los requisitos
-    $query = "SELECT p.Nombre, p.Precio, p.precioDolar, p.descuentoMax, p.precioMin, p.precioDolarMin, COUNT(pa.ID) AS contador
+    $query = "SELECT p.ID, p.Nombre, p.Descripcion, p.Precio, p.precioDolar, p.descuentoMax, p.precioMin, p.precioDolarMin, p.descuentoMaxDolar, COUNT(pa.ID) AS contador
               FROM productos p
               INNER JOIN producto_atributos pa ON p.ID = pa.Producto_ID
               WHERE pa.Atributo_ID IN ($atributosCondition)
@@ -18,23 +18,29 @@ if (isset($_POST['atributos'])) {
 
     if ($row = mysqli_fetch_assoc($result)) {
         $productoInfo = array(
+            'ID' => $row['ID'],
             'Nombre' => $row['Nombre'],
+            'Descripcion' => $row['Descripcion'],
             'Precio' => $row['Precio'],
             'precioDolar' => $row['precioDolar'],
             'descuentoMax' => $row['descuentoMax'],
             'precioMin' => $row['precioMin'],
-            'precioDolarMin' => $row['precioDolarMin']
+            'precioDolarMin' => $row['precioDolarMin'],
+            'descuentoMaxDolar' => $row['descuentoMaxDolar']
         );
         echo json_encode($productoInfo); // Devuelve los datos como JSON
     } else {
         // Si no se encuentra ningún producto, devuelve un mensaje
         echo json_encode(array(
+            'ID' => '',
             'Nombre' => 'Ningún producto coincide',
+            'Descripcion' => '',
             'Precio' => '',
             'precioDolar' => '',
             'descuentoMax' => '',
             'precioMin' => '',
-            'precioDolarMin' => ''
+            'precioDolarMin' => '',
+            'descuentoMaxDolar' => ''
         ));
     }
 
@@ -42,4 +48,5 @@ if (isset($_POST['atributos'])) {
     mysqli_close($con);
 }
 ?>
+
 
