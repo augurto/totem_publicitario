@@ -503,14 +503,14 @@ $dni = $_SESSION['dni'];
                                                         productosSeleccionados.forEach(function(producto) {
                                                             var cantidad = parseInt(producto.cantidad) || 1;
                                                             var precio = parseFloat(producto.precio);
-                                                            var tipoMoneda = producto.tipoMoneda; // Nuevo campo para el tipo de moneda
+                                                            var tipoMoneda = parseInt(producto.tipoMoneda); // Obtener el tipo de moneda como número
 
                                                             // Calcular el subtotal sin considerar el descuento
                                                             var subtotal = cantidad * precio;
                                                             total += subtotal;
 
                                                             // Determinar el símbolo de la moneda
-                                                            var simboloMoneda = (tipoMoneda === 'Soles') ? 'S/' : '$';
+                                                            var simboloMoneda = (tipoMoneda === 0) ? 'S/' : '$';
 
                                                             var fila = '<tr>' +
                                                                 '<td>' + producto.nombre + '</td>' +
@@ -526,6 +526,7 @@ $dni = $_SESSION['dni'];
                                                         // Actualizar el total
                                                         $('#total').text(total.toFixed(2));
                                                     }
+
 
                                                     $('.agregarProducto').on('click', function() {
                                                         var productoNombre = $('#producto').val();
