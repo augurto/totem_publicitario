@@ -145,7 +145,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 id_form_web,date_create,datos_form,email,telefono,mensaje,fecha,URL,nombre_formulario,ip_formulario,
                                                 time,estado_web,estado_web,fuente_dato,id_user,idEmpresa,documentoCliente,tipoCliente,prospecto,
                                                 observacionCliente,idid,estadoCliente
-                                                 FROM web_formularios where estado_web != 99 and estado_web=1 and tipoCliente=6 and idEmpresa= $empresaUser and id_user =$idUsuarioSesion ORDER BY fecha DESC";
+                                                 FROM web_formularios where estado_web != 99 and estado_web=1 and tipoCliente=6 and idEmpresa= $empresaUser /* and id_user =$idUsuarioSesion */ ORDER BY fecha DESC";
                                                 
                                                 $result = $conn->query($sql);
                                                 
