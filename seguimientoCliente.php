@@ -561,9 +561,17 @@ $dni = $_SESSION['dni'];
                                                         // Restablecer los campos de producto y precio después de agregar el producto
                                                         $('#producto').val('');
                                                         $('#precio').val('');
+                                                        // Limpiar los demás campos de información del producto
+                                                        $('#descripcion').val('');
+                                                        $('#precioDolar').val('');
+                                                        $('#descuentoMax').val('');
+                                                        $('#precioMin').val('');
+                                                        $('#precioDolarMin').val('');
+                                                        $('#descuentoMaxDolar').val('');
                                                         // Limpiar la selección de atributos
                                                         $('.select2-multiple').val(null).trigger('change');
                                                     }
+
 
                                                     // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                     $('.select2-multiple').on('change', function() {
