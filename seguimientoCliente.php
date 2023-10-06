@@ -580,13 +580,15 @@ $dni = $_SESSION['dni'];
 
 
                                                         function agregarProducto(nombre, precio, precioDolar) {
-                                                            var tipoMoneda = parseInt($("input[name='moneda']:checked").val()); // Obtener el valor de la moneda seleccionada
+                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val()); // Obtener el tipo de moneda seleccionada
+
+                                                            var precioProducto = (tipoMonedaSeleccionada === 0) ? precio : precioDolar; // Usar el precio correcto según la moneda
 
                                                             productosSeleccionados.push({
                                                                 nombre: nombre,
-                                                                precio: (tipoMoneda === 0) ? precio : precioDolar, // Usar el precio correcto según la moneda
+                                                                precio: precioProducto,
                                                                 cantidad: 1,
-                                                                tipoMoneda: tipoMoneda // Agregar el tipo de moneda al producto seleccionado
+                                                                tipoMoneda: tipoMonedaSeleccionada
                                                             });
 
                                                             // Restablecer los campos de producto y precio después de agregar el producto
@@ -611,6 +613,7 @@ $dni = $_SESSION['dni'];
 
 
 
+
                                                         // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                         $('.select2-multiple').on('change', function() {
                                                             updateProduct();
@@ -619,12 +622,21 @@ $dni = $_SESSION['dni'];
                                                         // Manejar el clic en el botón Agregar
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
-                                                            var productoPrecio = $('#precio').val();
+                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
-                                                            if (productoNombre && productoPrecio) {
-                                                                agregarProducto(productoNombre, parseFloat(productoPrecio)); // No pasamos descuentoMax
+                                                            if (productoNombre) {
+                                                                if (tipoMonedaSeleccionada === 0) {
+                                                                    // Seleccionado Soles
+                                                                    var productoPrecio = $('#precio').val();
+                                                                    agregarProducto(productoNombre, parseFloat(productoPrecio), 0); // 0 representa Soles
+                                                                } else {
+                                                                    // Seleccionado Dólares
+                                                                    var productoPrecioDolar = $('#precioDolar').val();
+                                                                    agregarProducto(productoNombre, 0, parseFloat(productoPrecioDolar)); // 1 representa Dólares
+                                                                }
                                                             }
                                                         });
+
 
                                                         // Actualizar la tabla cuando cambia la cantidad
                                                         $('#tablaProductos').on('change', '.cantidad', function() {
