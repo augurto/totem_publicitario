@@ -482,6 +482,7 @@ $dni = $_SESSION['dni'];
 
 
 
+
                                                     function agregarProducto(nombre, precio) {
                                                         productosSeleccionados.push({ nombre: nombre, precio: precio, cantidad: 1 });
                                                         actualizarTabla();
