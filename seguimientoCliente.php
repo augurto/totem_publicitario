@@ -413,8 +413,7 @@ $dni = $_SESSION['dni'];
                                                         <tr>
                                                             <th>Producto</th>
                                                             <th>Precio</th>
-                                                            <th>Descuento Máximo</th>
-                                                            <th>Descuento</th>
+                                                            
                                                             <th>Cantidad</th>
                                                             <th>Subtotal</th>
                                                             <th>Acciones</th>
