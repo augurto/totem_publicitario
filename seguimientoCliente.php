@@ -459,417 +459,422 @@ $dni = $_SESSION['dni'];
                                                         <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
                                                     </div>
                                                 </div>
-                                            
-
-                                            <!-- Agregar tabla para mostrar los productos seleccionados -->
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Producto</th>
-                                                        <th>Tipo de Moneda</th>
-                                                        <th>Precio</th>
-                                                        <th>Cantidad</th>
-                                                        <th>Subtotal</th>
-                                                        <th>Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tablaProductos">
-                                                    <!-- Aquí se agregarán las filas de productos seleccionados -->
-                                                </tbody>
-                                            </table>
 
 
-                                            <!-- Mostrar el total de la compra -->
-                                            <div>
-                                                <strong>Total: </strong><span id="total">0</span>
-                                            </div>
-
-                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-                                            <script>
-                                                $(document).ready(function() {
-                                                    $('.select2-multiple').select2();
-
-                                                    var productosSeleccionados = []; // Almacenar los productos seleccionados
-
-                                                    // Actualizar la tabla de productos seleccionados
-                                                    function actualizarTabla() {
-                                                        var total = 0;
-
-                                                        // Limpiar la tabla antes de actualizarla
-                                                        $('#tablaProductos').empty();
-
-                                                        // Recorrer los productos seleccionados
-                                                        productosSeleccionados.forEach(function(producto) {
-                                                            var cantidad = parseInt(producto.cantidad) || 1;
-                                                            var precio = parseFloat(producto.precio);
-                                                            var tipoMoneda = parseInt(producto.tipoMoneda); // Obtener el tipo de moneda como número
-
-                                                            // Calcular el subtotal sin considerar el descuento
-                                                            var subtotal = cantidad * precio;
-                                                            total += subtotal;
-
-                                                            // Determinar el símbolo de la moneda
-                                                            var simboloMoneda = (tipoMoneda === 0) ? 'S/' : '$';
-
-                                                            var fila = '<tr>' +
-                                                                '<td>' + producto.nombre + '</td>' +
-                                                                '<td>' + simboloMoneda + '</td>' +
-                                                                '<td>' + precio.toFixed(2) + '</td>' +
-                                                                '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
-                                                                '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
-                                                                '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
-                                                                '</tr>';
-                                                            $('#tablaProductos').append(fila);
-                                                        });
-
-                                                        // Actualizar el total
-                                                        $('#total').text(total.toFixed(2));
-                                                    }
+                                                <!-- Agregar tabla para mostrar los productos seleccionados -->
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Producto</th>
+                                                            <th>Tipo de Moneda</th>
+                                                            <th>Precio</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Subtotal</th>
+                                                            <th>Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tablaProductos">
+                                                        <!-- Aquí se agregarán las filas de productos seleccionados -->
+                                                    </tbody>
+                                                </table>
 
 
-                                                    $('.agregarProducto').on('click', function() {
-                                                        var productoNombre = $('#producto').val();
-                                                        var productoPrecio = $('#precio').val();
+                                                <!-- Mostrar el total de la compra -->
+                                                <div>
+                                                    <strong>Total: </strong><span id="total">0</span>
+                                                </div>
 
-                                                        if (productoNombre && productoPrecio) {
-                                                            agregarProducto(productoNombre, parseFloat(productoPrecio)); // No pasamos descuentoMax
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+                                                <script>
+                                                    $(document).ready(function() {
+                                                        $('.select2-multiple').select2();
+
+                                                        var productosSeleccionados = []; // Almacenar los productos seleccionados
+
+                                                        // Actualizar la tabla de productos seleccionados
+                                                        function actualizarTabla() {
+                                                            var total = 0;
+
+                                                            // Limpiar la tabla antes de actualizarla
+                                                            $('#tablaProductos').empty();
+
+                                                            // Obtener el tipo de moneda seleccionada (0 para Soles y 1 para Dólares)
+                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
+
+                                                            // Recorrer los productos seleccionados
+                                                            productosSeleccionados.forEach(function(producto) {
+                                                                var cantidad = parseInt(producto.cantidad) || 1;
+                                                                var precio = parseFloat(producto.precio);
+                                                                var precioDolar = parseFloat(producto.precioDolar); // Precio en Dólares
+                                                                var tipoMonedaProducto = parseInt(producto.tipoMoneda); // Tipo de moneda del producto
+
+                                                                // Calcular el subtotal sin considerar el descuento
+                                                                var subtotal = (tipoMonedaSeleccionada === 0) ? cantidad * precio : cantidad * precioDolar; // Usar el precio correcto según la moneda
+
+                                                                total += subtotal;
+
+                                                                var simboloMoneda = (tipoMonedaSeleccionada === 0) ? 'S/' : '$';
+
+                                                                var fila = '<tr>' +
+                                                                    '<td>' + producto.nombre + '</td>' +
+                                                                    '<td>' + simboloMoneda + '</td>' +
+                                                                    '<td>' + ((tipoMonedaSeleccionada === 0) ? precio.toFixed(2) : precioDolar.toFixed(2)) + '</td>' + // Mostrar el precio correcto
+                                                                    '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
+                                                                    '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
+                                                                    '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
+                                                                    '</tr>';
+                                                                $('#tablaProductos').append(fila);
+                                                            });
+
+                                                            // Actualizar el total
+                                                            $('#total').text(total.toFixed(2));
                                                         }
-                                                    });
 
-                                                    function updateProduct() {
-                                                        var selectedAtributos = $('.select2-multiple').val();
-                                                        $.ajax({
-                                                            type: 'POST',
-                                                            url: 'includes/buscarProducto.php',
-                                                            data: {
-                                                                atributos: selectedAtributos
-                                                            },
-                                                            success: function(response) {
-                                                                if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
-                                                                    var atributoID = response.split('.').pop().trim();
-                                                                    // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
-                                                                    $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
-                                                                    // Establecer un valor predeterminado en los campos de texto
-                                                                    $('#producto').val('Ningún producto coincide');
-                                                                    $('#precio').val('');
-                                                                } else {
-                                                                    // Restablecer el fondo de todas las opciones
-                                                                    $('#atributosSelect option').css('background-color', '');
-                                                                    // Parsear la respuesta JSON para obtener todos los datos del producto
-                                                                    var productoInfo = JSON.parse(response);
-                                                                    // Establecer el valor de los campos de texto con los datos del producto
-                                                                    $('#producto').val(productoInfo.Nombre);
-                                                                    $('#precio').val(productoInfo.Precio);
-                                                                    $('#descripcion').val(productoInfo.Descripcion);
-                                                                    $('#precioDolar').val(productoInfo.precioDolar);
-                                                                    $('#descuentoMax').val(productoInfo.descuentoMax);
-                                                                    $('#precioMin').val(productoInfo.precioMin);
-                                                                    $('#precioDolarMin').val(productoInfo.precioDolarMin);
-                                                                    $('#descuentoMaxDolar').val(productoInfo.descuentoMaxDolar);
-                                                                    console.log(productoInfo); // Agrega este console.log
-                                                                }
+
+
+                                                        $('.agregarProducto').on('click', function() {
+                                                            var productoNombre = $('#producto').val();
+                                                            var productoPrecio = $('#precio').val();
+
+                                                            if (productoNombre && productoPrecio) {
+                                                                agregarProducto(productoNombre, parseFloat(productoPrecio)); // No pasamos descuentoMax
                                                             }
                                                         });
-                                                    }
+
+                                                        function updateProduct() {
+                                                            var selectedAtributos = $('.select2-multiple').val();
+                                                            $.ajax({
+                                                                type: 'POST',
+                                                                url: 'includes/buscarProducto.php',
+                                                                data: {
+                                                                    atributos: selectedAtributos
+                                                                },
+                                                                success: function(response) {
+                                                                    if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
+                                                                        var atributoID = response.split('.').pop().trim();
+                                                                        // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
+                                                                        $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
+                                                                        // Establecer un valor predeterminado en los campos de texto
+                                                                        $('#producto').val('Ningún producto coincide');
+                                                                        $('#precio').val('');
+                                                                    } else {
+                                                                        // Restablecer el fondo de todas las opciones
+                                                                        $('#atributosSelect option').css('background-color', '');
+                                                                        // Parsear la respuesta JSON para obtener todos los datos del producto
+                                                                        var productoInfo = JSON.parse(response);
+                                                                        // Establecer el valor de los campos de texto con los datos del producto
+                                                                        $('#producto').val(productoInfo.Nombre);
+                                                                        $('#precio').val(productoInfo.Precio);
+                                                                        $('#descripcion').val(productoInfo.Descripcion);
+                                                                        $('#precioDolar').val(productoInfo.precioDolar);
+                                                                        $('#descuentoMax').val(productoInfo.descuentoMax);
+                                                                        $('#precioMin').val(productoInfo.precioMin);
+                                                                        $('#precioDolarMin').val(productoInfo.precioDolarMin);
+                                                                        $('#descuentoMaxDolar').val(productoInfo.descuentoMaxDolar);
+                                                                        console.log(productoInfo); // Agrega este console.log
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
 
 
-                                                    function agregarProducto(nombre, precio) {
-                                                        var tipoMoneda = $("input[name='moneda']:checked").val(); // Obtener el valor de la moneda seleccionada
+                                                        function agregarProducto(nombre, precio) {
+                                                            var tipoMoneda = $("input[name='moneda']:checked").val(); // Obtener el valor de la moneda seleccionada
 
-                                                        productosSeleccionados.push({
-                                                            nombre: nombre,
-                                                            precio: precio,
-                                                            cantidad: 1,
-                                                            tipoMoneda: tipoMoneda // Agregar el tipo de moneda al producto seleccionado
+                                                            productosSeleccionados.push({
+                                                                nombre: nombre,
+                                                                precio: precio,
+                                                                cantidad: 1,
+                                                                tipoMoneda: tipoMoneda // Agregar el tipo de moneda al producto seleccionado
+                                                            });
+
+                                                            // Restablecer los campos de producto y precio después de agregar el producto
+                                                            $('#producto').val('');
+                                                            $('#precio').val('');
+
+                                                            // Limpiar otros campos de información del producto después de agregar el producto
+                                                            $('#descripcion').val('');
+                                                            $('#precioDolar').val('');
+                                                            $('#descuentoMax').val('');
+                                                            $('#precioMin').val('');
+                                                            $('#precioDolarMin').val('');
+                                                            $('#descuentoMaxDolar').val('');
+
+                                                            // Limpiar la selección de atributos
+                                                            $('.select2-multiple').val(null).trigger('change');
+
+                                                            // Actualizar la tabla
+                                                            actualizarTabla();
+                                                        }
+
+
+
+                                                        // Llamar a la función updateProduct() cuando cambia la selección de atributos
+                                                        $('.select2-multiple').on('change', function() {
+                                                            updateProduct();
                                                         });
 
-                                                        // Restablecer los campos de producto y precio después de agregar el producto
-                                                        $('#producto').val('');
-                                                        $('#precio').val('');
+                                                        // Manejar el clic en el botón Agregar
+                                                        $('.agregarProducto').on('click', function() {
+                                                            var productoNombre = $('#producto').val();
+                                                            var productoPrecio = $('#precio').val();
 
-                                                        // Limpiar otros campos de información del producto después de agregar el producto
-                                                        $('#descripcion').val('');
-                                                        $('#precioDolar').val('');
-                                                        $('#descuentoMax').val('');
-                                                        $('#precioMin').val('');
-                                                        $('#precioDolarMin').val('');
-                                                        $('#descuentoMaxDolar').val('');
+                                                            if (productoNombre && productoPrecio) {
+                                                                agregarProducto(productoNombre, parseFloat(productoPrecio)); // No pasamos descuentoMax
+                                                            }
+                                                        });
 
-                                                        // Limpiar la selección de atributos
-                                                        $('.select2-multiple').val(null).trigger('change');
+                                                        // Actualizar la tabla cuando cambia la cantidad
+                                                        $('#tablaProductos').on('change', '.cantidad', function() {
+                                                            var index = $(this).closest('tr').index();
+                                                            var nuevaCantidad = parseInt($(this).val()) || 1;
+                                                            productosSeleccionados[index].cantidad = nuevaCantidad;
+                                                            actualizarTabla();
+                                                        });
 
-                                                        // Actualizar la tabla
-                                                        actualizarTabla();
-                                                    }
-
-
-
-                                                    // Llamar a la función updateProduct() cuando cambia la selección de atributos
-                                                    $('.select2-multiple').on('change', function() {
-                                                        updateProduct();
+                                                        // Eliminar un producto de la tabla
+                                                        $('#tablaProductos').on('click', '.eliminar', function() {
+                                                            var index = $(this).closest('tr').index();
+                                                            productosSeleccionados.splice(index, 1);
+                                                            actualizarTabla();
+                                                        });
                                                     });
-
-                                                    // Manejar el clic en el botón Agregar
-                                                    $('.agregarProducto').on('click', function() {
-                                                        var productoNombre = $('#producto').val();
-                                                        var productoPrecio = $('#precio').val();
-
-                                                        if (productoNombre && productoPrecio) {
-                                                            agregarProducto(productoNombre, parseFloat(productoPrecio)); // No pasamos descuentoMax
-                                                        }
-                                                    });
-
-                                                    // Actualizar la tabla cuando cambia la cantidad
-                                                    $('#tablaProductos').on('change', '.cantidad', function() {
-                                                        var index = $(this).closest('tr').index();
-                                                        var nuevaCantidad = parseInt($(this).val()) || 1;
-                                                        productosSeleccionados[index].cantidad = nuevaCantidad;
-                                                        actualizarTabla();
-                                                    });
-
-                                                    // Eliminar un producto de la tabla
-                                                    $('#tablaProductos').on('click', '.eliminar', function() {
-                                                        var index = $(this).closest('tr').index();
-                                                        productosSeleccionados.splice(index, 1);
-                                                        actualizarTabla();
-                                                    });
-                                                });
-                                            </script>
+                                                </script>
 
 
 
 
-                                            <div class="mt-6">
-                                                <label class="mb-1">Mensaje </label>
+                                                <div class="mt-6">
+                                                    <label class="mb-1">Mensaje </label>
 
-                                                <textarea class="form-control" maxlength="225" rows="3" readonly><?php echo $mensaje; ?></textarea>
+                                                    <textarea class="form-control" maxlength="225" rows="3" readonly><?php echo $mensaje; ?></textarea>
 
-                                            </div>
-                                            <div class="mt-6">
-                                                <label class="mb-1">Comentario</label>
-
-                                                <textarea id="textarea" class="form-control" maxlength="30" rows="3" name="comentario"></textarea>
-
-                                            </div>
-                                            <br>
-                                            <?php
-                                            $prospectoExistente = $_GET['pr'];
-
-                                            if (empty($mensajeOriginal)) {
-                                                echo "Mensaje Original : " . $mensaje . "<br>";
-                                            } else {
-                                                echo "Mensaje Original : " . $mensajeOriginal . "<br>";
-                                            }
-
-                                            // Restar 5 horas a la fecha
-                                            $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
-                                            echo "Atendido por: " . ucwords($nombreUserEdicion) . "<br>Fecha: " . $nuevaFecha;
-                                            ?>
-
-
-                                            <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
-
-                                            <script>
-                                                // Obtener el valor de la variable "id" de la URL
-                                                const urlParams = new URLSearchParams(window.location.search);
-                                                const id = urlParams.get('id');
-
-                                                // Establecer el valor en el input
-                                                document.getElementById('id-input').value = id;
-                                            </script>
-                                            <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser']; ?>" readonly>
-
-                                            <input type="hidden" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr']; ?>" readonly>
-                                            <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
-                                            <input type="hidden" name="URL" class="form-control" value="<?php echo $url; ?>" readonly>
-                                            <input type="hidden" name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
-                                            <input type="hidden" name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
-                                            <input type="hidden" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
-
-                                            <?php
-                                            // Verificar si $formActualizado está vacío
-                                            if (empty($formActualizado)) {
-                                                echo '<input type="hidden" name="formActualizado" class="form-control" value="1" readonly>';
-                                            } else {
-                                                echo '<input type="hidden" name="formActualizado" class="form-control" value="' . $formActualizado . '" readonly>';
-                                            }
-                                            ?>
-
-
-
-                                            <input type="hidden" id="iduser" name="empresaUser" class="form-control" value="<?php echo $_SESSION['empresaUser']; ?>" readonly>
-                                            <?php if (empty($mensajeOriginal)) : ?>
-                                                <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensaje; ?>" readonly>
-
-                                            <?php else : ?>
-                                                <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensajeOriginal; ?>" readonly>
-                                            <?php endif; ?>
-
-                                            <br>
-                                            <?php if (empty($idOriginal)) : ?>
-                                                <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
-
-                                            <?php else : ?>
-                                                <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $idOriginal; ?>" readonly>
-                                            <?php endif; ?>
-                                            <br>
-
-
-                                            <center>
-                                                <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
-                                            </center>
-
-
-
-
-
-
-
-                                        </div>
-                                        <!-- end col -->
-
-                                        <!-- end col -->
-                                </div>
-                                <!-- end row -->
-
-                                </form>
-
-
-
-
-
-
-                                <!-- end form -->
-                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-                                <!-- end form -->
-                            </div>
-                            <!-- end cardbody -->
-                        </div>
-                        <!-- end card -->
-                    </div>
-
-                    <!-- inicio linea del tiempo -->
-                    <div class="col-xl-4">
-                        <div class="card">
-                            <div class="card-body bg-transparent">
-                                <div class="dropdown float-end">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical text-muted"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                        <!-- item-->
-                                    </div>
-                                </div>
-                                <!-- end dropdown -->
-                                <h4 class="card-title mb-4">Eventos</h4>
-
-                                <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
-                                    <ul class="list-unstyled activity-wid">
-                                        <?php
-                                        // Incluye el archivo con la conexión
-                                        include 'includes/conexion.php';  // Asegúrate de cambiar el nombre del archivo
-
-                                        // Consulta a la base de datos
-                                        $sql = "SELECT * FROM web_formularios WHERE idOriginal = '$idOriginal' or  id_form_web = '$idOriginal'";  // Modifica la consulta según tus necesidades
-                                        $result = mysqli_query($con, $sql);
-
-                                        // Generar elementos para cada fila de la consulta
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            $fechaRestada = date("Y-m-d H:i:s", strtotime($row["fecha"]) - 5 * 3600);
-
-                                            $fecha2 = substr($fechaRestada, 0, 10);
-                                            // Consulta para obtener los detalles del usuario
-                                            $userId = $row["id_user"];
-                                            $userQuery = "SELECT * FROM user WHERE id_user = '$userId'";
-                                            $userResult = mysqli_query($con, $userQuery);
-                                            $userData = mysqli_fetch_assoc($userResult);
-
-                                            $tipoClienteLinea = $row["tipoCliente"];
-                                            $clienteQuery = "SELECT * FROM tipoCliente WHERE idTipoCliente = '$tipoClienteLinea'";
-                                            $clienteResult = mysqli_query($con, $clienteQuery);
-                                            $clienteData = mysqli_fetch_assoc($clienteResult);
-
-                                        ?>
-                                            <!-- start li -->
-                                            <li class="activity-list border-left">
-                                                <div class="activity-icon avatar-xs">
-                                                    <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                        <i class="ri-edit-2-fill"></i>
-                                                    </span>
                                                 </div>
-                                                <div>
-                                                    <div class="d-flex">
-                                                        <div class="flex-1">
-                                                            <h5 class="font-size-13"><?php echo $fecha2; ?></h5>
+                                                <div class="mt-6">
+                                                    <label class="mb-1">Comentario</label>
+
+                                                    <textarea id="textarea" class="form-control" maxlength="30" rows="3" name="comentario"></textarea>
+
+                                                </div>
+                                                <br>
+                                                <?php
+                                                $prospectoExistente = $_GET['pr'];
+
+                                                if (empty($mensajeOriginal)) {
+                                                    echo "Mensaje Original : " . $mensaje . "<br>";
+                                                } else {
+                                                    echo "Mensaje Original : " . $mensajeOriginal . "<br>";
+                                                }
+
+                                                // Restar 5 horas a la fecha
+                                                $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
+                                                echo "Atendido por: " . ucwords($nombreUserEdicion) . "<br>Fecha: " . $nuevaFecha;
+                                                ?>
+
+
+                                                <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
+
+                                                <script>
+                                                    // Obtener el valor de la variable "id" de la URL
+                                                    const urlParams = new URLSearchParams(window.location.search);
+                                                    const id = urlParams.get('id');
+
+                                                    // Establecer el valor en el input
+                                                    document.getElementById('id-input').value = id;
+                                                </script>
+                                                <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser']; ?>" readonly>
+
+                                                <input type="hidden" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr']; ?>" readonly>
+                                                <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+                                                <input type="hidden" name="URL" class="form-control" value="<?php echo $url; ?>" readonly>
+                                                <input type="hidden" name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
+                                                <input type="hidden" name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
+                                                <input type="hidden" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
+
+                                                <?php
+                                                // Verificar si $formActualizado está vacío
+                                                if (empty($formActualizado)) {
+                                                    echo '<input type="hidden" name="formActualizado" class="form-control" value="1" readonly>';
+                                                } else {
+                                                    echo '<input type="hidden" name="formActualizado" class="form-control" value="' . $formActualizado . '" readonly>';
+                                                }
+                                                ?>
+
+
+
+                                                <input type="hidden" id="iduser" name="empresaUser" class="form-control" value="<?php echo $_SESSION['empresaUser']; ?>" readonly>
+                                                <?php if (empty($mensajeOriginal)) : ?>
+                                                    <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensaje; ?>" readonly>
+
+                                                <?php else : ?>
+                                                    <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensajeOriginal; ?>" readonly>
+                                                <?php endif; ?>
+
+                                                <br>
+                                                <?php if (empty($idOriginal)) : ?>
+                                                    <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+
+                                                <?php else : ?>
+                                                    <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $idOriginal; ?>" readonly>
+                                                <?php endif; ?>
+                                                <br>
+
+
+                                                <center>
+                                                    <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
+                                                </center>
+
+
+
+
+
+
+
+                                            </div>
+                                            <!-- end col -->
+
+                                            <!-- end col -->
+                                        </div>
+                                        <!-- end row -->
+
+                                    </form>
+
+
+
+
+
+
+                                    <!-- end form -->
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                                    <!-- end form -->
+                                </div>
+                                <!-- end cardbody -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+
+                        <!-- inicio linea del tiempo -->
+                        <div class="col-xl-4">
+                            <div class="card">
+                                <div class="card-body bg-transparent">
+                                    <div class="dropdown float-end">
+                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="mdi mdi-dots-vertical text-muted"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                            <!-- item-->
+                                        </div>
+                                    </div>
+                                    <!-- end dropdown -->
+                                    <h4 class="card-title mb-4">Eventos</h4>
+
+                                    <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
+                                        <ul class="list-unstyled activity-wid">
+                                            <?php
+                                            // Incluye el archivo con la conexión
+                                            include 'includes/conexion.php';  // Asegúrate de cambiar el nombre del archivo
+
+                                            // Consulta a la base de datos
+                                            $sql = "SELECT * FROM web_formularios WHERE idOriginal = '$idOriginal' or  id_form_web = '$idOriginal'";  // Modifica la consulta según tus necesidades
+                                            $result = mysqli_query($con, $sql);
+
+                                            // Generar elementos para cada fila de la consulta
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                $fechaRestada = date("Y-m-d H:i:s", strtotime($row["fecha"]) - 5 * 3600);
+
+                                                $fecha2 = substr($fechaRestada, 0, 10);
+                                                // Consulta para obtener los detalles del usuario
+                                                $userId = $row["id_user"];
+                                                $userQuery = "SELECT * FROM user WHERE id_user = '$userId'";
+                                                $userResult = mysqli_query($con, $userQuery);
+                                                $userData = mysqli_fetch_assoc($userResult);
+
+                                                $tipoClienteLinea = $row["tipoCliente"];
+                                                $clienteQuery = "SELECT * FROM tipoCliente WHERE idTipoCliente = '$tipoClienteLinea'";
+                                                $clienteResult = mysqli_query($con, $clienteQuery);
+                                                $clienteData = mysqli_fetch_assoc($clienteResult);
+
+                                            ?>
+                                                <!-- start li -->
+                                                <li class="activity-list border-left">
+                                                    <div class="activity-icon avatar-xs">
+                                                        <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                            <i class="ri-edit-2-fill"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <div class="d-flex">
+                                                            <div class="flex-1">
+                                                                <h5 class="font-size-13"><?php echo $fecha2; ?></h5>
+                                                            </div>
+                                                            <div>
+                                                                <small class="text-muted"><?php echo date("h:i a", strtotime($fechaRestada)); ?></small>
+                                                            </div>
                                                         </div>
                                                         <div>
-                                                            <small class="text-muted"><?php echo date("h:i a", strtotime($fechaRestada)); ?></small>
+                                                            <p class="text-muted mb-0"><?php echo $row["mensaje"]; ?></p>
+                                                        </div>
+                                                        <div>
+
+                                                            <?php
+
+                                                            $descrpCliente = $clienteData["descripcionTipoCliente"];
+                                                            $colorCliente = $clienteData["colorTipoCliente"];
+
+                                                            echo "<td><span class=\"badge rounded-pill\" style=\"background-color: $colorCliente;\">$descrpCliente</span></td>";
+                                                            ?>
+                                                        </div>
+                                                        <div>
+                                                            <p class="text-muted mb-0"><?php
+                                                                                        $nombreUsuarioAtencion = ucwords(strtolower($userData["nombre_user"]));
+
+                                                                                        echo $nombreUsuarioAtencion; ?></p>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <p class="text-muted mb-0"><?php echo $row["mensaje"]; ?></p>
-                                                    </div>
-                                                    <div>
+                                                </li>
+                                                <!-- end li -->
+                                            <?php
+                                            }
 
-                                                        <?php
+                                            // Cierra la conexión
+                                            mysqli_close($con);
+                                            ?>
+                                        </ul>
+                                        <!-- end ul -->
+                                    </div>
+                                </div>
+                                <!-- end body -->
+                                <div>
 
-                                                        $descrpCliente = $clienteData["descripcionTipoCliente"];
-                                                        $colorCliente = $clienteData["colorTipoCliente"];
-
-                                                        echo "<td><span class=\"badge rounded-pill\" style=\"background-color: $colorCliente;\">$descrpCliente</span></td>";
-                                                        ?>
-                                                    </div>
-                                                    <div>
-                                                        <p class="text-muted mb-0"><?php
-                                                                                    $nombreUsuarioAtencion = ucwords(strtolower($userData["nombre_user"]));
-
-                                                                                    echo $nombreUsuarioAtencion; ?></p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- end li -->
-                                        <?php
-                                        }
-
-                                        // Cierra la conexión
-                                        mysqli_close($con);
-                                        ?>
-                                    </ul>
-                                    <!-- end ul -->
                                 </div>
                             </div>
-                            <!-- end body -->
-                            <div>
-
-                            </div>
+                            <!-- end card -->
                         </div>
-                        <!-- end card -->
+                        <!-- end col -->
+
+
+
+                        <!-- FIN LINEA TIEMPO -->
+
                     </div>
                     <!-- end col -->
 
 
-
-                    <!-- FIN LINEA TIEMPO -->
-
                 </div>
-                <!-- end col -->
+                <!-- end row -->
 
 
             </div>
-            <!-- end row -->
-
-
+            <!-- container-fluid -->
         </div>
-        <!-- container-fluid -->
-    </div>
-    <!-- End Page-content -->
-    <?php include './parts/footer.php'; ?>
+        <!-- End Page-content -->
+        <?php include './parts/footer.php'; ?>
     </div>
     <!-- end main content-->
     </div>
