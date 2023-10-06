@@ -5,10 +5,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
+    $precioDolar = $_POST['precioDolar']; 
+    $precioMin = $_POST['precioMin']; 
+    $precioDolarMin = $_POST['precioDolarMin']; 
+    $descuentoMax = $_POST['descuentoMax']; 
+    $descuentoMaxDolar = $_POST['descuentoMaxDolar']; 
     $atributos = $_POST['atributos'];
 
     // Insertar el nuevo producto en la tabla "productos"
-    $insertProductoQuery = "INSERT INTO productos (Nombre, Descripcion, Precio) VALUES ('$nombre', '$descripcion', $precio)";
+    $insertProductoQuery = "INSERT INTO productos (Nombre, Descripcion, Precio, precioDolar, precioMin, precioDolarMin, descuentoMax, descuentoMaxDolar) 
+                            VALUES ('$nombre', '$descripcion', $precio, $precioDolar, $precioMin, $precioDolarMin, $descuentoMax, $descuentoMaxDolar)";
     $resultProducto = mysqli_query($con, $insertProductoQuery);
 
     if (!$resultProducto) {

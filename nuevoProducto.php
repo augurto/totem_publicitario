@@ -105,6 +105,41 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
                                         <input class="form-control" type="number" id="precio" name="precio" step="0.01" required>
                                     </div>
                                 </div>
+                                <div class="row mb-6">
+                                    <label for="precioDolar" class="col-sm-2 col-form-label">Precio en Dólares:</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="number" id="precioDolar" name="precioDolar" step="0.01" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label for="precioMin" class="col-sm-2 col-form-label">Precio Mínimo:</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="number" id="precioMin" name="precioMin" step="0.01" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label for="precioDolarMin" class="col-sm-2 col-form-label">Precio Mínimo en Dólares:</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="number" id="precioDolarMin" name="precioDolarMin" step="0.01" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label for="descuentoMax" class="col-sm-2 col-form-label">Descuento Máximo:</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="number" id="descuentoMax" name="descuentoMax" step="0.01" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label for="descuentoMaxDolar" class="col-sm-2 col-form-label">Descuento Máximo en Dólares:</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="number" id="descuentoMaxDolar" name="descuentoMaxDolar" step="0.01" required>
+                                    </div>
+                                </div>
+
 
                                 <div class="row mb-6">
                                     <label for="atributosSelect" class="col-sm-2 col-form-label">Atributos del Producto (selecciona múltiples):</label>
