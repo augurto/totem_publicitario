@@ -454,8 +454,8 @@ $dni = $_SESSION['dni'];
                                                                 // Verificar que el descuento no sea menor que 0
                                                                 descuento = Math.max(descuento, 0);
 
-                                                                // Calcular el subtotal restando el descuento del precio
-                                                                var subtotal = cantidad * precio * (1 - descuento / 100);
+                                                                // Calcular el subtotal restando el descuento al precio
+                                                                var subtotal = cantidad * (precio - descuento);
                                                                 total += subtotal;
 
                                                                 var fila = '<tr>' +
