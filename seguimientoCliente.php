@@ -488,6 +488,9 @@ $dni = $_SESSION['dni'];
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                                                 <script>
                                                     $(document).ready(function() {
+                                                        $("input[name='moneda']").on('change', function() {
+                                                            actualizarTabla(); // Llamar a actualizarTabla cuando cambia la moneda
+                                                        });
                                                         $('.select2-multiple').select2();
 
                                                         var productosSeleccionados = []; // Almacenar los productos seleccionados
