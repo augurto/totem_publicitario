@@ -634,11 +634,12 @@ $dni = $_SESSION['dni'];
                                                                     agregarProducto(productoNombre, parseFloat(productoPrecio), 0); // 0 representa Soles
                                                                 } else {
                                                                     // Seleccionado Dólares
-                                                                    var productoPrecioDolar = $('#precioDolar').val();
+                                                                    var productoPrecioDolar = $('#precioDolar').val(); // Obtener el precio en dólares
                                                                     agregarProducto(productoNombre, 0, parseFloat(productoPrecioDolar)); // 1 representa Dólares
                                                                 }
                                                             }
                                                         });
+
 
 
                                                         // Actualizar la tabla cuando cambia la cantidad
