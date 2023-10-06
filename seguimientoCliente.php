@@ -448,8 +448,8 @@ $dni = $_SESSION['dni'];
                                                             productosSeleccionados.forEach(function(producto) {
                                                                 var cantidad = parseInt(producto.cantidad) || 1;
                                                                 var precio = parseFloat(producto.precio);
-                                                                var descuento = parseFloat(producto.descuento) || 0;
-                                                                var descuentoMax = parseFloat(producto.descuentoMax) || 0;
+                                                                var descuento = parseFloat(producto.descuento);
+                                                                var descuentoMax = parseFloat(producto.descuentoMax);
 
                                                                 // Calcular el subtotal restando el descuento al precio
                                                                 var nuevoPrecio = precio - descuento;
