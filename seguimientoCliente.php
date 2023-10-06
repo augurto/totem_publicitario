@@ -459,7 +459,7 @@ $dni = $_SESSION['dni'];
                                                         <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            
 
                                             <!-- Agregar tabla para mostrar los productos seleccionados -->
                                             <table class="table">
