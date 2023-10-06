@@ -465,6 +465,7 @@ $dni = $_SESSION['dni'];
                                                 <thead>
                                                     <tr>
                                                         <th>Producto</th>
+                                                        <th>Tipo de Moneda</th>
                                                         <th>Precio</th>
                                                         <th>Cantidad</th>
                                                         <th>Subtotal</th>
@@ -475,6 +476,7 @@ $dni = $_SESSION['dni'];
                                                     <!-- Aquí se agregarán las filas de productos seleccionados -->
                                                 </tbody>
                                             </table>
+
 
                                             <!-- Mostrar el total de la compra -->
                                             <div>
@@ -500,14 +502,19 @@ $dni = $_SESSION['dni'];
                                                         productosSeleccionados.forEach(function(producto) {
                                                             var cantidad = parseInt(producto.cantidad) || 1;
                                                             var precio = parseFloat(producto.precio);
+                                                            var tipoMoneda = producto.tipoMoneda; // Nuevo campo para el tipo de moneda
 
                                                             // Calcular el subtotal sin considerar el descuento
                                                             var subtotal = cantidad * precio;
                                                             total += subtotal;
 
+                                                            // Determinar el símbolo de la moneda
+                                                            var simboloMoneda = (tipoMoneda === 'Soles') ? 'S/' : '$';
+
                                                             var fila = '<tr>' +
                                                                 '<td>' + producto.nombre + '</td>' +
-                                                                '<td>' + precio.toFixed(2) + '</td>' + // Mostrar el precio unitario
+                                                                '<td>' + simboloMoneda + '</td>' +
+                                                                '<td>' + precio.toFixed(2) + '</td>' +
                                                                 '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
                                                                 '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                 '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
@@ -565,21 +572,26 @@ $dni = $_SESSION['dni'];
                                                     }
 
 
-                                                    function agregarProducto(nombre, precio, tipoMoneda) {
+                                                    function agregarProducto(nombre, precio) {
                                                         productosSeleccionados.push({
                                                             nombre: nombre,
                                                             precio: precio,
-                                                            tipoMoneda: tipoMoneda, // Agregar el tipo de moneda al objeto producto
                                                             cantidad: 1
                                                         });
                                                         actualizarTabla();
                                                         // Restablecer los campos de producto y precio después de agregar el producto
                                                         $('#producto').val('');
                                                         $('#precio').val('');
+                                                        // Limpiar los demás campos de información del producto
+                                                        $('#descripcion').val('');
+                                                        $('#precioDolar').val('');
+                                                        $('#descuentoMax').val('');
+                                                        $('#precioMin').val('');
+                                                        $('#precioDolarMin').val('');
+                                                        $('#descuentoMaxDolar').val('');
                                                         // Limpiar la selección de atributos
                                                         $('.select2-multiple').val(null).trigger('change');
                                                     }
-
 
 
                                                     // Llamar a la función updateProduct() cuando cambia la selección de atributos
