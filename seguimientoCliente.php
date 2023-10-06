@@ -488,35 +488,22 @@ $dni = $_SESSION['dni'];
                                                         <strong>Total: </strong><span id="total">0</span>
                                                     </div>
                                                     <script>
-                                                        // Agrega esto dentro de tu función $(document).ready()
                                                         $(document).ready(function() {
-                                                            // ...
-
-                                                            // Obtén el select por su ID
                                                             var tipoClienteSelect = $('#tipoCliente');
-
-                                                            // Obtén el div que quieres mostrar/ocultar
                                                             var cotizarDiv = $('#cotizar');
 
                                                             // Oculta el div al iniciar
                                                             cotizarDiv.hide();
 
-                                                            // Agrega un evento change al select
                                                             tipoClienteSelect.on('change', function() {
-                                                                // Obtiene el valor seleccionado
                                                                 var selectedValue = $(this).val();
 
-                                                                // Verifica si el valor seleccionado es igual a 6
                                                                 if (selectedValue == 6) {
-                                                                    // Muestra el div si el valor es 6
                                                                     cotizarDiv.show();
                                                                 } else {
-                                                                    // Oculta el div si el valor no es 6
                                                                     cotizarDiv.hide();
                                                                 }
                                                             });
-
-                                                            // ...
                                                         });
                                                     </script>
                                                     <!-- fin del div cotizar -->
