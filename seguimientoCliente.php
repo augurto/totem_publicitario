@@ -472,17 +472,16 @@ $dni = $_SESSION['dni'];
                                                         }
 
 
-                                                        function agregarProducto(nombre, precio) {
-                                                            productosSeleccionados.push({
-                                                                nombre: nombre,
-                                                                precio: precio,
-                                                                cantidad: 1
-                                                            });
-                                                            actualizarTabla();
+                                                        $('.agregarProducto').on('click', function() {
+                                                            var productoNombre = $('#producto').val();
+                                                            var productoPrecio = $('#precio').val();
+                                                            var productoDescuentoMax = $('#descuentoMax').val(); // Obtener el valor de descuentoMax
 
-                                                            // Limpiar la selección de atributos
-                                                            $('.select2-multiple').val(null).trigger('change');
-                                                        }
+                                                            if (productoNombre && productoPrecio) {
+                                                                agregarProducto(productoNombre, parseFloat(productoPrecio), parseFloat(productoDescuentoMax)); // Pasar descuentoMax
+                                                            }
+                                                        });
+
 
                                                         function updateProduct() {
                                                             var selectedAtributos = $('.select2-multiple').val();
