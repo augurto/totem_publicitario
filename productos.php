@@ -109,7 +109,9 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 <th>ID Producto</th>
                                                 <th>Nombre Producto</th>
                                                 <th>Precio Soles</th>
+                                                <th>Precio min</th>
                                                 <th>Precio Dolares</th>
+                                                <th>Precio min</th>
                                                 <th>Descuento</th>
                                                 <th>Atributos</th>
                                                 <th>Descripción Producto</th>
@@ -119,8 +121,10 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                             <?php
                                             require 'includes/conexion.php';
 
-                                            $query = "SELECT p.ID AS Producto_ID, p.Nombre AS Producto_Nombre, p.Descripcion AS Producto_Descripcion, p.Precio AS Producto_Precio,
-                                                    GROUP_CONCAT(a.Atributo SEPARATOR ', ') AS Atributos
+                                            $query = "SELECT p.ID AS Producto_ID, p.Nombre AS Producto_Nombre, p.Descripcion AS Producto_Descripcion, 
+                                            p.precio AS Producto_Precio, p.precioMin AS Producto_PrecioMin, p.precioDolar AS Producto_PrecioDolar, 
+                                            p.precioDolarMin AS Producto_PrecioDolarMin,p.descuentoMax AS descuentoMaxSoles,p.descuentoMaxDolar AS descuentoMaxDolares,
+                                                    GROUP_CONCAT(a.Atributo SEPARATOR ', ') AS Atributos 
                                                     FROM productos p
                                                     LEFT JOIN producto_atributos pa ON p.ID = pa.Producto_ID
                                                     LEFT JOIN atributos a ON pa.Atributo_ID = a.ID
@@ -132,10 +136,12 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 echo "<tr>";
                                                 echo "<td>" . $row['Producto_ID'] . "</td>";
                                                 echo "<td>" . $row['Producto_Nombre'] . "</td>";
-                                               
                                                 echo "<td>" . $row['Producto_Precio'] . "</td>";
-                                                echo "<td>" . $row['Producto_Precio'] . "</td>";
-                                                echo "<td>" . $row['Producto_Precio'] . "</td>";
+                                                echo "<td>" . $row['Producto_PrecioMin'] . "</td>";
+                                                echo "<td>" . $row['Producto_PrecioDolar'] . "</td>";
+                                                echo "<td>" . $row['Producto_PrecioDolarMin'] . "</td>";
+                                                echo "<td>" . $row['descuentoMaxSoles'] . "</td>";
+                                                echo "<td>" . $row['descuentoMaxDolares'] . "</td>";
                                                 echo "<td>" . $row['Atributos'] . "</td>";
                                                 echo "<td>" . $row['Producto_Descripcion'] . "</td>";
                                                 echo "</tr>";
