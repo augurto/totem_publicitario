@@ -505,6 +505,8 @@ $dni = $_SESSION['dni'];
                                                                     // Establecer un valor predeterminado en los campos de texto
                                                                     $('#producto').val('Ningún producto coincide');
                                                                     $('#precio').val('');
+                                                                    // Si no hay coincidencia, establecer descuentoMax en 0 en la tabla
+                                                                    $('#descuentoMax').text('0'); // Agrega esta línea
                                                                 } else {
                                                                     // Restablecer el fondo de todas las opciones
                                                                     $('#atributosSelect option').css('background-color', '');
@@ -513,11 +515,13 @@ $dni = $_SESSION['dni'];
                                                                     // Establecer el valor del producto y el precio si hay un resultado
                                                                     $('#producto').val(productoInfo.Nombre);
                                                                     $('#precio').val(productoInfo.Precio);
+                                                                    $('#descuentoMax').text(productoInfo.descuentoMax); // Agrega esta línea para mostrar descuentoMax
                                                                     console.log(productoInfo); // Agrega este console.log
                                                                 }
                                                             }
                                                         });
                                                     }
+
 
                                                     function agregarProducto(nombre, precio) {
                                                         productosSeleccionados.push({ nombre: nombre, precio: precio, cantidad: 1 });
