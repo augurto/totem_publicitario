@@ -406,7 +406,7 @@ $dni = $_SESSION['dni'];
                                                         <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
                                                     </div>
                                                 </div>
-
+                                                
                                                 <!-- Agregar tabla para mostrar los productos seleccionados -->
                                                 <table class="table">
                                                     <thead>
@@ -447,7 +447,6 @@ $dni = $_SESSION['dni'];
                                                             productosSeleccionados.forEach(function(producto) {
                                                                 var cantidad = parseInt(producto.cantidad) || 1;
                                                                 var precio = parseFloat(producto.precio);
-                                                                var precioMin = parseFloat(producto.precioMin); // Obtener el precio mínimo
 
                                                                 // Calcular el subtotal sin considerar el descuento
                                                                 var subtotal = cantidad * precio;
@@ -456,7 +455,6 @@ $dni = $_SESSION['dni'];
                                                                 var fila = '<tr>' +
                                                                     '<td>' + producto.nombre + '</td>' +
                                                                     '<td>' + precio.toFixed(2) + '</td>' + // Mostrar el precio unitario
-                                                                    '<td>' + precioMin.toFixed(2) + '</td>' + // Mostrar el precio mínimo
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
@@ -467,7 +465,6 @@ $dni = $_SESSION['dni'];
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
                                                         }
-
 
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
@@ -497,25 +494,21 @@ $dni = $_SESSION['dni'];
                                                                     } else {
                                                                         // Restablecer el fondo de todas las opciones
                                                                         $('#atributosSelect option').css('background-color', '');
-                                                                        // Parsear la respuesta JSON para obtener el nombre, precio y precio mínimo del producto
+                                                                        // Parsear la respuesta JSON para obtener el nombre y el precio del producto
                                                                         var productoInfo = JSON.parse(response);
-                                                                        // Establecer el valor del producto, precio y precio mínimo si hay un resultado
+                                                                        // Establecer el valor del producto y el precio si hay un resultado
                                                                         $('#producto').val(productoInfo.Nombre);
                                                                         $('#precio').val(productoInfo.Precio);
                                                                         console.log(productoInfo); // Agrega este console.log
-                                                                        // Pasa el precio mínimo a la función agregarProducto
-                                                                        agregarProducto(productoInfo.Nombre, parseFloat(productoInfo.Precio), parseFloat(productoInfo.precioMin));
                                                                     }
                                                                 }
                                                             });
                                                         }
 
-
-                                                        function agregarProducto(nombre, precio, precioMin) {
+                                                        function agregarProducto(nombre, precio) {
                                                             productosSeleccionados.push({
                                                                 nombre: nombre,
                                                                 precio: precio,
-                                                                precioMin: precioMin, // Agrega el precio mínimo
                                                                 cantidad: 1
                                                             });
                                                             actualizarTabla();
@@ -525,7 +518,6 @@ $dni = $_SESSION['dni'];
                                                             // Limpiar la selección de atributos
                                                             $('.select2-multiple').val(null).trigger('change');
                                                         }
-
 
                                                         // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                         $('.select2-multiple').on('change', function() {
