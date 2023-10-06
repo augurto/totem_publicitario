@@ -500,7 +500,7 @@ $dni = $_SESSION['dni'];
                                                                         $('#producto').val('Ningún producto coincide');
                                                                         $('#precio').val('');
                                                                         // Si no hay coincidencia, establecer descuentoMax en 0 en la tabla
-                                                                        $('#descuentoMax').text('0'); // Agrega esta línea
+                                                                        $('#descuentoMax').text('1'); // Agrega esta línea
                                                                     } else {
                                                                         // Restablecer el fondo de todas las opciones
                                                                         $('#atributosSelect option').css('background-color', '');
