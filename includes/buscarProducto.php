@@ -42,3 +42,4 @@ if (isset($_POST['atributos'])) {
     mysqli_close($con);
 }
 ?>
+

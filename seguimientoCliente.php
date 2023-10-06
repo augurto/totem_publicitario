@@ -467,7 +467,7 @@ $dni = $_SESSION['dni'];
                                                             var fila = '<tr>' +
                                                                 '<td>' + producto.nombre + '</td>' +
                                                                 '<td>' + producto.precio + '</td>' +
-                                                                '<td>' + descuentoMax + '</td>' + // Mostrar descuentoMax
+                                                                '<td>' + descuentoMax + '</td>' +
                                                                 '<td><input type="number" class="form-control descuento" value="' + descuento + '" max="' + descuentoMax + '" min="0"></td>' +
                                                                 '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
                                                                 '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
@@ -513,10 +513,12 @@ $dni = $_SESSION['dni'];
                                                                     // Establecer el valor del producto y el precio si hay un resultado
                                                                     $('#producto').val(productoInfo.Nombre);
                                                                     $('#precio').val(productoInfo.Precio);
+                                                                    console.log(productoInfo); // Agrega este console.log
                                                                 }
                                                             }
                                                         });
                                                     }
+
                                                     function agregarProducto(nombre, precio) {
                                                         productosSeleccionados.push({ nombre: nombre, precio: precio, cantidad: 1 });
                                                         actualizarTabla();
