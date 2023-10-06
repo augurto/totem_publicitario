@@ -442,15 +442,16 @@ $dni = $_SESSION['dni'];
                                                     <label class="col-sm-2 col-form-label">Moneda</label>
                                                     <div class="col-sm-10">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="Soles" checked>
+                                                            <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="0" checked>
                                                             <label class="form-check-label" for="monedaSoles">Soles</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="Dólares">
+                                                            <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="1">
                                                             <label class="form-check-label" for="monedaDolares">Dólares</label>
                                                         </div>
                                                     </div>
                                                 </div>
+
 
                                                 <!-- Botón Agregar -->
                                                 <div class="row mb-3">
@@ -573,25 +574,34 @@ $dni = $_SESSION['dni'];
 
 
                                                     function agregarProducto(nombre, precio) {
+                                                        var tipoMoneda = $("input[name='moneda']:checked").val(); // Obtener el valor de la moneda seleccionada
+
                                                         productosSeleccionados.push({
                                                             nombre: nombre,
                                                             precio: precio,
-                                                            cantidad: 1
+                                                            cantidad: 1,
+                                                            tipoMoneda: tipoMoneda // Agregar el tipo de moneda al producto seleccionado
                                                         });
-                                                        actualizarTabla();
+
                                                         // Restablecer los campos de producto y precio después de agregar el producto
                                                         $('#producto').val('');
                                                         $('#precio').val('');
-                                                        // Limpiar los demás campos de información del producto
+
+                                                        // Limpiar otros campos de información del producto después de agregar el producto
                                                         $('#descripcion').val('');
                                                         $('#precioDolar').val('');
                                                         $('#descuentoMax').val('');
                                                         $('#precioMin').val('');
                                                         $('#precioDolarMin').val('');
                                                         $('#descuentoMaxDolar').val('');
+
                                                         // Limpiar la selección de atributos
                                                         $('.select2-multiple').val(null).trigger('change');
+
+                                                        // Actualizar la tabla
+                                                        actualizarTabla();
                                                     }
+
 
 
                                                     // Llamar a la función updateProduct() cuando cambia la selección de atributos
