@@ -508,7 +508,7 @@ $dni = $_SESSION['dni'];
                                                             var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
                                                             // Recorrer los productos seleccionados
-                                                            productosSeleccionados.forEach(function(producto, index) {
+                                                            productosSeleccionados.forEach(function(producto) {
                                                                 var cantidad = parseInt(producto.cantidad) || 1;
                                                                 var precio = parseFloat(producto.precio);
                                                                 var precioDolar = parseFloat(producto.precioDolar); // Precio en Dólares
@@ -518,7 +518,7 @@ $dni = $_SESSION['dni'];
                                                                 var subtotal = (tipoMonedaSeleccionada === 0) ? cantidad * precio : cantidad * precioDolar; // Usar el precio correcto según la moneda
 
                                                                 // Obtener el descuento en monto para este producto
-                                                                var descuentoMontoProducto = parseFloat($('.descuentoMonto').eq(index).val()) || 0;
+                                                                var descuentoMontoProducto = parseFloat($('.descuentoMonto').eq(productosSeleccionados.indexOf(producto)).val()) || 0;
 
                                                                 // Aplicar el descuento en monto al subtotal del producto
                                                                 subtotal -= descuentoMontoProducto;
@@ -542,6 +542,8 @@ $dni = $_SESSION['dni'];
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
                                                         }
+
+
 
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
@@ -588,6 +590,7 @@ $dni = $_SESSION['dni'];
                                                             });
                                                         }
 
+
                                                         function agregarProducto(nombre, precio, precioDolar) {
                                                             var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val()); // Obtener el tipo de moneda seleccionada
 
@@ -619,6 +622,10 @@ $dni = $_SESSION['dni'];
                                                             actualizarTabla();
                                                         }
 
+
+
+
+
                                                         // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                         $('.select2-multiple').on('change', function() {
                                                             updateProduct();
@@ -642,6 +649,8 @@ $dni = $_SESSION['dni'];
                                                             }
                                                         });
 
+
+
                                                         // Actualizar la tabla cuando cambia la cantidad
                                                         $('#tablaProductos').on('change', '.cantidad', function() {
                                                             var index = $(this).closest('tr').index();
@@ -654,11 +663,6 @@ $dni = $_SESSION['dni'];
                                                         $('#tablaProductos').on('click', '.eliminar', function() {
                                                             var index = $(this).closest('tr').index();
                                                             productosSeleccionados.splice(index, 1);
-                                                            actualizarTabla();
-                                                        });
-
-                                                        // Actualizar la tabla cuando cambia el descuento en monto
-                                                        $('#tablaProductos').on('input', '.descuentoMonto', function() {
                                                             actualizarTabla();
                                                         });
                                                     });
