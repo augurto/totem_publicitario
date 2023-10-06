@@ -448,19 +448,14 @@ $dni = $_SESSION['dni'];
                                                             productosSeleccionados.forEach(function(producto) {
                                                                 var cantidad = parseInt(producto.cantidad) || 1;
                                                                 var precio = parseFloat(producto.precio);
-                                                                var descuento = parseFloat(producto.descuento);
-                                                                var descuentoMax = parseFloat(producto.descuentoMax);
 
-                                                                // Calcular el subtotal restando el descuento al precio
-                                                                var nuevoPrecio = precio - descuento;
-                                                                var subtotal = cantidad * nuevoPrecio;
+                                                                // Calcular el subtotal sin considerar el descuento
+                                                                var subtotal = cantidad * precio;
                                                                 total += subtotal;
 
                                                                 var fila = '<tr>' +
                                                                     '<td>' + producto.nombre + '</td>' +
-                                                                    '<td>' + nuevoPrecio.toFixed(2) + '</td>' + // Mostrar el nuevo precio unitario
-                                                                    '<td>' + descuentoMax + '</td>' +
-                                                                    '<td><input type="number" class="form-control descuento" value="' + descuento + '" max="' + descuentoMax + '" min="0"></td>' +
+                                                                    '<td>' + precio.toFixed(2) + '</td>' + // Mostrar el precio unitario
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
@@ -472,19 +467,14 @@ $dni = $_SESSION['dni'];
                                                             $('#total').text(total.toFixed(2));
                                                         }
 
-
-
-
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
                                                             var productoPrecio = $('#precio').val();
-                                                            var productoDescuentoMax = $('#descuentoMax').val(); // Obtener el valor de descuentoMax
 
                                                             if (productoNombre && productoPrecio) {
-                                                                agregarProducto(productoNombre, parseFloat(productoPrecio), parseFloat(productoDescuentoMax)); // Pasar descuentoMax
+                                                                agregarProducto(productoNombre, parseFloat(productoPrecio)); // No pasamos descuentoMax
                                                             }
                                                         });
-
 
                                                         function updateProduct() {
                                                             var selectedAtributos = $('.select2-multiple').val();
@@ -502,8 +492,6 @@ $dni = $_SESSION['dni'];
                                                                         // Establecer un valor predeterminado en los campos de texto
                                                                         $('#producto').val('Ningún producto coincide');
                                                                         $('#precio').val('');
-                                                                        // Si no hay coincidencia, establecer descuentoMax en 0 en la tabla
-                                                                        $('#descuentoMax').text('1'); // Agrega esta línea
                                                                     } else {
                                                                         // Restablecer el fondo de todas las opciones
                                                                         $('#atributosSelect option').css('background-color', '');
@@ -512,31 +500,25 @@ $dni = $_SESSION['dni'];
                                                                         // Establecer el valor del producto y el precio si hay un resultado
                                                                         $('#producto').val(productoInfo.Nombre);
                                                                         $('#precio').val(productoInfo.Precio);
-                                                                        $('#descuentoMax').text(productoInfo.descuentoMax); // Agrega esta línea para mostrar descuentoMax
                                                                         console.log(productoInfo); // Agrega este console.log
                                                                     }
                                                                 }
                                                             });
                                                         }
 
-
-                                                        function agregarProducto(nombre, precio, descuentoMax) {
+                                                        function agregarProducto(nombre, precio) {
                                                             productosSeleccionados.push({
                                                                 nombre: nombre,
                                                                 precio: precio,
-                                                                cantidad: 1,
-                                                                descuentoMax: descuentoMax
+                                                                cantidad: 1
                                                             });
                                                             actualizarTabla();
-                                                            // Restablecer los campos de producto, precio y descuentoMax después de agregar el producto
+                                                            // Restablecer los campos de producto y precio después de agregar el producto
                                                             $('#producto').val('');
                                                             $('#precio').val('');
-                                                            $('#descuentoMax').val('');
                                                             // Limpiar la selección de atributos
                                                             $('.select2-multiple').val(null).trigger('change');
                                                         }
-
-
 
                                                         // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                         $('.select2-multiple').on('change', function() {
@@ -547,13 +529,11 @@ $dni = $_SESSION['dni'];
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
                                                             var productoPrecio = $('#precio').val();
-                                                            var productoDescuentoMax = $('#descuentoMax').val(); // Obtener el valor de descuentoMax
 
                                                             if (productoNombre && productoPrecio) {
-                                                                agregarProducto(productoNombre, parseFloat(productoPrecio), parseFloat(productoDescuentoMax)); // Pasar descuentoMax
+                                                                agregarProducto(productoNombre, parseFloat(productoPrecio)); // No pasamos descuentoMax
                                                             }
                                                         });
-
 
                                                         // Actualizar la tabla cuando cambia la cantidad
                                                         $('#tablaProductos').on('change', '.cantidad', function() {
@@ -563,15 +543,6 @@ $dni = $_SESSION['dni'];
                                                             actualizarTabla();
                                                         });
 
-                                                        // Manejar cambios en los campos de descuento
-                                                        $('#tablaProductos').on('change', '.descuento', function() {
-                                                            var index = $(this).closest('tr').index();
-                                                            var nuevoDescuento = parseFloat($(this).val()) || 0;
-                                                            productosSeleccionados[index].descuento = nuevoDescuento;
-                                                            actualizarTabla();
-                                                        });
-
-
                                                         // Eliminar un producto de la tabla
                                                         $('#tablaProductos').on('click', '.eliminar', function() {
                                                             var index = $(this).closest('tr').index();
@@ -580,6 +551,7 @@ $dni = $_SESSION['dni'];
                                                         });
                                                     });
                                                 </script>
+
 
 
 
