@@ -455,8 +455,8 @@ $dni = $_SESSION['dni'];
                                                             var precio = parseFloat(producto.precio);
                                                             var descuento = parseFloat(producto.descuento) || 0; // Nuevo campo de descuento
 
-                                                            // Calcular el subtotal restando el descuento del precio
-                                                            var subtotal = cantidad * (precio - (precio * (descuento / 100)));
+                                                            // Calcular el subtotal restando el descuento fijo del precio
+                                                            var subtotal = cantidad * (precio - descuento);
                                                             total += subtotal;
 
                                                             var fila = '<tr>' +
@@ -473,6 +473,7 @@ $dni = $_SESSION['dni'];
                                                         // Actualizar el total
                                                         $('#total').text(total.toFixed(2));
                                                     }
+
 
 
                                                     function agregarProducto(nombre, precio) {
@@ -544,6 +545,7 @@ $dni = $_SESSION['dni'];
                                                         productosSeleccionados[index].cantidad = nuevaCantidad;
                                                         actualizarTabla();
                                                     });
+                                                   
                                                     // Manejar cambios en los campos de descuento
                                                     $('#tablaProductos').on('change', '.descuento', function() {
                                                         var index = $(this).closest('tr').index();
@@ -551,6 +553,7 @@ $dni = $_SESSION['dni'];
                                                         productosSeleccionados[index].descuento = nuevoDescuento;
                                                         actualizarTabla();
                                                     });
+
 
                                                     // Eliminar un producto de la tabla
                                                     $('#tablaProductos').on('click', '.eliminar', function() {
