@@ -112,7 +112,8 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 <th>Precio min</th>
                                                 <th>Precio Dolares</th>
                                                 <th>Precio min</th>
-                                                <th>Descuento</th>
+                                                <th>Desc Sol</th>
+                                                <th>Desc Dolar</th>
                                                 <th>Atributos</th>
                                                 <th>Descripción Producto</th>
                                             </tr>
