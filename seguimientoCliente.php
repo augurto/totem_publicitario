@@ -418,7 +418,8 @@ $dni = $_SESSION['dni'];
                                                     <tr>
                                                         <th>Producto</th>
                                                         <th>Precio</th>
-                                                        <th>Descuento (%)</th>
+                                                        <th>Descuento Máximo</th>
+                                                        <th>Descuento</th>
                                                         <th>Cantidad</th>
                                                         <th>Subtotal</th>
                                                         <th>Acciones</th>
@@ -454,15 +455,20 @@ $dni = $_SESSION['dni'];
                                                             var cantidad = parseInt(producto.cantidad) || 1;
                                                             var precio = parseFloat(producto.precio);
                                                             var descuento = parseFloat(producto.descuento) || 0; // Nuevo campo de descuento
+                                                            var descuentoMax = parseFloat(producto.descuentoMax) || 0; // Nuevo campo de descuentoMax
 
-                                                            // Calcular el subtotal restando el descuento fijo del precio
-                                                            var subtotal = cantidad * (precio - descuento);
+                                                            // Verificar que el descuento no sea mayor que descuentoMax ni menor que 0
+                                                            descuento = Math.min(Math.max(descuento, 0), descuentoMax);
+
+                                                            // Calcular el subtotal restando el descuento del precio
+                                                            var subtotal = cantidad * (precio - (precio * (descuento / 100)));
                                                             total += subtotal;
 
                                                             var fila = '<tr>' +
                                                                 '<td>' + producto.nombre + '</td>' +
                                                                 '<td>' + producto.precio + '</td>' +
-                                                                '<td><input type="number" class="form-control descuento" value="' + descuento + '"></td>' +
+                                                                '<td>' + descuentoMax + '</td>' + // Mostrar descuentoMax
+                                                                '<td><input type="number" class="form-control descuento" value="' + descuento + '" max="' + descuentoMax + '" min="0"></td>' +
                                                                 '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
                                                                 '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                 '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
