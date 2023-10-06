@@ -551,9 +551,10 @@ $dni = $_SESSION['dni'];
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
                                                             var productoPrecio = $('#precio').val();
+                                                            var descuentoMaximo = parseFloat($('#descuentoMax').val()) || 0; // Nuevo campo para el descuento máximo
 
                                                             if (productoNombre && productoPrecio) {
-                                                                agregarProducto(productoNombre, parseFloat(productoPrecio));
+                                                                agregarProducto(productoNombre, parseFloat(productoPrecio), 0, descuentoMaximo); // Agregar el descuento máximo al llamar a agregarProducto
                                                             }
                                                         });
 
@@ -594,7 +595,7 @@ $dni = $_SESSION['dni'];
                                                         }
 
 
-                                                        function agregarProducto(nombre, precio, precioDolar) {
+                                                        function agregarProducto(nombre, precio, precioDolar, descuentoMaximo) {
                                                             var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val()); // Obtener el tipo de moneda seleccionada
 
                                                             var precioProducto = (tipoMonedaSeleccionada === 0) ? precio : precioDolar; // Usar el precio correcto según la moneda
@@ -603,7 +604,8 @@ $dni = $_SESSION['dni'];
                                                                 nombre: nombre,
                                                                 precio: precioProducto,
                                                                 cantidad: 1,
-                                                                tipoMoneda: tipoMonedaSeleccionada
+                                                                tipoMoneda: tipoMonedaSeleccionada,
+                                                                descuentoMax: descuentoMaximo // Agregar el descuento máximo al producto
                                                             });
 
                                                             // Restablecer los campos de producto y precio después de agregar el producto
@@ -624,10 +626,6 @@ $dni = $_SESSION['dni'];
                                                             // Actualizar la tabla
                                                             actualizarTabla();
                                                         }
-
-
-
-
 
                                                         // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                         $('.select2-multiple').on('change', function() {
