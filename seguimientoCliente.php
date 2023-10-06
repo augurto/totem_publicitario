@@ -443,6 +443,7 @@ $dni = $_SESSION['dni'];
 
                                                     var productosSeleccionados = []; // Almacenar los productos seleccionados
 
+                                                    // Actualizar la tabla de productos seleccionados
                                                     function actualizarTabla() {
                                                         var total = 0;
 
@@ -466,8 +467,8 @@ $dni = $_SESSION['dni'];
                                                             var fila = '<tr>' +
                                                                 '<td>' + producto.nombre + '</td>' +
                                                                 '<td>' + producto.precio + '</td>' +
-                                                                '<td>' + descuentoMax + '</td>' + // Mostrar descuentoMax
-                                                                '<td>' + descuento + '</td>' + // Mostrar descuento
+                                                                '<td>' + descuentoMax + '</td>' +
+                                                                '<td><input type="number" class="form-control descuento" value="' + descuento + '" max="' + descuentoMax + '" min="0"></td>' +
                                                                 '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
                                                                 '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                 '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
@@ -478,7 +479,6 @@ $dni = $_SESSION['dni'];
                                                         // Actualizar el total
                                                         $('#total').text(total.toFixed(2));
                                                     }
-
 
 
 
