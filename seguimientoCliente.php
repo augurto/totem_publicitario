@@ -406,7 +406,7 @@ $dni = $_SESSION['dni'];
                                                         <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
                                                     </div>
                                                 </div>
-
+                                                
                                                 <!-- Agregar tabla para mostrar los productos seleccionados -->
                                                 <table class="table">
                                                     <thead>
@@ -494,34 +494,30 @@ $dni = $_SESSION['dni'];
                                                                     } else {
                                                                         // Restablecer el fondo de todas las opciones
                                                                         $('#atributosSelect option').css('background-color', '');
-                                                                        // Parsear la respuesta JSON para obtener el nombre, precio y precio mínimo del producto
+                                                                        // Parsear la respuesta JSON para obtener el nombre y el precio del producto
                                                                         var productoInfo = JSON.parse(response);
-                                                                        // Establecer el valor del producto, precio y precio mínimo si hay un resultado
+                                                                        // Establecer el valor del producto y el precio si hay un resultado
                                                                         $('#producto').val(productoInfo.Nombre);
                                                                         $('#precio').val(productoInfo.Precio);
                                                                         console.log(productoInfo); // Agrega este console.log
-
-                                                                        // Obtener el precio mínimo del producto seleccionado
-                                                                        var precioMin = parseFloat(productoInfo.precioMin);
-
-                                                                        // Pasa el precio mínimo al hacer clic en el botón "Agregar"
-                                                                        $('.agregarProducto').data('precioMin', precioMin);
                                                                     }
                                                                 }
                                                             });
                                                         }
 
-
-                                                        $('.agregarProducto').on('click', function() {
-                                                            var productoNombre = $('#producto').val();
-                                                            var productoPrecio = $('#precio').val();
-                                                            var productoPrecioMin = $(this).data('precioMin'); // Obtiene el precio mínimo del botón
-
-                                                            if (productoNombre && productoPrecio) {
-                                                                agregarProducto(productoNombre, parseFloat(productoPrecio), parseFloat(productoPrecioMin));
-                                                            }
-                                                        });
-
+                                                        function agregarProducto(nombre, precio) {
+                                                            productosSeleccionados.push({
+                                                                nombre: nombre,
+                                                                precio: precio,
+                                                                cantidad: 1
+                                                            });
+                                                            actualizarTabla();
+                                                            // Restablecer los campos de producto y precio después de agregar el producto
+                                                            $('#producto').val('');
+                                                            $('#precio').val('');
+                                                            // Limpiar la selección de atributos
+                                                            $('.select2-multiple').val(null).trigger('change');
+                                                        }
 
                                                         // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                         $('.select2-multiple').on('change', function() {
