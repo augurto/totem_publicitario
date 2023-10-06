@@ -366,127 +366,161 @@ $dni = $_SESSION['dni'];
                                                 <br>
 
                                                 <!-- Campo de selección múltiple para atributos -->
-                                                <div class="mb-12">
-                                                    <label class="form-label">Atributos</label>
-                                                    <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
-                                                        <?php
-                                                        require 'includes/conexion.php'; // Incluimos el archivo de conexión
+                                                <div id="cotizar" style="display: none;">
+                                                    <div class="mb-12">
+                                                        <label class="form-label">Atributos</label>
+                                                        <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
+                                                            <?php
+                                                            require 'includes/conexion.php'; // Incluimos el archivo de conexión
 
-                                                        $query = "SELECT ID, Atributo FROM atributos";
-                                                        $result = mysqli_query($con, $query);
+                                                            $query = "SELECT ID, Atributo FROM atributos";
+                                                            $result = mysqli_query($con, $query);
 
-                                                        while ($row = mysqli_fetch_assoc($result)) {
-                                                            $atributoID = $row['ID'];
-                                                            $atributoNombre = $row['Atributo'];
-                                                            echo "<option value='$atributoID'>$atributoNombre</option>";
-                                                        }
+                                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                                $atributoID = $row['ID'];
+                                                                $atributoNombre = $row['Atributo'];
+                                                                echo "<option value='$atributoID'>$atributoNombre</option>";
+                                                            }
 
-                                                        // Liberar el resultado
-                                                        mysqli_free_result($result);
+                                                            // Liberar el resultado
+                                                            mysqli_free_result($result);
 
-                                                        // Cerrar la conexión
-                                                        mysqli_close($con);
-                                                        ?>
-                                                    </select>
-                                                </div>
-
-                                                <br>
-
-                                                <!-- Campos de información del producto -->
-                                                <div class="row mb-3">
-                                                    <label for="producto" class="col-sm-2 col-form-label">Producto</label>
-                                                    <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="producto" name="producto" readonly>
+                                                            // Cerrar la conexión
+                                                            mysqli_close($con);
+                                                            ?>
+                                                        </select>
                                                     </div>
-                                                    <label for="precio" class="col-sm-2 col-form-label">Precio</label>
-                                                    <div class="col-sm-2">
-                                                        <input class="form-control" type="text" id="precio" name="precio" readonly>
-                                                    </div>
-                                                </div>
 
-                                                <!-- Otros campos relacionados con el producto -->
-                                                <div class="row mb-3">
-                                                    <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
-                                                    <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="descripcion" name="descripcion" readonly>
-                                                    </div>
-                                                    <label for="precioDolar" class="col-sm-2 col-form-label">Precio Dólar</label>
-                                                    <div class="col-sm-2">
-                                                        <input class="form-control" type="text" id="precioDolar" name="precioDolar" readonly>
-                                                    </div>
-                                                </div>
+                                                    <br>
 
-                                                <div class="row mb-3">
-                                                    <label for="descuentoMax" class="col-sm-2 col-form-label">Descuento Máx</label>
-                                                    <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="descuentoMax" name="descuentoMax" readonly>
-                                                    </div>
-                                                    <label for="precioMin" class="col-sm-2 col-form-label">Precio Mínimo</label>
-                                                    <div class="col-sm-2">
-                                                        <input class="form-control" type="text" id="precioMin" name="precioMin" readonly>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mb-3">
-                                                    <label for="precioDolarMin" class="col-sm-2 col-form-label">Precio Dólar Mínimo</label>
-                                                    <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="precioDolarMin" name="precioDolarMin" readonly>
-                                                    </div>
-                                                    <label for="descuentoMaxDolar" class="col-sm-2 col-form-label">Descuento Máx Dólar</label>
-                                                    <div class="col-sm-2">
-                                                        <input class="form-control" type="text" id="descuentoMaxDolar" name="descuentoMaxDolar" readonly>
-                                                    </div>
-                                                </div>
-                                                <!-- Radio buttons para elegir moneda -->
-                                                <div class="row mb-3">
-                                                    <label class="col-sm-2 col-form-label">Moneda</label>
-                                                    <div class="col-sm-10">
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="0" checked>
-                                                            <label class="form-check-label" for="monedaSoles">Soles</label>
+                                                    <!-- Campos de información del producto -->
+                                                    <div class="row mb-3">
+                                                        <label for="producto" class="col-sm-2 col-form-label">Producto</label>
+                                                        <div class="col-sm-4">
+                                                            <input class="form-control" type="text" id="producto" name="producto" readonly>
                                                         </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="1">
-                                                            <label class="form-check-label" for="monedaDolares">Dólares</label>
+                                                        <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+                                                        <div class="col-sm-2">
+                                                            <input class="form-control" type="text" id="precio" name="precio" readonly>
                                                         </div>
                                                     </div>
-                                                </div>
 
-
-                                                <!-- Botón Agregar -->
-                                                <div class="row mb-3">
-                                                    <div class="col-sm-2 offset-sm-10">
-                                                        <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
+                                                    <!-- Otros campos relacionados con el producto -->
+                                                    <div class="row mb-3">
+                                                        <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
+                                                        <div class="col-sm-4">
+                                                            <input class="form-control" type="text" id="descripcion" name="descripcion" readonly>
+                                                        </div>
+                                                        <label for="precioDolar" class="col-sm-2 col-form-label">Precio Dólar</label>
+                                                        <div class="col-sm-2">
+                                                            <input class="form-control" type="text" id="precioDolar" name="precioDolar" readonly>
+                                                        </div>
                                                     </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="descuentoMax" class="col-sm-2 col-form-label">Descuento Máx</label>
+                                                        <div class="col-sm-4">
+                                                            <input class="form-control" type="text" id="descuentoMax" name="descuentoMax" readonly>
+                                                        </div>
+                                                        <label for="precioMin" class="col-sm-2 col-form-label">Precio Mínimo</label>
+                                                        <div class="col-sm-2">
+                                                            <input class="form-control" type="text" id="precioMin" name="precioMin" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="precioDolarMin" class="col-sm-2 col-form-label">Precio Dólar Mínimo</label>
+                                                        <div class="col-sm-4">
+                                                            <input class="form-control" type="text" id="precioDolarMin" name="precioDolarMin" readonly>
+                                                        </div>
+                                                        <label for="descuentoMaxDolar" class="col-sm-2 col-form-label">Descuento Máx Dólar</label>
+                                                        <div class="col-sm-2">
+                                                            <input class="form-control" type="text" id="descuentoMaxDolar" name="descuentoMaxDolar" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Radio buttons para elegir moneda -->
+                                                    <div class="row mb-3">
+                                                        <label class="col-sm-2 col-form-label">Moneda</label>
+                                                        <div class="col-sm-10">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="0" checked>
+                                                                <label class="form-check-label" for="monedaSoles">Soles</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="1">
+                                                                <label class="form-check-label" for="monedaDolares">Dólares</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- Botón Agregar -->
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-2 offset-sm-10">
+                                                            <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- Agregar tabla para mostrar los productos seleccionados -->
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Nombre del Producto</th>
+                                                                <th>Moneda</th>
+                                                                <th>Precio</th>
+                                                                <th>Cantidad</th>
+                                                                <th>Descuento en Monto</th>
+                                                                <th>Descuento Máximo</th> <!-- Nueva columna -->
+                                                                <th>Subtotal</th>
+                                                                <th>Eliminar</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tablaProductos">
+                                                            <!-- Filas de productos -->
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                    <!-- Mostrar el total de la compra -->
+                                                    <div>
+                                                        <strong>Total: </strong><span id="total">0</span>
+                                                    </div>
+                                                    <script>
+                                                        // Agrega esto dentro de tu función $(document).ready()
+                                                        $(document).ready(function() {
+                                                            // ...
+
+                                                            // Obtén el select por su ID
+                                                            var tipoClienteSelect = $('#tipoCliente');
+
+                                                            // Obtén el div que quieres mostrar/ocultar
+                                                            var cotizarDiv = $('#cotizar');
+
+                                                            // Oculta el div al iniciar
+                                                            cotizarDiv.hide();
+
+                                                            // Agrega un evento change al select
+                                                            tipoClienteSelect.on('change', function() {
+                                                                // Obtiene el valor seleccionado
+                                                                var selectedValue = $(this).val();
+
+                                                                // Verifica si el valor seleccionado es igual a 6
+                                                                if (selectedValue == 6) {
+                                                                    // Muestra el div si el valor es 6
+                                                                    cotizarDiv.show();
+                                                                } else {
+                                                                    // Oculta el div si el valor no es 6
+                                                                    cotizarDiv.hide();
+                                                                }
+                                                            });
+
+                                                            // ...
+                                                        });
+                                                    </script>
+                                                    <!-- fin del div cotizar -->
                                                 </div>
-
-
-                                                <!-- Agregar tabla para mostrar los productos seleccionados -->
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Nombre del Producto</th>
-                                                            <th>Moneda</th>
-                                                            <th>Precio</th>
-                                                            <th>Cantidad</th>
-                                                            <th>Descuento en Monto</th>
-                                                            <th>Descuento Máximo</th> <!-- Nueva columna -->
-                                                            <th>Subtotal</th>
-                                                            <th>Eliminar</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tablaProductos">
-                                                        <!-- Filas de productos -->
-                                                    </tbody>
-                                                </table>
-
-
-
-                                                <!-- Mostrar el total de la compra -->
-                                                <div>
-                                                    <strong>Total: </strong><span id="total">0</span>
-                                                </div>
-
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                                                 <script>
