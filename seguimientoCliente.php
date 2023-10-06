@@ -171,7 +171,7 @@ $dni = $_SESSION['dni'];
                                     <br>
 
                                     <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
-                                    <form id="myForm" method="post">
+                                    <form id="myForm" action="includes/guardar_webformActualizado.php" method="post">
                                         <div class="row">
                                             <div class="col-lg-12">
 
@@ -487,7 +487,7 @@ $dni = $_SESSION['dni'];
                                                     <div>
                                                         <strong>Total: </strong><span id="total">0</span>
                                                     </div>
-
+                                                    
                                                     <!-- fin del div cotizar -->
                                                 </div>
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -495,21 +495,21 @@ $dni = $_SESSION['dni'];
                                                 <script>
                                                     $(document).ready(function() {
                                                         var tipoClienteSelect = $('#tipoCliente');
-                                                        var cotizarDiv = $('#cotizar');
+                                                            var cotizarDiv = $('#cotizar');
 
-                                                        // Oculta el div al iniciar
-                                                        cotizarDiv.hide();
+                                                            // Oculta el div al iniciar
+                                                            cotizarDiv.hide();
 
-                                                        tipoClienteSelect.on('change', function() {
-                                                            var selectedValue = $(this).val();
+                                                            tipoClienteSelect.on('change', function() {
+                                                                var selectedValue = $(this).val();
 
-                                                            if (selectedValue == 6) {
-                                                                cotizarDiv.show();
-                                                            } else {
-                                                                cotizarDiv.hide();
-                                                            }
-                                                        });
-
+                                                                if (selectedValue == 6) {
+                                                                    cotizarDiv.show();
+                                                                } else {
+                                                                    cotizarDiv.hide();
+                                                                }
+                                                            });
+                                                            
                                                         $("input[name='moneda']").on('change', function() {
                                                             actualizarTabla(); // Llamar a actualizarTabla cuando cambia la moneda
                                                         });
@@ -766,9 +766,17 @@ $dni = $_SESSION['dni'];
                                                 <?php endif; ?>
                                                 <br>
 
+
                                                 <center>
                                                     <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
                                                 </center>
+
+
+
+
+
+
+
                                             </div>
                                             <!-- end col -->
 
@@ -777,34 +785,6 @@ $dni = $_SESSION['dni'];
                                         <!-- end row -->
 
                                     </form>
-                                    <script>
-                                        // Obtener el elemento select
-                                        var tipoClienteSelect = document.getElementById("tipoCliente");
-
-                                        // Obtener el formulario y el botón
-                                        var myForm = document.getElementById("myForm");
-                                        var submitBtn = document.getElementById("submitBtn");
-
-                                        // Función para actualizar el formulario y el botón
-                                        function actualizarFormulario() {
-                                            var valorTipoCliente = parseInt(tipoClienteSelect.value);
-
-                                            // Actualizar el atributo action del formulario y el texto del botón
-                                            if (valorTipoCliente === 6) {
-                                                myForm.action = "includes/guardar_cotizacion.php";
-                                                submitBtn.textContent = "Generar Cotización";
-                                            } else {
-                                                myForm.action = "includes/guardar_webformActualizado.php";
-                                                submitBtn.textContent = "Actualizar Datos";
-                                            }
-                                        }
-
-                                        // Escuchar cambios en el select
-                                        tipoClienteSelect.addEventListener("change", actualizarFormulario);
-
-                                        // Llamar a la función inicialmente para establecer el estado inicial
-                                        actualizarFormulario();
-                                    </script>
 
 
 
