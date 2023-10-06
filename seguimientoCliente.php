@@ -517,8 +517,8 @@ $dni = $_SESSION['dni'];
                                                                 // Calcular el subtotal sin considerar el descuento
                                                                 var subtotal = (tipoMonedaSeleccionada === 0) ? cantidad * precio : cantidad * precioDolar; // Usar el precio correcto según la moneda
 
-                                                                // Obtener el descuento en monto para este producto (cambiar 0 por el valor del descuento en monto si es diferente)
-                                                                var descuentoMontoProducto = parseFloat($('#descuentoMonto').val()) || 0;
+                                                                // Obtener el descuento en monto para este producto
+                                                                var descuentoMontoProducto = parseFloat($('.descuentoMonto').eq(productosSeleccionados.indexOf(producto)).val()) || 0;
 
                                                                 // Aplicar el descuento en monto al subtotal del producto
                                                                 subtotal -= descuentoMontoProducto;
@@ -532,13 +532,12 @@ $dni = $_SESSION['dni'];
                                                                     '<td>' + simboloMoneda + '</td>' +
                                                                     '<td>' + ((tipoMonedaSeleccionada === 0) ? precio.toFixed(2) : precioDolar.toFixed(2)) + '</td>' +
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
-                                                                    '<td>' + descuentoMontoProducto.toFixed(2) + '</td>' + // Mostrar el descuento en monto
+                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoMontoProducto + '"></td>' + // Campo editable para el descuento
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
                                                                     '</tr>';
                                                                 $('#tablaProductos').append(fila);
                                                             });
-
 
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
