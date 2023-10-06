@@ -437,6 +437,20 @@ $dni = $_SESSION['dni'];
                                                         <input class="form-control" type="text" id="descuentoMaxDolar" name="descuentoMaxDolar" readonly>
                                                     </div>
                                                 </div>
+                                                <!-- Radio buttons para elegir moneda -->
+                                                <div class="row mb-3">
+                                                    <label class="col-sm-2 col-form-label">Moneda</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="Soles" checked>
+                                                            <label class="form-check-label" for="monedaSoles">Soles</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="Dólares">
+                                                            <label class="form-check-label" for="monedaDolares">Dólares</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <!-- Botón Agregar -->
                                                 <div class="row mb-3">
