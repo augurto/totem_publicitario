@@ -392,20 +392,59 @@ $dni = $_SESSION['dni'];
 
                                                 <br>
 
-                                                <!-- Campo de texto para mostrar el producto -->
+                                                 <!-- Campos de información del producto -->
                                                 <div class="row mb-3">
-                                                    <label for="example-email-input" class="col-sm-2 col-form-label">Producto</label>
+                                                    <label for="producto" class="col-sm-2 col-form-label">Producto</label>
                                                     <div class="col-sm-4">
                                                         <input class="form-control" type="text" id="producto" name="producto" readonly>
                                                     </div>
-                                                    <label for="example-email-input" class="col-sm-2 col-form-label">Precio</label>
+                                                    <label for="precio" class="col-sm-2 col-form-label">Precio</label>
                                                     <div class="col-sm-2">
                                                         <input class="form-control" type="text" id="precio" name="precio" readonly>
                                                     </div>
+                                                </div>
+
+                                                <!-- Otros campos relacionados con el producto -->
+                                                <div class="row mb-3">
+                                                    <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
+                                                    <div class="col-sm-4">
+                                                        <input class="form-control" type="text" id="descripcion" name="descripcion" readonly>
+                                                    </div>
+                                                    <label for="precioDolar" class="col-sm-2 col-form-label">Precio Dólar</label>
                                                     <div class="col-sm-2">
+                                                        <input class="form-control" type="text" id="precioDolar" name="precioDolar" readonly>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <label for="descuentoMax" class="col-sm-2 col-form-label">Descuento Máx</label>
+                                                    <div class="col-sm-4">
+                                                        <input class="form-control" type="text" id="descuentoMax" name="descuentoMax" readonly>
+                                                    </div>
+                                                    <label for="precioMin" class="col-sm-2 col-form-label">Precio Mínimo</label>
+                                                    <div class="col-sm-2">
+                                                        <input class="form-control" type="text" id="precioMin" name="precioMin" readonly>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <label for="precioDolarMin" class="col-sm-2 col-form-label">Precio Dólar Mínimo</label>
+                                                    <div class="col-sm-4">
+                                                        <input class="form-control" type="text" id="precioDolarMin" name="precioDolarMin" readonly>
+                                                    </div>
+                                                    <label for="descuentoMaxDolar" class="col-sm-2 col-form-label">Descuento Máx Dólar</label>
+                                                    <div class="col-sm-2">
+                                                        <input class="form-control" type="text" id="descuentoMaxDolar" name="descuentoMaxDolar" readonly>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Botón Agregar -->
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-2 offset-sm-10">
                                                         <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
                                                     </div>
                                                 </div>
+                                            </div>
                                                 
                                                 <!-- Agregar tabla para mostrar los productos seleccionados -->
                                                 <table class="table">
