@@ -448,19 +448,17 @@ $dni = $_SESSION['dni'];
                                                             productosSeleccionados.forEach(function(producto) {
                                                                 var cantidad = parseInt(producto.cantidad) || 1;
                                                                 var precio = parseFloat(producto.precio);
-                                                                
-                                                                var descuentoMax = parseFloat(producto.descuentoMax) || 0; // Nuevo campo de descuentoMax
-
-                                                                // Verificar que el descuento no sea menor que 0
-                                                                descuento = Math.max(descuento, 0);
+                                                                var descuento = parseFloat(producto.descuento) || 0;
+                                                                var descuentoMax = parseFloat(producto.descuentoMax) || 0;
 
                                                                 // Calcular el subtotal restando el descuento al precio
-                                                                var subtotal = cantidad * (precio - descuento);
+                                                                var nuevoPrecio = precio - descuento;
+                                                                var subtotal = cantidad * nuevoPrecio;
                                                                 total += subtotal;
 
                                                                 var fila = '<tr>' +
                                                                     '<td>' + producto.nombre + '</td>' +
-                                                                    '<td>' + producto.precio + '</td>' +
+                                                                    '<td>' + nuevoPrecio.toFixed(2) + '</td>' + // Mostrar el nuevo precio unitario
                                                                     '<td>' + descuentoMax + '</td>' +
                                                                     '<td><input type="number" class="form-control descuento" value="' + descuento + '" max="' + descuentoMax + '" min="0"></td>' +
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
@@ -473,6 +471,7 @@ $dni = $_SESSION['dni'];
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
                                                         }
+
 
 
 
