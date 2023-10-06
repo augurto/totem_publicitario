@@ -451,9 +451,6 @@ $dni = $_SESSION['dni'];
                                                                 var descuento = parseFloat(producto.descuento) || 0; // Nuevo campo de descuento
                                                                 var descuentoMax = parseFloat(producto.descuentoMax) || 0; // Nuevo campo de descuentoMax
 
-                                                                // Verificar que el descuento no sea mayor que descuentoMax ni menor que 0
-                                                                descuento = Math.min(Math.max(descuento, 0), descuentoMax);
-
                                                                 // Calcular el subtotal restando el descuento del precio
                                                                 var subtotal = cantidad * (precio - (precio * (descuento / 100)));
                                                                 total += subtotal;
@@ -473,8 +470,6 @@ $dni = $_SESSION['dni'];
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
                                                         }
-
-
 
 
                                                         function agregarProducto(nombre, precio) {
