@@ -538,7 +538,7 @@ $dni = $_SESSION['dni'];
                                                             var productoPrecio = $('#precio').val();
 
                                                             if (productoNombre && productoPrecio) {
-                                                                agregarProducto(productoNombre, parseFloat(productoPrecio)); // No pasamos descuentoMax
+                                                                agregarProducto(productoNombre, parseFloat(productoPrecio));
                                                             }
                                                         });
 
@@ -579,12 +579,12 @@ $dni = $_SESSION['dni'];
                                                         }
 
 
-                                                        function agregarProducto(nombre, precio) {
-                                                            var tipoMoneda = $("input[name='moneda']:checked").val(); // Obtener el valor de la moneda seleccionada
+                                                        function agregarProducto(nombre, precio, precioDolar) {
+                                                            var tipoMoneda = parseInt($("input[name='moneda']:checked").val()); // Obtener el valor de la moneda seleccionada
 
                                                             productosSeleccionados.push({
                                                                 nombre: nombre,
-                                                                precio: precio,
+                                                                precio: (tipoMoneda === 0) ? precio : precioDolar, // Usar el precio correcto según la moneda
                                                                 cantidad: 1,
                                                                 tipoMoneda: tipoMoneda // Agregar el tipo de moneda al producto seleccionado
                                                             });
@@ -592,10 +592,10 @@ $dni = $_SESSION['dni'];
                                                             // Restablecer los campos de producto y precio después de agregar el producto
                                                             $('#producto').val('');
                                                             $('#precio').val('');
+                                                            $('#precioDolar').val('');
 
                                                             // Limpiar otros campos de información del producto después de agregar el producto
                                                             $('#descripcion').val('');
-                                                            $('#precioDolar').val('');
                                                             $('#descuentoMax').val('');
                                                             $('#precioMin').val('');
                                                             $('#precioDolarMin').val('');
@@ -607,6 +607,7 @@ $dni = $_SESSION['dni'];
                                                             // Actualizar la tabla
                                                             actualizarTabla();
                                                         }
+
 
 
 
