@@ -498,44 +498,47 @@ $dni = $_SESSION['dni'];
                                                                     atributos: selectedAtributos
                                                                 },
                                                                 success: function(response) {
-                                                                    try {
-                                                                        var productoInfo = JSON.parse(response);
-                                                                        if (productoInfo && productoInfo.Nombre !== 'Ningún producto coincide') {
-                                                                            $('#producto').val(productoInfo.Nombre);
-                                                                            $('#precio').val(productoInfo.Precio);
-                                                                            $('#descuentoMax').val(productoInfo.descuentoMax); // Agregar descuentoMax
-                                                                        } else {
-                                                                            $('#producto').val('Ningún producto coincide');
-                                                                            $('#precio').val('');
-                                                                            $('#descuentoMax').val(''); // Restablecer descuentoMax en caso de no coincidencia
-                                                                        }
-                                                                    } catch (e) {
-                                                                        console.error('Error al analizar la respuesta JSON:', e);
-                                                                        $('#producto').val('Error al obtener el producto');
+                                                                    if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
+                                                                        var atributoID = response.split('.').pop().trim();
+                                                                        // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
+                                                                        $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
+                                                                        // Establecer un valor predeterminado en los campos de texto
+                                                                        $('#producto').val('Ningún producto coincide');
                                                                         $('#precio').val('');
-                                                                        $('#descuentoMax').val(''); // Manejar descuentoMax en caso de error
+                                                                        // Si no hay coincidencia, establecer descuentoMax en 0 en la tabla
+                                                                        $('#descuentoMax').text('0'); // Agrega esta línea
+                                                                    } else {
+                                                                        // Restablecer el fondo de todas las opciones
+                                                                        $('#atributosSelect option').css('background-color', '');
+                                                                        // Parsear la respuesta JSON para obtener el nombre y el precio del producto
+                                                                        var productoInfo = JSON.parse(response);
+                                                                        // Establecer el valor del producto y el precio si hay un resultado
+                                                                        $('#producto').val(productoInfo.Nombre);
+                                                                        $('#precio').val(productoInfo.Precio);
+                                                                        $('#descuentoMax').text(productoInfo.descuentoMax); // Agrega esta línea para mostrar descuentoMax
+                                                                        console.log(productoInfo); // Agrega este console.log
                                                                     }
                                                                 }
                                                             });
                                                         }
 
 
-
-                                                        function agregarProducto(nombre, precio) {
+                                                        function agregarProducto(nombre, precio, descuentoMax) {
                                                             productosSeleccionados.push({
                                                                 nombre: nombre,
                                                                 precio: precio,
-                                                                cantidad: 1
+                                                                cantidad: 1,
+                                                                descuentoMax: descuentoMax
                                                             });
                                                             actualizarTabla();
-
-                                                            // Limpiar los campos de producto y precio
+                                                            // Restablecer los campos de producto, precio y descuentoMax después de agregar el producto
                                                             $('#producto').val('');
                                                             $('#precio').val('');
-
+                                                            $('#descuentoMax').val('');
                                                             // Limpiar la selección de atributos
                                                             $('.select2-multiple').val(null).trigger('change');
                                                         }
+
 
 
                                                         // Llamar a la función updateProduct() cuando cambia la selección de atributos
@@ -547,11 +550,13 @@ $dni = $_SESSION['dni'];
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
                                                             var productoPrecio = $('#precio').val();
+                                                            var productoDescuentoMax = $('#descuentoMax').val(); // Obtener el valor de descuentoMax
 
                                                             if (productoNombre && productoPrecio) {
-                                                                agregarProducto(productoNombre, parseFloat(productoPrecio));
+                                                                agregarProducto(productoNombre, parseFloat(productoPrecio), parseFloat(productoDescuentoMax)); // Pasar descuentoMax
                                                             }
                                                         });
+
 
                                                         // Actualizar la tabla cuando cambia la cantidad
                                                         $('#tablaProductos').on('change', '.cantidad', function() {
