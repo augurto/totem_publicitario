@@ -448,7 +448,7 @@ $dni = $_SESSION['dni'];
                                                             productosSeleccionados.forEach(function(producto) {
                                                                 var cantidad = parseInt(producto.cantidad) || 1;
                                                                 var precio = parseFloat(producto.precio);
-                                                                var descuento = parseFloat(producto.descuento) || 0; // Nuevo campo de descuento
+                                                                
                                                                 var descuentoMax = parseFloat(producto.descuentoMax) || 0; // Nuevo campo de descuentoMax
 
                                                                 // Verificar que el descuento no sea menor que 0
