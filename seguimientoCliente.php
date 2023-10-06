@@ -469,7 +469,8 @@ $dni = $_SESSION['dni'];
                                                             <th>Moneda</th>
                                                             <th>Precio</th>
                                                             <th>Cantidad</th>
-                                                            <th>Descuento en Monto</th> <!-- Nueva columna -->
+                                                            <th>Descuento en Monto</th>
+                                                            <th>Descuento Máximo</th> <!-- Nueva columna -->
                                                             <th>Subtotal</th>
                                                             <th>Eliminar</th>
                                                         </tr>
@@ -532,10 +533,12 @@ $dni = $_SESSION['dni'];
                                                                     '<td>' + simboloMoneda + '</td>' +
                                                                     '<td>' + ((tipoMonedaSeleccionada === 0) ? precio.toFixed(2) : precioDolar.toFixed(2)) + '</td>' +
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
-                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoMontoProducto + '"></td>' + // Campo editable para el descuento
+                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoMontoProducto + '"></td>' +
+                                                                    '<td>' + producto.descuentoMax + '</td>' + // Nueva columna para el descuento máximo
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
                                                                     '</tr>';
+
                                                                 $('#tablaProductos').append(fila);
                                                             });
 
