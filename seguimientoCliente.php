@@ -418,6 +418,7 @@ $dni = $_SESSION['dni'];
                                                     <tr>
                                                         <th>Producto</th>
                                                         <th>Precio</th>
+                                                        <th>Descuento (%)</th>
                                                         <th>Cantidad</th>
                                                         <th>Subtotal</th>
                                                         <th>Acciones</th>
@@ -441,6 +442,7 @@ $dni = $_SESSION['dni'];
 
                                                     var productosSeleccionados = []; // Almacenar los productos seleccionados
 
+                                                    // Actualizar la tabla de productos seleccionados
                                                     function actualizarTabla() {
                                                         var total = 0;
 
@@ -450,12 +452,17 @@ $dni = $_SESSION['dni'];
                                                         // Recorrer los productos seleccionados
                                                         productosSeleccionados.forEach(function(producto) {
                                                             var cantidad = parseInt(producto.cantidad) || 1;
-                                                            var subtotal = cantidad * parseFloat(producto.precio);
+                                                            var precio = parseFloat(producto.precio);
+                                                            var descuento = parseFloat(producto.descuento) || 0; // Nuevo campo de descuento
+
+                                                            // Calcular el subtotal restando el descuento del precio
+                                                            var subtotal = cantidad * (precio - (precio * (descuento / 100)));
                                                             total += subtotal;
 
                                                             var fila = '<tr>' +
                                                                 '<td>' + producto.nombre + '</td>' +
                                                                 '<td>' + producto.precio + '</td>' +
+                                                                '<td><input type="number" class="form-control descuento" value="' + descuento + '"></td>' +
                                                                 '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
                                                                 '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                 '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
@@ -466,6 +473,7 @@ $dni = $_SESSION['dni'];
                                                         // Actualizar el total
                                                         $('#total').text(total.toFixed(2));
                                                     }
+
 
                                                     function agregarProducto(nombre, precio) {
                                                         productosSeleccionados.push({ nombre: nombre, precio: precio, cantidad: 1 });
@@ -534,6 +542,13 @@ $dni = $_SESSION['dni'];
                                                         var index = $(this).closest('tr').index();
                                                         var nuevaCantidad = parseInt($(this).val()) || 1;
                                                         productosSeleccionados[index].cantidad = nuevaCantidad;
+                                                        actualizarTabla();
+                                                    });
+                                                    // Manejar cambios en los campos de descuento
+                                                    $('#tablaProductos').on('change', '.descuento', function() {
+                                                        var index = $(this).closest('tr').index();
+                                                        var nuevoDescuento = parseFloat($(this).val()) || 0;
+                                                        productosSeleccionados[index].descuento = nuevoDescuento;
                                                         actualizarTabla();
                                                     });
 
