@@ -487,9 +487,14 @@ $dni = $_SESSION['dni'];
                                                     <div>
                                                         <strong>Total: </strong><span id="total">0</span>
                                                     </div>
-                                                    <script>
-                                                        $(document).ready(function() {
-                                                            var tipoClienteSelect = $('#tipoCliente');
+                                                    
+                                                    <!-- fin del div cotizar -->
+                                                </div>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+                                                <script>
+                                                    $(document).ready(function() {
+                                                        var tipoClienteSelect = $('#tipoCliente');
                                                             var cotizarDiv = $('#cotizar');
 
                                                             // Oculta el div al iniciar
@@ -504,14 +509,7 @@ $dni = $_SESSION['dni'];
                                                                     cotizarDiv.hide();
                                                                 }
                                                             });
-                                                        });
-                                                    </script>
-                                                    <!-- fin del div cotizar -->
-                                                </div>
-                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-                                                <script>
-                                                    $(document).ready(function() {
+                                                            
                                                         $("input[name='moneda']").on('change', function() {
                                                             actualizarTabla(); // Llamar a actualizarTabla cuando cambia la moneda
                                                         });
