@@ -368,6 +368,20 @@ $dni = $_SESSION['dni'];
                                                 <!-- Campo de selección múltiple para atributos -->
                                                 <div id="cotizar" style="display: none;">
                                                     <div class="mb-12">
+                                                        <!-- Radio buttons para elegir moneda -->
+                                                        <div class="row mb-3">
+                                                            <label class="col-sm-2 col-form-label">Moneda</label>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="0" checked>
+                                                                    <label class="form-check-label" for="monedaSoles">Soles</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="1">
+                                                                    <label class="form-check-label" for="monedaDolares">Dólares</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <label class="form-label">Atributos</label>
                                                         <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
                                                             <?php
@@ -438,20 +452,7 @@ $dni = $_SESSION['dni'];
                                                             <input class="form-control" type="text" id="descuentoMaxDolar" name="descuentoMaxDolar" readonly>
                                                         </div>
                                                     </div>
-                                                    <!-- Radio buttons para elegir moneda -->
-                                                    <div class="row mb-3">
-                                                        <label class="col-sm-2 col-form-label">Moneda</label>
-                                                        <div class="col-sm-10">
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="0" checked>
-                                                                <label class="form-check-label" for="monedaSoles">Soles</label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="1">
-                                                                <label class="form-check-label" for="monedaDolares">Dólares</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
 
 
                                                     <!-- Botón Agregar -->
@@ -487,7 +488,7 @@ $dni = $_SESSION['dni'];
                                                     <div>
                                                         <strong>Total: </strong><span id="total">0</span>
                                                     </div>
-                                                    
+
                                                     <!-- fin del div cotizar -->
                                                 </div>
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -495,21 +496,21 @@ $dni = $_SESSION['dni'];
                                                 <script>
                                                     $(document).ready(function() {
                                                         var tipoClienteSelect = $('#tipoCliente');
-                                                            var cotizarDiv = $('#cotizar');
+                                                        var cotizarDiv = $('#cotizar');
 
-                                                            // Oculta el div al iniciar
-                                                            cotizarDiv.hide();
+                                                        // Oculta el div al iniciar
+                                                        cotizarDiv.hide();
 
-                                                            tipoClienteSelect.on('change', function() {
-                                                                var selectedValue = $(this).val();
+                                                        tipoClienteSelect.on('change', function() {
+                                                            var selectedValue = $(this).val();
 
-                                                                if (selectedValue == 6) {
-                                                                    cotizarDiv.show();
-                                                                } else {
-                                                                    cotizarDiv.hide();
-                                                                }
-                                                            });
-                                                            
+                                                            if (selectedValue == 6) {
+                                                                cotizarDiv.show();
+                                                            } else {
+                                                                cotizarDiv.hide();
+                                                            }
+                                                        });
+
                                                         $("input[name='moneda']").on('change', function() {
                                                             actualizarTabla(); // Llamar a actualizarTabla cuando cambia la moneda
                                                         });
