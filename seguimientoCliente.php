@@ -537,14 +537,15 @@ $dni = $_SESSION['dni'];
                                                                 var fila = '<tr>' +
                                                                     '<td>' + producto.Nombre + '</td>' +
                                                                     '<td>' + simboloMoneda + '</td>' +
-                                                                    '<td>' + precioPrincipal.toFixed(2) + '</td>' +
-                                                                    '<td>' + precioSecundario.toFixed(2) + '</td>' + // Agregar el Precio Secundario a la tabla
+                                                                    '<td>' + producto.PrecioPrincipal.toFixed(2) + '</td>' +
+                                                                    '<td>' + producto.PrecioSecundario.toFixed(2) + '</td>' + // Agregar Precio Secundario
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
                                                                     '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral + '"></td>' +
                                                                     '<td>' + producto.DescuentoGeneral + '</td>' +
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
                                                                     '</tr>';
+
 
                                                                 $('#tablaProductos').append(fila);
                                                             });
