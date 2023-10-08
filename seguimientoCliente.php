@@ -549,6 +549,7 @@ $dni = $_SESSION['dni'];
                                                                 $('#tablaProductos').append(fila);
                                                             });
 
+
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
                                                         }
@@ -603,28 +604,24 @@ $dni = $_SESSION['dni'];
                                                             var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
                                                             productosSeleccionados.push({
-                                                                Nombre: nombre,
-                                                                PrecioPrincipal: precioPrincipal,
-                                                                Cantidad: 1, // Se puede establecer un valor predeterminado para la cantidad
-                                                                TipoMoneda: tipoMonedaSeleccionada,
-                                                                DescuentoGeneral: descuentoGeneral
+                                                                nombre: nombre,
+                                                                precioPrincipal: precioPrincipal,
+                                                                cantidad: 1,
+                                                                tipoMoneda: tipoMonedaSeleccionada,
+                                                                precioSecundario: precioSecundario,
+                                                                descuentoGeneral: descuentoGeneral
                                                             });
 
+                                                            // Limpiar solo los campos que están relacionados con los datos del producto que se agregará
                                                             $('#producto').val('');
                                                             $('#precioPrincipal').val('');
                                                             $('#precioSecundario').val('');
                                                             $('#descuentoGeneral').val('');
-
-                                                            $('#descripcion').val('');
-                                                            $('#descuentoMax').val('');
-                                                            $('#precioMin').val('');
-                                                            $('#precioDolarMin').val('');
-                                                            $('#descuentoMaxDolar').val('');
-
                                                             $('.select2-multiple').val(null).trigger('change');
 
                                                             actualizarTabla();
                                                         }
+
 
 
 
