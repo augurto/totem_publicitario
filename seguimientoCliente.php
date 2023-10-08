@@ -563,94 +563,81 @@ $dni = $_SESSION['dni'];
 
                                                         function updateProduct() {
                                                             var selectedAtributos = $('.select2-multiple').val();
-                                                            var tipoMonedaSeleccionada = $("input[name='moneda']:checked").val(); // Obtener el valor del radio button seleccionado
+                                                            var tipoMonedaSeleccionada = $("input[name='moneda']:checked").val();
+
                                                             $.ajax({
                                                                 type: 'POST',
                                                                 url: 'includes/buscarProducto.php',
                                                                 data: {
                                                                     atributos: selectedAtributos,
-                                                                    tipoMoneda: tipoMonedaSeleccionada // Agregar el tipo de moneda seleccionado
+                                                                    tipoMoneda: tipoMonedaSeleccionada
                                                                 },
                                                                 success: function(response) {
                                                                     if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
                                                                         var atributoID = response.split('.').pop().trim();
-                                                                        // Resaltar opciones no coincidentes cambiando el fondo (puedes ajustar otros estilos también)
                                                                         $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
-                                                                        // Establecer un valor predeterminado en los campos de texto
                                                                         $('#producto').val('Ningún producto coincide');
-                                                                        $('#precio').val('');
+                                                                        $('#precioPrincipal').val(''); // Cambia el campo a 'precioPrincipal'
                                                                     } else {
-                                                                        // Restablecer el fondo de todas las opciones
                                                                         $('#atributosSelect option').css('background-color', '');
-                                                                        // Parsear la respuesta JSON para obtener todos los datos del producto
                                                                         var productoInfo = JSON.parse(response);
-                                                                        // Establecer el valor de los campos de texto con los datos del producto
                                                                         $('#producto').val(productoInfo.Nombre);
-                                                                        $('#precio').val(productoInfo.Precio);
+                                                                        $('#precioPrincipal').val(productoInfo.PrecioPrincipal); // Cambia el campo a 'precioPrincipal'
                                                                         $('#descripcion').val(productoInfo.Descripcion);
-                                                                        $('#precioDolar').val(productoInfo.precioDolar);
-                                                                        $('#descuentoMax').val(productoInfo.descuentoMax);
-                                                                        $('#precioMin').val(productoInfo.precioMin);
-                                                                        $('#precioDolarMin').val(productoInfo.precioDolarMin);
-                                                                        $('#descuentoMaxDolar').val(productoInfo.descuentoMaxDolar);
-                                                                        console.log(productoInfo); // Agrega este console.log
+                                                                        $('#precioSecundario').val(productoInfo.PrecioSecundario); // Agrega el campo 'precioSecundario'
+                                                                        $('#descuentoGeneral').val(productoInfo.DescuentoGeneral); // Agrega el campo 'descuentoGeneral'
+                                                                        console.log(productoInfo);
                                                                     }
                                                                 }
                                                             });
                                                         }
 
 
-                                                        function agregarProducto(nombre, precio, precioDolar, descuentoMaximo) {
-                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val()); // Obtener el tipo de moneda seleccionada
 
-                                                            var precioProducto = (tipoMonedaSeleccionada === 0) ? precio : precioDolar; // Usar el precio correcto según la moneda
+                                                        function agregarProducto(nombre, precioPrincipal, precioSecundario, descuentoGeneral) {
+                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
                                                             productosSeleccionados.push({
                                                                 nombre: nombre,
-                                                                precio: precioProducto,
+                                                                precioPrincipal: precioPrincipal,
                                                                 cantidad: 1,
                                                                 tipoMoneda: tipoMonedaSeleccionada,
-                                                                descuentoMax: descuentoMaximo // Agregar el descuento máximo al producto
+                                                                precioSecundario: precioSecundario,
+                                                                descuentoGeneral: descuentoGeneral
                                                             });
 
-                                                            // Restablecer los campos de producto y precio después de agregar el producto
                                                             $('#producto').val('');
-                                                            $('#precio').val('');
-                                                            $('#precioDolar').val('');
+                                                            $('#precioPrincipal').val('');
+                                                            $('#precioSecundario').val('');
+                                                            $('#descuentoGeneral').val('');
 
-                                                            // Limpiar otros campos de información del producto después de agregar el producto
                                                             $('#descripcion').val('');
                                                             $('#descuentoMax').val('');
                                                             $('#precioMin').val('');
                                                             $('#precioDolarMin').val('');
                                                             $('#descuentoMaxDolar').val('');
 
-                                                            // Limpiar la selección de atributos
                                                             $('.select2-multiple').val(null).trigger('change');
 
-                                                            // Actualizar la tabla
                                                             actualizarTabla();
                                                         }
 
-                                                        // Llamar a la función updateProduct() cuando cambia la selección de atributos
                                                         $('.select2-multiple').on('change', function() {
                                                             updateProduct();
                                                         });
 
-                                                        // Manejar el clic en el botón Agregar
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
                                                             var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
                                                             if (productoNombre) {
                                                                 if (tipoMonedaSeleccionada === 0) {
-                                                                    // Seleccionado Soles
-                                                                    var productoPrecio = $('#precio').val();
-                                                                    agregarProducto(productoNombre, parseFloat(productoPrecio), 0); // 0 representa Soles
+                                                                    var productoPrecioPrincipal = $('#precioPrincipal').val(); // Cambia al nuevo campo 'precioPrincipal'
+                                                                    agregarProducto(productoNombre, parseFloat(productoPrecioPrincipal), 0, 0);
                                                                 } else {
-                                                                    // Seleccionado Dólares
-                                                                    var productoPrecioDolar = $('#precioDolar').val(); // Obtener el precio en dólares
-                                                                    agregarProducto(productoNombre, 0, parseFloat(productoPrecioDolar)); // 1 representa Dólares
+                                                                    var productoPrecioSecundario = $('#precioSecundario').val();
+                                                                    var productoDescuentoGeneral = $('#descuentoGeneral').val();
+                                                                    agregarProducto(productoNombre, 0, parseFloat(productoPrecioSecundario), parseFloat(productoDescuentoGeneral));
                                                                 }
                                                             }
                                                         });
