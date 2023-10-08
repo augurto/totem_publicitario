@@ -604,22 +604,23 @@ $dni = $_SESSION['dni'];
                                                             var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
                                                             productosSeleccionados.push({
-                                                                nombre: nombre,
-                                                                precioPrincipal: precioPrincipal,
+                                                                Nombre: nombre, // Nombre del producto
+                                                                PrecioPrincipal: precioPrincipal, // Precio Principal
+                                                                PrecioSecundario: precioSecundario, // Precio Secundario
+                                                                DescuentoGeneral: descuentoGeneral, // Descuento General
                                                                 cantidad: 1,
-                                                                tipoMoneda: tipoMonedaSeleccionada,
-                                                                precioSecundario: precioSecundario,
-                                                                descuentoGeneral: descuentoGeneral
+                                                                tipoMoneda: tipoMonedaSeleccionada
                                                             });
 
-                                                            // Limpiar solo los campos que están relacionados con los datos del producto que se agregará
+                                                            // Limpiar todos los campos relacionados con la información del producto
                                                             $('#producto').val('');
                                                             $('#precioPrincipal').val('');
                                                             $('#precioSecundario').val('');
                                                             $('#descuentoGeneral').val('');
+                                                            $('#descripcion').val(''); // Limpiar también la casilla de descripción
                                                             $('.select2-multiple').val(null).trigger('change');
 
-                                                            actualizarTabla();
+                                                            actualizarTabla(); // Actualizar la tabla después de agregar el producto
                                                         }
 
 
