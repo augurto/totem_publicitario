@@ -580,11 +580,13 @@ $dni = $_SESSION['dni'];
 
                                                         function updateProduct() {
                                                             var selectedAtributos = $('.select2-multiple').val();
+                                                            var tipoMonedaSeleccionada = $("input[name='moneda']:checked").val(); // Obtener el valor del radio button seleccionado
                                                             $.ajax({
                                                                 type: 'POST',
                                                                 url: 'includes/buscarProducto.php',
                                                                 data: {
-                                                                    atributos: selectedAtributos
+                                                                    atributos: selectedAtributos,
+                                                                    tipoMoneda: tipoMonedaSeleccionada // Agregar el tipo de moneda seleccionado
                                                                 },
                                                                 success: function(response) {
                                                                     if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
