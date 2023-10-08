@@ -366,6 +366,7 @@ $dni = $_SESSION['dni'];
                                                 <br>
 
                                                 <!-- Campo de selección múltiple para atributos -->
+                                                <!-- <div id="cotizar" style="display: none;"> -->
                                                 <div id="cotizar" style="display: none;">
                                                     <div class="mb-12">
                                                         <!-- Radio buttons para elegir moneda -->
@@ -455,7 +456,8 @@ $dni = $_SESSION['dni'];
                                                             <tr>
                                                                 <th>Nombre del Producto</th>
                                                                 <th>Moneda</th>
-                                                                <th>Precio</th>
+                                                                <th>Precio Principal</th> <!-- Cambiar el encabezado a "Precio Principal" -->
+                                                                <th>Precio Secundario</th> <!-- Nueva columna para Precio Secundario -->
                                                                 <th>Cantidad</th>
                                                                 <th>Descuento en Monto</th>
                                                                 <th>Descuento Máximo</th> <!-- Nueva columna -->
@@ -467,6 +469,7 @@ $dni = $_SESSION['dni'];
                                                             <!-- Filas de productos -->
                                                         </tbody>
                                                     </table>
+
 
 
 
@@ -623,6 +626,7 @@ $dni = $_SESSION['dni'];
 
                                                             actualizarTabla();
                                                         }
+
 
                                                         $('.select2-multiple').on('change', function() {
                                                             updateProduct();
