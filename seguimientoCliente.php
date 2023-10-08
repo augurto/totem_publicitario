@@ -531,18 +531,15 @@ $dni = $_SESSION['dni'];
                                                             // Recorrer los productos seleccionados
                                                             productosSeleccionados.forEach(function(producto) {
                                                                 var cantidad = parseInt(producto.cantidad) || 1;
-                                                                var precio = parseFloat(producto.precio);
-                                                                var precioDolar = parseFloat(producto.precioDolar); // Precio en Dólares
-                                                                var tipoMonedaProducto = parseInt(producto.tipoMoneda); // Tipo de moneda del producto
+                                                                var precioPrincipal = parseFloat(producto.precioPrincipal); // Precio Principal
+                                                                var precioSecundario = parseFloat(producto.precioSecundario); // Precio Secundario
+                                                                var descuentoMaximo = parseFloat(producto.descuentoMaximo) || 0; // Descuento Máximo
 
                                                                 // Calcular el subtotal sin considerar el descuento
-                                                                var subtotal = (tipoMonedaSeleccionada === 0) ? cantidad * precio : cantidad * precioDolar; // Usar el precio correcto según la moneda
+                                                                var subtotal = cantidad * precioPrincipal; // Usar el precio principal
 
-                                                                // Obtener el descuento en monto para este producto
-                                                                var descuentoMontoProducto = parseFloat($('.descuentoMonto').eq(productosSeleccionados.indexOf(producto)).val()) || 0;
-
-                                                                // Aplicar el descuento en monto al subtotal del producto
-                                                                subtotal -= descuentoMontoProducto;
+                                                                // Aplicar el descuento al subtotal del producto
+                                                                subtotal -= descuentoMaximo;
 
                                                                 total += subtotal;
 
@@ -551,9 +548,9 @@ $dni = $_SESSION['dni'];
                                                                 var fila = '<tr>' +
                                                                     '<td>' + producto.nombre + '</td>' +
                                                                     '<td>' + simboloMoneda + '</td>' +
-                                                                    '<td>' + ((tipoMonedaSeleccionada === 0) ? precio.toFixed(2) : precioDolar.toFixed(2)) + '</td>' +
+                                                                    '<td>' + precioPrincipal.toFixed(2) + '</td>' +
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
-                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoMontoProducto + '"></td>' +
+                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoMaximo + '"></td>' +
                                                                     '<td>' + producto.descuentoMax + '</td>' + // Nueva columna para el descuento máximo
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
