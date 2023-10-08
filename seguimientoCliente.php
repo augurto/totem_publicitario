@@ -601,6 +601,10 @@ $dni = $_SESSION['dni'];
 
 
                                                         function agregarProducto(nombre, precioPrincipal, precioSecundario, descuentoGeneral) {
+                                                            console.log('Nombre:', nombre);
+                                                            console.log('Precio Principal:', precioPrincipal);
+                                                            console.log('Precio Secundario:', precioSecundario);
+                                                            console.log('Descuento General:', descuentoGeneral);
                                                             var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
                                                             productosSeleccionados.push({
