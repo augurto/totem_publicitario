@@ -603,12 +603,11 @@ $dni = $_SESSION['dni'];
                                                             var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
                                                             productosSeleccionados.push({
-                                                                nombre: nombre,
-                                                                precioPrincipal: precioPrincipal,
-                                                                cantidad: 1,
-                                                                tipoMoneda: tipoMonedaSeleccionada,
-                                                                precioSecundario: precioSecundario,
-                                                                descuentoGeneral: descuentoGeneral
+                                                                Nombre: nombre,
+                                                                PrecioPrincipal: precioPrincipal,
+                                                                Cantidad: 1, // Se puede establecer un valor predeterminado para la cantidad
+                                                                TipoMoneda: tipoMonedaSeleccionada,
+                                                                DescuentoGeneral: descuentoGeneral
                                                             });
 
                                                             $('#producto').val('');
@@ -626,6 +625,7 @@ $dni = $_SESSION['dni'];
 
                                                             actualizarTabla();
                                                         }
+
 
 
                                                         $('.select2-multiple').on('change', function() {
