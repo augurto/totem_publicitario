@@ -531,27 +531,27 @@ $dni = $_SESSION['dni'];
                                                             // Recorrer los productos seleccionados
                                                             productosSeleccionados.forEach(function(producto) {
                                                                 var cantidad = parseInt(producto.cantidad) || 1;
-                                                                var precioPrincipal = parseFloat(producto.precioPrincipal); // Precio Principal
-                                                                var precioSecundario = parseFloat(producto.precioSecundario); // Precio Secundario
-                                                                var descuentoMaximo = parseFloat(producto.descuentoMaximo) || 0; // Descuento Máximo
+                                                                var precioPrincipal = parseFloat(producto.PrecioPrincipal); // Precio Principal
+                                                                var precioSecundario = parseFloat(producto.PrecioSecundario); // Precio Secundario
+                                                                var descuentoGeneral = parseFloat(producto.DescuentoGeneral) || 0; // Descuento General
 
                                                                 // Calcular el subtotal sin considerar el descuento
                                                                 var subtotal = cantidad * precioPrincipal; // Usar el precio principal
 
                                                                 // Aplicar el descuento al subtotal del producto
-                                                                subtotal -= descuentoMaximo;
+                                                                subtotal -= descuentoGeneral;
 
                                                                 total += subtotal;
 
                                                                 var simboloMoneda = (tipoMonedaSeleccionada === 0) ? 'S/' : '$';
 
                                                                 var fila = '<tr>' +
-                                                                    '<td>' + producto.nombre + '</td>' +
+                                                                    '<td>' + producto.Nombre + '</td>' +
                                                                     '<td>' + simboloMoneda + '</td>' +
                                                                     '<td>' + precioPrincipal.toFixed(2) + '</td>' +
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
-                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoMaximo + '"></td>' +
-                                                                    '<td>' + producto.descuentoMax + '</td>' + // Nueva columna para el descuento máximo
+                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral + '"></td>' +
+                                                                    '<td>' + producto.DescuentoGeneral + '</td>' + // Nueva columna para el descuento general
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
                                                                     '</tr>';
