@@ -535,9 +535,10 @@ $dni = $_SESSION['dni'];
                                                                     '<td>' + producto.Nombre + '</td>' +
                                                                     '<td>' + simboloMoneda + '</td>' +
                                                                     '<td>' + precioPrincipal.toFixed(2) + '</td>' +
+                                                                    '<td>' + precioSecundario.toFixed(2) + '</td>' + // Agregar el Precio Secundario a la tabla
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
                                                                     '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral + '"></td>' +
-                                                                    '<td>' + producto.DescuentoGeneral + '</td>' + // Nueva columna para el descuento general
+                                                                    '<td>' + producto.DescuentoGeneral + '</td>' +
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
                                                                     '</tr>';
@@ -548,6 +549,7 @@ $dni = $_SESSION['dni'];
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
                                                         }
+
 
 
 
