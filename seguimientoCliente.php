@@ -413,9 +413,9 @@ $dni = $_SESSION['dni'];
                                                         <div class="col-sm-4">
                                                             <input class="form-control" type="text" id="producto" name="producto" readonly>
                                                         </div>
-                                                        <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+                                                        <label for="precioPrincipal" class="col-sm-2 col-form-label">Precio Principal</label>
                                                         <div class="col-sm-2">
-                                                            <input class="form-control" type="text" id="precio" name="precio" readonly>
+                                                            <input class="form-control" type="text" id="precioPrincipal" name="precioPrincipal" readonly>
                                                         </div>
                                                     </div>
 
@@ -425,32 +425,18 @@ $dni = $_SESSION['dni'];
                                                         <div class="col-sm-4">
                                                             <input class="form-control" type="text" id="descripcion" name="descripcion" readonly>
                                                         </div>
-                                                        <label for="precioDolar" class="col-sm-2 col-form-label">Precio Dólar</label>
+                                                        <label for="precioSecundario" class="col-sm-2 col-form-label">Precio Secundario</label>
                                                         <div class="col-sm-2">
-                                                            <input class="form-control" type="text" id="precioDolar" name="precioDolar" readonly>
+                                                            <input class="form-control" type="text" id="precioSecundario" name="precioSecundario" readonly>
                                                         </div>
                                                     </div>
 
                                                     <div class="row mb-3">
-                                                        <label for="descuentoMax" class="col-sm-2 col-form-label">Descuento Máx</label>
+                                                        <label for="descuentoGeneral" class="col-sm-2 col-form-label">Descuento General</label>
                                                         <div class="col-sm-4">
-                                                            <input class="form-control" type="text" id="descuentoMax" name="descuentoMax" readonly>
+                                                            <input class="form-control" type="text" id="descuentoGeneral" name="descuentoGeneral" readonly>
                                                         </div>
-                                                        <label for="precioMin" class="col-sm-2 col-form-label">Precio Mínimo</label>
-                                                        <div class="col-sm-2">
-                                                            <input class="form-control" type="text" id="precioMin" name="precioMin" readonly>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row mb-3">
-                                                        <label for="precioDolarMin" class="col-sm-2 col-form-label">Precio Dólar Mínimo</label>
-                                                        <div class="col-sm-4">
-                                                            <input class="form-control" type="text" id="precioDolarMin" name="precioDolarMin" readonly>
-                                                        </div>
-                                                        <label for="descuentoMaxDolar" class="col-sm-2 col-form-label">Descuento Máx Dólar</label>
-                                                        <div class="col-sm-2">
-                                                            <input class="form-control" type="text" id="descuentoMaxDolar" name="descuentoMaxDolar" readonly>
-                                                        </div>
+                                                        <!-- Los demás campos aquí... -->
                                                     </div>
 
 
