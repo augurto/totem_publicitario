@@ -609,10 +609,10 @@ $dni = $_SESSION['dni'];
                                                             var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
                                                             productosSeleccionados.push({
-                                                                Nombre: nombre, // Nombre del producto
-                                                                PrecioPrincipal: precioPrincipal, // Precio Principal
-                                                                PrecioSecundario: precioSecundario, // Precio Secundario
-                                                                DescuentoGeneral: descuentoGeneral, // Descuento General
+                                                                Nombre: nombre,
+                                                                PrecioPrincipal: parseFloat(precioPrincipal), // Usar el valor proporcionado
+                                                                PrecioSecundario: parseFloat(precioSecundario), // Usar el valor proporcionado
+                                                                DescuentoGeneral: parseFloat(descuentoGeneral), // Usar el valor proporcionado
                                                                 cantidad: 1,
                                                                 tipoMoneda: tipoMonedaSeleccionada
                                                             });
@@ -627,6 +627,7 @@ $dni = $_SESSION['dni'];
 
                                                             actualizarTabla(); // Actualizar la tabla después de agregar el producto
                                                         }
+
 
 
 
