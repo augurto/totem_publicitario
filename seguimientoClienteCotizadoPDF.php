@@ -27,5 +27,5 @@ $pdf->Cell(0, 10, "ID: $id", 0, 1);
 $pdfFileName = "id.pdf";
 
 // Generar el PDF y mostrarlo en el navegador
-$pdf->Output($pdfFileName, 'D');
+$pdf->Output($pdfFileName, 'I');
 ?>
