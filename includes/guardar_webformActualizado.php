@@ -93,10 +93,25 @@ if (mysqli_query($con, $query)) {
             mysqli_query($con, $insertProductoQuery);
         }
 
-        // Redireccionar a seguimientoCliente.php con variables en la URL
-       
-        header("Location: ../seguimientoClienteCotizado.php?id=$id&productos=$productos_json");
+        // Crear un array de productos y convertirlo a JSON
+        $productos = array();
+        for ($i = 0; $i < count($nombreProductos); $i++) {
+            $producto = array(
+                "nombreProducto" => $nombreProductos[$i],
+                "moneda" => $monedas[$i],
+                "precioPrincipal" => $preciosPrincipales[$i],
+                "precioSecundario" => $preciosSecundarios[$i],
+                "cantidad" => $cantidades[$i],
+                "descuentoMonto" => $descuentosMonto[$i],
+                "descuentoMaximo" => $descuentosMaximo[$i],
+                "subtotal" => $subtotales[$i]
+            );
+            $productos[] = $producto;
+        }
+        $productos_json = json_encode($productos);
 
+        // Redireccionar a seguimientoClienteCotizado.php con variables en la URL
+        header("Location: ../seguimientoClienteCotizado.php?id=$id&productos=" . urlencode($productos_json));
         exit;
     } else {
         // Redireccionar a vendedor.php con el parámetro p=0
@@ -107,4 +122,3 @@ if (mysqli_query($con, $query)) {
     // Manejar el caso de error en la inserción
     echo "Error en la inserción de datos: " . mysqli_error($con);
 }
-
