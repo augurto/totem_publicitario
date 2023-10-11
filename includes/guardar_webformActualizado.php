@@ -65,13 +65,34 @@ if (mysqli_query($con, $query)) {
 
     // Actualizar el estado_web a 99 en la tabla web_formularios
     $updateQuery = "UPDATE web_formularios SET estado_web = 99 WHERE id_form_web = $idweb";
-    mysqli_query($con, $updateQuery); 
+    mysqli_query($con, $updateQuery);
 
     if ($tipoCliente == 5 && $empresa == 2) {
         // Redireccionar a seguimientoCliente.php con variables en la URL
         header("Location: ../seguimientoClienteVendido.php?id=$id&pr=$pr");
         exit;
-    }elseif ($tipoCliente == 6 && $empresa == 2) {
+    } elseif ($tipoCliente == 6 && $empresa == 2) {
+        // Realizar la inserción en la tabla tabla_productos
+        // Suponiendo que los datos de la tabla productos están almacenados en arrays
+        for ($i = 0; $i < count($nombreProductos); $i++) {
+            $nombreProducto = $nombreProductos[$i];
+            $moneda = $monedas[$i];
+            $precioPrincipal = $preciosPrincipales[$i];
+            $precioSecundario = $preciosSecundarios[$i];
+            $cantidad = $cantidades[$i];
+            $descuentoMonto = $descuentosMonto[$i];
+            $descuentoMaximo = $descuentosMaximo[$i];
+            $subtotal = $subtotales[$i];
+
+            // Consulta SQL para insertar en tabla_productos
+            $insertProductoQuery = "INSERT INTO tabla_productos 
+                (id_form_web, nombreProducto, moneda, precioPrincipal, precioSecundario, cantidad, descuentoMonto, descuentoMaximo, subtotal)
+                VALUES ($id, '$nombreProducto', '$moneda', $precioPrincipal, $precioSecundario, $cantidad, $descuentoMonto, $descuentoMaximo, $subtotal)";
+
+            // Ejecutar la consulta de inserción
+            mysqli_query($con, $insertProductoQuery);
+        }
+
         // Redireccionar a seguimientoCliente.php con variables en la URL
         header("Location: ../seguimientoClienteCotizado.php?id=$id");
         exit;
@@ -80,9 +101,8 @@ if (mysqli_query($con, $query)) {
         header("Location: ../vendedor.php?p=0");
         exit;
     }
-
-    exit();
 } else {
     // Manejar el caso de error en la inserción
     echo "Error en la inserción de datos: " . mysqli_error($con);
 }
+

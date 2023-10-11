@@ -538,13 +538,13 @@ $dni = $_SESSION['dni'];
 
                                                                 var fila = '<tr>' +
                                                                     '<td><input type="text" name="nombreProducto[]" value="' + producto.Nombre + '"></td>' +
-                                                                    '<td><input type="text" name="moneda[]" value="' + (tipoMonedaSeleccionada === 0 ? 'S/' : '$') + '"></td>' +
-                                                                    '<td><input type="text" name="precioPrincipal[]" value="' + producto.PrecioPrincipal.toFixed(2) + '" style="width: 40px;"></td>' +
-                                                                    '<td><input type="text" name="precioSecundario[]" value="' + producto.PrecioSecundario.toFixed(2) + '" style="width: 40px;"></td>' + // Ancho de 40px
-                                                                    '<td><input type="text" name="cantidad[]" value="' + cantidad + '" style="width: 40px;"></td>' + // Ancho de 40px
-                                                                    '<td><input type="text" name="descuentoMonto[]" value="' + descuentoGeneral + '" style="width: 40px;"></td>' + // Ancho de 40px
-                                                                    '<td><input type="text" name="descuentoMaximo[]" value="' + producto.DescuentoMaximo + '" style="width: 40px;"></td>' + // Ancho de 40px
-                                                                    '<td><input type="text" name="subtotal[]" value="' + subtotal.toFixed(2) + '" style="width: 40px;"></td>' + // Ancho de 40px
+                                                                    '<td><input type="text" name="moneda[]" value="' + (tipoMonedaSeleccionada === 0 ? 'S/' : '$') + '" style="width: 40px;"></td>' + // Ancho de 40px para Moneda
+                                                                    '<td><input type="text" name="precioPrincipal[]" value="' + producto.PrecioPrincipal.toFixed(2) + '" style="width: 50px;"></td>' + // Ancho de 50px para Precio Principal
+                                                                    '<td><input type="text" name="precioSecundario[]" value="' + producto.PrecioSecundario.toFixed(2) + '" style="width: 50px;"></td>' + // Ancho de 50px para Precio Secundario
+                                                                    '<td><input type="text" name="cantidad[]" value="' + cantidad + '" style="width: 50px;"></td>' + // Ancho de 50px para Cantidad
+                                                                    '<td><input type="text" name="descuentoMonto[]" value="' + descuentoGeneral + '" style="width: 50px;"></td>' + // Ancho de 50px para Descuento Monto
+                                                                    '<td><input type="text" name="descuentoMaximo[]" value="' + producto.DescuentoMaximo + '" style="width: 50px;"></td>' + // Ancho de 50px para Descuento Máximo
+                                                                    '<td><input type="text" name="subtotal[]" value="' + subtotal.toFixed(2) + '" style="width: 50px;"></td>' + // Ancho de 50px para Subtotal
                                                                     '<td><button class="btn btn-danger eliminarFila">Eliminar</button></td>' +
                                                                     '</tr>';
 
