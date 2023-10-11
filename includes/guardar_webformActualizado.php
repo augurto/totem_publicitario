@@ -96,13 +96,11 @@ if (mysqli_query($con, $query)) {
                 echo "Error al insertar producto: " . mysqli_error($con) . "<br>";
             }
         }
-    }else {
-        // Redireccionar a vendedor.php con el parámetro p=0
-        header("Location: ../vendedor.php?p=0");
-        exit;
+    } else {
+        // No se realiza la redirección, simplemente se muestra un mensaje
+        echo "Datos insertados correctamente, pero no se ha redirigido.";
     }
 } else {
     // Manejar el caso de error en la inserción
     echo "Error en la inserción de datos: " . mysqli_error($con);
 }
-
