@@ -83,37 +83,20 @@ if (mysqli_query($con, $query)) {
             $descuentoMonto = $descuentosMonto[$i];
             $descuentoMaximo = $descuentosMaximo[$i];
             $subtotal = $subtotales[$i];
-
+    
             // Consulta SQL para insertar en tabla_productos
             $insertProductoQuery = "INSERT INTO tabla_productos 
                 (id_form_web, nombreProducto, moneda, precioPrincipal, precioSecundario, cantidad, descuentoMonto, descuentoMaximo, subtotal)
                 VALUES ($id, '$nombreProducto', '$moneda', $precioPrincipal, $precioSecundario, $cantidad, $descuentoMonto, $descuentoMaximo, $subtotal)";
-
+            
             // Ejecutar la consulta de inserción
-            mysqli_query($con, $insertProductoQuery);
+            if (mysqli_query($con, $insertProductoQuery)) {
+                echo "Producto insertado: " . $nombreProducto . "<br>";
+            } else {
+                echo "Error al insertar producto: " . mysqli_error($con) . "<br>";
+            }
         }
-
-        // Crear un array de productos y convertirlo a JSON
-        $productos = array();
-        for ($i = 0; $i < count($nombreProductos); $i++) {
-            $producto = array(
-                "nombreProducto" => $nombreProductos[$i],
-                "moneda" => $monedas[$i],
-                "precioPrincipal" => $preciosPrincipales[$i],
-                "precioSecundario" => $preciosSecundarios[$i],
-                "cantidad" => $cantidades[$i],
-                "descuentoMonto" => $descuentosMonto[$i],
-                "descuentoMaximo" => $descuentosMaximo[$i],
-                "subtotal" => $subtotales[$i]
-            );
-            $productos[] = $producto;
-        }
-        $productos_json = json_encode($productos);
-
-        // Redireccionar a seguimientoClienteCotizado.php con variables en la URL
-        header("Location: ../seguimientoClienteCotizado.php?id=$id&productos=" . urlencode($productos_json));
-        exit;
-    } else {
+    }else {
         // Redireccionar a vendedor.php con el parámetro p=0
         header("Location: ../vendedor.php?p=0");
         exit;
@@ -122,3 +105,4 @@ if (mysqli_query($con, $query)) {
     // Manejar el caso de error en la inserción
     echo "Error en la inserción de datos: " . mysqli_error($con);
 }
+
