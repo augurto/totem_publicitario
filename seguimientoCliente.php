@@ -610,9 +610,9 @@ $dni = $_SESSION['dni'];
 
                                                             productosSeleccionados.push({
                                                                 Nombre: nombre,
-                                                                PrecioPrincipal: parseFloat(precioPrincipal), // Usar el valor proporcionado
-                                                                PrecioSecundario: parseFloat(precioSecundario), // Usar el valor proporcionado
-                                                                DescuentoGeneral: parseFloat(descuentoGeneral), // Usar el valor proporcionado
+                                                                PrecioPrincipal: parseFloat(precioPrincipal),
+                                                                PrecioSecundario: parseFloat(precioSecundario),
+                                                                DescuentoGeneral: parseFloat(descuentoGeneral),
                                                                 cantidad: 1,
                                                                 tipoMoneda: tipoMonedaSeleccionada
                                                             });
@@ -624,6 +624,24 @@ $dni = $_SESSION['dni'];
                                                             $('#descuentoGeneral').val('');
                                                             $('#descripcion').val(''); // Limpiar también la casilla de descripción
                                                             $('.select2-multiple').val(null).trigger('change');
+
+                                                            // Agregar el producto a la tabla
+                                                            var simboloMoneda = (tipoMonedaSeleccionada === 0) ? 'S/' : '$';
+                                                            var subtotal = parseFloat(precioPrincipal);
+
+                                                            var fila = '<tr>' +
+                                                                '<td>' + nombre + '</td>' +
+                                                                '<td>' + simboloMoneda + '</td>' +
+                                                                '<td>' + precioPrincipal.toFixed(2) + '</td>' +
+                                                                '<td>' + precioSecundario.toFixed(2) + '</td>' +
+                                                                '<td><input type="number" class="form-control cantidad" value="1"></td>' +
+                                                                '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral + '"></td>' +
+                                                                '<td>' + descuentoGeneral + '</td>' +
+                                                                '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
+                                                                '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
+                                                                '</tr>';
+
+                                                            $('#tablaProductos').append(fila);
 
                                                             actualizarTabla(); // Actualizar la tabla después de agregar el producto
                                                         }
