@@ -454,16 +454,17 @@ $dni = $_SESSION['dni'];
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
-                                                                <th>Nombre del Producto</th>
-                                                                <th>Moneda</th>
-                                                                <th>Precio Principal</th> <!-- Cambiar el encabezado a "Precio Principal" -->
-                                                                <th>Precio Secundario</th> <!-- Nueva columna para Precio Secundario -->
-                                                                <th>Cantidad</th>
-                                                                <th>Descuento en Monto</th>
-                                                                <th>Descuento Máximo</th> <!-- Nueva columna -->
-                                                                <th>Subtotal</th>
-                                                                <th>Eliminar</th>
+                                                                <td><input type="text" name="nombreProducto[]"></td>
+                                                                <td><input type="text" name="moneda[]"></td>
+                                                                <td><input type="text" name="precioPrincipal[]"></td>
+                                                                <td><input type="text" name="precioSecundario[]"></td>
+                                                                <td><input type="text" name="cantidad[]"></td>
+                                                                <td><input type="text" name="descuentoMonto[]"></td>
+                                                                <td><input type="text" name="descuentoMaximo[]"></td>
+                                                                <td><input type="text" name="subtotal[]"></td>
+                                                                <td><button class="eliminarFila">Eliminar</button></td>
                                                             </tr>
+
                                                         </thead>
                                                         <tbody id="tablaProductos">
                                                             <!-- Filas de productos -->
@@ -476,6 +477,8 @@ $dni = $_SESSION['dni'];
                                                     <!-- Mostrar el total de la compra -->
                                                     <div>
                                                         <strong>Total: </strong><span id="total">0</span>
+
+
                                                     </div>
 
                                                     <!-- fin del div cotizar -->
@@ -509,7 +512,6 @@ $dni = $_SESSION['dni'];
 
                                                         // Actualizar la tabla de productos seleccionados
                                                         function actualizarTabla() {
-                                                            console.log('Actualizando tabla...');
                                                             var total = 0;
 
                                                             // Limpiar la tabla antes de actualizarla
@@ -541,31 +543,33 @@ $dni = $_SESSION['dni'];
                                                                     '<td>' + producto.PrecioPrincipal.toFixed(2) + '</td>' +
                                                                     '<td>' + producto.PrecioSecundario.toFixed(2) + '</td>' + // Agregar Precio Secundario
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
-                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral.toFixed(2) + '"></td>' +
-                                                                    '<td>' + producto.DescuentoGeneral.toFixed(2) + '</td>' +
+                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral + '"></td>' +
+                                                                    '<td>' + producto.DescuentoGeneral + '</td>' +
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
                                                                     '</tr>';
 
+
                                                                 $('#tablaProductos').append(fila);
                                                             });
 
+
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
-                                                            console.log('Tabla actualizada.');
                                                         }
+
+
+
 
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
-                                                            var productoPrecioPrincipal = parseFloat($('#precioPrincipal').val());
-                                                            var productoPrecioSecundario = parseFloat($('#precioSecundario').val());
-                                                            var productoDescuentoGeneral = parseFloat($('#descuentoGeneral').val());
+                                                            var productoPrecio = $('#precio').val();
+                                                            var descuentoMaximo = parseFloat($('#descuentoMax').val()) || 0; // Nuevo campo para el descuento máximo
 
-                                                            if (productoNombre) {
-                                                                agregarProducto(productoNombre, productoPrecioPrincipal, productoPrecioSecundario, productoDescuentoGeneral);
+                                                            if (productoNombre && productoPrecio) {
+                                                                agregarProducto(productoNombre, parseFloat(productoPrecio), 0, descuentoMaximo); // Agregar el descuento máximo al llamar a agregarProducto
                                                             }
                                                         });
-
 
                                                         function updateProduct() {
                                                             var selectedAtributos = $('.select2-multiple').val();
@@ -614,7 +618,6 @@ $dni = $_SESSION['dni'];
                                                                 DescuentoGeneral: parseFloat(descuentoGeneral), // Usar el valor proporcionado
                                                                 cantidad: 1,
                                                                 tipoMoneda: tipoMonedaSeleccionada
-
                                                             });
 
                                                             // Limpiar todos los campos relacionados con la información del producto
@@ -624,24 +627,6 @@ $dni = $_SESSION['dni'];
                                                             $('#descuentoGeneral').val('');
                                                             $('#descripcion').val(''); // Limpiar también la casilla de descripción
                                                             $('.select2-multiple').val(null).trigger('change');
-
-                                                            // Agregar el producto a la tabla
-                                                            var simboloMoneda = (tipoMonedaSeleccionada === 0) ? 'S/' : '$';
-                                                            var subtotal = parseFloat(precioPrincipal);
-
-                                                            var fila = '<tr>' +
-                                                                '<td>' + nombre + '</td>' +
-                                                                '<td>' + simboloMoneda + '</td>' +
-                                                                '<td>' + precioPrincipal.toFixed(2) + '</td>' +
-                                                                '<td>' + precioSecundario.toFixed(2) + '</td>' +
-                                                                '<td><input type="number" class="form-control cantidad" value="1"></td>' +
-                                                                '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral + '"></td>' +
-                                                                '<td>' + descuentoGeneral + '</td>' +
-                                                                '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
-                                                                '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
-                                                                '</tr>';
-
-                                                            $('#tablaProductos').append(fila);
 
                                                             actualizarTabla(); // Actualizar la tabla después de agregar el producto
                                                         }
@@ -669,6 +654,7 @@ $dni = $_SESSION['dni'];
                                                                 }
                                                             }
                                                         });
+
 
 
                                                         // Actualizar la tabla cuando cambia la cantidad

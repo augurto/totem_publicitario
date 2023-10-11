@@ -10,6 +10,19 @@ $email = $_POST['email'];
 $fuente = $_POST['fuente'];
 $fuenteDato = $_POST['fuenteDato'];
 $tipoCliente = $_POST['tipoCliente'];
+
+/* datos de la tabla */
+$nombreProductos = $_POST['nombreProducto'];
+$monedas = $_POST['moneda'];
+$preciosPrincipales = $_POST['precioPrincipal'];
+$preciosSecundarios = $_POST['precioSecundario'];
+$cantidades = $_POST['cantidad'];
+$descuentosMonto = $_POST['descuentoMonto'];
+$descuentosMaximo = $_POST['descuentoMaximo'];
+$subtotales = $_POST['subtotal'];
+
+/* Fin de captura de datos de la Tabla */
+
 /* estado es igual a tipo cliente */
 // Asignar el valor a $tipoCliente según el valor de $documento
 
