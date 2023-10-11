@@ -72,8 +72,10 @@ if (mysqli_query($con, $query)) {
         header("Location: ../seguimientoClienteVendido.php?id=$id&pr=$pr");
         exit;
     } elseif ($tipoCliente == 6 && $empresa == 2) {
+        // Inicializa un array para rastrear los nombres de productos insertados
+        $productosInsertados = array();
+    
         // Realizar la inserción en la tabla tabla_productos
-        // Suponiendo que los datos de la tabla productos están almacenados en arrays
         for ($i = 0; $i < count($nombreProductos); $i++) {
             $nombreProducto = $nombreProductos[$i];
             $moneda = $monedas[$i];
@@ -100,15 +102,19 @@ if (mysqli_query($con, $query)) {
     
             // Ejecutar la consulta de inserción
             if (mysqli_query($con, $insertProductoQuery)) {
-                echo "Producto insertado: " . $nombreProducto . "<br>";
+                // Agregar el nombre del producto al array de productos insertados
+                $productosInsertados[] = $nombreProducto;
             } else {
                 echo "Error al insertar producto: " . mysqli_error($con) . "<br>";
             }
-            // Redireccionar después de insertar cada producto
-            header("Location: ../seguimientoClienteCotizado.php?id=$id");
-            exit;
         }
+    
+        // Redireccionar después de insertar todos los productos
+        $productosInsertadosStr = implode(',', $productosInsertados);
+        header("Location: ../seguimientoClienteCotizado.php?id=$id&productos=" . urlencode($productosInsertadosStr));
+        exit;
     }
+    
     else {
         // No se realiza la redirección, simplemente se muestra un mensaje
         echo "Datos insertados correctamente, pero no se ha redirigido.";

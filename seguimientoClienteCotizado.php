@@ -79,14 +79,7 @@ $empresaUser = $_SESSION['empresaUser'];
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                 <h4 class="mb-sm-0">Data Tables</h4>
-                                <?php $productos = json_decode($productos_json, true);
-
-                                echo "Datos de los productos:<br>";
-                                echo "Nombre del producto: " . $productos['nombreProducto'] . "<br>";
-                                echo "Moneda: " . $productos['moneda'] . "<br>";
-                                echo "Precio Principal: " . $productos['precioPrincipal'] . "<br>";
-                                // Continúa imprimiendo los demás valores
-                                ?>
+                               
 
                                 <div class="page-title-center">
                                     <button type="button" class="btn btn-primary waves-effect waves-light" style="height: 35px !important;" onclick="window.location.href = 'nuevoCliente.php';">
