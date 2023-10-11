@@ -71,7 +71,7 @@ if (mysqli_query($con, $query)) {
         // Redireccionar a seguimientoCliente.php con variables en la URL
         header("Location: ../seguimientoClienteVendido.php?id=$id&pr=$pr");
         exit;
-    } elseif ($tipoCliente == 6 && $empresa == 2) {
+    }elseif ($tipoCliente == 6 && $empresa == 2) {
         // Inicializa un array para rastrear los nombres de productos insertados
         $productosInsertados = array();
     
@@ -114,6 +114,7 @@ if (mysqli_query($con, $query)) {
         header("Location: ../seguimientoClienteCotizado.php?id=$id&productos=" . urlencode($productosInsertadosStr));
         exit;
     }
+    
     
     else {
         // No se realiza la redirección, simplemente se muestra un mensaje
