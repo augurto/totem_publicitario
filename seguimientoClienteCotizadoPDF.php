@@ -33,24 +33,24 @@ $result = mysqli_query($con, $query);
 if ($result && mysqli_num_rows($result) > 0) {
     $pdf->Ln(10);
 
-    // Encabezados de la tabla
-    $pdf->Cell(35, 10, 'Nombre Producto', 1);
-    $pdf->Cell(10, 10, 'Moneda', 1);
+    // Abreviaciones en la cabecera de la tabla
+    $pdf->Cell(35, 10, 'Nombre Prod.', 1);
+    $pdf->Cell(25, 10, 'Moneda', 1);
     $pdf->Cell(35, 10, 'Precio Principal', 1);
-    $pdf->Cell(35, 10, 'Precio Secundario', 1);
-    $pdf->Cell(10, 10, 'Cantidad', 1);
-    $pdf->Cell(35, 10, 'Descuento Monto', 1);
-    $pdf->Cell(35, 10, 'Descuento Máximo', 1);
+    $pdf->Cell(35, 10, 'Precio Sec.', 1);
+    $pdf->Cell(25, 10, 'Cantidad', 1);
+    $pdf->Cell(35, 10, 'Desc. Monto', 1);
+    $pdf->Cell(35, 10, 'Desc. Máx.', 1);
     $pdf->Cell(35, 10, 'Subtotal', 1);
     $pdf->Ln();
 
-    // Datos de productos
     while ($row = mysqli_fetch_assoc($result)) {
+        // Datos de productos
         $pdf->Cell(35, 10, $row['nombreProducto'], 1);
-        $pdf->Cell(10, 10, $row['moneda'], 1);
+        $pdf->Cell(25, 10, $row['moneda'], 1);
         $pdf->Cell(35, 10, $row['precioPrincipal'], 1);
         $pdf->Cell(35, 10, $row['precioSecundario'], 1);
-        $pdf->Cell(10, 10, $row['cantidad'], 1);
+        $pdf->Cell(25, 10, $row['cantidad'], 1);
         $pdf->Cell(35, 10, $row['descuentoMonto'], 1);
         $pdf->Cell(35, 10, $row['descuentoMaximo'], 1);
         $pdf->Cell(35, 10, $row['subtotal'], 1);
