@@ -476,8 +476,8 @@ $dni = $_SESSION['dni'];
                                                     <!-- Mostrar el total de la compra -->
                                                     <div>
                                                         <strong>Total: </strong><span id="total">0</span>
-
-
+                                                        
+                                                        
                                                     </div>
 
                                                     <!-- fin del div cotizar -->
@@ -537,15 +537,15 @@ $dni = $_SESSION['dni'];
                                                                 var simboloMoneda = (tipoMonedaSeleccionada === 0) ? 'S/' : '$';
 
                                                                 var fila = '<tr>' +
-                                                                    '<td><input type="text" name="nombreProducto[]" value="' + producto.Nombre + '"></td>' +
-                                                                    '<td><input type="text" name="moneda[]" value="' + (tipoMonedaSeleccionada === 0 ? 'S/' : '$') + '"></td>' +
-                                                                    '<td><input type="text" name="precioPrincipal[]" value="' + producto.PrecioPrincipal.toFixed(2) + '"></td>' +
-                                                                    '<td><input type="text" name="precioSecundario[]" value="' + producto.PrecioSecundario.toFixed(2) + '"></td>' + // Agregar Precio Secundario
-                                                                    '<td><input type="text" name="cantidad[]" value="' + cantidad + '"></td>' +
-                                                                    '<td><input type="text" name="descuentoMonto[]" value="' + descuentoGeneral + '"></td>' +
-                                                                    '<td><input type="text" name="descuentoMaximo[]" value="' + producto.DescuentoMaximo + '"></td>' +
-                                                                    '<td><input type="text" name="subtotal[]" value="' + subtotal.toFixed(2) + '"></td>' +
-                                                                    '<td><button class="btn btn-danger eliminarFila">Eliminar</button></td>' +
+                                                                    '<td>' + producto.Nombre + '</td>' +
+                                                                    '<td>' + simboloMoneda + '</td>' +
+                                                                    '<td>' + producto.PrecioPrincipal.toFixed(2) + '</td>' +
+                                                                    '<td>' + producto.PrecioSecundario.toFixed(2) + '</td>' + // Agregar Precio Secundario
+                                                                    '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
+                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral + '"></td>' +
+                                                                    '<td>' + producto.DescuentoGeneral + '</td>' +
+                                                                    '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
+                                                                    '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
                                                                     '</tr>';
 
 
