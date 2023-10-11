@@ -1,7 +1,7 @@
 <?php
 require('fpdf/fpdf.php');
 require('includes/conexion.php');
-
+$id = $_GET['id'];
 // Clase personalizada que extiende FPDF
 class PDF extends FPDF {
     function ProductsTable($header, $data) {
