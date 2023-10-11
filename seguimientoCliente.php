@@ -509,6 +509,7 @@ $dni = $_SESSION['dni'];
 
                                                         // Actualizar la tabla de productos seleccionados
                                                         function actualizarTabla() {
+                                                            console.log('Actualizando tabla...');
                                                             var total = 0;
 
                                                             // Limpiar la tabla antes de actualizarla
@@ -553,6 +554,7 @@ $dni = $_SESSION['dni'];
 
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
+                                                            console.log('Tabla actualizada.');
                                                         }
 
 
@@ -610,11 +612,12 @@ $dni = $_SESSION['dni'];
 
                                                             productosSeleccionados.push({
                                                                 Nombre: nombre,
-                                                                PrecioPrincipal: parseFloat(precioPrincipal),
-                                                                PrecioSecundario: parseFloat(precioSecundario),
-                                                                DescuentoGeneral: parseFloat(descuentoGeneral),
+                                                                PrecioPrincipal: parseFloat(precioPrincipal), // Usar el valor proporcionado
+                                                                PrecioSecundario: parseFloat(precioSecundario), // Usar el valor proporcionado
+                                                                DescuentoGeneral: parseFloat(descuentoGeneral), // Usar el valor proporcionado
                                                                 cantidad: 1,
                                                                 tipoMoneda: tipoMonedaSeleccionada
+                                                                
                                                             });
 
                                                             // Limpiar todos los campos relacionados con la información del producto
