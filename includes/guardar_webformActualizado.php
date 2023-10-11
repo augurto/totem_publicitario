@@ -94,7 +94,9 @@ if (mysqli_query($con, $query)) {
         }
 
         // Redireccionar a seguimientoCliente.php con variables en la URL
-        header("Location: ../seguimientoClienteCotizado.php?id=$id");
+       
+        header("Location: ../seguimientoClienteCotizado.php?id=$id&productos=$productos_json");
+
         exit;
     } else {
         // Redireccionar a vendedor.php con el parámetro p=0
