@@ -541,32 +541,33 @@ $dni = $_SESSION['dni'];
                                                                     '<td>' + producto.PrecioPrincipal.toFixed(2) + '</td>' +
                                                                     '<td>' + producto.PrecioSecundario.toFixed(2) + '</td>' + // Agregar Precio Secundario
                                                                     '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
-                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral + '"></td>' +
-                                                                    '<td>' + producto.DescuentoGeneral + '</td>' +
+                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral.toFixed(2) + '"></td>' +
+                                                                    '<td>' + producto.DescuentoGeneral.toFixed(2) + '</td>' +
                                                                     '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
                                                                     '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
                                                                     '</tr>';
 
-
                                                                 $('#tablaProductos').append(fila);
                                                             });
-
 
                                                             // Actualizar el total
                                                             $('#total').text(total.toFixed(2));
                                                             console.log('Tabla actualizada.');
                                                         }
 
-
-
-
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
-                                                            var productoPrecio = $('#precio').val();
-                                                            var descuentoMaximo = parseFloat($('#descuentoMax').val()) || 0; // Nuevo campo para el descuento máximo
+                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
 
-                                                            if (productoNombre && productoPrecio) {
-                                                                agregarProducto(productoNombre, parseFloat(productoPrecio), 0, descuentoMaximo); // Agregar el descuento máximo al llamar a agregarProducto
+                                                            if (productoNombre) {
+                                                                if (tipoMonedaSeleccionada === 0) {
+                                                                    var productoPrecioPrincipal = $('#precioPrincipal').val(); // Cambia al nuevo campo 'precioPrincipal'
+                                                                    agregarProducto(productoNombre, parseFloat(productoPrecioPrincipal), 0, 0);
+                                                                } else {
+                                                                    var productoPrecioSecundario = $('#precioSecundario').val();
+                                                                    var productoDescuentoGeneral = $('#descuentoGeneral').val();
+                                                                    agregarProducto(productoNombre, parseFloat(productoPrecioPrincipal), parseFloat(productoPrecioSecundario), parseFloat(productoDescuentoGeneral));
+                                                                }
                                                             }
                                                         });
 
@@ -617,7 +618,7 @@ $dni = $_SESSION['dni'];
                                                                 DescuentoGeneral: parseFloat(descuentoGeneral), // Usar el valor proporcionado
                                                                 cantidad: 1,
                                                                 tipoMoneda: tipoMonedaSeleccionada
-                                                                
+
                                                             });
 
                                                             // Limpiar todos los campos relacionados con la información del producto
@@ -672,7 +673,6 @@ $dni = $_SESSION['dni'];
                                                                 }
                                                             }
                                                         });
-
 
 
                                                         // Actualizar la tabla cuando cambia la cantidad
