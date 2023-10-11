@@ -476,8 +476,8 @@ $dni = $_SESSION['dni'];
                                                     <!-- Mostrar el total de la compra -->
                                                     <div>
                                                         <strong>Total: </strong><span id="total">0</span>
-                                                        
-                                                        
+
+
                                                     </div>
 
                                                     <!-- fin del div cotizar -->
@@ -537,17 +537,16 @@ $dni = $_SESSION['dni'];
                                                                 var simboloMoneda = (tipoMonedaSeleccionada === 0) ? 'S/' : '$';
 
                                                                 var fila = '<tr>' +
-                                                                    '<td>' + producto.Nombre + '</td>' +
-                                                                    '<td>' + simboloMoneda + '</td>' +
-                                                                    '<td>' + producto.PrecioPrincipal.toFixed(2) + '</td>' +
-                                                                    '<td>' + producto.PrecioSecundario.toFixed(2) + '</td>' + // Agregar Precio Secundario
-                                                                    '<td><input type="number" class="form-control cantidad" value="' + cantidad + '"></td>' +
-                                                                    '<td><input type="number" class="form-control descuentoMonto" value="' + descuentoGeneral + '"></td>' +
-                                                                    '<td>' + producto.DescuentoGeneral + '</td>' +
-                                                                    '<td class="subtotal">' + subtotal.toFixed(2) + '</td>' +
-                                                                    '<td><button class="btn btn-danger eliminar">Eliminar</button></td>' +
+                                                                    '<td><input type="text" name="nombreProducto[]" value="' + producto.Nombre + '"></td>' +
+                                                                    '<td><input type="text" name="moneda[]" value="' + (tipoMonedaSeleccionada === 0 ? 'S/' : '$') + '"></td>' +
+                                                                    '<td><input type="text" name="precioPrincipal[]" value="' + producto.PrecioPrincipal.toFixed(2) + '"></td>' +
+                                                                    '<td><input type="text" name="precioSecundario[]" value="' + producto.PrecioSecundario.toFixed(2) + '"></td>' + // Agregar Precio Secundario
+                                                                    '<td><input type="text" name="cantidad[]" value="' + cantidad + '"></td>' +
+                                                                    '<td><input type="text" name="descuentoMonto[]" value="' + descuentoGeneral + '"></td>' +
+                                                                    '<td><input type="text" name="descuentoMaximo[]" value="' + producto.DescuentoMaximo + '"></td>' +
+                                                                    '<td><input type="text" name="subtotal[]" value="' + subtotal.toFixed(2) + '"></td>' +
+                                                                    '<td><button class="btn btn-danger eliminarFila">Eliminar</button></td>' +
                                                                     '</tr>';
-
 
                                                                 $('#tablaProductos').append(fila);
                                                             });
@@ -640,19 +639,15 @@ $dni = $_SESSION['dni'];
 
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
-                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
+                                                            var productoPrecioPrincipal = parseFloat($('#precioPrincipal').val());
+                                                            var productoPrecioSecundario = parseFloat($('#precioSecundario').val());
+                                                            var productoDescuentoGeneral = parseFloat($('#descuentoGeneral').val());
 
                                                             if (productoNombre) {
-                                                                if (tipoMonedaSeleccionada === 0) {
-                                                                    var productoPrecioPrincipal = $('#precioPrincipal').val(); // Cambia al nuevo campo 'precioPrincipal'
-                                                                    agregarProducto(productoNombre, parseFloat(productoPrecioPrincipal), 0, 0);
-                                                                } else {
-                                                                    var productoPrecioSecundario = $('#precioSecundario').val();
-                                                                    var productoDescuentoGeneral = $('#descuentoGeneral').val();
-                                                                    agregarProducto(productoNombre, 0, parseFloat(productoPrecioSecundario), parseFloat(productoDescuentoGeneral));
-                                                                }
+                                                                agregarProducto(productoNombre, productoPrecioPrincipal, productoPrecioSecundario, productoDescuentoGeneral);
                                                             }
                                                         });
+
 
 
 
