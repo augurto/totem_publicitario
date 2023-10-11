@@ -557,19 +557,15 @@ $dni = $_SESSION['dni'];
 
                                                         $('.agregarProducto').on('click', function() {
                                                             var productoNombre = $('#producto').val();
-                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
+                                                            var productoPrecioPrincipal = parseFloat($('#precioPrincipal').val());
+                                                            var productoPrecioSecundario = parseFloat($('#precioSecundario').val());
+                                                            var productoDescuentoGeneral = parseFloat($('#descuentoGeneral').val());
 
                                                             if (productoNombre) {
-                                                                if (tipoMonedaSeleccionada === 0) {
-                                                                    var productoPrecioPrincipal = $('#precioPrincipal').val(); // Cambia al nuevo campo 'precioPrincipal'
-                                                                    agregarProducto(productoNombre, parseFloat(productoPrecioPrincipal), 0, 0);
-                                                                } else {
-                                                                    var productoPrecioSecundario = $('#precioSecundario').val();
-                                                                    var productoDescuentoGeneral = $('#descuentoGeneral').val();
-                                                                    agregarProducto(productoNombre, parseFloat(productoPrecioPrincipal), parseFloat(productoPrecioSecundario), parseFloat(productoDescuentoGeneral));
-                                                                }
+                                                                agregarProducto(productoNombre, productoPrecioPrincipal, productoPrecioSecundario, productoDescuentoGeneral);
                                                             }
                                                         });
+
 
                                                         function updateProduct() {
                                                             var selectedAtributos = $('.select2-multiple').val();
