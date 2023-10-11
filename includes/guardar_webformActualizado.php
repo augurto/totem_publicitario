@@ -111,7 +111,7 @@ if (mysqli_query($con, $query)) {
     
         // Redireccionar después de insertar todos los productos
         $productosInsertadosStr = implode(',', $productosInsertados);
-        header("Location: ../seguimientoClienteCotizado.php?id=$id&productos=" . urlencode($productosInsertadosStr));
+        header("Location: ../seguimientoClienteCotizadoPDF.php?id=$id&productos=" . urlencode($productosInsertadosStr));
         exit;
     }
     
