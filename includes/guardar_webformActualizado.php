@@ -84,11 +84,20 @@ if (mysqli_query($con, $query)) {
             $descuentoMaximo = $descuentosMaximo[$i];
             $subtotal = $subtotales[$i];
     
-            // Consulta SQL para insertar en tabla_productos
-            $insertProductoQuery = "INSERT INTO tabla_productos 
-                (id_form_web, nombreProducto, moneda, precioPrincipal, precioSecundario, cantidad, descuentoMonto, descuentoMaximo, subtotal)
-                VALUES ($id, '$nombreProducto', '$moneda', $precioPrincipal, $precioSecundario, $cantidad, $descuentoMonto, $descuentoMaximo, $subtotal)";
-            
+            // Verificar si $descuentoMaximo es un número válido
+            if (is_numeric($descuentoMaximo)) {
+                // Si $descuentoMaximo es un número válido, lo usas en la consulta
+                $insertProductoQuery = "INSERT INTO tabla_productos 
+                    (id_form_web, nombreProducto, moneda, precioPrincipal, precioSecundario, cantidad, descuentoMonto, descuentoMaximo, subtotal)
+                    VALUES ($id, '$nombreProducto', '$moneda', $precioPrincipal, $precioSecundario, $cantidad, $descuentoMonto, $descuentoMaximo, $subtotal)";
+            } else {
+                // Si $descuentoMaximo no es un número válido, puedes establecer un valor predeterminado o manejarlo de otra manera
+                $descuentoMaximo = 0; // Establecer un valor predeterminado (por ejemplo, 0)
+                $insertProductoQuery = "INSERT INTO tabla_productos 
+                    (id_form_web, nombreProducto, moneda, precioPrincipal, precioSecundario, cantidad, descuentoMonto, descuentoMaximo, subtotal)
+                    VALUES ($id, '$nombreProducto', '$moneda', $precioPrincipal, $precioSecundario, $cantidad, $descuentoMonto, $descuentoMaximo, $subtotal)";
+            }
+    
             // Ejecutar la consulta de inserción
             if (mysqli_query($con, $insertProductoQuery)) {
                 echo "Producto insertado: " . $nombreProducto . "<br>";
@@ -96,7 +105,8 @@ if (mysqli_query($con, $query)) {
                 echo "Error al insertar producto: " . mysqli_error($con) . "<br>";
             }
         }
-    } else {
+    }
+    else {
         // No se realiza la redirección, simplemente se muestra un mensaje
         echo "Datos insertados correctamente, pero no se ha redirigido.";
     }
