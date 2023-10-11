@@ -104,6 +104,9 @@ if (mysqli_query($con, $query)) {
             } else {
                 echo "Error al insertar producto: " . mysqli_error($con) . "<br>";
             }
+            // Redireccionar después de insertar cada producto
+            header("Location: ../seguimientoClienteCotizado.php?id=$id");
+            exit;
         }
     }
     else {
