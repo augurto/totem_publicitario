@@ -12,36 +12,25 @@ if (isset($_GET['id'])) {
 // Crear una instancia de la clase PDF
 $pdf = new TCPDF();
 $pdf->AddPage();
-// Establecer bordes redondeados y ancho de línea
-$pdf->SetLineStyle(array('width' => 0.2, 'color' => array(0, 158, 205)));
 
-// Definir la estructura de la tabla con 3 columnas
-$data = array(
-    array(
-        '<img src="assets/images/geoprime1.jpg" width="80" height="80" />', // Primera columna con imagen
-        array('Texto 1', 'Texto 2', 'Texto 3'), // Segunda columna con 3 filas
-        array('Texto 4', 'Texto 5') // Tercera columna con 2 filas
-    )
-);
+// Crear una tabla con 3 columnas
+$pdf->SetFont('helvetica', '', 12);
+$pdf->SetFillColor(0, 158, 205); // Color de fondo para la tabla
+$pdf->Cell(60, 10, '', 0, 0, 'L', 1); // Primera columna para la imagen
+$pdf->Cell(70, 10, '', 0, 0, 'L', 1); // Segunda columna
+$pdf->Cell(70, 10, '', 0, 1, 'L', 1); // Tercera columna
 
-// Establecer el tamaño de las columnas
-$col_width = 60;
-$col_height = 20;
+// Insertar la imagen en la primera columna
+$imagePath = 'assets/images/logogeosatelital.png'; // Reemplaza con la ruta de tu imagen
+$pdf->Image($imagePath, 10, $pdf->GetY() - 10, 40, 40); // Ajusta la posición y el tamaño de la imagen
 
-// Iterar sobre los datos y agregar celdas a la tabla
-foreach ($data as $row) {
-    foreach ($row as $col) {
-        if (is_array($col)) {
-            foreach ($col as $subcol) {
-                $pdf->Cell($col_width, $col_height, $subcol, 1, 0, 'C');
-            }
-            $pdf->Ln();
-        } else {
-            $pdf->Cell($col_width, $col_height, $col, 1, 0, 'C');
-        }
-    }
-    $pdf->Ln();
-}
+// Agregar texto a la segunda columna
+$pdf->SetXY(70, $pdf->GetY() - 10); // Ajusta la posición para la segunda columna
+$pdf->MultiCell(70, 10, "Texto 1\nTexto 2\nTexto 3", 0, 'L');
+
+// Agregar texto a la tercera columna
+$pdf->SetXY(130, $pdf->GetY() - 10); // Ajusta la posición para la tercera columna
+$pdf->MultiCell(70, 10, "Texto 4\nTexto 5", 0, 'L');
 
 // Definir el tamaño y tipo de fuente
 $pdf->SetFont('helvetica', '', 12);
