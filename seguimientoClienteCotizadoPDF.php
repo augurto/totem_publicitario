@@ -13,6 +13,38 @@ if (isset($_GET['id'])) {
 $pdf = new TCPDF();
 $pdf->AddPage();
 
+// Definir las características de la tabla
+$tbl = '<table border="2" cellpadding="2" cellspacing="0" style="border-color: #009ecd; border-radius: 10px; border-width: 2px;">';
+
+// Primera columna con una imagen
+$tbl .= '<tr>';
+$tbl .= '<td rowspan="3"><img src="imagen.jpg" width="100" height="100"></td>'; // Cambia "imagen.jpg" por la ruta de tu imagen
+$tbl .= '<td>Texto 1</td>';
+$tbl .= '</tr>';
+
+// Segunda columna dividida en 3 filas
+$tbl .= '<tr>';
+$tbl .= '<td>Texto 2</td>';
+$tbl .= '</tr>';
+
+$tbl .= '<tr>';
+$tbl .= '<td>Texto 3</td>';
+$tbl .= '</tr>';
+
+// Tercera columna dividida en 2 filas
+$tbl .= '<tr>';
+$tbl .= '<td rowspan="2">Texto 4</td>';
+$tbl .= '</tr>';
+
+$tbl .= '<tr>';
+$tbl .= '<td>Texto 5</td>';
+$tbl .= '</tr>';
+
+$tbl .= '</table>';
+
+// Agregar la tabla al PDF
+$pdf->writeHTML($tbl, true, false, false, false, '');
+
 // Definir el tamaño y tipo de fuente
 $pdf->SetFont('helvetica', '', 12);
 
