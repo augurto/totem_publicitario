@@ -13,12 +13,12 @@ if (isset($_GET['id'])) {
 $pdf = new TCPDF();
 $pdf->AddPage();
 // Establecer bordes redondeados y ancho de línea
-$pdf->SetLineStyle(array('width' => 1, 'color' => array(0, 158, 205)));
+$pdf->SetLineStyle(array('width' => 0.5, 'color' => array(0, 158, 205)));
 
 // Definir la estructura de la tabla con 3 columnas
 $data = array(
     array(
-        '<img src="imagen.jpg" width="80" height="80" />', // Primera columna con imagen
+        '<img src="assets/images/logo-geosatelital.png" width="80" height="80" />', // Primera columna con imagen
         array('Texto 1', 'Texto 2', 'Texto 3'), // Segunda columna con 3 filas
         array('Texto 4', 'Texto 5') // Tercera columna con 2 filas
     )
