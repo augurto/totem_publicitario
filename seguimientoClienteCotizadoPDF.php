@@ -13,35 +13,6 @@ if (isset($_GET['id'])) {
 $pdf = new TCPDF();
 $pdf->AddPage();
 
-// Iniciar la tabla con bordes de color #009ecd
-$html = '<table style="border: 1px solid #009ecd;"><tr>';
-
-// Primera columna con una imagen centrada horizontal y verticalmente
-$html .= '<td style="border: 1px solid #009ecd; text-align: center;">';
-
-// Añadir la imagen con la propiedad valign para centrarla verticalmente
-$html .= '<img src="assets/images/logogeosatelital.jpg" width="38" height="11" valign="middle" />';
-
-$html .= '</td>';
-
-// Segunda columna con tres filas, cada una con borde de color #009ecd
-$html .= '<td style="border: 1px solid #009ecd;">';
-$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 1</div>';
-$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 2</div>';
-$html .= '<div>Fila 3</div>';
-$html .= '</td>';
-
-// Tercera columna con dos filas, cada una con borde de color #009ecd
-$html .= '<td style="border: 1px solid #009ecd;">';
-$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 1</div>';
-$html .= '<div>Fila 2</div>';
-$html .= '</td>';
-
-// Cerrar la tabla
-$html .= '</tr></table>';
-
-// Insertar la tabla en el PDF
-$pdf->writeHTML($html, true, false, true, false, '');
 
 
 // Mostrar el ID
