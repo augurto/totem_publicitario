@@ -15,7 +15,7 @@ $pdf->AddPage();
 
 // Ajustar el tamaño de la imagen en la primera columna
 $imagePath = 'assets/images/logogeosatelital.jpg'; // Reemplaza con la ruta de tu imagen
-$pdf->Image($imagePath, 10, 10, 80, 40); // Establece el ancho (80) y alto (40) de la imagen
+$pdf->Image($imagePath, 10, 10, 30, 10); // Establece el ancho (80) y alto (40) de la imagen
 
 // Crear una tabla con 3 columnas
 $pdf->SetFont('helvetica', '', 12);
