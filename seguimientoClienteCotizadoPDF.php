@@ -13,38 +13,41 @@ if (isset($_GET['id'])) {
 $pdf = new FPDF();
 $pdf->AddPage();
 
+// Definir el tamaño y tipo de fuente
+$pdf->SetFont('Arial', '', 12);
+
+// Título
+$pdf->Cell(0, 10, 'Tabla Personalizada', 0, 1, 'C');
+$pdf->Ln(10);
 
 // Definir las características de la tabla
-$tbl = '<table border="2" cellpadding="2" cellspacing="0" style="border-color: #009ecd; border-radius: 10px; border-width: 2px;">';
+$bordeColor = 128; // Color en escala de grises (0-255)
+$bordeAncho = 2;  // Grosor del borde en puntos (1 punto = 1/72 pulgadas)
+$radioBorde = 10; // Radio del borde en puntos
+$anchoColumna = 60; // Ancho de cada columna en puntos
+$altoCelda = 20; // Altura de cada celda en puntos
 
-// Primera columna con una imagen
-$tbl .= '<tr>';
-$tbl .= '<td rowspan="3"><img src="imagen.jpg" width="100" height="100"></td>'; // Cambia "imagen.jpg" por la ruta de tu imagen
-$tbl .= '<td>Texto 1</td>';
-$tbl .= '</tr>';
+// Iniciar la fila de la tabla
+$pdf->Cell($anchoColumna, $altoCelda, 'Columna 1', 1, 0, 'C');
+$pdf->Cell($anchoColumna, $altoCelda, 'Columna 2', 1, 0, 'C');
+$pdf->Cell($anchoColumna, $altoCelda, 'Columna 3', 1, 1, 'C');
 
-// Segunda columna dividida en 3 filas
-$tbl .= '<tr>';
-$tbl .= '<td>Texto 2</td>';
-$tbl .= '</tr>';
+// Establecer el color y grosor del borde
+$pdf->SetLineWidth($bordeAncho);
+$pdf->SetDrawColor($bordeColor);
 
-$tbl .= '<tr>';
-$tbl .= '<td>Texto 3</td>';
-$tbl .= '</tr>';
+// Fila 1
+$pdf->Cell($anchoColumna, $altoCelda, 'Texto 1, Fila 1', 1);
+$pdf->Cell($anchoColumna, $altoCelda, 'Texto 2, Fila 1', 1);
+$pdf->Cell($anchoColumna, $altoCelda, 'Texto 3, Fila 1', 1, 1);
 
-// Tercera columna dividida en 2 filas
-$tbl .= '<tr>';
-$tbl .= '<td rowspan="2">Texto 4</td>';
-$tbl .= '</tr>';
+// Fila 2
+$pdf->Cell($anchoColumna, $altoCelda, 'Texto 1, Fila 2', 1);
+$pdf->Cell($anchoColumna, $altoCelda, 'Texto 2, Fila 2', 1);
+$pdf->Cell($anchoColumna, $altoCelda, 'Texto 3, Fila 2', 1, 1);
 
-$tbl .= '<tr>';
-$tbl .= '<td>Texto 5</td>';
-$tbl .= '</tr>';
-
-$tbl .= '</table>';
-
-// Agregar la tabla al PDF
-$pdf->writeHTML($tbl, true, false, false, false, '');
+// Restablecer el grosor del borde
+$pdf->SetLineWidth(0);
 
 // Definir el tamaño y tipo de fuente
 $pdf->SetFont('Arial', '', 12);
