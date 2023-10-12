@@ -16,18 +16,17 @@ $pdf->AddPage();
 // Ajustar el tamaño de la imagen en la primera columna
 $imagePath = 'assets/images/logogeosatelital.jpg'; // Reemplaza con la ruta de tu imagen
 $pdf->Image($imagePath, $pdf->GetX(), $pdf->GetY(), 60, 20); // Establece el ancho (60) y alto (20) de la imagen
-$pdf->Ln(10);
 
 // Crear una tabla con 3 columnas
-$pdf->SetFont('helvetica', '', 10);
+$pdf->SetFont('helvetica', '', 12);
 
 // Iniciar la tabla
 $pdf->SetFillColor(0, 158, 205); // Color de fondo de las celdas
 $pdf->SetDrawColor(0, 158, 205); // Color del borde de las celdas
-$pdf->SetLineWidth(2); // Grosor del borde
-$pdf->Cell(60, 20, 'Texto 1', 1, 0, 'C', 1); // Primera columna para el texto 1
-$pdf->Cell(60, 20, 'Texto 2', 1, 1, 'C', 1); // Segunda columna para el texto 2
-$pdf->Cell(60, 20, '', 1, 1, 'C'); // Tercera columna vacía
+$pdf->SetLineWidth(0.2); // Grosor del borde (0.2)
+$pdf->Cell(60, 20, '', 1, 0, '', 1); // Primera columna para la imagen
+$pdf->Cell(60, 20, 'Texto 1', 1, 0, 'C', 1); // Segunda columna para el texto 1
+$pdf->Cell(60, 20, 'Texto 2', 1, 1, 'C', 1); // Tercera columna para el texto 2
 $pdf->Ln(10);
 
 // Mostrar el ID
