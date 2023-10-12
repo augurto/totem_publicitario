@@ -13,17 +13,18 @@ if (isset($_GET['id'])) {
 $pdf = new TCPDF();
 $pdf->AddPage();
 
+// Ajustar el tamaño de la imagen en la primera columna
+$imagePath = 'assets/images/logogeosatelital.jpg'; // Reemplaza con la ruta de tu imagen
+$pdf->Image($imagePath, $pdf->GetX(), $pdf->GetY(), 80, 40); // Establece el ancho (80) y alto (40) de la imagen
+$pdf->Ln(10);
+
 // Crear una tabla con 3 columnas
 $pdf->SetFont('helvetica', '', 12);
 $pdf->SetDrawColor(0, 158, 205); // Color del borde de la celda
-$pdf->Cell(0, 40, '', 'T'); // Primera columna para la imagen
-$pdf->Cell(0, 40, 'Texto 1', 'T'); // Segunda columna para el texto 1
-$pdf->Cell(0, 40, 'Texto 2', 'T'); // Tercera columna para el texto 2
-
-// Insertar la imagen en la primera columna
-$imagePath = 'assets/images/logogeosatelital.jpg'; // Reemplaza con la ruta de tu imagen
-$pdf->Image($imagePath, $pdf->GetX(), $pdf->GetY() - 40, 0, 40); // Ajusta la posición y el tamaño de la imagen
-
+$pdf->Cell(80, 40, '', 'T'); // Primera columna para la imagen
+$pdf->Cell(60, 40, 'Texto 1', 'T'); // Segunda columna para el texto 1
+$pdf->Cell(60, 40, 'Texto 2', 'T'); // Tercera columna para el texto 2
+$pdf->Ln();
 
 // Mostrar el ID
 $pdf->Cell(0, 10, "ID: $id", 0, 1);
@@ -70,13 +71,13 @@ if ($result && mysqli_num_rows($result) > 0) {
 $pdf->AddPage();
 
 // Insertar la imagen en la nueva página (segunda página) y ajustar el tamaño para que ocupe toda la página
-$pdf->Image('assets/images/geoprime1.jpg', 0, 0, 210);
+$pdf->Image('assets/images/geoprime1.jpg', 0, 0, 210, 297); // Ancho y alto establecidos para llenar la página
 
 // Agregar una nueva página
 $pdf->AddPage();
 
 // Insertar la imagen en la nueva página (tercera página) y ajustar el tamaño para que ocupe toda la página
-$pdf->Image('assets/images/geoprime2.jpg', 0, 0, 210);
+$pdf->Image('assets/images/geoprime2.jpg', 0, 0, 210, 297); // Ancho y alto establecidos para llenar la página
 
 // Nombre del archivo PDF de salida
 $pdfFileName = "productos.pdf";
@@ -84,3 +85,4 @@ $pdfFileName = "productos.pdf";
 // Generar el PDF y mostrarlo en el navegador
 $pdf->Output($pdfFileName, 'I');
 ?>
+
