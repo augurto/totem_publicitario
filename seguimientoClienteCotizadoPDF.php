@@ -42,23 +42,22 @@ $pdf->MultiCell(60, 40, $texto1, 1, 'C', 0);
 $pdf->Cell(60, 40, 'Texto 2', 1, 1, 'C', 0);
 
 /* otro */
+// Iniciar la tabla con bordes de color #009ecd
+$html = '<table style="border: 1px solid #009ecd;"><tr>';
 
-// Iniciar la tabla
-$html = '<table border="1"><tr>';
+// Primera columna con borde de color #009ecd
+$html .= '<td style="border: 1px solid #009ecd;">Contenido de la primera columna</td>';
 
-// Primera columna
-$html .= '<td>Contenido de la primera columna</td>';
-
-// Segunda columna con tres filas
-$html .= '<td>';
-$html .= '<div>Fila 1</div>';
-$html .= '<div>Fila 2</div>';
-$html .= '<div>Fila 3</div>';
+// Segunda columna con tres filas, cada una con borde de color #009ecd
+$html .= '<td style="border: 1px solid #009ecd;">';
+$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 1</div>';
+$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 2</div>';
+$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 3</div>';
 $html .= '</td>';
 
-// Tercera columna con dos filas
-$html .= '<td>';
-$html .= '<div>Fila 1</div>';
+// Tercera columna con dos filas, cada una con borde de color #009ecd
+$html .= '<td style="border: 1px solid #009ecd;">';
+$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 1</div>';
 $html .= '<div>Fila 2</div>';
 $html .= '</td>';
 
@@ -67,8 +66,6 @@ $html .= '</tr></table>';
 
 // Insertar la tabla en el PDF
 $pdf->writeHTML($html, true, false, true, false, '');
-
-
 // Mostrar el ID
 $pdf->Cell(0, 10, "ID: $id", 0, 1);
 
