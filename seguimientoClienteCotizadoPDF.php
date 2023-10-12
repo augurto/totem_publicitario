@@ -1,5 +1,5 @@
 <?php
-require('fpdf/fpdf.php');
+require('tcpdf/tcpdf.php');
 require('includes/conexion.php');
 
 // Obtener el ID de la URL
@@ -10,47 +10,11 @@ if (isset($_GET['id'])) {
 }
 
 // Crear una instancia de la clase PDF
-$pdf = new FPDF();
+$pdf = new TCPDF();
 $pdf->AddPage();
 
 // Definir el tamaño y tipo de fuente
-$pdf->SetFont('Arial', '', 12);
-
-// Título
-$pdf->Cell(0, 10, 'Tabla Personalizada', 0, 1, 'C');
-$pdf->Ln(10);
-
-// Definir las características de la tabla
-$bordeColor = 128; // Color en escala de grises (0-255)
-$bordeAncho = 2;  // Grosor del borde en puntos (1 punto = 1/72 pulgadas)
-$radioBorde = 10; // Radio del borde en puntos
-$anchoColumna = 60; // Ancho de cada columna en puntos
-$altoCelda = 20; // Altura de cada celda en puntos
-
-// Iniciar la fila de la tabla
-$pdf->Cell($anchoColumna, $altoCelda, 'Columna 1', 1, 0, 'C');
-$pdf->Cell($anchoColumna, $altoCelda, 'Columna 2', 1, 0, 'C');
-$pdf->Cell($anchoColumna, $altoCelda, 'Columna 3', 1, 1, 'C');
-
-// Establecer el color y grosor del borde
-$pdf->SetLineWidth($bordeAncho);
-$pdf->SetDrawColor($bordeColor);
-
-// Fila 1
-$pdf->Cell($anchoColumna, $altoCelda, 'Texto 1, Fila 1', 1);
-$pdf->Cell($anchoColumna, $altoCelda, 'Texto 2, Fila 1', 1);
-$pdf->Cell($anchoColumna, $altoCelda, 'Texto 3, Fila 1', 1, 1);
-
-// Fila 2
-$pdf->Cell($anchoColumna, $altoCelda, 'Texto 1, Fila 2', 1);
-$pdf->Cell($anchoColumna, $altoCelda, 'Texto 2, Fila 2', 1);
-$pdf->Cell($anchoColumna, $altoCelda, 'Texto 3, Fila 2', 1, 1);
-
-// Restablecer el grosor del borde
-$pdf->SetLineWidth(0);
-
-// Definir el tamaño y tipo de fuente
-$pdf->SetFont('Arial', '', 12);
+$pdf->SetFont('helvetica', '', 12);
 
 // Título
 $pdf->Cell(0, 10, 'ID Obtenido de la URL', 0, 1, 'C');
@@ -97,7 +61,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     $pdf->Cell(0, 10, 'No se encontraron productos para este ID.', 0, 1);
 }
 
-
 // Agregar una nueva página
 $pdf->AddPage();
 
@@ -109,7 +72,6 @@ $pdf->AddPage();
 
 // Insertar la imagen en la nueva página (tercera página) y ajustar el tamaño para que ocupe toda la página
 $pdf->Image('assets/images/geoprime2.jpg', 0, 0, 210);
-
 
 // Nombre del archivo PDF de salida
 $pdfFileName = "productos.pdf";
