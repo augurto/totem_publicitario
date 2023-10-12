@@ -18,7 +18,14 @@ $pdf->SetPrintHeader(false);
 
 // Ajustar el tamaño de la imagen en la primera columna
 $imagePath = 'assets/images/logogeosatelital.jpg'; // Reemplaza con la ruta de tu imagen
-$pdf->Image($imagePath, 10, 10, 30, 10); // Establece el ancho (80) y alto (40) de la imagen
+$imageWidth = 38; // Ancho de la imagen
+$imageHeight = 15; // Alto de la imagen
+
+// Calcular las coordenadas X e Y para centrar la imagen
+$x = 10 + (80 - $imageWidth) / 2;
+$y = 10 + (40 - $imageHeight) / 2;
+
+$pdf->Image($imagePath, $x, $y, $imageWidth, $imageHeight);
 
 // Crear una tabla con 3 columnas
 $pdf->SetFont('helvetica', '', 12);
@@ -31,6 +38,7 @@ $pdf->Cell(80, 40, '', 1, 0, 'C', 0);
 $pdf->Cell(60, 40, 'Texto 1', 1, 0, 'C', 0);
 // Tercera columna para el texto 2
 $pdf->Cell(60, 40, 'Texto 2', 1, 1, 'C', 0);
+
 
 // Mostrar el ID
 $pdf->Cell(0, 10, "ID: $id", 0, 1);
