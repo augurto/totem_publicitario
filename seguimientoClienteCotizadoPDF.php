@@ -35,9 +35,9 @@ $pdf->SetLineWidth(0.2); // Grosor del borde (0.2)
 $pdf->Cell(80, 40, '', 1, 0, 'C', 0);
 
 // Segunda columna para el texto 1 (dividido en 3 filas)
-$pdf->Cell(60, 13.33, 'Texto 1', 1, 1, 'C', 0);
-$pdf->Cell(60, 13.33, 'Texto 2', 1, 1, 'C', 0);
-$pdf->Cell(60, 13.34, 'Texto 3', 1, 1, 'C', 0);
+$pdf->Cell(60, 12.33, 'Texto 1', 1, 1, 'C', 0);
+$pdf->Cell(60, 12.33, 'Texto 2', 1, 1, 'C', 0);
+$pdf->Cell(60, 12.34, 'Texto 3', 1, 1, 'C', 0);
 
 // Tercera columna para el texto 2
 $pdf->Cell(60, 40, 'Texto 2', 1, 1, 'C', 0);
