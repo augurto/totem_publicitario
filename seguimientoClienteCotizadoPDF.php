@@ -41,6 +41,32 @@ $pdf->MultiCell(60, 40, $texto1, 1, 'C', 0);
 // Tercera columna para el texto 2
 $pdf->Cell(60, 40, 'Texto 2', 1, 1, 'C', 0);
 
+/* otro */
+
+// Iniciar la tabla
+$html = '<table border="1"><tr>';
+
+// Primera columna
+$html .= '<td>Contenido de la primera columna</td>';
+
+// Segunda columna con tres filas
+$html .= '<td>';
+$html .= '<div>Fila 1</div>';
+$html .= '<div>Fila 2</div>';
+$html .= '<div>Fila 3</div>';
+$html .= '</td>';
+
+// Tercera columna con dos filas
+$html .= '<td>';
+$html .= '<div>Fila 1</div>';
+$html .= '<div>Fila 2</div>';
+$html .= '</td>';
+
+// Cerrar la tabla
+$html .= '</tr></table>';
+
+// Insertar la tabla en el PDF
+$pdf->writeHTML($html, true, false, true, false, '');
 
 
 // Mostrar el ID
