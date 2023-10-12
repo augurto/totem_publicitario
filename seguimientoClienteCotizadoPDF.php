@@ -64,12 +64,16 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 // Agregar una nueva página
 $pdf->AddPage();
-// Insertar la imagen en la nueva página (segunda página)
-$pdf->Image('assets/images/geoprime1.jpg', 10, 10, 90);
+
+// Insertar la imagen en la nueva página (segunda página) y ajustar el tamaño para que ocupe toda la página
+$pdf->Image('assets/images/geoprime1.jpg', 0, 0, 210);
+
 // Agregar una nueva página
 $pdf->AddPage();
-// Insertar la imagen en la nueva página (segunda página)
-$pdf->Image('assets/images/geoprime2.jpg', 10, 10, 90);
+
+// Insertar la imagen en la nueva página (tercera página) y ajustar el tamaño para que ocupe toda la página
+$pdf->Image('assets/images/geoprime2.jpg', 0, 0, 210);
+
 
 // Nombre del archivo PDF de salida
 $pdfFileName = "productos.pdf";
