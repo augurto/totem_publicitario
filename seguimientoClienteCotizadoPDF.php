@@ -13,40 +13,13 @@ if (isset($_GET['id'])) {
 $pdf = new TCPDF();
 $pdf->AddPage();
 
-// Deshabilitar la impresión de encabezado en todas las páginas
-$pdf->SetPrintHeader(false);
-// Ajustar el tamaño de la imagen en la primera columna
-$imagePath = 'assets/images/logogeosatelital.jpg'; // Ruta de tu imagen
-$imageWidth = 38; // Ancho de la imagen
-$imageHeight = 11; // Alto de la imagen
-
-// Calcular las coordenadas X e Y para centrar la imagen
-$x = 10 + (80 - $imageWidth) / 2;
-$y = 10 + (40 - $imageHeight) / 2;
-
-$pdf->Image($imagePath, $x, $y, $imageWidth, $imageHeight);
-
-// Crear una tabla con 3 columnas
-$pdf->SetFont('helvetica', '', 12);
-$pdf->SetDrawColor(0, 158, 205); // Color del borde de las celdas
-$pdf->SetLineWidth(0.2); // Grosor del borde (0.2)
-
-// Primera columna para la imagen
-$pdf->Cell(80, 40, '', 1, 0, 'C', 0);
-
-// Segunda columna para el texto 1 (dividido en 3 filas)
-$texto1 = "Texto 1\nLínea 2\nLínea 3";
-$pdf->MultiCell(60, 40, $texto1, 1, 'C', 0);
-
-// Tercera columna para el texto 2
-$pdf->Cell(60, 40, 'Texto 2', 1, 1, 'C', 0);
-
-/* otro */
 // Iniciar la tabla con bordes de color #009ecd
 $html = '<table style="border: 1px solid #009ecd;"><tr>';
 
-// Primera columna con borde de color #009ecd
-$html .= '<td style="border: 1px solid #009ecd;">Contenido de la primera columna</td>';
+// Primera columna con una imagen (borde de color #009ecd)
+$html .= '<td style="border: 1px solid #009ecd;">';
+$html .= '<img src="assets/images/logogeosatelital.jpg" width="38" height="11" />';
+$html .= '</td>';
 
 // Segunda columna con tres filas, cada una con borde de color #009ecd
 $html .= '<td style="border: 1px solid #009ecd;">';
@@ -66,6 +39,7 @@ $html .= '</tr></table>';
 
 // Insertar la tabla en el PDF
 $pdf->writeHTML($html, true, false, true, false, '');
+
 // Mostrar el ID
 $pdf->Cell(0, 10, "ID: $id", 0, 1);
 
