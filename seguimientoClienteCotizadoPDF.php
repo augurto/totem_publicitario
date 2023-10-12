@@ -12,6 +12,7 @@ if (isset($_GET['id'])) {
 // Crear una instancia de la clase PDF
 $pdf = new TCPDF();
 $pdf->AddPage();
+
 // Establecer bordes redondeados y ancho de línea
 $pdf->SetLineStyle(array('width' => 2, 'color' => array(0, 158, 205)));
 
@@ -41,11 +42,9 @@ $col_height = 60;
 // Iterar sobre los datos y agregar celdas a la tabla
 foreach ($data as $row) {
     $pdf->StartTransform();
-    $pdf->StartTransform();
     foreach ($row as $col) {
         $pdf->Cell($col_width, $col_height, $col, 1, 0, 'C');
     }
-    $pdf->StopTransform();
     $pdf->StopTransform();
     $pdf->Ln();
 }
