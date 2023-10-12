@@ -12,9 +12,6 @@ if (isset($_GET['id'])) {
 // Crear una instancia de la clase PDF
 $pdf = new TCPDF();
 $pdf->AddPage();
-// Crear una instancia de la clase PDF
-$pdf = new TCPDF();
-$pdf->AddPage();
 
 // Ajustar el tamaño de la imagen en la primera columna
 $imagePath = 'assets/images/logogeosatelital.jpg'; // Reemplaza con la ruta de tu imagen
@@ -22,7 +19,7 @@ $pdf->Image($imagePath, $pdf->GetX(), $pdf->GetY(), 60, 20); // Establece el anc
 $pdf->Ln(10);
 
 // Crear una tabla con 3 columnas
-$pdf->SetFont('helvetica', '', 12);
+$pdf->SetFont('helvetica', '', 10);
 
 // Iniciar la tabla
 $pdf->SetFillColor(0, 158, 205); // Color de fondo de las celdas
