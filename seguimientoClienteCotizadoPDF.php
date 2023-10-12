@@ -21,7 +21,7 @@ $html = '<table style="border: 1px solid #009ecd;"><tr>';
 $html .= '<td style="border: 1px solid #009ecd; text-align: center; vertical-align: middle;">';
 
 // Añadir la imagen
-$html .= '<img src="assets/images/logogeosatelital.jpg" width="38" height="11" />';
+$html .= '<img src="assets/images/logogeosatelital.jpg" width="90" height="26" />';
 
 $html .= '</td>';
 
