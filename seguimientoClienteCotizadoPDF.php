@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 $pdf = new TCPDF();
 $pdf->AddPage();
 // Establecer bordes redondeados y ancho de línea
-$pdf->SetLineStyle(array('width' => 2, 'color' => array(0, 158, 205)));
+$pdf->SetLineStyle(array('width' => 1, 'color' => array(0, 158, 205)));
 
 // Definir la estructura de la tabla con 3 columnas
 $data = array(
