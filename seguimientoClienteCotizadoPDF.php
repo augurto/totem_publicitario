@@ -21,7 +21,7 @@ $html .= '<td style="border: 1px solid #009ecd; text-align: center;">';
 
 // Añadir un contenedor div para centrar verticalmente la imagen
 $html .= '<div style="height: 100px; display: flex; align-items: center; justify-content: center;">';
-$html .= '<img src="assets/images/logogeosatelital.jpg" width="38" height="11" />';
+$html .= '<img src="assets/images/logogeosatelital.jpg" width="80" height="22   " />';
 $html .= '</div>';
 
 $html .= '</td>';
