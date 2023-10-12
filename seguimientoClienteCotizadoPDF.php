@@ -12,38 +12,43 @@ if (isset($_GET['id'])) {
 // Crear una instancia de la clase PDF
 $pdf = new TCPDF();
 $pdf->AddPage();
+// Establecer bordes redondeados y ancho de línea
+$pdf->SetLineStyle(array('width' => 2, 'color' => array(0, 158, 205)));
 
-// Definir las características de la tabla
-$tbl = '<table border="2" cellpadding="2" cellspacing="0" style="border-color: #009ecd; border-radius: 10px; border-width: 2px;">';
+// Definir la estructura de la tabla con 3 columnas
+$data = array(
+    array(
+        '<img src="imagen.jpg" width="80" height="80" />', // Primera columna con imagen
+        'Texto 1', // Segunda columna con texto
+        'Texto 4' // Tercera columna con texto
+    ),
+    array(
+        '', // Dejar la primera columna vacía
+        'Texto 2', // Segunda fila de la segunda columna con texto
+        'Texto 5' // Segunda fila de la tercera columna con texto
+    ),
+    array(
+        '', // Dejar la primera columna vacía
+        'Texto 3', // Tercera fila de la segunda columna con texto
+        '' // Dejar la tercera columna vacía
+    )
+);
 
-// Primera columna con una imagen
-$tbl .= '<tr>';
-$tbl .= '<td rowspan="3"><img src="imagen.jpg" width="100" height="100"></td>'; // Cambia "imagen.jpg" por la ruta de tu imagen
-$tbl .= '<td>Texto 1</td>';
-$tbl .= '</tr>';
+// Establecer el tamaño de las columnas
+$col_width = 60;
+$col_height = 60;
 
-// Segunda columna dividida en 3 filas
-$tbl .= '<tr>';
-$tbl .= '<td>Texto 2</td>';
-$tbl .= '</tr>';
-
-$tbl .= '<tr>';
-$tbl .= '<td>Texto 3</td>';
-$tbl .= '</tr>';
-
-// Tercera columna dividida en 2 filas
-$tbl .= '<tr>';
-$tbl .= '<td rowspan="2">Texto 4</td>';
-$tbl .= '</tr>';
-
-$tbl .= '<tr>';
-$tbl .= '<td>Texto 5</td>';
-$tbl .= '</tr>';
-
-$tbl .= '</table>';
-
-// Agregar la tabla al PDF
-$pdf->writeHTML($tbl, true, false, false, false, '');
+// Iterar sobre los datos y agregar celdas a la tabla
+foreach ($data as $row) {
+    $pdf->StartTransform();
+    $pdf->StartTransform();
+    foreach ($row as $col) {
+        $pdf->Cell($col_width, $col_height, $col, 1, 0, 'C');
+    }
+    $pdf->StopTransform();
+    $pdf->StopTransform();
+    $pdf->Ln();
+}
 
 // Definir el tamaño y tipo de fuente
 $pdf->SetFont('helvetica', '', 12);
