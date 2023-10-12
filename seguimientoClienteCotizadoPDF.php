@@ -16,16 +16,21 @@ $pdf->AddPage();
 // Iniciar la tabla con bordes de color #009ecd
 $html = '<table style="border: 1px solid #009ecd;"><tr>';
 
-// Primera columna con una imagen centrada horizontal y verticalmente
-$html .= '<td style="border: 1px solid #009ecd; text-align: center; vertical-align: middle;">';
+// Primera columna con una imagen centrada horizontalmente
+$html .= '<td style="border: 1px solid #009ecd; text-align: center;">';
+
+// Añadir un contenedor div para centrar verticalmente la imagen
+$html .= '<div style="height: 100px; display: flex; align-items: center; justify-content: center;">';
 $html .= '<img src="assets/images/logogeosatelital.jpg" width="38" height="11" />';
+$html .= '</div>';
+
 $html .= '</td>';
 
 // Segunda columna con tres filas, cada una con borde de color #009ecd
 $html .= '<td style="border: 1px solid #009ecd;">';
 $html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 1</div>';
 $html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 2</div>';
-$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 3</div>';
+$html .= '<div>Fila 3</div>';
 $html .= '</td>';
 
 // Tercera columna con dos filas, cada una con borde de color #009ecd
