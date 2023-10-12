@@ -12,7 +12,6 @@ if (isset($_GET['id'])) {
 // Crear una instancia de la clase PDF
 $pdf = new TCPDF();
 $pdf->AddPage();
-
 // Establecer bordes redondeados y ancho de línea
 $pdf->SetLineStyle(array('width' => 2, 'color' => array(0, 158, 205)));
 
@@ -20,32 +19,27 @@ $pdf->SetLineStyle(array('width' => 2, 'color' => array(0, 158, 205)));
 $data = array(
     array(
         '<img src="imagen.jpg" width="80" height="80" />', // Primera columna con imagen
-        'Texto 1', // Segunda columna con texto
-        'Texto 4' // Tercera columna con texto
-    ),
-    array(
-        '', // Dejar la primera columna vacía
-        'Texto 2', // Segunda fila de la segunda columna con texto
-        'Texto 5' // Segunda fila de la tercera columna con texto
-    ),
-    array(
-        '', // Dejar la primera columna vacía
-        'Texto 3', // Tercera fila de la segunda columna con texto
-        '' // Dejar la tercera columna vacía
+        array('Texto 1', 'Texto 2', 'Texto 3'), // Segunda columna con 3 filas
+        array('Texto 4', 'Texto 5') // Tercera columna con 2 filas
     )
 );
 
 // Establecer el tamaño de las columnas
 $col_width = 60;
-$col_height = 60;
+$col_height = 20;
 
 // Iterar sobre los datos y agregar celdas a la tabla
 foreach ($data as $row) {
-    $pdf->StartTransform();
     foreach ($row as $col) {
-        $pdf->Cell($col_width, $col_height, $col, 1, 0, 'C');
+        if (is_array($col)) {
+            foreach ($col as $subcol) {
+                $pdf->Cell($col_width, $col_height, $subcol, 1, 0, 'C');
+            }
+            $pdf->Ln();
+        } else {
+            $pdf->Cell($col_width, $col_height, $col, 1, 0, 'C');
+        }
     }
-    $pdf->StopTransform();
     $pdf->Ln();
 }
 
