@@ -27,15 +27,15 @@ $html .= '</td>';
 
 // Segunda columna con tres filas, cada una con borde de color #009ecd
 $html .= '<td style="border: 1px solid #009ecd; vertical-align: middle; text-align: center;">';
-$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 1</div>';
-$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 2</div>';
-$html .= '<div>Fila 3</div>';
+$html .= '<div style="border-bottom: 1px solid #009ecd;">20600137094</div>';
+$html .= '<div style="border-bottom: 1px solid #009ecd;">T.(01)739-0556</div>';
+$html .= '<div>Av. Indusdrial 3220 - Independencia</div>';
 $html .= '</td>';
 
 // Tercera columna con dos filas, cada una con borde de color #009ecd
 $html .= '<td style="border: 1px solid #009ecd; vertical-align: middle; text-align: center;">';
-$html .= '<div style="border-bottom: 1px solid #009ecd;">Fila 1</div>';
-$html .= '<div>Fila 2</div>';
+$html .= '<div style="border-bottom: 1px solid #009ecd;">Nro Cotizacion 2023 -'. $id.'</div>';
+$html .= '<div>www.geosatelital.com</div>';
 $html .= '</td>';
 
 // Cerrar la tabla
