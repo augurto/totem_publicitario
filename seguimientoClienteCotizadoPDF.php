@@ -13,9 +13,12 @@ if (isset($_GET['id'])) {
 $pdf = new TCPDF();
 $pdf->AddPage();
 
+// Deshabilitar la impresión de encabezado en todas las páginas
+$pdf->SetPrintHeader(false);
+
 // Ajustar el tamaño de la imagen en la primera columna
 $imagePath = 'assets/images/logogeosatelital.jpg'; // Reemplaza con la ruta de tu imagen
-$pdf->Image($imagePath, 10, 10, 30, 10); // Establece el ancho (80) y alto (40) de la imagen
+$pdf->Image($imagePath, 10, 10, 80, 40); // Establece el ancho (80) y alto (40) de la imagen
 
 // Crear una tabla con 3 columnas
 $pdf->SetFont('helvetica', '', 12);
@@ -74,13 +77,13 @@ if ($result && mysqli_num_rows($result) > 0) {
 $pdf->AddPage();
 
 // Insertar la imagen en la nueva página (segunda página) y ajustar el tamaño para que ocupe toda la página
-$pdf->Image('assets/images/geoprime1.jpg', 0, 0, 210, 297); // Ancho y alto establecidos para llenar la página
+$pdf->Image('assets/images/geoprime1.jpg', 10, 10, 190);
 
 // Agregar una nueva página
 $pdf->AddPage();
 
 // Insertar la imagen en la nueva página (tercera página) y ajustar el tamaño para que ocupe toda la página
-$pdf->Image('assets/images/geoprime2.jpg', 0, 0, 210, 297); // Ancho y alto establecidos para llenar la página
+$pdf->Image('assets/images/geoprime2.jpg', 10, 10, 190);
 
 // Nombre del archivo PDF de salida
 $pdfFileName = "productos.pdf";
