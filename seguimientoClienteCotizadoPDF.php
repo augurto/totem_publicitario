@@ -18,7 +18,7 @@ $pdf->SetPrintHeader(false);
 // Ajustar el tamaño de la imagen en la primera columna
 $imagePath = 'assets/images/logogeosatelital.jpg'; // Ruta de tu imagen
 $imageWidth = 38; // Ancho de la imagen
-$imageHeight = 15; // Alto de la imagen
+$imageHeight = 10; // Alto de la imagen
 
 // Calcular las coordenadas X e Y para centrar la imagen
 $x = 10 + (80 - $imageWidth) / 2;
@@ -35,12 +35,17 @@ $pdf->SetLineWidth(0.2); // Grosor del borde (0.2)
 $pdf->Cell(80, 40, '', 1, 0, 'C', 0);
 
 // Segunda columna para el texto 1 (dividido en 3 filas)
-$pdf->Cell(60, 12.33, 'Texto 1', 1, 1, 'C', 0);
-$pdf->Cell(60, 12.33, 'Texto 2', 1, 1, 'C', 0);
-$pdf->Cell(60, 12.34, 'Texto 3', 1, 1, 'C', 0);
+$y1 = $pdf->GetY(); // Guardar la posición actual en Y
+$pdf->Cell(60, 40, 'Texto 1', 1, 0, 'C', 0);
+$y2 = $pdf->GetY(); // Guardar la nueva posición en Y
+$pdf->SetXY(150, $y1); // Establecer la posición en Y anterior
+$pdf->Cell(60, $y2 - $y1, 'Texto 2', 1, 0, 'C', 0);
+$pdf->SetXY(150, $y2); // Establecer la posición en Y anterior
+$pdf->Cell(60, 40 - ($y2 - $y1), 'Texto 3', 1, 1, 'C', 0);
 
 // Tercera columna para el texto 2
 $pdf->Cell(60, 40, 'Texto 2', 1, 1, 'C', 0);
+
 
 // Mostrar el ID
 $pdf->Cell(0, 10, "ID: $id", 0, 1);
