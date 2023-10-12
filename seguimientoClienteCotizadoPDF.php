@@ -13,29 +13,29 @@ if (isset($_GET['id'])) {
 $pdf = new TCPDF();
 $pdf->AddPage();
 
-
 // Iniciar la tabla con bordes de color #009ecd
 $html = '<table style="border: 1px solid #009ecd;"><tr>';
 
-// Primera columna con una imagen centrada horizontal y verticalmente
-$html .= '<td style="border: 1px solid #009ecd; text-align: center; vertical-align: middle;">';
+// Primera columna con una imagen centrada horizontal y verticalmente y padding superior de 20px
+$html .= '<td style="border: 1px solid #009ecd; text-align: center; vertical-align: middle; padding-top: 20px;">';
 
 // Añadir la imagen
-$html .= '<img src="assets/images/logogeosatelital.jpg" width="90" height="26" />';
+$imagePath = 'assets/images/logogeosatelital.jpg';
+$html .= '<img src="' . $imagePath . '" width="90" height="26" />';
 
 $html .= '</td>';
 
-// Segunda columna con tres filas, cada una con borde de color #009ecd
-$html .= '<td style="border: 1px solid #009ecd; vertical-align: middle; text-align: center;">';
-$html .= '<div style="border-bottom: 1px solid #009ecd; color:#009ecd;">20600137094</div>';
-$html .= '<div style="border-bottom: 1px solid #009ecd; color:#009ecd;">T.(01)739-0556</div>';
-$html .= '<div>Av. Indusdrial 3220 - Independencia</div>';
+// Segunda columna con tres filas, cada una con borde de color #009ecd y color de texto #009ecd
+$html .= '<td style="border: 1px solid #009ecd; text-align: center; padding-top: 20px;">';
+$html .= '<div style="border-bottom: 1px solid #009ecd; color: #009ecd;">20600137094</div>';
+$html .= '<div style="border-bottom: 1px solid #009ecd; color: #009ecd;">T.(01)739-0556</div>';
+$html .= '<div style="color: #009ecd;">Av. Industrial 3220 - Independencia</div>';
 $html .= '</td>';
 
-// Tercera columna con dos filas, cada una con borde de color #009ecd
-$html .= '<td style="border: 1px solid #009ecd; vertical-align: middle; text-align: center;">';
-$html .= '<div style="border-bottom: 1px solid #009ecd;">Nro Cotizacion 2023 -'. $id.'</div>';
-$html .= '<div>www.geosatelital.com</div>';
+// Tercera columna con dos filas, cada una con borde de color #009ecd y color de texto #009ecd
+$html .= '<td style="border: 1px solid #009ecd; text-align: center; padding-top: 20px;">';
+$html .= '<div style="border-bottom: 1px solid #009ecd; color: #009ecd;">Nro Cotizacion 2023 - ' . $id . '</div>';
+$html .= '<div style="color: #009ecd;">www.geosatelital.com</div>';
 $html .= '</td>';
 
 // Cerrar la tabla
