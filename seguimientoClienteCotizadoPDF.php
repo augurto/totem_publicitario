@@ -61,6 +61,16 @@ if ($result && mysqli_num_rows($result) > 0) {
     $pdf->Cell(0, 10, 'No se encontraron productos para este ID.', 0, 1);
 }
 
+
+// Agregar una nueva página
+$pdf->AddPage();
+// Insertar la imagen en la nueva página (segunda página)
+$pdf->Image('assets/images/geoprime1.jpg', 10, 10, 90);
+// Agregar una nueva página
+$pdf->AddPage();
+// Insertar la imagen en la nueva página (segunda página)
+$pdf->Image('assets/images/geoprime2.jpg', 10, 10, 90);
+
 // Nombre del archivo PDF de salida
 $pdfFileName = "productos.pdf";
 
