@@ -16,21 +16,13 @@ $pdf->AddPage();
 // Crear una tabla con 3 columnas
 $pdf->SetFont('helvetica', '', 12);
 $pdf->SetFillColor(0, 158, 205); // Color de fondo para la tabla
-$pdf->Cell(60, 10, '', 0, 0, 'L', 1); // Primera columna para la imagen
-$pdf->Cell(70, 10, '', 0, 0, 'L', 1); // Segunda columna
-$pdf->Cell(70, 10, '', 0, 1, 'L', 1); // Tercera columna
+$pdf->Cell(60, 40, '', 0, 0, 'L', 1); // Primera columna para la imagen
+$pdf->Cell(70, 40, 'Texto 1', 0, 0, 'L', 1); // Segunda columna para el texto 1
+$pdf->Cell(70, 40, 'Texto 2', 0, 1, 'L', 1); // Tercera columna para el texto 2
 
 // Insertar la imagen en la primera columna
-$imagePath = 'assets/images/logogeosatelital.png'; // Reemplaza con la ruta de tu imagen
-$pdf->Image($imagePath, 10, $pdf->GetY() - 10, 40, 40); // Ajusta la posición y el tamaño de la imagen
-
-// Agregar texto a la segunda columna
-$pdf->SetXY(70, $pdf->GetY() - 10); // Ajusta la posición para la segunda columna
-$pdf->MultiCell(70, 10, "Texto 1\nTexto 2\nTexto 3", 0, 'L');
-
-// Agregar texto a la tercera columna
-$pdf->SetXY(130, $pdf->GetY() - 10); // Ajusta la posición para la tercera columna
-$pdf->MultiCell(70, 10, "Texto 4\nTexto 5", 0, 'L');
+$imagePath = 'assets/images/logogeosatelital.jpg'; // Reemplaza con la ruta de tu imagen
+$pdf->Image($imagePath, 10, $pdf->GetY() - 40, 40, 40); // Ajusta la posición y el tamaño de la imagen
 
 // Definir el tamaño y tipo de fuente
 $pdf->SetFont('helvetica', '', 12);
