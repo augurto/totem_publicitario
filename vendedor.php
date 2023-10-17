@@ -288,7 +288,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                             $dniCliente = $row["documentoCliente"];  // Valor de la tabla web_formularios
                                                             if (empty($documentoCliente)) {
                                                                 // Si el valor está vacío, cambiar el fondo de la celda a #ff5b5b (rojo claro)
-                                                                echo '<td style="background-color: #ff5b5b; ">Sin DNI </td>';
+                                                                echo '<td /* style="background-color: #ff5b5b; " */>Sin DNI </td>';
                                                             } else {
                                                             
                                                                 // Realizar la consulta SQL para obtener el valor de la columna documentoCliente de la tabla cliente
