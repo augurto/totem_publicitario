@@ -287,7 +287,6 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                             // Obtener los datos de la tabla cliente para comparar
                                                             $dniCliente = $row["documentoCliente"];  // Valor de la tabla web_formularios
                                                             if (empty($documentoCliente)) {
-                                                                // Si el valor está vacío, cambiar el fondo de la celda a #ff5b5b (rojo claro)
                                                                 echo '<td>Sin DNI </td>';
                                                             } else {
                                                             
@@ -299,7 +298,6 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                                     // Si hay coincidencia en la tabla cliente, cambiar el fondo de la celda
                                                                     echo '<td style="background-color: #0000ff69;color:white;">' . $row["documentoCliente"] . '</td>';
                                                                 } else {
-                                                                    // Si no hay coincidencia en la tabla cliente, mantener el fondo normal
                                                                     echo "<td>" . $row["documentoCliente"] . "</td>";
                                                                 }
                                                             }
@@ -384,7 +382,6 @@ $empresaUser =$_SESSION['empresaUser'] ;
         <script src="assets/libs/metismenu/metisMenu.min.js"></script>
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
-
         <!-- Required datatable js -->
         <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -397,10 +394,8 @@ $empresaUser =$_SESSION['empresaUser'] ;
         <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
         <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
         <script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-
         <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
         <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-        
         <!-- Responsive examples -->
         <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
         <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
