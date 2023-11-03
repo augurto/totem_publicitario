@@ -187,7 +187,7 @@ $dni = $_SESSION['dni'];
                                                 </div>
                                                 <br>
                                                 <?php
-                                                $toke = "apis-token-5679.v7lWG-6VAO-ZzURD7DnTUNKqYKNckbGy";
+                                                $toke = "apis-token-6245.wt-VO39h1kYcilm8CMcL-WdJ6p7C-J-s";
                                                 $curl = curl_init();
                                                 curl_setopt_array($curl, array(
                                                     CURLOPT_URL => " https://api.apis.net.pe/v2/reniec/dni?numero=$documento?api_token=",
