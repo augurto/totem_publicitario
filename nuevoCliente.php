@@ -107,10 +107,12 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                     <label class="form-label">Tipo de Documento</label>
                                                     <div class="col-sm-10">
                                                         <select class="form-control select2" id="tipoDocumento" name="tipoDocumento">
-                                                            <option value="1">DNI</option>
-                                                            <option value="2">Carnet de Extranjería</option>
-                                                            <option value="3">Otros</option>
+                                                            <option value="" disabled selected>Seleccione un tipo de documento</option>
+                                                            <option value="DNI">DNI</option>
+                                                            <option value="CarnetExtranjeria">Carnet de Extranjería</option>
+                                                            <option value="Otro">Otro</option>
                                                         </select>
+
                                                     </div>
                                                 </div>
 
@@ -122,32 +124,22 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 </div>
 
                                                 <script>
-                                                    // Obtener el elemento select
-                                                    const tipoDocumentoSelect = document.getElementById("tipoDocumento");
+                                                    document.getElementById("tipoDocumento").addEventListener("change", function() {
+                                                        const documentoInput = document.getElementById("example-number-input");
+                                                        const selectedValue = this.value;
 
-                                                    // Obtener el elemento de entrada de documento
-                                                    const documentoInput = document.getElementById("documentoInput");
-
-                                                    // Escuchar cambios en el select
-                                                    tipoDocumentoSelect.addEventListener("change", function() {
-                                                        // Obtener el valor seleccionado
-                                                        const selectedValue = tipoDocumentoSelect.value;
-
-                                                        // Establecer la longitud máxima según el tipo de documento seleccionado
-                                                        if (selectedValue === "1") {
-                                                            documentoInput.maxLength = 8; // Máximo 8 dígitos para DNI
-                                                        } else if (selectedValue === "2") {
-                                                            documentoInput.maxLength = 12; // Máximo 12 dígitos para Carnet de Extranjería
+                                                        if (selectedValue === "DNI") {
+                                                            documentoInput.maxLength = 8;
+                                                        } else if (selectedValue === "CarnetExtranjeria") {
+                                                            documentoInput.maxLength = 12;
+                                                        } else if (selectedValue === "Otro") {
+                                                            documentoInput.maxLength = 6;
                                                         } else {
-                                                            documentoInput.maxLength = 6; // Máximo 6 dígitos para Otros
-                                                        }
-
-                                                        // Restablecer el valor si excede la longitud máxima
-                                                        if (documentoInput.value.length > documentoInput.maxLength) {
-                                                            documentoInput.value = documentoInput.value.slice(0, documentoInput.maxLength);
+                                                            documentoInput.maxLength = 9; // Valor predeterminado
                                                         }
                                                     });
                                                 </script>
+
 
                                                 <div class="row mb-6">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
