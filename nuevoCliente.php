@@ -115,6 +115,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
 
                                                     </div>
                                                 </div>
+                                                <br>
 
                                                 <div class="row mb-6">
                                                     <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
@@ -124,21 +125,22 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                 </div>
 
                                                 <script>
-                                                    document.getElementById("tipoDocumento").addEventListener("change", function() {
-                                                        const documentoInput = document.getElementById("example-number-input");
-                                                        const selectedValue = this.value;
+                                                    const documentoInput = document.getElementById("example-number-input");
+                                                    const tipoDocumentoSelect = document.getElementById("tipoDocumento");
 
-                                                        if (selectedValue === "DNI") {
+                                                    tipoDocumentoSelect.addEventListener("change", function() {
+                                                        if (this.value === "DNI") {
                                                             documentoInput.maxLength = 8;
-                                                        } else if (selectedValue === "CarnetExtranjeria") {
+                                                        } else if (this.value === "CarnetExtranjeria") {
                                                             documentoInput.maxLength = 12;
-                                                        } else if (selectedValue === "Otro") {
+                                                        } else if (this.value === "Otro") {
                                                             documentoInput.maxLength = 6;
                                                         } else {
                                                             documentoInput.maxLength = 9; // Valor predeterminado
                                                         }
                                                     });
                                                 </script>
+
 
 
                                                 <div class="row mb-6">
