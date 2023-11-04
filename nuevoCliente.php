@@ -138,7 +138,15 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             documentoInput.maxLength = 9; // Valor predeterminado
                                                         }
                                                     });
+
+                                                    documentoInput.addEventListener("input", function() {
+                                                        const maxLength = parseInt(documentoInput.maxLength, 10);
+                                                        if (this.value.length > maxLength) {
+                                                            this.value = this.value.slice(0, maxLength); // Limitar a la longitud máxima permitida
+                                                        }
+                                                    });
                                                 </script>
+
 
 
 
