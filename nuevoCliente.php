@@ -112,20 +112,19 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                                             <option value="CarnetExtranjeria">Carnet de Extranjería</option>
                                                             <option value="Otro">Otro</option>
                                                         </select>
-
                                                     </div>
                                                 </div>
                                                 <br>
 
                                                 <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                    <label for="documentoInput" class="col-sm-2 col-form-label">Documento</label>
                                                     <div class="col-sm-10">
                                                         <input class="form-control" type="number" id="documentoInput" name="documento">
                                                     </div>
                                                 </div>
 
                                                 <script>
-                                                    const documentoInput = document.getElementById("example-number-input");
+                                                    const documentoInput = document.getElementById("documentoInput");
                                                     const tipoDocumentoSelect = document.getElementById("tipoDocumento");
 
                                                     tipoDocumentoSelect.addEventListener("change", function() {
