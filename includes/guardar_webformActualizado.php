@@ -1,39 +1,9 @@
 <?php
 include 'conexion.php';
-$datosAPI = ''; // Inicializa la variable $datosAPI como una cadena vacía
 
-if (!empty($documento)) {
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.apis.net.pe/v2/reniec/dni?numero=' . $documento,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer apis-token-6245.wt-VO39h1kYcilm8CMcL-WdJ6p7C-J-s'
-        ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-
-    $data = json_decode($response, true);
-
-    $nombre = $data['nombres'];
-    $apellido_paterno = $data['apellidoPaterno'];
-    $apellido_materno = $data['apellidoMaterno'];
-
-    $datosAPI = "$nombre\n$apellido_paterno\n$apellido_materno";
-}
 // Obtener los datos enviados por el formulario
 $datos = $_POST['datos'];
-$datosSunat = $datosAPI; 
+$datosSunat = $_POST['datosSunat'];
 $documento = $_POST['documento'];
 $telefono = $_POST['telefono'];
 $email = $_POST['email'];
