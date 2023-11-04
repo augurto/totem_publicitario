@@ -112,7 +112,7 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             </div>
                                             <script>
                                                 document.getElementById("documento").addEventListener("input", function() {
-                                                    if (this.value.length > 9) {
+                                                    if (this.value.length > 8) {
                                                         this.value = this.value.slice(0, 8); // Limitar a 9 dígitos
                                                     }
                                                 });
