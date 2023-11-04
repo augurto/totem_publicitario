@@ -107,13 +107,14 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                             <div class="row mb-6">
                                                 <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="number" id="documento" name="documento" maxlength="8">
+                                                    <input class="form-control" type="number" id="documento" name="documento" >
                                                 </div>
                                             </div>
+                                            <br>
                                             <script>
                                                 document.getElementById("documento").addEventListener("input", function() {
                                                     if (this.value.length > 8) {
-                                                        this.value = this.value.slice(0, 8); // Limitar a 9 dígitos
+                                                        this.value = this.value.slice(0, 8); // Limitar a 8 dígitos
                                                     }
                                                 });
                                             </script>
