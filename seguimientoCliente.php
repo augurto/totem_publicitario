@@ -807,8 +807,8 @@ $dni = $_SESSION['dni'];
                                             include 'includes/conexion.php';  // Asegúrate de cambiar el nombre del archivo
 
                                             // Consulta a la base de datos
-                                            
-                                            $sql = "SELECT * FROM web_formularios WHERE idOriginal = 4273 or  id_form_web = 4273";  // Modifica la consulta según tus necesidades
+                                            $sql = "SELECT * FROM web_formularios WHERE idOriginal = $idUrl OR id_form_web = $idUrl";
+
                                             $result = mysqli_query($con, $sql);
 
                                             // Generar elementos para cada fila de la consulta
