@@ -103,49 +103,46 @@ $tipoUsuario = $_SESSION['tipoUsuario'];
                                         <div class="row">
                                             <div class="col-lg-12">
 
-                                                <div class="row mb-6">
-                                                    <label class="form-label">Tipo de Documento</label>
-                                                    <div class="col-sm-10">
-                                                        <select class="form-control select2" id="tipoDocumento" name="tipoDocumento">
-                                                            <option value="" disabled selected>Seleccione un tipo de documento</option>
-                                                            <option value="DNI">DNI</option>
-                                                            <option value="CarnetExtranjeria">Carnet de Extranjería</option>
-                                                            <option value="Otro">Otro</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <br>
+                                            <div class="row mb-6">
+    <label class="form-label">Tipo de Documento</label>
+    <div class="col-sm-10">
+        <select class="form-control select2" id="tipoDocumento" name="tipoDocumento">
+            <option value="" disabled selected>Seleccione un tipo de documento</option>
+            <option value="DNI">DNI</option>
+            <option value="CarnetExtranjeria">Carnet de Extranjería</option>
+            <option value="Otro">Otro</option>
+        </select>
+    </div>
+</div>
+<br>
 
-                                                <div class="row mb-6">
-                                                    <label for="documentoInput" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="number" id="documentoInput" name="documento">
-                                                    </div>
-                                                </div>
+<div class="row mb-6">
+    <label for="documentoInput" class="col-sm-2 col-form-label">Documento</label>
+    <div class="col-sm-10">
+        <input class="form-control" type="text" id="documentoInput" name="documento">
+    </div>
+</div>
 
-                                                <script>
-                                                    const documentoInput = document.getElementById("documentoInput");
-                                                    const tipoDocumentoSelect = document.getElementById("tipoDocumento");
+<script>
+    const documentoInput = document.getElementById("documentoInput");
+    const tipoDocumentoSelect = document.getElementById("tipoDocumento");
 
-                                                    tipoDocumentoSelect.addEventListener("change", function() {
-                                                        if (this.value === "DNI") {
-                                                            documentoInput.maxLength = 8;
-                                                        } else if (this.value === "CarnetExtranjeria") {
-                                                            documentoInput.maxLength = 12;
-                                                        } else if (this.value === "Otro") {
-                                                            documentoInput.maxLength = 6;
-                                                        } else {
-                                                            documentoInput.maxLength = 9; // Valor predeterminado
-                                                        }
-                                                    });
+    tipoDocumentoSelect.addEventListener("change", function() {
+        if (this.value === "DNI") {
+            documentoInput.maxLength = 8;
+        } else if (this.value === "CarnetExtranjeria") {
+            documentoInput.maxLength = 12;
+        } else if (this.value === "Otro") {
+            documentoInput.maxLength = 6;
+        } else {
+            documentoInput.maxLength = 50; // Valor predeterminado
+        }
 
-                                                    documentoInput.addEventListener("input", function() {
-                                                        const maxLength = parseInt(documentoInput.maxLength, 10);
-                                                        if (this.value.length > maxLength) {
-                                                            this.value = this.value.slice(0, maxLength); // Limitar a la longitud máxima permitida
-                                                        }
-                                                    });
-                                                </script>
+        // Limpiar el campo de entrada cuando se cambia el tipo de documento
+        documentoInput.value = "";
+    });
+</script>
+
 
 
 
