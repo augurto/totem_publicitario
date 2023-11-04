@@ -807,7 +807,12 @@ $dni = $_SESSION['dni'];
                                             include 'includes/conexion.php';  // Asegúrate de cambiar el nombre del archivo
 
                                             // Consulta a la base de datos
-                                            $sql = "SELECT * FROM web_formularios WHERE YEAR(fecha) = YEAR(CURRENT_DATE) and idOriginal = '$idOriginal' or  id_form_web = '$idOriginal'";  // Modifica la consulta según tus necesidades
+                                            $sql = "SELECT *
+        FROM web_formularios
+        WHERE (idOriginal = '$idOriginal' OR id_form_web = '$idOriginal')
+          AND idOriginal IS NOT NULL AND idOriginal <> ''
+          AND id_form_web IS NOT NULL AND id_form_web <> ''";
+
                                             $result = mysqli_query($con, $sql);
 
                                             // Generar elementos para cada fila de la consulta
