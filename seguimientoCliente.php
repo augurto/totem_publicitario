@@ -11,7 +11,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
 
 // Obtener el valor de $idUrl desde la URL
 $idUrl = $_GET['id'];
-$Original=$_GET['or'];
+$Original = $_GET['or'];
 
 // Realizar la consulta SQL para obtener los valores de email, telefono, mensaje, fecha e id_user
 $selectQuery = "SELECT * FROM web_formularios WHERE id_form_web = $idUrl";
@@ -170,6 +170,40 @@ $dni = $_SESSION['dni'];
 
                                     <h4 class="card-title">Datos del Cliente </h4>
                                     <br>
+                                    <!-- datos de api -->
+
+                                    <?php
+                                    $curl = curl_init();
+
+                                    curl_setopt_array($curl, array(
+                                        CURLOPT_URL => "https://api.apis.net.pe/v2/reniec/dni?numero=$documento",
+                                        CURLOPT_RETURNTRANSFER => true,
+                                        CURLOPT_ENCODING => '',
+                                        CURLOPT_MAXREDIRS => 10,
+                                        CURLOPT_TIMEOUT => 0,
+                                        CURLOPT_FOLLOWLOCATION => true,
+                                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                        CURLOPT_CUSTOMREQUEST => 'GET',
+                                        CURLOPT_HTTPHEADER => array(
+                                            'Authorization: Bearer apis-token-6245.wt-VO39h1kYcilm8CMcL-WdJ6p7C-J-s'
+                                        ),
+                                    ));
+
+                                    $response = curl_exec($curl);
+
+                                    curl_close($curl);
+
+                                    $data = json_decode($response, true);
+
+                                    $nombre = $data['nombres'];
+                                    $apellido_paterno = $data['apellidoPaterno'];
+                                    $apellido_materno = $data['apellidoMaterno'];
+
+                                    // Concatenar nombre y apellidos
+                                    $nombres_apellidos = "$nombre $apellido_paterno $apellido_materno";
+                                    ?>
+
+                                    <!-- fin de datos api -->
 
                                     <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
                                     <form id="myForm" action="includes/guardar_webformActualizado.php" method="post">
@@ -187,65 +221,47 @@ $dni = $_SESSION['dni'];
 
                                                 </div>
                                                 <br>
-                                                <?php
-                                                $toke = "apis-token-6245.wt-VO39h1kYcilm8CMcL-WdJ6p7C-J-s";
-                                                $curl = curl_init();
-                                                curl_setopt_array($curl, array(
-                                                    CURLOPT_URL => " https://api.apis.net.pe/v2/reniec/dni?numero=$documento?api_token=",
-
-                                                    CURLOPT_RETURNTRANSFER => true,
-                                                    CURLOPT_CUSTOMREQUEST => "GET",
-                                                    CURLOPT_SSL_VERIFYPEER => false
-                                                ));
-                                                $response = curl_exec($curl);
-                                                $err = curl_error($curl);
-                                                curl_close($curl);
-                                                if ($err) {
-                                                    echo "cURL Error #:" . $err;
-                                                } else {
-                                                    $data = json_decode($response, true);
-                                                    if ($data['success']) {
-                                                        $nombreCompleto = $data['data']['nombre_completo'];
-
-                                                        echo '
-                                                    <div class="row mb-6">
-                                                        <label for="example-text-input" class="col-sm-2 col-form-label">Datos Reniec</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                                id="example-text-input" name="datosSunat" value="' . $nombreCompleto . '" readonly>
-                                                        </div>
-                                                    </div>';
-                                                    } else {
-                                                        echo "No se pudo obtener información para el DNI proporcionado.";
-                                                    }
-                                                }
-                                                ?>
-                                                <br>
-
                                                 <?php if (empty($documento)) : ?>
-                                                    <div class="row mb-6">
-                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
-                                                        </div>
+                                                <div class="row mb-6">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" >
+                                                </div>
+                                            </div>
+                                            <br>
+                                                <div class="row mb-6">
+                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
                                                     </div>
-                                                <?php else : ?>
-                                                    <div class="row mb-6">
-                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
-                                                        </div>
+                                                </div>
+                                            <?php else : ?>
+                                               <div class="row mb-6">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                <div class="col-sm-10">
+                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <br>
+                                                <div class="row mb-6">
+                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                    <div class="col-sm-10">
+
+                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
                                                     </div>
-                                                <?php endif; ?>
+                                                </div>
+                                            <?php endif; ?>
 
 
-                                                <script>
-                                                    document.getElementById("example-number-input").addEventListener("input", function() {
-                                                        if (this.value.length > 9) {
-                                                            this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
-                                                        }
-                                                    });
-                                                </script>
+                                            <script>
+                                                document.getElementById("example-number-input").addEventListener("input", function() {
+                                                    if (this.value.length > 9) {
+                                                        this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
+                                                    }
+                                                });
+                                            </script>
+                                            <br>
+                                            <!-- end row -->
                                                 <br>
                                                 <!-- end row -->
                                                 <div class="row mb-6">
