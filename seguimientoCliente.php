@@ -678,13 +678,6 @@ $dni = $_SESSION['dni'];
 
 
 
-
-                                                <div class="mt-6">
-                                                    <label class="mb-1">Mensaje </label>
-
-                                                    <textarea class="form-control" maxlength="225" rows="3" readonly><?php echo $mensaje; ?></textarea>
-
-                                                </div>
                                                 <div class="mt-6">
                                                     <label class="mb-1">Comentario</label>
 
@@ -694,16 +687,8 @@ $dni = $_SESSION['dni'];
                                                 <br>
                                                 <?php
                                                 $prospectoExistente = $_GET['pr'];
-
-                                                if (empty($mensajeOriginal)) {
-                                                    echo "Mensaje Original : " . $mensaje . "<br>";
-                                                } else {
-                                                    echo "Mensaje Original : " . $mensajeOriginal . "<br>";
-                                                }
-
                                                 // Restar 5 horas a la fecha
                                                 $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
-                                                echo "Atendido por: " . ucwords($nombreUserEdicion) . "<br>Fecha: " . $nuevaFecha;
                                                 ?>
 
 
