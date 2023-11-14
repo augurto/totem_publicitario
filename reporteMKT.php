@@ -261,9 +261,9 @@
                             <div class="col-lg-3">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title mb-4">Vendidos</h4>
+                                        <h4 class="card-title mb-4">Factura</h4>
 
-                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
+                                        <div id="spline_area" class="apex-charts" dir="ltr">431,90 PEN</div>                      
                                     </div>
                                 </div><!--end card-->
                             </div>
