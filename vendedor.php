@@ -159,7 +159,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                 $sql = "SELECT 
                                                 id_form_web,date_create,datos_form,email,telefono,mensaje,fecha,URL,nombre_formulario,ip_formulario,
                                                 time,estado_web,estado_web,fuente_dato,id_user,idEmpresa,documentoCliente,tipoCliente,prospecto,
-                                                observacionCliente,idid,estadoCliente
+                                                observacionCliente,idid,estadoCliente, idOriginal
                                                  FROM web_formularios where estado_web != 99 /* and prospecto !=4  */and idEmpresa= $empresaUser ORDER BY fecha DESC";
                                                 
                                                 $result = $conn->query($sql);
@@ -191,6 +191,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                                                                            
                                                         $documentoCliente=$row["documentoCliente"];
                                                         $fuente_dato = $row["fuente_dato"];
+                                                        $original = $row["idOriginal"];;
 
                                                        
                                                             // Obtener el valor de $row["estado_web"]
@@ -211,7 +212,7 @@ $empresaUser =$_SESSION['empresaUser'] ;
                                                             } elseif ($estado_web == 1) {
                                                                 echo "<td>
                                                                         
-                                                                            <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&pr=" . $a . "&f=" . $tipoFuente . "'  class='btn btn-primary waves-effect waves-light'>
+                                                                            <a href='seguimientoCliente.php?id=" . $row['id_form_web'] . "&or=" . $original . "&f=" . $tipoFuente . "'  class='btn btn-primary waves-effect waves-light'>
                                                                             Atendido
                                                                             </a>
 
