@@ -800,7 +800,7 @@ $dni = $_SESSION['dni'];
                                             include 'includes/conexion.php';  // Asegúrate de cambiar el nombre del archivo
 
                                             // Consulta a la base de datos
-                                            $sql = "SELECT * FROM web_formularios WHERE idOriginal = $idUrl OR id_form_web = $idUrl OR idOriginal = $Original OR id_form_web = $Original";
+                                            $sql = "SELECT * FROM web_formularios WHERE idOriginal = $idUrl OR id_form_web = $idUrl OR idOriginal = $Original OR id_form_web = $Original order by fecha desc ";
 
                                             $result = mysqli_query($con, $sql);
 
