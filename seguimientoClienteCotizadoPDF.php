@@ -30,7 +30,7 @@ class PDF extends FPDF
 $pdf = new PDF();
 $pdf->AddPage();
 
-/
+
 // ...
 
 // Nombre del archivo PDF de salida
