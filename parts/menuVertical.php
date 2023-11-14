@@ -76,6 +76,12 @@ if ($resultadoContarFormularios) {
                 
                 <!-- end li -->
                 <li>
+                        <a href="vendedor.php" class="waves-effect">
+                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"> <?php echo $conteoRegistros ; ?></span>
+                            <span>Inicio</span>
+                        </a>
+                </li>
+                <li>
                     <?php
                     if ($tipoUsuario == 3) {
                         echo '<a href="vendidos.php" class="waves-effect">
