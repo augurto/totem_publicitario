@@ -1,5 +1,5 @@
 <?php
-require('fpdf/fpdf.php');
+require('./fpdf/fpdf.php');
 require('includes/conexion.php');
 
 // Obtener el ID de la URL
