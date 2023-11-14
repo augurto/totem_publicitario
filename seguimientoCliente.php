@@ -210,16 +210,7 @@ $dni = $_SESSION['dni'];
                                         <div class="row">
                                             <div class="col-lg-12">
 
-                                                <div class="row mb-6">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>">
-
-
-                                                    </div>
-
-
-                                                </div>
+                                                
                                                 <br>
                                                 <?php if (empty($documento)) : ?>
                                                 <div class="row mb-6">
