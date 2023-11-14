@@ -11,6 +11,7 @@ include 'includes/conexion.php'; // Incluir el archivo de conexión
 
 // Obtener el valor de $idUrl desde la URL
 $idUrl = $_GET['id'];
+$Original=$_GET['or'];
 
 // Realizar la consulta SQL para obtener los valores de email, telefono, mensaje, fecha e id_user
 $selectQuery = "SELECT * FROM web_formularios WHERE id_form_web = $idUrl";
@@ -807,7 +808,7 @@ $dni = $_SESSION['dni'];
                                             include 'includes/conexion.php';  // Asegúrate de cambiar el nombre del archivo
 
                                             // Consulta a la base de datos
-                                            $sql = "SELECT * FROM web_formularios WHERE idOriginal = $idUrl OR id_form_web = $idUrl";
+                                            $sql = "SELECT * FROM web_formularios WHERE idOriginal = $idUrl OR id_form_web = $idUrl OR idOriginal = $Original OR id_form_web = $Original";
 
                                             $result = mysqli_query($con, $sql);
 
