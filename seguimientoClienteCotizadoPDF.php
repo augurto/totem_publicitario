@@ -1,9 +1,6 @@
 <?php
-require './dompdf/src/Dompdf.php';
-require 'includes/conexion.php';
-
-use Dompdf\Dompdf;
-use Dompdf\Options;
+require('fpdf/fpdf.php');
+require('includes/conexion.php');
 
 // Obtener el ID de la URL
 if (isset($_GET['id'])) {
@@ -12,12 +9,26 @@ if (isset($_GET['id'])) {
     die("ID no proporcionado en la URL");
 }
 
-// Crear una instancia de la clase Dompdf
-$options = new Options();
-$options->set('isHtml5ParserEnabled', true);
-$options->set('isPhpEnabled', true);
+class PDF extends FPDF
+{
+    // Función para encabezado
+    function Header()
+    {
+        // Puedes personalizar el encabezado aquí
+        $this->Cell(0, 10, 'Encabezado del PDF', 0, 1, 'C');
+    }
 
-$dompdf = new Dompdf($options);
+    // Función para pie de página
+    function Footer()
+    {
+        // Puedes personalizar el pie de página aquí
+        $this->Cell(0, 10, 'Pie de página del PDF', 0, 1, 'C');
+    }
+}
+
+// Crear una instancia de la clase PDF
+$pdf = new PDF();
+$pdf->AddPage();
 
 // ...
 
@@ -37,25 +48,20 @@ if ($resultCliente && mysqli_num_rows($resultCliente) > 0) {
     // Concatenar nombre y apellidos
     $nombresApellidosCliente = "$nombreCliente $apellidoPaternoCliente $apellidoMaternoCliente";
 
-    // Generar el contenido HTML con la información del cliente
-    $htmlCliente = '<h1>Información del Cliente</h1>';
-    $htmlCliente .= '<p>' . $nombresApellidosCliente . '</p>';
-
-    // Cargar el contenido HTML en dompdf
-    $dompdf->loadHtml($htmlCliente);
-
-    // Establecer el tamaño del papel y la orientación
-    $dompdf->setPaper('A4', 'portrait');
-
-    // Renderizar el contenido HTML en PDF
-    $dompdf->render();
-
-    // Nombre del archivo PDF de salida
-    $pdfFileName = "cliente_informacion.pdf";
-
-    // Descargar el archivo PDF
-    $dompdf->stream($pdfFileName, array('Attachment' => 0));
+    // Agregar información del cliente al PDF
+    $pdf->SetFont('Arial', '', 12);
+    $pdf->Cell(0, 10, "Información del Cliente", 0, 1, 'C');
+    $pdf->Ln(10);
+    $pdf->MultiCell(0, 10, $nombresApellidosCliente, 0, 'C');
 } else {
     die("No se encontró información del cliente para este ID.");
 }
+
+// ...
+
+// Nombre del archivo PDF de salida
+$pdfFileName = "cliente_informacion.pdf";
+
+// Salida del PDF al navegador
+$pdf->Output($pdfFileName, 'I');
 ?>
