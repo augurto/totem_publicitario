@@ -1,7 +1,7 @@
 <?php
 $token = 'EAAkOIS6U3UIBO9Sz1rAdOhNpYo5ZBC4gCN4wZAtcwpQKjZCJ4u7vN92oEOmDDM0seHZBC4k8MvaBNKMkG4qwUpto4kVjY5i0sZB035BO2u22n49Q8hZAYVSSEbZCUrDDNVVGfsa83yyqbJaSpo13WZBV2AvzQcaMa2ggQJHgKznZCUEO7oPCu90rtLIZCunIuh644nDtdgnu421whfc6fwGiRJlhZBRYIxraPRoFtzUtw0ZBhVcTJE4Xz4uK';
 
-$telefono = $_POST['form_fields']['field_2b1861c'];
+$telefono = $_POST['form_fields']['field_2b1861c']; 
 
 $url = 'https://graph.facebook.com/v15.0/166625639867609/messages';
 $mensaje = ''
