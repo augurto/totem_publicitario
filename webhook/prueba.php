@@ -10,8 +10,8 @@ $data = file_get_contents("php://input");
 parse_str($data, $formData);
 
 // Preparar la consulta SQL para insertar datos en la tabla
-$query = "INSERT INTO formulario_prueba (id_formulario, nombres, email, telefono, mensaje, documento, id_form, nombre_form) 
-          VALUES (NULL, '{$formData['Nombres']}', '{$formData['Email']}', '{$formData['Telefono']}', '{$formData['Mensaje']}', '{$formData['Documento']}', '{$formData['form_id']}', '{$formData['form_name']}')";
+$query = "INSERT INTO formulario_prueba ( nombres, telefono) 
+          VALUES ('{$formData['Nombres']}', '{$formData['Telefono']}')";
 
 // Ejecutar la consulta
 $result = mysqli_query($con, $query);
