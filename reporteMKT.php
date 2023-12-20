@@ -1,79 +1,79 @@
 <?php
-        session_start();
-        if (!isset($_SESSION['usuario'])) {
-            // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
-            header("Location: login.php");
-            exit();
-        }
-        include 'includes/conexion.php'; // Incluir el archivo de conexión
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
+    header("Location: login.php");
+    exit();
+}
+include 'includes/conexion.php'; // Incluir el archivo de conexión
 
-        $usuario = $_SESSION['usuario'];
-        $dni = $_SESSION['dni'];
-        $tipoUsuario = $_SESSION['tipoUsuario'];
+$usuario = $_SESSION['usuario'];
+$dni = $_SESSION['dni'];
+$tipoUsuario = $_SESSION['tipoUsuario'];
 
 
-        // Realiza la consulta SQL para el primer gráfico
-        $start = $_GET['inicio']; // Obtén el valor de "start" desde la URL
-        $end = $_GET['fin']; // Obtén el valor de "end" desde la URL
+// Realiza la consulta SQL para el primer gráfico
+$start = $_GET['inicio']; // Obtén el valor de "start" desde la URL
+$end = $_GET['fin']; // Obtén el valor de "end" desde la URL
 
-        $sql = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, tc.descripcionTipoCliente, COUNT(wf.tipoCliente) AS conteo
+$sql = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, tc.descripcionTipoCliente, COUNT(wf.tipoCliente) AS conteo
         FROM web_formularios wf
         INNER JOIN tipoCliente tc ON wf.tipoCliente = tc.idTipoCliente
         WHERE wf.fecha BETWEEN '$start' AND '$end' 
         GROUP BY mes_anio, tc.descripcionTipoCliente
         ORDER BY mes_anio";
 
-        $result = mysqli_query($con, $sql);
+$result = mysqli_query($con, $sql);
 
-        // Prepara los datos para el primer gráfico en formato JSON
-        $data = array();
-        $categorias = array();
+// Prepara los datos para el primer gráfico en formato JSON
+$data = array();
+$categorias = array();
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $mes_anio = $row['mes_anio'];
-            $descripcionTipoCliente = $row['descripcionTipoCliente'];
-            $conteo = (int)$row['conteo'];
+while ($row = mysqli_fetch_assoc($result)) {
+    $mes_anio = $row['mes_anio'];
+    $descripcionTipoCliente = $row['descripcionTipoCliente'];
+    $conteo = (int)$row['conteo'];
 
-            if (!in_array($descripcionTipoCliente, $categorias)) {
-                $categorias[] = $descripcionTipoCliente;
-            }
+    if (!in_array($descripcionTipoCliente, $categorias)) {
+        $categorias[] = $descripcionTipoCliente;
+    }
 
-            if (!isset($data[$mes_anio])) {
-                $data[$mes_anio] = array();
-            }
+    if (!isset($data[$mes_anio])) {
+        $data[$mes_anio] = array();
+    }
 
-            $data[$mes_anio][$descripcionTipoCliente] = $conteo;
-        }
+    $data[$mes_anio][$descripcionTipoCliente] = $conteo;
+}
 
-        // Realiza la consulta SQL para el nuevo gráfico
-        $sqlFuente = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, f.descripcionFuente, COUNT(*) AS conteo
+// Realiza la consulta SQL para el nuevo gráfico
+$sqlFuente = "SELECT DATE_FORMAT(wf.fecha, '%b %Y') AS mes_anio, f.descripcionFuente, COUNT(*) AS conteo
               FROM web_formularios wf
               INNER JOIN fuente f ON wf.prospecto = f.id_fuente
               WHERE wf.prospecto IS NOT NULL AND wf.fecha BETWEEN '$start' AND '$end'
               GROUP BY mes_anio, f.descripcionFuente
               ORDER BY mes_anio, f.descripcionFuente";
 
-        $resultFuente = mysqli_query($con, $sqlFuente);
+$resultFuente = mysqli_query($con, $sqlFuente);
 
-        // Prepara los datos para el nuevo gráfico en formato JSON
-        $dataFuente = array();
-        $categoriasFuente = array();
+// Prepara los datos para el nuevo gráfico en formato JSON
+$dataFuente = array();
+$categoriasFuente = array();
 
-        while ($row = mysqli_fetch_assoc($resultFuente)) {
-            $mes_anio = $row['mes_anio'];
-            $descripcionFuente = $row['descripcionFuente'];
-            $conteo = (int)$row['conteo'];
+while ($row = mysqli_fetch_assoc($resultFuente)) {
+    $mes_anio = $row['mes_anio'];
+    $descripcionFuente = $row['descripcionFuente'];
+    $conteo = (int)$row['conteo'];
 
-            if (!in_array($descripcionFuente, $categoriasFuente)) {
-                $categoriasFuente[] = $descripcionFuente;
-            }
+    if (!in_array($descripcionFuente, $categoriasFuente)) {
+        $categoriasFuente[] = $descripcionFuente;
+    }
 
-            if (!isset($dataFuente[$mes_anio])) {
-                $dataFuente[$mes_anio] = array();
-            }
+    if (!isset($dataFuente[$mes_anio])) {
+        $dataFuente[$mes_anio] = array();
+    }
 
-            $dataFuente[$mes_anio][$descripcionFuente] = $conteo;
-        }
+    $dataFuente[$mes_anio][$descripcionFuente] = $conteo;
+}
 
 ?>
 <!doctype html>
@@ -106,13 +106,15 @@
     <!-- google -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
             var jsonData = <?php echo json_encode($data); ?>;
             var categorias = <?php echo json_encode($categorias); ?>;
-            
+
             // Ordenar el array de categorías (meses y años) en orden cronológico
             categorias.sort(function(a, b) {
                 return new Date(a) - new Date(b);
@@ -134,11 +136,19 @@
             }
 
             var options = {
-                title: 'Conteo de Categorías por Mes y Año',
-                hAxis: { title: 'Mes y Año' },
-                vAxis: { title: 'Conteo' },
+                title: 'Conteo por tipo de Cliente por Mes y Año',
+                hAxis: {
+                    title: 'Mes y Año'
+                },
+                vAxis: {
+                    title: 'Conteo'
+                },
                 seriesType: 'bars',
-                series: { 5: { type: 'line' } } // Opcional: para mostrar una línea
+                series: {
+                    5: {
+                        type: 'line'
+                    }
+                } // Opcional: para mostrar una línea
             };
 
             var chart = new google.visualization.ComboChart(document.getElementById('columnchart_material'));
@@ -147,13 +157,15 @@
     </script>
 
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
         google.charts.setOnLoadCallback(drawSecondChart);
 
         function drawSecondChart() {
             var jsonDataFuente = <?php echo json_encode($dataFuente); ?>;
             var categoriasFuente = <?php echo json_encode($categoriasFuente); ?>;
-            
+
             // Ordenar el array de categoríasFuente (meses y años) en orden cronológico
             categoriasFuente.sort(function(a, b) {
                 return new Date(a) - new Date(b);
@@ -176,8 +188,12 @@
 
             var optionsFuente = {
                 title: 'Conteo de Categorías de Fuente por Mes y Año',
-                hAxis: { title: 'Mes y Año' },
-                vAxis: { title: 'Conteo' },
+                hAxis: {
+                    title: 'Mes y Año'
+                },
+                vAxis: {
+                    title: 'Conteo'
+                },
                 seriesType: 'bars' // Configuración para mostrar solo columnas
             };
 
@@ -186,7 +202,7 @@
         }
     </script>
 
-        
+
 
 </head>
 
@@ -223,127 +239,183 @@
                 <!-- end page title -->
                 <!-- Inicio bloque 1 -->
                 <div class="row">
-                        
-                            <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">Filtro por Fechas</h4>
-                                        
-                                        <div>
-                                                
-                                                <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                                    <input type="text" class="form-control" name="start" placeholder="Fecha Inicio" />
-                                                    <input type="text" class="form-control" name="end" placeholder="Fecha Fin" />
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
-                                                            <i class="fa fa-search"></i> <!-- Icono de lupa -->
-                                                        </button>
-                                                    </div>
-                                                </div>
 
-                                                <script type="text/javascript">
-                                                    document.addEventListener("DOMContentLoaded", function () {
-                                                        document.getElementById("searchButton").addEventListener("click", function () {
-                                                            var startDate = document.querySelector("input[name='start']").value;
-                                                            var endDate = document.querySelector("input[name='end']").value;
-                                                            
-                                                            // Construye la URL con las fechas y redirige a la página
-                                                            var url = "reporteMKT.php?inicio=" + startDate + "&fin=" + endDate;
-                                                            window.location.href = url;
-                                                        });
-                                                    });
-                                                </script>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Filtro por Fechas</h4>
 
-                                            </div>                                   
+                                <div>
+
+                                    <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                        <input type="text" class="form-control" name="start" placeholder="Fecha Inicio" />
+                                        <input type="text" class="form-control" name="end" placeholder="Fecha Fin" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                                                <i class="fa fa-search"></i> <!-- Icono de lupa -->
+                                            </button>
+                                        </div>
                                     </div>
-                                </div><!--end card-->
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">Factura</h4>
 
-                                        <div id="spline_area" class="apex-charts" dir="ltr">431,90 PEN</div>                      
-                                    </div>
-                                </div><!--end card-->
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">No gestionables</h4>
+                                    <script type="text/javascript">
+                                        document.addEventListener("DOMContentLoaded", function() {
+                                            document.getElementById("searchButton").addEventListener("click", function() {
+                                                var startDate = document.querySelector("input[name='start']").value;
+                                                var endDate = document.querySelector("input[name='end']").value;
 
-                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
-                                    </div>
-                                </div><!--end card-->
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">Spam</h4>
+                                                // Construye la URL con las fechas y redirige a la página
+                                                var url = "reporteMKT.php?inicio=" + startDate + "&fin=" + endDate;
+                                                window.location.href = url;
+                                            });
+                                        });
+                                    </script>
 
-                                        <div id="spline_area" class="apex-charts" dir="ltr"></div>                      
-                                    </div>
-                                </div><!--end card-->
-                            </div>
-
-                        </div>
-                <!-- end row -->
-                <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    
-                                    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-                                    
-                                </div><!--end card-->
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="card">
-                                <div id="second_chart" style="width: 800px; height: 500px;"></div>
                                 </div>
                             </div>
-                        </div> 
-                        <script type="text/javascript">
-                            document.addEventListener("DOMContentLoaded", function () {
-                                var jsonData = <?php echo json_encode($data); ?>;
-                                var categorias = <?php echo json_encode($categorias); ?>;
+                        </div><!--end card-->
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Factura</h4>
 
-                                var options = {
-                                    chart: { height: 350, type: "bar", toolbar: { show: !1 } },
-                                    plotOptions: {
-                                        bar: { horizontal: !1, columnWidth: "45%", endingShape: "rounded" },
+                                <div id="spline_area" class="apex-charts" dir="ltr">1.074,11 PEN</div>
+                            </div>
+                        </div><!--end card-->
+                    </div>
+                    <?php
+                    include 'includes/conexion.php'; // Incluir el archivo de conexión
+
+                    // Consulta SQL para obtener la cantidad de registros
+                    $consulta = "SELECT COUNT(*) AS cantidad FROM web_formularios WHERE estado_web = 1 AND prospecto = 1";
+
+                    // Ejecutar la consulta
+                    $resultado = mysqli_query($con, $consulta);
+
+                    // Inicializar la variable de cantidad
+                    $cantidadRegistros = 0;
+
+                    // Verificar si la consulta fue exitosa
+                    if ($resultado) {
+                        // Obtener el resultado como un array asociativo
+                        $fila = mysqli_fetch_assoc($resultado);
+
+                        // Obtener la cantidad de registros
+                        $cantidadRegistros = $fila['cantidad'];
+                    } else {
+                        // Mostrar un mensaje de error si la consulta falla
+                        echo "Error en la consulta: " . mysqli_error($con);
+                    }
+
+                    // No es necesario cerrar la conexión aquí, ya que se incluye en el archivo de conexión
+                    ?>
+
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">No gestionables</h4>
+                                <div id="spline_area" class="apex-charts" dir="ltr"><?php echo $cantidadRegistros; ?></div>
+                            </div>
+                        </div><!--end card-->
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Spam</h4>
+
+                                <div id="spline_area" class="apex-charts" dir="ltr">9</div>
+                            </div>
+                        </div><!--end card-->
+                    </div>
+
+                </div>
+                <!-- end row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+
+                            <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+
+                        </div><!--end card-->
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div id="second_chart" style="width: 800px; height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var jsonData = <?php echo json_encode($data); ?>;
+                        var categorias = <?php echo json_encode($categorias); ?>;
+
+                        var options = {
+                            chart: {
+                                height: 350,
+                                type: "bar",
+                                toolbar: {
+                                    show: !1
+                                }
+                            },
+                            plotOptions: {
+                                bar: {
+                                    horizontal: !1,
+                                    columnWidth: "45%",
+                                    endingShape: "rounded"
+                                },
+                            },
+                            dataLabels: {
+                                enabled: !1
+                            },
+                            stroke: {
+                                show: !0,
+                                width: 2,
+                                colors: ["transparent"]
+                            },
+                            colors: ["#5867c3", "#34c38f", "#f9c341"],
+                            xaxis: {
+                                categories: categorias, // Utiliza los meses y años como etiquetas
+                            },
+                            yaxis: {
+                                title: {
+                                    text: "$ (thousands)"
+                                }
+                            },
+                            grid: {
+                                borderColor: "#f1f1f1",
+                                padding: {
+                                    bottom: 10
+                                }
+                            },
+                            fill: {
+                                opacity: 1
+                            },
+                            tooltip: {
+                                y: {
+                                    formatter: function(e) {
+                                        return "$ " + e + " thousands";
                                     },
-                                    dataLabels: { enabled: !1 },
-                                    stroke: { show: !0, width: 2, colors: ["transparent"] },
-                                    colors: ["#5867c3", "#34c38f", "#f9c341"],
-                                    xaxis: {
-                                        categories: categorias, // Utiliza los meses y años como etiquetas
-                                    },
-                                    yaxis: { title: { text: "$ (thousands)" } },
-                                    grid: { borderColor: "#f1f1f1", padding: { bottom: 10 } },
-                                    fill: { opacity: 1 },
-                                    tooltip: {
-                                        y: {
-                                            formatter: function (e) {
-                                                return "$ " + e + " thousands";
-                                            },
-                                        },
-                                    },
-                                    legend: { offsetY: 7 },
-                                    series: jsonData.map(function (item) {
-                                        return {
-                                            name: item.categoria,
-                                            data: [item.conteo], // Utiliza el conteo correspondiente a cada categoría
-                                        };
-                                    }),
+                                },
+                            },
+                            legend: {
+                                offsetY: 7
+                            },
+                            series: jsonData.map(function(item) {
+                                return {
+                                    name: item.categoria,
+                                    data: [item.conteo], // Utiliza el conteo correspondiente a cada categoría
                                 };
+                            }),
+                        };
 
-                                var chart = new ApexCharts(
-                                    document.querySelector("#column_chart"),
-                                    options
-                                );
-                                chart.render();
-                            });
-                        </script> 
+                        var chart = new ApexCharts(
+                            document.querySelector("#column_chart"),
+                            options
+                        );
+                        chart.render();
+                    });
+                </script>
                 <div class="row">
                     <div class="col-xl-7">
                         <div class="card">
@@ -538,7 +610,7 @@
                 </div>
                 <!-- end row -->
                 <!-- FIN bloque 1 -->
-               
+
                 <!-- End Page-content -->
 
 
