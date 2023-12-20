@@ -313,7 +313,7 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">No gestionables</h4>
+                                <h4 class="card-title mb-4">Cant. CLientes Nuevos</h4>
                                 <div id="spline_area" class="apex-charts" dir="ltr"><?php echo $cantidadRegistros; ?></div>
                             </div>
                         </div><!--end card-->
