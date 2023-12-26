@@ -219,6 +219,7 @@ $dni = $_SESSION['dni'];
                                                             <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>">
                                                         </div>
                                                     </div>
+                                                    <br>
                                                     <div class="row mb-6">
                                                         <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                         <div class="col-sm-8">
@@ -231,6 +232,30 @@ $dni = $_SESSION['dni'];
                                                             </button>
                                                         </div>
                                                     </div>
+                                                    <script>
+                                                        function buscarDatos() {
+                                                            // Obtener el valor del documento
+                                                            var documento = $("#documento").val();
+
+                                                            // Realizar la llamada a la API PHP
+                                                            $.ajax({
+                                                                url: 'includes/consulta_dni-php', // Cambia esto al nombre de tu archivo PHP
+                                                                method: 'POST',
+                                                                data: {
+                                                                    documento: documento
+                                                                },
+                                                                dataType: 'json',
+                                                                success: function(data) {
+                                                                    // Rellenar los campos con los datos obtenidos
+                                                                    $("#nombre").val(data.nombre);
+                                                                    $("#apellido").val(data.apellido);
+                                                                },
+                                                                error: function() {
+                                                                    alert("Error al buscar datos");
+                                                                }
+                                                            });
+                                                        }
+                                                    </script>
                                                     <br>
                                                     <div class="row mb-6">
                                                         <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
@@ -242,6 +267,12 @@ $dni = $_SESSION['dni'];
                                                     <div class="row mb-6">
                                                         <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                         <div class="col-sm-10">
+                                                            <label for="nombre">Nombre:</label>
+                                                            <input type="text" id="nombre" name="nombre" class="form-control" disabled>
+
+                                                            <label for="apellido">Apellido:</label>
+                                                            <input type="text" id="apellido" name="apellido" class="form-control" disabled>
+
                                                             <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
                                                         </div>
                                                     </div>
