@@ -210,49 +210,61 @@ $dni = $_SESSION['dni'];
                                         <div class="row">
                                             <div class="col-lg-12">
 
-                                                
+
                                                 <br>
                                                 <?php if (empty($documento)) : ?>
-                                                <div class="row mb-6">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" >
-                                                </div>
-                                            </div>
-                                            <br>
-                                                <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
+                                                    <div class="row mb-6">
+                                                        <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php else : ?>
-                                               <div class="row mb-6">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                <div class="col-sm-10">
-                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
-                                                </div>
-                                            </div>
-                                            <br>
-                                                <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
-
-                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
+                                                    <div class="row mb-6">
+                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <button type="button" class="btn btn-primary" onclick="buscarDatos()">
+                                                                <!-- Agrega el icono de búsqueda de Bootstrap -->
+                                                                <span class="glyphicon glyphicon-search"></span> Buscar
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php endif; ?>
+                                                    <br>
+                                                    <div class="row mb-6">
+                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
+                                                        </div>
+                                                    </div>
+                                                <?php else : ?>
+                                                    <div class="row mb-6">
+                                                        <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row mb-6">
+                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                        <div class="col-sm-10">
+
+                                                            <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
 
 
-                                            <script>
-                                                document.getElementById("example-number-input").addEventListener("input", function() {
-                                                    if (this.value.length > 9) {
-                                                        this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
-                                                    }
-                                                });
-                                            </script>
-                                            <br>
-                                            <!-- end row -->
+                                                <script>
+                                                    document.getElementById("example-number-input").addEventListener("input", function() {
+                                                        if (this.value.length > 9) {
+                                                            this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
+                                                        }
+                                                    });
+                                                </script>
+                                                <br>
+                                                <!-- end row -->
                                                 <br>
                                                 <!-- end row -->
                                                 <div class="row mb-6">
@@ -690,7 +702,7 @@ $dni = $_SESSION['dni'];
                                                 // Restar 5 horas a la fecha
                                                 $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
                                                 ?>
- 
+
 
                                                 <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
