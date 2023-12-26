@@ -1,6 +1,6 @@
 <?php
 // Datos
-$token = 'Bearer apis-token-6245.wt-VO39h1kYcilm8CMcL-WdJ6p7C-J-s';
+$token = 'apis-token-6245.wt-VO39h1kYcilm8CMcL-WdJ6p7C-J-s';
 $dni = $_POST['documento'];
 
 // Iniciar llamada a API
