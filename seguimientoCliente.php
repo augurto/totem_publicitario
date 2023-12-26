@@ -173,38 +173,7 @@ $dni = $_SESSION['dni'];
                                     <br>
                                     <!-- datos de api -->
 
-                                    <?php
-                                    $curl = curl_init();
-
-                                    curl_setopt_array($curl, array(
-                                        CURLOPT_URL => "https://api.apis.net.pe/v2/reniec/dni?numero=$documento",
-                                        CURLOPT_RETURNTRANSFER => true,
-                                        CURLOPT_ENCODING => '',
-                                        CURLOPT_MAXREDIRS => 10,
-                                        CURLOPT_TIMEOUT => 0,
-                                        CURLOPT_FOLLOWLOCATION => true,
-                                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                        CURLOPT_CUSTOMREQUEST => 'GET',
-                                        CURLOPT_HTTPHEADER => array(
-                                            'Authorization: Bearer apis-token-6245.wt-VO39h1kYcilm8CMcL-WdJ6p7C-J-s'
-                                        ),
-                                    ));
-
-                                    $response = curl_exec($curl);
-
-                                    curl_close($curl);
-
-                                    $data = json_decode($response, true);
-
-                                    $nombre = $data['nombres'];
-                                    $apellido_paterno = $data['apellidoPaterno'];
-                                    $apellido_materno = $data['apellidoMaterno'];
-
-                                    // Concatenar nombre y apellidos
-                                    $nombres_apellidos = "$nombre $apellido_paterno $apellido_materno";
-                                    ?>
-
-                                    <!-- fin de datos api -->
+                                                                      <!-- fin de datos api -->
 
                                     <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
                                     <form id="myForm" action="includes/guardar_webformActualizado.php" method="post">
@@ -213,7 +182,6 @@ $dni = $_SESSION['dni'];
 
 
                                                 <br>
-                                                <?php if (empty($documento)) : ?>
                                                     <div class="row mb-6">
                                                         <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                         <div class="col-sm-10">
@@ -265,31 +233,7 @@ $dni = $_SESSION['dni'];
                                                         }
                                                     </script>
                                                     <br>
-                                                    <div class="row mb-6">
-                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
-                                                        </div>
-                                                    </div>
-                                                <?php else : ?>
-                                                    <div class="row mb-6">
-                                                        <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                        <div class="col-sm-10">
-
-                                                            <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row mb-6">
-                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                        <div class="col-sm-10">
-
-                                                            <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
-                                                        </div>
-                                                    </div>
-                                                <?php endif; ?>
-
-
+                                                  
                                                 <script>
                                                     document.getElementById("example-number-input").addEventListener("input", function() {
                                                         if (this.value.length > 9) {
