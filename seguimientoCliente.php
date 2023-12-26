@@ -222,9 +222,9 @@ $dni = $_SESSION['dni'];
                                                     </div>
                                                     <br>
                                                     <div class="row mb-6">
-                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                        <label for="documento" class="col-sm-2 col-form-label">Documento</label>
                                                         <div class="col-sm-8">
-                                                            <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
+                                                            <input class="form-control" type="number" id="documento" name="documento" maxlength="9">
                                                         </div>
                                                         <div class="col-sm-2">
                                                             <button type="button" class="btn btn-primary" onclick="buscarDatos()">
@@ -233,12 +233,8 @@ $dni = $_SESSION['dni'];
                                                             </button>
                                                         </div>
                                                         <div class="row mb-6">
-                                                            <label for="nombre">Nombre:</label>
-                                                            <input type="text" id="nombre" name="nombre" class="form-control" disabled>
-
-                                                            <label for="apellido">Apellido:</label>
-                                                            <input type="text" id="apellido" name="apellido" class="form-control" disabled>
-
+                                                            <label for="datos" class="form-label">Datos</label>
+                                                            <input type="text" id="datos" name="datos" class="form-control" readonly>
                                                         </div>
                                                     </div>
                                                     <script>
@@ -248,16 +244,19 @@ $dni = $_SESSION['dni'];
 
                                                             // Realizar la llamada a la API PHP
                                                             $.ajax({
-                                                                url: 'includes/consulta_dni.php', // Cambia esto al nombre de tu archivo PHP
+                                                                url: './includes/consulta_dni.php', // Cambia esto al nombre de tu archivo PHP
                                                                 method: 'POST',
                                                                 data: {
                                                                     documento: documento
                                                                 },
                                                                 dataType: 'json',
                                                                 success: function(data) {
-                                                                    // Rellenar los campos con los datos obtenidos
-                                                                    $("#nombre").val(data.nombre);
-                                                                    $("#apellido").val(data.apellido);
+                                                                    // Rellenar el campo de datos con la información obtenida
+                                                                    var nombre = data.nombres;
+                                                                    var apellidoPaterno = data.apellidoPaterno;
+                                                                    var apellidoMaterno = data.apellidoMaterno;
+
+                                                                    $("#datos").val(`${nombre} ${apellidoPaterno} ${apellidoMaterno}`);
                                                                 },
                                                                 error: function() {
                                                                     alert("Error al buscar datos");
