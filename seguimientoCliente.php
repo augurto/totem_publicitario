@@ -231,6 +231,14 @@ $dni = $_SESSION['dni'];
                                                                 <span class="glyphicon glyphicon-search"></span> Buscar
                                                             </button>
                                                         </div>
+                                                        <div class="row mb-6">
+                                                            <label for="nombre">Nombre:</label>
+                                                            <input type="text" id="nombre" name="nombre" class="form-control" disabled>
+
+                                                            <label for="apellido">Apellido:</label>
+                                                            <input type="text" id="apellido" name="apellido" class="form-control" disabled>
+
+                                                        </div>
                                                     </div>
                                                     <script>
                                                         function buscarDatos() {
@@ -239,7 +247,7 @@ $dni = $_SESSION['dni'];
 
                                                             // Realizar la llamada a la API PHP
                                                             $.ajax({
-                                                                url: 'includes/consulta_dni-php', // Cambia esto al nombre de tu archivo PHP
+                                                                url: 'includes/consulta_dni.php', // Cambia esto al nombre de tu archivo PHP
                                                                 method: 'POST',
                                                                 data: {
                                                                     documento: documento
@@ -267,11 +275,6 @@ $dni = $_SESSION['dni'];
                                                     <div class="row mb-6">
                                                         <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                         <div class="col-sm-10">
-                                                            <label for="nombre">Nombre:</label>
-                                                            <input type="text" id="nombre" name="nombre" class="form-control" disabled>
-
-                                                            <label for="apellido">Apellido:</label>
-                                                            <input type="text" id="apellido" name="apellido" class="form-control" disabled>
 
                                                             <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
                                                         </div>
