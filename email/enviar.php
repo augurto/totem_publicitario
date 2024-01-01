@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión
-include('conexion.php');
+include('../includes/conexion.php');
 
 // Recibir datos del formulario
 $para = mysqli_real_escape_string($con, $_POST['para']);
