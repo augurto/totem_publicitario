@@ -110,6 +110,7 @@ $dni = $_SESSION['dni'];
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         .atributo-no-coincide {
             background-color: #ffcccc;
@@ -172,87 +173,76 @@ $dni = $_SESSION['dni'];
                                     <br>
                                     <!-- datos de api -->
 
-                                    <?php
-                                    $curl = curl_init();
-
-                                    curl_setopt_array($curl, array(
-                                        CURLOPT_URL => "https://api.apis.net.pe/v2/reniec/dni?numero=$documento",
-                                        CURLOPT_RETURNTRANSFER => true,
-                                        CURLOPT_ENCODING => '',
-                                        CURLOPT_MAXREDIRS => 10,
-                                        CURLOPT_TIMEOUT => 0,
-                                        CURLOPT_FOLLOWLOCATION => true,
-                                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                        CURLOPT_CUSTOMREQUEST => 'GET',
-                                        CURLOPT_HTTPHEADER => array(
-                                            'Authorization: Bearer apis-token-6245.wt-VO39h1kYcilm8CMcL-WdJ6p7C-J-s'
-                                        ),
-                                    ));
-
-                                    $response = curl_exec($curl);
-
-                                    curl_close($curl);
-
-                                    $data = json_decode($response, true);
-
-                                    $nombre = $data['nombres'];
-                                    $apellido_paterno = $data['apellidoPaterno'];
-                                    $apellido_materno = $data['apellidoMaterno'];
-
-                                    // Concatenar nombre y apellidos
-                                    $nombres_apellidos = "$nombre $apellido_paterno $apellido_materno";
-                                    ?>
-
-                                    <!-- fin de datos api -->
+                                                                      <!-- fin de datos api -->
 
                                     <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
                                     <form id="myForm" action="includes/guardar_webformActualizado.php" method="post">
                                         <div class="row">
                                             <div class="col-lg-12">
 
-                                                
+
                                                 <br>
-                                                <?php if (empty($documento)) : ?>
-                                                <div class="row mb-6">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" >
-                                                </div>
-                                            </div>
-                                            <br>
-                                                <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
+                                                    <div class="row mb-6">
+                                                        <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php else : ?>
-                                               <div class="row mb-6">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                <div class="col-sm-10">
-                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
-                                                </div>
-                                            </div>
-                                            <br>
-                                                <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
-
-                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
+                                                    <br>
+                                                    <div class="row mb-6">
+                                                        <label for="documento" class="col-sm-2 col-form-label">Documento</label>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" type="number" id="documento" name="documento" maxlength="9">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <button type="button" class="btn btn-primary" onclick="buscarDatos()">
+                                                                <!-- Agrega el icono de búsqueda de Bootstrap -->
+                                                                <span class="glyphicon glyphicon-search"></span> Buscar
+                                                            </button>
+                                                        </div>
+                                                        <div class="row mb-6">
+                                                            <label for="datos" class="form-label">Datos</label>
+                                                            <input type="text" id="datos" name="datos" class="form-control" readonly>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php endif; ?>
+                                                    <script>
+                                                        function buscarDatos() {
+                                                            // Obtener el valor del documento
+                                                            var documento = $("#documento").val();
 
+                                                            // Realizar la llamada a la API PHP
+                                                            $.ajax({
+                                                                url: './includes/consulta_dni.php', // Cambia esto al nombre de tu archivo PHP
+                                                                method: 'POST',
+                                                                data: {
+                                                                    documento: documento
+                                                                },
+                                                                dataType: 'json',
+                                                                success: function(data) {
+                                                                    // Rellenar el campo de datos con la información obtenida
+                                                                    var nombre = data.nombres;
+                                                                    var apellidoPaterno = data.apellidoPaterno;
+                                                                    var apellidoMaterno = data.apellidoMaterno;
 
-                                            <script>
-                                                document.getElementById("example-number-input").addEventListener("input", function() {
-                                                    if (this.value.length > 9) {
-                                                        this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
-                                                    }
-                                                });
-                                            </script>
-                                            <br>
-                                            <!-- end row -->
+                                                                    $("#datos").val(`${nombre} ${apellidoPaterno} ${apellidoMaterno}`);
+                                                                },
+                                                                error: function() {
+                                                                    alert("Error al buscar datos");
+                                                                }
+                                                            });
+                                                        }
+                                                    </script>
+                                                    <br>
+                                                  
+                                                <script>
+                                                    document.getElementById("example-number-input").addEventListener("input", function() {
+                                                        if (this.value.length > 9) {
+                                                            this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
+                                                        }
+                                                    });
+                                                </script>
+                                                <br>
+                                                <!-- end row -->
                                                 <br>
                                                 <!-- end row -->
                                                 <div class="row mb-6">
@@ -690,7 +680,7 @@ $dni = $_SESSION['dni'];
                                                 // Restar 5 horas a la fecha
                                                 $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
                                                 ?>
- 
+
 
                                                 <input type="hidden" class="form-control" id="id-input" name="idweb" readonly>
 
