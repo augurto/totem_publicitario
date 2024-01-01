@@ -34,6 +34,10 @@ if (mysqli_query($con, $sql)) {
     // Mover el archivo al directorio de destino
     move_uploaded_file($_FILES['adjunto']['tmp_name'], $rutaArchivo);
 
+    // Actualizar el nombre del archivo en la base de datos
+    $sqlUpdateArchivo = "UPDATE mensajes SET archivo_adjunto = '$nombreArchivo' WHERE id = $idMensaje";
+    mysqli_query($con, $sqlUpdateArchivo);
+
     echo "Mensaje enviado y almacenado en la base de datos con éxito";
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($con);
