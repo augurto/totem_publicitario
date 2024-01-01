@@ -12,7 +12,7 @@ $mensaje = mysqli_real_escape_string($con, $_POST['area']);
 
 // Procesar archivo adjunto
 $nombreArchivo = $_FILES['adjunto']['name'];
-$rutaArchivo = "carpeta_destino/" . $nombreArchivo;
+$rutaArchivo = "archivos_email/" . $nombreArchivo;
 
 // Mover el archivo al directorio de destino
 move_uploaded_file($_FILES['adjunto']['tmp_name'], $rutaArchivo);
