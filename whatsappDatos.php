@@ -132,8 +132,6 @@
                                                         echo "<td>" . $row["sender"] . "</td>";
                                                         echo "<td>" . $row["message"] . "</td>";
                                                         echo "<td>" . date('Y-m-d H:i:s', strtotime($row["fechaCreacionMensaje"] . '-5 hours')) . "</td>";
-                                                        
-                                                     
                                                                                                
                                                         echo "</tr>";
                                         
