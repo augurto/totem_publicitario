@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión
-include('conexion.php');
+include('../includes/conexion.php');
 
 // Establecer la zona horaria a "America/Lima"
 date_default_timezone_set('America/Lima');
