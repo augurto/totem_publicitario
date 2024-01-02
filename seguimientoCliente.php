@@ -212,24 +212,45 @@ $dni = $_SESSION['dni'];
                                                     </div>
                                                 </div>
 
+                                                <div id="datosRUC" class="row mb-6" style="display: none;">
+                                                    <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="number" id="ruc" name="ruc" maxlength="11">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <button type="button" class="btn btn-primary" onclick="buscarRUC()">
+                                                            <span class="glyphicon glyphicon-search"></span> Buscar
+                                                        </button>
+                                                    </div>
+                                                    <div class="row mb-6">
+                                                        <label for="datosRUC" class="form-label">Datos RUC</label>
+                                                        <input type="text" id="datosRUC" name="datosRUC" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+
                                                 <script>
                                                     document.addEventListener('DOMContentLoaded', function() {
                                                         var fuenteDato = document.getElementById('fuenteDato');
                                                         var datosDNIBlock = document.getElementById('datosDNI');
+                                                        var datosRUCBlock = document.getElementById('datosRUC');
 
                                                         fuenteDato.addEventListener('change', function() {
                                                             var tipoDocumento = this.value;
 
                                                             // Ocultar todos los bloques de datos
-                                                            document.getElementById('datosDNI').style.display = 'none';
+                                                            datosDNIBlock.style.display = 'none';
+                                                            datosRUCBlock.style.display = 'none';
 
                                                             // Mostrar el bloque correspondiente al tipo de documento seleccionado
                                                             if (tipoDocumento === 'DNI') {
                                                                 datosDNIBlock.style.display = 'block';
+                                                            } else if (tipoDocumento === 'RUC') {
+                                                                datosRUCBlock.style.display = 'block';
                                                             }
                                                         });
                                                     });
                                                 </script>
+
 
 
                                                 <!-- fin -->
@@ -264,6 +285,32 @@ $dni = $_SESSION['dni'];
                                                         // Realizar la llamada a la API PHP
                                                         $.ajax({
                                                             url: './includes/consulta_dni.php', // Cambia esto al nombre de tu archivo PHP
+                                                            method: 'POST',
+                                                            data: {
+                                                                documento: documento
+                                                            },
+                                                            dataType: 'json',
+                                                            success: function(data) {
+                                                                // Rellenar el campo de datos con la información obtenida
+                                                                var nombre = data.nombres;
+                                                                var apellidoPaterno = data.apellidoPaterno;
+                                                                var apellidoMaterno = data.apellidoMaterno;
+
+                                                                $("#datos").val(`${nombre} ${apellidoPaterno} ${apellidoMaterno}`);
+                                                            },
+                                                            error: function() {
+                                                                alert("Error al buscar datos");
+                                                            }
+                                                        });
+                                                    }
+
+                                                    function buscarRUC() {
+                                                        // Obtener el valor del documento
+                                                        var documento = $("#documento").val();
+
+                                                        // Realizar la llamada a la API PHP
+                                                        $.ajax({
+                                                            url: './includes/consulta_ruc.php', // Cambia esto al nombre de tu archivo PHP
                                                             method: 'POST',
                                                             data: {
                                                                 documento: documento
