@@ -182,6 +182,39 @@ $dni = $_SESSION['dni'];
 
 
                                                 <br>
+                                                <!-- inicio -->
+                                                <div class="row mb-6">
+                                                    <label for="fuenteDato" class="col-sm-2 col-form-label">Tipo de Documento</label>
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control select2" id="fuenteDato" name="fuenteDato">
+                                                            <option value="">Seleccione un tipo de documento</option>
+                                                            <option value="DNI">DNI</option>
+                                                            <option value="RUC">RUC</option>
+                                                            <option value="Carnet de Extranjería">Carnet de Extranjería</option>
+                                                            <option value="Pasaporte">Pasaporte</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div id="datosDNI" class="row mb-6" style="display: none;">
+                                                    <label for="documento" class="col-sm-2 col-form-label">Documento</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="number" id="documento" name="documento" maxlength="9">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <button type="button" class="btn btn-primary" onclick="buscarDatos()">
+                                                            <span class="glyphicon glyphicon-search"></span> Buscar
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div id="datosBlock" class="row mb-6" style="display: none;">
+                                                    <label for="datos" class="form-label">Datos</label>
+                                                    <input type="text" id="datos" name="datos" class="form-control" readonly>
+                                                </div>
+
+
+                                                <!-- fin -->
                                                 <div class="row mb-6">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                     <div class="col-sm-10">
