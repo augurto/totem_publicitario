@@ -1,8 +1,6 @@
 <?php
 session_start();
 include 'includes/conexion.php'; // Incluir el archivo de conexión
-// Consulta para obtener mensajes ordenados por fecha_envio (ajusta según tu estructura de base de datos)
-
 
 if (!isset($_SESSION['usuario'])) {
     // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
@@ -102,7 +100,7 @@ $empresaUser = $_SESSION['empresaUser'];
                                     <a href="#"><i class="mdi mdi-star-outline me-2"></i>Starred</a>
                                     <a href="#"><i class="mdi mdi-diamond-stone me-2"></i>Importantes</a>
                                     <a href="#"><i class="mdi mdi-file-outline me-2"></i>Draft</a> -->
-                                    <a href="#" class="active"><i class="mdi mdi-email-check-outline me-2"></i>Mail Enviados <span class="ms-1 float-end">(<?php echo $totalMensajes;?>)</span></a>
+                                    <a href="#" class="active"><i class="mdi mdi-email-check-outline me-2"></i>Mail Enviados <span class="ms-1 float-end"></span></a>
                                     <a href="#"><i class="mdi mdi-trash-can-outline me-2"></i>Papelera</a>
                                 </div>
 
@@ -158,9 +156,7 @@ $empresaUser = $_SESSION['empresaUser'];
                                     <ul class="message-list">
                                         <?php
                                         // Incluir el archivo de conexión
-                                        include('../includes/conexion.php');
-
-                                        
+                                                                               
                                         $sqlSelectMensajes = "SELECT * FROM mensajes where id_user=$idUsuarioSesion ORDER BY fecha_envio DESC";
                                         $resultado = mysqli_query($con, $sqlSelectMensajes);
 
@@ -220,7 +216,7 @@ $empresaUser = $_SESSION['empresaUser'];
 
                                 <div class="row">
                                     <div class="col-7">
-                                        Mostrando 1 - 20 de 1,524
+                                        <!-- Mostrando 1 - 20 de 1,524 -->
                                     </div>
                                     <div class="col-5">
                                         <div class="btn-group float-end">
