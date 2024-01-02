@@ -212,6 +212,26 @@ $dni = $_SESSION['dni'];
                                                     <label for="datos" class="form-label">Datos</label>
                                                     <input type="text" id="datos" name="datos" class="form-control" readonly>
                                                 </div>
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        var fuenteDato = document.getElementById('fuenteDato');
+                                                        var datosDNIBlock = document.getElementById('datosDNI');
+                                                        var datosBlock = document.getElementById('datosBlock');
+
+                                                        fuenteDato.addEventListener('change', function() {
+                                                            var tipoDocumento = this.value;
+
+                                                            if (tipoDocumento === 'DNI') {
+                                                                datosDNIBlock.style.display = 'block';
+                                                                datosBlock.style.display = 'block';
+                                                            } else {
+                                                                datosDNIBlock.style.display = 'none';
+                                                                datosBlock.style.display = 'none';
+                                                            }
+                                                        });
+                                                    });
+                                                </script>
+
 
 
                                                 <!-- fin -->
