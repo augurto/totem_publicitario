@@ -223,6 +223,16 @@ $empresaUser = $_SESSION['empresaUser'];
                                                 $mensaje = $row['mensaje'];
                                                 $archivoAdjunto = $row['archivo_adjunto'];
                                                 $fechaEnvio = $row['fecha_envio'];
+                                                // Convertir la cadena de fecha a un objeto DateTime
+                                                $fechaObj = new DateTime($fechaEnvio);
+
+                                                // Establecer el idioma a español
+                                                setlocale(LC_TIME, 'es_ES');
+
+                                                // Obtener el nombre del mes y el día en español
+                                                $nombreMes = strftime('%B', $fechaObj->getTimestamp()); // '%B' devuelve el nombre completo del mes
+                                                $dia = $fechaObj->format('j'); // 'j' devuelve el día del mes sin ceros iniciales
+
 
                                                 // Mostrar mensaje en la lista
                                                 echo '<li>';
@@ -235,7 +245,8 @@ $empresaUser = $_SESSION['empresaUser'];
                                                 echo '</div>';
                                                 echo '<div class="col-mail col-mail-2">';
                                                 echo '<a href="#" class="subject">' . $asunto . ' – <span class="teaser">' . strip_tags($mensaje) . '</span></a>';
-                                                echo '<div class="date">' . $fechaEnvio . '</div>';
+                                                echo '<div class="date">' . $nombreMes . ' ' . $dia . '</div>';
+                                                
                                                 echo '</div>';
                                                 echo '</li>';
                                             }
