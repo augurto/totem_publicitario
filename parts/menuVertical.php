@@ -154,7 +154,7 @@ if ($resultadoContarFormularios) {
                     </a>
                 </li>
                 <li>
-                    <a href="email_enviar.php" class="has-arrow waves-effect">
+                    <a href="email_enviar.php" class="waves-effect">
                         <i class="ri-mail-send-line"></i>
                         <span>Email</span>
                     </a>

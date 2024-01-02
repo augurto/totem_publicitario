@@ -96,12 +96,12 @@ $empresaUser = $_SESSION['empresaUser'];
                                     Redactar
                                 </button>
                                 <div class="mail-list mt-4">
-                                    <a href="#"><i class="mdi mdi-email-outline me-2"></i> Inbox <span class="ms-1 float-end">(18)</span></a>
-                                    <!-- <a href="#"><i class="mdi mdi-star-outline me-2"></i>Starred</a>
+                                    <!-- <a href="#"><i class="mdi mdi-email-outline me-2"></i> Inbox <span class="ms-1 float-end">(18)</span></a>
+                                    <a href="#"><i class="mdi mdi-star-outline me-2"></i>Starred</a>
                                     <a href="#"><i class="mdi mdi-diamond-stone me-2"></i>Importantes</a>
                                     <a href="#"><i class="mdi mdi-file-outline me-2"></i>Draft</a> -->
-                                    <a href="#" class="active"><i class="mdi mdi-email-check-outline me-2"></i>Mail Enviados</a>
-                                    <a href="#"><i class="mdi mdi-trash-can-outline me-2"></i>Trash</a>
+                                    <a href="#" class="active"><i class="mdi mdi-email-check-outline me-2"></i>Mail Enviados <span class="ms-1 float-end">(18)</span></a>
+                                    <a href="#"><i class="mdi mdi-trash-can-outline me-2"></i>Papelera</a>
                                 </div>
 
 
