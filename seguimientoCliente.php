@@ -277,57 +277,65 @@ $dni = $_SESSION['dni'];
                                                         <input type="text" id="datos" name="datos" class="form-control" readonly>
                                                     </div>
                                                 </div>
+                                                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
                                                 <script>
-                                                    function buscarDatos() {
-                                                        // Obtener el valor del documento
-                                                        var documento = $("#documento").val();
+                                                    $(document).ready(function() {
+                                                        $('#fuenteDato').change(function() {
+                                                            var tipoDocumento = $(this).val();
+                                                            $('.bloqueDatos').hide();
 
-                                                        // Realizar la llamada a la API PHP
-                                                        $.ajax({
-                                                            url: './includes/consulta_dni.php', // Cambia esto al nombre de tu archivo PHP
-                                                            method: 'POST',
-                                                            data: {
-                                                                documento: documento
-                                                            },
-                                                            dataType: 'json',
-                                                            success: function(data) {
-                                                                // Rellenar el campo de datos con la información obtenida
-                                                                var nombre = data.nombres;
-                                                                var apellidoPaterno = data.apellidoPaterno;
-                                                                var apellidoMaterno = data.apellidoMaterno;
-
-                                                                $("#datos").val(`${nombre} ${apellidoPaterno} ${apellidoMaterno}`);
-                                                            },
-                                                            error: function() {
-                                                                alert("Error al buscar datos");
+                                                            if (tipoDocumento === 'DNI') {
+                                                                $('#datosDNI').show();
+                                                            } else if (tipoDocumento === 'RUC') {
+                                                                $('#datosRUC').show();
                                                             }
                                                         });
-                                                    }
 
-                                                    function buscarRUC() {
-                                                        // Obtener el valor del RUC
-                                                        var ruc = $("#ruc").val();
+                                                        function buscarDatos() {
+                                                            var documento = $("#documento").val();
 
-                                                        // Realizar la llamada a la API PHP
-                                                        $.ajax({
-                                                            url: './includes/consulta_ruc.php', // Ajusta la URL según tu estructura de archivos
-                                                            method: 'POST',
-                                                            data: {
-                                                                ruc: ruc
-                                                            },
-                                                            dataType: 'json',
-                                                            success: function(data) {
-                                                                // Rellenar el campo de datos RUC con el nombre de la empresa
-                                                                var razonSocial = data.razonSocial;
+                                                            $.ajax({
+                                                                url: './includes/consulta_dni.php',
+                                                                method: 'POST',
+                                                                data: {
+                                                                    documento: documento
+                                                                },
+                                                                dataType: 'json',
+                                                                success: function(data) {
+                                                                    var nombre = data.nombres;
+                                                                    var apellidoPaterno = data.apellidoPaterno;
+                                                                    var apellidoMaterno = data.apellidoMaterno;
+                                                                    $("#datos").val(`${nombre} ${apellidoPaterno} ${apellidoMaterno}`);
+                                                                },
+                                                                error: function() {
+                                                                    alert("Error al buscar datos");
+                                                                }
+                                                            });
+                                                        }
 
-                                                                $("#datosRUC").val(razonSocial);
-                                                            },
-                                                            error: function() {
-                                                                alert("Error al buscar datos RUC");
-                                                            }
-                                                        });
-                                                    }
+                                                        function buscarRUC() {
+                                                            var ruc = $("#ruc").val();
+
+                                                            $.ajax({
+                                                                url: './includes/consulta_ruc.php',
+                                                                method: 'POST',
+                                                                data: {
+                                                                    ruc: ruc
+                                                                },
+                                                                dataType: 'json',
+                                                                success: function(data) {
+                                                                    var razonSocial = data.razonSocial;
+                                                                    $("#datosRUC").val(razonSocial);
+                                                                },
+                                                                error: function() {
+                                                                    alert("Error al buscar datos RUC");
+                                                                }
+                                                            });
+                                                        }
+                                                    });
                                                 </script>
+
                                                 <br>
 
                                                 <script>
