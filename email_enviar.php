@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'includes/conexion.php'; // Incluir el archivo de conexión
+include '../includes/conexion.php'; // Incluir el archivo de conexión
 // Consulta para obtener mensajes ordenados por fecha_envio (ajusta según tu estructura de base de datos)
                                         
 $sqlContarMensajes = "SELECT COUNT(*) AS total FROM mensajes WHERE id_user = $idUsuarioSesion";
