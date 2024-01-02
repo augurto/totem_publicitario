@@ -3,9 +3,10 @@
 include('../includes/conexion.php');
 
 // Incluir la librería PHPMailer
-use PHPMailer\PHPMailer;
-use PHPMailer\SMTP;
-use PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 
 
 require '../PHPMailer/src/Exception.php';
