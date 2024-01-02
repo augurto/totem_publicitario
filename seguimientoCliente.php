@@ -262,6 +262,10 @@ $dni = $_SESSION['dni'];
                                                 </div>
                                                 <br>
                                                 <div class="row mb-6">
+                                                    <div class="row mb-6">
+                                                        <label for="datos" class="form-label">Datos</label>
+                                                        <input type="text" id="datos" name="datos" class="form-control" readonly>
+                                                    </div>
                                                     <label for="documento" class="col-sm-2 col-form-label">Documento</label>
                                                     <div class="col-sm-8">
                                                         <input class="form-control" type="number" id="documento" name="documento" maxlength="9">
@@ -272,10 +276,7 @@ $dni = $_SESSION['dni'];
                                                             <span class="glyphicon glyphicon-search"></span> Buscar
                                                         </button>
                                                     </div>
-                                                    <div class="row mb-6">
-                                                        <label for="datos" class="form-label">Datos</label>
-                                                        <input type="text" id="datos" name="datos" class="form-control" readonly>
-                                                    </div>
+
                                                 </div>
                                                 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
