@@ -805,16 +805,12 @@ $dni = $_SESSION['dni'];
                                         $diferenciaSegundosConsulta = strtotime($ultimaFechaConsulta) - strtotime($primeraFechaConsulta);
 
                                         // Calcular la diferencia en días, minutos y segundos
-                                        $diferenciaFechasConsulta = date_diff(date_create($primeraFechaConsulta), date_create($ultimaFechaConsulta));
+                                        $diferenciaDias = floor($diferenciaSegundosConsulta / (60 * 60 * 24));
+                                        $diferenciaMinutos = floor(($diferenciaSegundosConsulta % (60 * 60 * 24)) / 60);
+                                        $diferenciaSegundos = $diferenciaSegundosConsulta % 60;
 
-                                        // Mostrar o almacenar los resultados según sea necesario
-                                        echo "Total de resultados: {$filaConsulta['total']}<br>";
-                                        echo "Primera fecha: $primeraFechaConsulta<br>";
-                                        echo "Última fecha: $ultimaFechaConsulta<br>";
-                                        echo "Diferencia de fechas (segundos): $diferenciaSegundosConsulta<br>";
-                                        echo "Diferencia de fechas (días): {$diferenciaFechasConsulta->days}<br>";
-                                        echo "Diferencia de fechas (minutos): {$diferenciaFechasConsulta->i}<br>";
-                                        echo "Diferencia de fechas (segundos): {$diferenciaFechasConsulta->s}<br>";
+                                        // Mostrar la diferencia de fechas
+                                        echo "Diferencia de fechas: $diferenciaDias días, $diferenciaMinutos minutos y $diferenciaSegundos segundos";
 
                                         // Liberar el resultado
                                         mysqli_free_result($resultadoConsulta);
