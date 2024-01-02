@@ -259,7 +259,7 @@ $empresaUser = $_SESSION['empresaUser'];
                                     <div class="mb-3">
                                         <label for="asunto">Asunto</label>
                                         <input type="text" class="form-control" id="asunto" name="asunto" placeholder="Asunto">
-                                        <input type="text" class="form-control" id="asunto" name="asunto" value="<?php echo $idUsuarioSesion ; ?>">
+                                        <input type="hidden" class="form-control" id="user" name="user" value="<?php echo $idUsuarioSesion ; ?>">
                                     </div>
 
                                     <!-- Campo Área (Mensaje) -->

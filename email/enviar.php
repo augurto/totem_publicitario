@@ -20,13 +20,15 @@ date_default_timezone_set('America/Lima');
 $para = mysqli_real_escape_string($con, $_POST['para']);
 $asunto = mysqli_real_escape_string($con, $_POST['asunto']);
 $mensaje = mysqli_real_escape_string($con, $_POST['area']);
+$user = mysqli_real_escape_string($con, $_POST['user']);
+
 
 // Obtener la fecha y hora actual de Perú
 $fechaEnvio = date('Y-m-d H:i:s');
 
 // Insertar datos en la base de datos
-$sql = "INSERT INTO mensajes (para, asunto, mensaje, fecha_envio) 
-        VALUES ('$para', '$asunto', '$mensaje', '$fechaEnvio')";
+$sql = "INSERT INTO mensajes (para, asunto, mensaje, fecha_envio,id_user) 
+        VALUES ('$para', '$asunto', '$mensaje', '$fechaEnvio', '$user')";
 
 if (mysqli_query($con, $sql)) {
     // Obtener el ID del último mensaje insertado
