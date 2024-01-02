@@ -1,6 +1,18 @@
 <?php
 session_start();
 include 'includes/conexion.php'; // Incluir el archivo de conexión
+// Consulta para obtener mensajes ordenados por fecha_envio (ajusta según tu estructura de base de datos)
+                                        
+$sqlContarMensajes = "SELECT COUNT(*) AS total FROM mensajes WHERE id_user = $idUsuarioSesion";
+
+// Ejecutar la consulta
+$resultado2 = mysqli_query($con, $sqlContarMensajes);
+
+// Obtener el resultado como un array asociativo
+$fila = mysqli_fetch_assoc($resultado2);
+
+// Obtener el conteo de mensajes
+$totalMensajes = $fila['total'];
 
 if (!isset($_SESSION['usuario'])) {
     // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
@@ -100,7 +112,7 @@ $empresaUser = $_SESSION['empresaUser'];
                                     <a href="#"><i class="mdi mdi-star-outline me-2"></i>Starred</a>
                                     <a href="#"><i class="mdi mdi-diamond-stone me-2"></i>Importantes</a>
                                     <a href="#"><i class="mdi mdi-file-outline me-2"></i>Draft</a> -->
-                                    <a href="#" class="active"><i class="mdi mdi-email-check-outline me-2"></i>Mail Enviados <span class="ms-1 float-end">(18)</span></a>
+                                    <a href="#" class="active"><i class="mdi mdi-email-check-outline me-2"></i>Mail Enviados <span class="ms-1 float-end">(<?php echo $totalMensajes;?>)</span></a>
                                     <a href="#"><i class="mdi mdi-trash-can-outline me-2"></i>Papelera</a>
                                 </div>
 
@@ -158,7 +170,7 @@ $empresaUser = $_SESSION['empresaUser'];
                                         // Incluir el archivo de conexión
                                         include('../includes/conexion.php');
 
-                                        // Consulta para obtener mensajes ordenados por fecha_envio (ajusta según tu estructura de base de datos)
+                                        
                                         $sqlSelectMensajes = "SELECT * FROM mensajes where id_user=$idUsuarioSesion ORDER BY fecha_envio DESC";
                                         $resultado = mysqli_query($con, $sqlSelectMensajes);
 
@@ -195,7 +207,7 @@ $empresaUser = $_SESSION['empresaUser'];
                                                 echo '<div class="col-mail col-mail-2">';
                                                 echo '<a href="#" class="subject">' . $asunto . ' – <span class="teaser">' . strip_tags($mensaje) . '</span></a>';
                                                 echo '<div class="date">' . $nombreMes . ' ' . $dia . '</div>';
-                                                
+
                                                 echo '</div>';
                                                 echo '</li>';
                                             }
@@ -259,7 +271,7 @@ $empresaUser = $_SESSION['empresaUser'];
                                     <div class="mb-3">
                                         <label for="asunto">Asunto</label>
                                         <input type="text" class="form-control" id="asunto" name="asunto" placeholder="Asunto">
-                                        <input type="hidden" class="form-control" id="user" name="user" value="<?php echo $idUsuarioSesion ; ?>">
+                                        <input type="hidden" class="form-control" id="user" name="user" value="<?php echo $idUsuarioSesion; ?>">
                                     </div>
 
                                     <!-- Campo Área (Mensaje) -->
