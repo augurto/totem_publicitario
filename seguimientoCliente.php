@@ -183,6 +183,7 @@ $dni = $_SESSION['dni'];
 
                                                 <br>
                                                 <!-- inicio -->
+
                                                 <div class="row mb-6">
                                                     <label for="fuenteDato" class="col-sm-2 col-form-label">Tipo de Documento</label>
                                                     <div class="col-sm-8">
@@ -212,6 +213,7 @@ $dni = $_SESSION['dni'];
                                                     <label for="datos" class="form-label">Datos</label>
                                                     <input type="text" id="datos" name="datos" class="form-control" readonly>
                                                 </div>
+
                                                 <script>
                                                     document.addEventListener('DOMContentLoaded', function() {
                                                         var fuenteDato = document.getElementById('fuenteDato');
