@@ -73,13 +73,13 @@ if ($resultadoContarFormularios) {
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
 
-                
+
                 <!-- end li -->
                 <li>
-                        <a href="vendedor.php" class="waves-effect">
-                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"> <?php echo $conteoRegistros ; ?></span>
-                            <span>Inicio</span>
-                        </a>
+                    <a href="vendedor.php" class="waves-effect">
+                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"> <?php echo $conteoRegistros; ?></span>
+                        <span>Inicio</span>
+                    </a>
                 </li>
                 <li>
                     <?php
@@ -136,24 +136,31 @@ if ($resultadoContarFormularios) {
                 </li>
                 <!-- end li -->
                 <li>
-                        <a href="atendidos.php" class="waves-effect">
-                            <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"> <?php echo $conteoRegistros ; ?></span>
-                            <span>Atendidos</span>
-                        </a>
+                    <a href="atendidos.php" class="waves-effect">
+                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"> <?php echo $conteoRegistros; ?></span>
+                        <span>Atendidos</span>
+                    </a>
                 </li>
                 <li>
-                        <a href="productos.php" class="waves-effect">
-                            <i class="ri-dashboard-line"></i>
-                            <span>Productos</span>
-                        </a>
+                    <a href="productos.php" class="waves-effect">
+                        <i class="ri-dashboard-line"></i>
+                        <span>Productos</span>
+                    </a>
                 </li>
                 <li>
-                        <a href="reporteMKT.php?inicio=2023-01-01&fin=2023-12-31" class="waves-effect">
-                            <i class="ri-dashboard-line"></i>
-                            <span>Reporte MKT</span>
-                        </a>
+                    <a href="reporteMKT.php?inicio=2023-01-01&fin=2023-12-31" class="waves-effect">
+                        <i class="ri-dashboard-line"></i>
+                        <span>Reporte MKT</span>
+                    </a>
                 </li>
-                
+                <li>
+                    <a href="email_enviar.php" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Email</span>
+                    </a>
+                    
+                </li>
+
             </ul>
             <!-- end ul -->
         </div>
