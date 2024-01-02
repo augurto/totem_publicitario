@@ -785,7 +785,6 @@ $dni = $_SESSION['dni'];
                                     // Incluir el archivo de conexión
                                     include('includes/conexion.php');
 
-                                    // Consulta SQL para obtener los resultados y contarlos
                                     $sqlConsulta = "SELECT COUNT(*) AS total, MIN(fecha) AS primera_fecha, MAX(fecha) AS ultima_fecha
                FROM web_formularios 
                WHERE idOriginal = $idUrl OR id_form_web = $idUrl OR idOriginal = $Original OR id_form_web = $Original";
@@ -798,21 +797,24 @@ $dni = $_SESSION['dni'];
                                         // Obtener el resultado como un array asociativo
                                         $filaConsulta = mysqli_fetch_assoc($resultadoConsulta);
 
-                                        // Obtener el total de resultados
-                                        $totalResultadosConsulta = $filaConsulta['total'];
-
                                         // Obtener la primera y última fecha
                                         $primeraFechaConsulta = $filaConsulta['primera_fecha'];
                                         $ultimaFechaConsulta = $filaConsulta['ultima_fecha'];
 
-                                        // Calcular la diferencia entre la última y la primera fecha
-                                        $diferenciaFechasConsulta = strtotime($ultimaFechaConsulta) - strtotime($primeraFechaConsulta);
+                                        // Calcular la diferencia entre la última y la primera fecha en segundos
+                                        $diferenciaSegundosConsulta = strtotime($ultimaFechaConsulta) - strtotime($primeraFechaConsulta);
+
+                                        // Calcular la diferencia en días, minutos y segundos
+                                        $diferenciaFechasConsulta = date_diff(date_create($primeraFechaConsulta), date_create($ultimaFechaConsulta));
 
                                         // Mostrar o almacenar los resultados según sea necesario
-                                        echo "Total de resultados: $totalResultadosConsulta<br>";
+                                        echo "Total de resultados: {$filaConsulta['total']}<br>";
                                         echo "Primera fecha: $primeraFechaConsulta<br>";
                                         echo "Última fecha: $ultimaFechaConsulta<br>";
-                                        echo "Diferencia de fechas (segundos): $diferenciaFechasConsulta<br>";
+                                        echo "Diferencia de fechas (segundos): $diferenciaSegundosConsulta<br>";
+                                        echo "Diferencia de fechas (días): {$diferenciaFechasConsulta->days}<br>";
+                                        echo "Diferencia de fechas (minutos): {$diferenciaFechasConsulta->i}<br>";
+                                        echo "Diferencia de fechas (segundos): {$diferenciaFechasConsulta->s}<br>";
 
                                         // Liberar el resultado
                                         mysqli_free_result($resultadoConsulta);
@@ -820,7 +822,6 @@ $dni = $_SESSION['dni'];
                                         // Manejar error en la consulta
                                         echo "Error en la consulta: " . mysqli_error($con);
                                     }
-
                                     // Cerrar la conexión
                                     mysqli_close($con);
                                     ?>
