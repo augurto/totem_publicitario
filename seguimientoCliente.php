@@ -183,7 +183,6 @@ $dni = $_SESSION['dni'];
 
                                                 <br>
                                                 <!-- inicio -->
-
                                                 <div class="row mb-6">
                                                     <label for="fuenteDato" class="col-sm-2 col-form-label">Tipo de Documento</label>
                                                     <div class="col-sm-8">
@@ -207,33 +206,30 @@ $dni = $_SESSION['dni'];
                                                             <span class="glyphicon glyphicon-search"></span> Buscar
                                                         </button>
                                                     </div>
-                                                </div>
-
-                                                <div id="datosBlock" class="row mb-6" style="display: none;">
-                                                    <label for="datos" class="form-label">Datos</label>
-                                                    <input type="text" id="datos" name="datos" class="form-control" readonly>
+                                                    <div class="row mb-6">
+                                                        <label for="datos" class="form-label">Datos</label>
+                                                        <input type="text" id="datos" name="datos" class="form-control" readonly>
+                                                    </div>
                                                 </div>
 
                                                 <script>
                                                     document.addEventListener('DOMContentLoaded', function() {
                                                         var fuenteDato = document.getElementById('fuenteDato');
                                                         var datosDNIBlock = document.getElementById('datosDNI');
-                                                        var datosBlock = document.getElementById('datosBlock');
 
                                                         fuenteDato.addEventListener('change', function() {
                                                             var tipoDocumento = this.value;
 
+                                                            // Ocultar todos los bloques de datos
+                                                            document.getElementById('datosDNI').style.display = 'none';
+
+                                                            // Mostrar el bloque correspondiente al tipo de documento seleccionado
                                                             if (tipoDocumento === 'DNI') {
                                                                 datosDNIBlock.style.display = 'block';
-                                                                datosBlock.style.display = 'block';
-                                                            } else {
-                                                                datosDNIBlock.style.display = 'none';
-                                                                datosBlock.style.display = 'none';
                                                             }
                                                         });
                                                     });
                                                 </script>
-
 
 
                                                 <!-- fin -->
