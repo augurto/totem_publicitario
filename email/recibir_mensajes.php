@@ -6,12 +6,23 @@ include('../includes/conexion.php');
 $correo = 'ego.17.22@gmail.com';
 $contrasena = 'yxpg decu fxnq egsv';
 
-// Conectar al servidor IMAP de Gmail
-$conexion = imap_open('{imap.gmail.com:993/ssl}INBOX', $correo, $contrasena);
+// Configuración de opciones para desactivar la verificación del certificado SSL
+$opciones = [
+    'DISABLE_AUTHENTICATOR' => 'PLAIN',
+    'ssl' => [
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true,
+    ],
+];
+
+// Conectar al servidor IMAP de Gmail con opciones
+$conexion = imap_open('{imap.gmail.com:993/ssl}INBOX', $correo, $contrasena, OP_HALFOPEN, 1, $opciones);
 
 if (!$conexion) {
     die('No se pudo conectar al servidor IMAP de Gmail: ' . imap_last_error());
 }
+
 
 // Obtener los mensajes no leídos
 $mensajesNoLeidos = imap_search($conexion, 'UNSEEN', SE_UID, "UTF-8");
