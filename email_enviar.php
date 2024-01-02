@@ -2,17 +2,7 @@
 session_start();
 include 'includes/conexion.php'; // Incluir el archivo de conexión
 // Consulta para obtener mensajes ordenados por fecha_envio (ajusta según tu estructura de base de datos)
-                                        
-$sqlContarMensajes = "SELECT COUNT(*) AS total FROM mensajes WHERE id_user = $idUsuarioSesion";
 
-// Ejecutar la consulta
-$resultado2 = mysqli_query($con, $sqlContarMensajes);
-
-// Obtener el resultado como un array asociativo
-$fila = mysqli_fetch_assoc($resultado2);
-
-// Obtener el conteo de mensajes
-$totalMensajes = $fila['total'];
 
 if (!isset($_SESSION['usuario'])) {
     // El usuario no ha iniciado sesión, redireccionar a la página de inicio de sesión o mostrar un mensaje de error
