@@ -305,27 +305,25 @@ $dni = $_SESSION['dni'];
                                                     }
 
                                                     function buscarRUC() {
-                                                        // Obtener el valor del documento
-                                                        var documento = $("#documento").val();
+                                                        // Obtener el valor del RUC
+                                                        var ruc = $("#ruc").val();
 
                                                         // Realizar la llamada a la API PHP
                                                         $.ajax({
-                                                            url: './includes/consulta_ruc.php', // Cambia esto al nombre de tu archivo PHP
+                                                            url: './includes/consulta_ruc.php', // Ajusta la URL según tu estructura de archivos
                                                             method: 'POST',
                                                             data: {
-                                                                documento: documento
+                                                                ruc: ruc
                                                             },
                                                             dataType: 'json',
                                                             success: function(data) {
-                                                                // Rellenar el campo de datos con la información obtenida
-                                                                var nombre = data.nombres;
-                                                                var apellidoPaterno = data.apellidoPaterno;
-                                                                var apellidoMaterno = data.apellidoMaterno;
+                                                                // Rellenar el campo de datos RUC con la información obtenida
+                                                                var razonSocial = data.razonSocial;
 
-                                                                $("#datos").val(`${nombre} ${apellidoPaterno} ${apellidoMaterno}`);
+                                                                $("#datosRUC").val(razonSocial);
                                                             },
                                                             error: function() {
-                                                                alert("Error al buscar datos");
+                                                                alert("Error al buscar datos RUC");
                                                             }
                                                         });
                                                     }
