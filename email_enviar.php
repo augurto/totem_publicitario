@@ -97,61 +97,14 @@ $empresaUser = $_SESSION['empresaUser'];
                                 </button>
                                 <div class="mail-list mt-4">
                                     <a href="#"><i class="mdi mdi-email-outline me-2"></i> Inbox <span class="ms-1 float-end">(18)</span></a>
-                                    <a href="#"><i class="mdi mdi-star-outline me-2"></i>Starred</a>
+                                    <!-- <a href="#"><i class="mdi mdi-star-outline me-2"></i>Starred</a>
                                     <a href="#"><i class="mdi mdi-diamond-stone me-2"></i>Importantes</a>
-                                    <a href="#"><i class="mdi mdi-file-outline me-2"></i>Draft</a>
+                                    <a href="#"><i class="mdi mdi-file-outline me-2"></i>Draft</a> -->
                                     <a href="#" class="active"><i class="mdi mdi-email-check-outline me-2"></i>Mail Enviados</a>
                                     <a href="#"><i class="mdi mdi-trash-can-outline me-2"></i>Trash</a>
                                 </div>
 
 
-                                <h6 class="mt-4">Labels</h6>
-
-                                <div class="mail-list mt-1">
-                                    <a href="#"><span class="mdi mdi-arrow-right-drop-circle text-info float-end"></span>Theme
-                                        Support</a>
-                                    <a href="#"><span class="mdi mdi-arrow-right-drop-circle text-warning float-end"></span>Freelance</a>
-                                    <a href="#"><span class="mdi mdi-arrow-right-drop-circle text-primary float-end"></span>Social</a>
-                                    <a href="#"><span class="mdi mdi-arrow-right-drop-circle text-danger float-end"></span>Friends</a>
-                                    <a href="#"><span class="mdi mdi-arrow-right-drop-circle text-success float-end"></span>Family</a>
-                                </div>
-
-                                <h6 class="mt-4">Chat</h6>
-
-                                <div class="mt-2">
-                                    <a href="#" class="d-flex">
-                                        <img class="d-flex me-3 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height="36">
-                                        <div class="flex-gwow-1 chat-user-box">
-                                            <p class="user-title m-0">Scott Median</p>
-                                            <p class="text-muted">Hello</p>
-                                        </div>
-                                    </a>
-
-                                    <a href="#" class="d-flex">
-                                        <img class="d-flex me-3 rounded-circle" src="assets/images/users/avatar-3.jpg" alt="Generic placeholder image" height="36">
-                                        <div class="flex-grow-1 chat-user-box">
-                                            <p class="user-title m-0">Julian Rosa</p>
-                                            <p class="text-muted">What about our next..</p>
-                                        </div>
-                                    </a>
-
-                                    <a href="#" class="d-flex">
-                                        <img class="d-flex me-3 rounded-circle" src="assets/images/users/avatar-4.jpg" alt="Generic placeholder image" height="36">
-                                        <div class="flex-grow-1 chat-user-box">
-                                            <p class="user-title m-0">David Medina</p>
-                                            <p class="text-muted">Yeah everything is fine</p>
-                                        </div>
-                                    </a>
-
-                                    <a href="#" class="d-flex">
-                                        <img class="d-flex me-3 rounded-circle" src="assets/images/users/avatar-6.jpg" alt="Generic placeholder image" height="36">
-                                        <div class="flex-grow-1 chat-user-box">
-                                            <p class="user-title m-0">Jay Baker</p>
-                                            <p class="text-muted">Wow that's great</p>
-                                        </div>
-                                    </a>
-
-                                </div>
                             </div>
                             <!-- End Left sidebar -->
 
