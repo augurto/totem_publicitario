@@ -1,11 +1,11 @@
 <?php
-$documento = $_POST['documento'];
+$ruc = $_POST['ruc'];
 $token = 'apis-token-6245.wt-VO39h1kYcilm8CMcL-WdJ6p7C-J-s';
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.apis.net.pe/v2/sunat/ruc?numero=$documento",
+    CURLOPT_URL => "https://api.apis.net.pe/v2/sunat/ruc?numero=$ruc",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -24,7 +24,7 @@ curl_close($curl);
 
 $data = json_decode($response, true);
 
-// Devolver la respuesta como JSON
+// Devolver solo el nombre de la empresa como JSON
 header('Content-Type: application/json');
-echo json_encode($data);
+echo json_encode(array('razonSocial' => $data['razonSocial']));
 ?>
