@@ -46,11 +46,7 @@ $empresaUser = $_SESSION['empresaUser'];
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        .btn {
-            line-height: 0.3 !important;
-        }
-    </style>
+
 
 </head>
 
@@ -97,7 +93,7 @@ $empresaUser = $_SESSION['empresaUser'];
                             <!-- Left sidebar -->
                             <div class="email-leftbar card">
                                 <button type="button" class="btn btn-danger btn-block waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#composemodal">
-                                    Compose
+                                    Redactar
                                 </button>
                                 <div class="mail-list mt-4">
                                     <a href="#"><i class="mdi mdi-email-outline me-2"></i> Inbox <span class="ms-1 float-end">(18)</span></a>
