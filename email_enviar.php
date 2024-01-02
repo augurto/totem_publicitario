@@ -159,7 +159,7 @@ $empresaUser = $_SESSION['empresaUser'];
                                         include('../includes/conexion.php');
 
                                         // Consulta para obtener mensajes ordenados por fecha_envio (ajusta según tu estructura de base de datos)
-                                        $sqlSelectMensajes = "SELECT * FROM mensajes ORDER BY fecha_envio DESC";
+                                        $sqlSelectMensajes = "SELECT * FROM mensajes where id_user=$idUsuarioSesion ORDER BY fecha_envio DESC";
                                         $resultado = mysqli_query($con, $sqlSelectMensajes);
 
                                         // Verificar si hay resultados
