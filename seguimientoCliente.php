@@ -317,7 +317,7 @@ $dni = $_SESSION['dni'];
                                                             },
                                                             dataType: 'json',
                                                             success: function(data) {
-                                                                // Rellenar el campo de datos RUC con la información obtenida
+                                                                // Rellenar el campo de datos RUC con el nombre de la empresa
                                                                 var razonSocial = data.razonSocial;
 
                                                                 $("#datosRUC").val(razonSocial);
