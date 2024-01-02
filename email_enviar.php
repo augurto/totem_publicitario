@@ -234,7 +234,7 @@ $empresaUser = $_SESSION['empresaUser'];
                                                 echo '<a href="#" class="title">' . $para . '</a><span class="star-toggle far fa-star"></span>';
                                                 echo '</div>';
                                                 echo '<div class="col-mail col-mail-2">';
-                                                echo '<a href="#" class="subject">' . $asunto . ' – <span class="teaser">' . $mensaje . '</span></a>';
+                                                echo '<a href="#" class="subject">' . $asunto . ' – <span class="teaser">' . strip_tags($mensaje) . '</span></a>';
                                                 echo '<div class="date">' . $fechaEnvio . '</div>';
                                                 echo '</div>';
                                                 echo '</li>';
