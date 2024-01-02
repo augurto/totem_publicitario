@@ -173,7 +173,7 @@ $dni = $_SESSION['dni'];
                                     <br>
                                     <!-- datos de api -->
 
-                                                                      <!-- fin de datos api -->
+                                    <!-- fin de datos api -->
 
                                     <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
                                     <form id="myForm" action="includes/guardar_webformActualizado.php" method="post">
@@ -182,58 +182,58 @@ $dni = $_SESSION['dni'];
 
 
                                                 <br>
-                                                    <div class="row mb-6">
-                                                        <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>">
-                                                        </div>
+                                                <div class="row mb-6">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>">
                                                     </div>
-                                                    <br>
-                                                    <div class="row mb-6">
-                                                        <label for="documento" class="col-sm-2 col-form-label">Documento</label>
-                                                        <div class="col-sm-8">
-                                                            <input class="form-control" type="number" id="documento" name="documento" maxlength="9">
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <button type="button" class="btn btn-primary" onclick="buscarDatos()">
-                                                                <!-- Agrega el icono de búsqueda de Bootstrap -->
-                                                                <span class="glyphicon glyphicon-search"></span> Buscar
-                                                            </button>
-                                                        </div>
-                                                        <div class="row mb-6">
-                                                            <label for="datos" class="form-label">Datos</label>
-                                                            <input type="text" id="datos" name="datos" class="form-control" readonly>
-                                                        </div>
+                                                </div>
+                                                <br>
+                                                <div class="row mb-6">
+                                                    <label for="documento" class="col-sm-2 col-form-label">Documento</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="number" id="documento" name="documento" maxlength="9">
                                                     </div>
-                                                    <script>
-                                                        function buscarDatos() {
-                                                            // Obtener el valor del documento
-                                                            var documento = $("#documento").val();
+                                                    <div class="col-sm-2">
+                                                        <button type="button" class="btn btn-primary" onclick="buscarDatos()">
+                                                            <!-- Agrega el icono de búsqueda de Bootstrap -->
+                                                            <span class="glyphicon glyphicon-search"></span> Buscar
+                                                        </button>
+                                                    </div>
+                                                    <div class="row mb-6">
+                                                        <label for="datos" class="form-label">Datos</label>
+                                                        <input type="text" id="datos" name="datos" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    function buscarDatos() {
+                                                        // Obtener el valor del documento
+                                                        var documento = $("#documento").val();
 
-                                                            // Realizar la llamada a la API PHP
-                                                            $.ajax({
-                                                                url: './includes/consulta_dni.php', // Cambia esto al nombre de tu archivo PHP
-                                                                method: 'POST',
-                                                                data: {
-                                                                    documento: documento
-                                                                },
-                                                                dataType: 'json',
-                                                                success: function(data) {
-                                                                    // Rellenar el campo de datos con la información obtenida
-                                                                    var nombre = data.nombres;
-                                                                    var apellidoPaterno = data.apellidoPaterno;
-                                                                    var apellidoMaterno = data.apellidoMaterno;
+                                                        // Realizar la llamada a la API PHP
+                                                        $.ajax({
+                                                            url: './includes/consulta_dni.php', // Cambia esto al nombre de tu archivo PHP
+                                                            method: 'POST',
+                                                            data: {
+                                                                documento: documento
+                                                            },
+                                                            dataType: 'json',
+                                                            success: function(data) {
+                                                                // Rellenar el campo de datos con la información obtenida
+                                                                var nombre = data.nombres;
+                                                                var apellidoPaterno = data.apellidoPaterno;
+                                                                var apellidoMaterno = data.apellidoMaterno;
 
-                                                                    $("#datos").val(`${nombre} ${apellidoPaterno} ${apellidoMaterno}`);
-                                                                },
-                                                                error: function() {
-                                                                    alert("Error al buscar datos");
-                                                                }
-                                                            });
-                                                        }
-                                                    </script>
-                                                    <br>
-                                                  
+                                                                $("#datos").val(`${nombre} ${apellidoPaterno} ${apellidoMaterno}`);
+                                                            },
+                                                            error: function() {
+                                                                alert("Error al buscar datos");
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+                                                <br>
+
                                                 <script>
                                                     document.getElementById("example-number-input").addEventListener("input", function() {
                                                         if (this.value.length > 9) {
@@ -781,6 +781,50 @@ $dni = $_SESSION['dni'];
                                         </div>
                                     </div>
                                     <!-- end dropdown -->
+                                    <?php
+                                    // Incluir el archivo de conexión
+                                    include('includes/conexion.php');
+
+                                    // Consulta SQL para obtener los resultados y contarlos
+                                    $sqlConsulta = "SELECT COUNT(*) AS total, MIN(fecha) AS primera_fecha, MAX(fecha) AS ultima_fecha
+               FROM web_formularios 
+               WHERE idOriginal = $idUrl OR id_form_web = $idUrl OR idOriginal = $Original OR id_form_web = $Original";
+
+                                    // Ejecutar la consulta
+                                    $resultadoConsulta = mysqli_query($con, $sqlConsulta);
+
+                                    // Verificar si hay resultados
+                                    if ($resultadoConsulta) {
+                                        // Obtener el resultado como un array asociativo
+                                        $filaConsulta = mysqli_fetch_assoc($resultadoConsulta);
+
+                                        // Obtener el total de resultados
+                                        $totalResultadosConsulta = $filaConsulta['total'];
+
+                                        // Obtener la primera y última fecha
+                                        $primeraFechaConsulta = $filaConsulta['primera_fecha'];
+                                        $ultimaFechaConsulta = $filaConsulta['ultima_fecha'];
+
+                                        // Calcular la diferencia entre la última y la primera fecha
+                                        $diferenciaFechasConsulta = strtotime($ultimaFechaConsulta) - strtotime($primeraFechaConsulta);
+
+                                        // Mostrar o almacenar los resultados según sea necesario
+                                        echo "Total de resultados: $totalResultadosConsulta<br>";
+                                        echo "Primera fecha: $primeraFechaConsulta<br>";
+                                        echo "Última fecha: $ultimaFechaConsulta<br>";
+                                        echo "Diferencia de fechas (segundos): $diferenciaFechasConsulta<br>";
+
+                                        // Liberar el resultado
+                                        mysqli_free_result($resultadoConsulta);
+                                    } else {
+                                        // Manejar error en la consulta
+                                        echo "Error en la consulta: " . mysqli_error($con);
+                                    }
+
+                                    // Cerrar la conexión
+                                    mysqli_close($con);
+                                    ?>
+
                                     <h4 class="card-title mb-4">Eventos</h4>
 
                                     <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
