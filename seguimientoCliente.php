@@ -262,9 +262,10 @@ $dni = $_SESSION['dni'];
                                                 </div>
                                                 <br>
                                                 <div class="row mb-6">
-                                                    <div class="row mb-6">
-                                                        <label for="datos" class="form-label">Datos</label>
-                                                        <input type="text" id="datos" name="datos" class="form-control" readonly>
+                                                    
+                                                    <label for="documento" class="col-sm-2 col-form-label">Datos</label>
+                                                    <div class="col-sm-8">
+                                                    <input type="text" id="datos" name="datos" class="form-control" readonly>
                                                     </div>
                                                     <label for="documento" class="col-sm-2 col-form-label">Documento</label>
                                                     <div class="col-sm-8">
