@@ -328,10 +328,6 @@ $empresaUser = $_SESSION['empresaUser'];
                             </div>
                         </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Enviar <i class="fab fa-telegram-plane ms-1"></i></button>
-                        </div>
                     </div>
                 </div>
             </div>
