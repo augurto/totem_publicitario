@@ -804,13 +804,14 @@ $dni = $_SESSION['dni'];
                                         // Calcular la diferencia entre la última y la primera fecha en segundos
                                         $diferenciaSegundosConsulta = strtotime($ultimaFechaConsulta) - strtotime($primeraFechaConsulta);
 
-                                        // Calcular la diferencia en días, minutos y segundos
+                                        // Calcular la diferencia en días, horas, minutos y segundos
                                         $diferenciaDias = floor($diferenciaSegundosConsulta / (60 * 60 * 24));
-                                        $diferenciaMinutos = floor(($diferenciaSegundosConsulta % (60 * 60 * 24)) / 60);
+                                        $diferenciaHoras = floor(($diferenciaSegundosConsulta % (60 * 60 * 24)) / (60 * 60));
+                                        $diferenciaMinutos = floor(($diferenciaSegundosConsulta % (60 * 60)) / 60);
                                         $diferenciaSegundos = $diferenciaSegundosConsulta % 60;
 
                                         // Mostrar la diferencia de fechas
-                                        echo "Diferencia de fechas: $diferenciaDias días, $diferenciaMinutos minutos y $diferenciaSegundos segundos";
+                                        echo "Diferencia de fechas: $diferenciaDias días, $diferenciaHoras horas, $diferenciaMinutos minutos y $diferenciaSegundos segundos";
 
                                         // Liberar el resultado
                                         mysqli_free_result($resultadoConsulta);
