@@ -262,13 +262,13 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                     <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                
+                                                <th>#</th>
                                                 <th>documento</th>
-                                                <th>Fecha</th>
-                                                <th>Fecha Fin</th>
-                                                <th>Inversión</th>
-                                                
-                                                <th>Descargar</th>
+                                                <th>Comentario</th>
+                                                <th>Fecha Programada</th>
+                                                <th>Fecha actual</th>
+
+                                                <th>Accion</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -295,17 +295,50 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
 
                                                     // Obtener la nueva fecha y hora después de restar 5 horas
                                                     $nueva_hora_actual = $fecha_hora->format('Y-m-d H:i:s');
-                                                    
+
 
                                                     // Imprimir una fila de la tabla con los datos recuperados y el correlativo
                                                     echo "<tr>";
+                                                    echo "<td>$correlativo</td>";
                                                     echo "<td>$id_facturacionMKT</td>";
                                                     echo "<td>$comentario</td>";
                                                     echo "<td>$fecha_agenda</td>";
                                                     echo "<td>$nueva_hora_actual</td>";
-                                                    
+
                                                     // Agregar una columna con un botón de descarga
                                                     echo "<td><a href='descargar.php?id=$id_facturacionMKT' class='btn btn-primary'>Descargar</a></td>";
+                                                    echo "<td>"; // Columna para el dropdown 
+                                            ?>
+                                                    <!-- Dropdown -->
+                                                    <div class="dropdown mt-2">
+                                                        <?php
+                                                        $estado_asignacion = $row_asignacion['estado_asignacion'];
+                                                        $btn_class = 'btn-secondary';
+                                                        $btn_text = 'Opciones';
+
+                                                        if ($estado_asignacion == 3) {
+                                                            $btn_class = 'btn-primary';
+                                                            $btn_text = 'Aceptado';
+                                                        } elseif ($estado_asignacion == 4) {
+                                                            $btn_class = 'btn-danger';
+                                                            $btn_text = 'Rechazado';
+                                                        }
+                                                        ?>
+
+                                                        <button class="btn <?php echo $btn_class; ?> dropdown-toggle" type="button" id="dropdownMenuButton_<?php echo $row_asignacion['id_documento']; ?>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <?php echo $btn_text; ?>
+                                                            <i class="mdi mdi-chevron-down"></i>
+                                                        </button>
+
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton_<?php echo $row_asignacion['id_documento']; ?>">
+                                                            <a class="dropdown-item" href="includes/estadoAsignacion.php?id_documento=<?php echo $row_asignacion['id_documento']; ?>&valor=3">Aceptar</a>
+                                                            <a class="dropdown-item" href="includes/estadoAsignacion.php?id_documento=<?php echo $row_asignacion['id_documento']; ?>&valor=4">Rechazar</a>
+
+
+                                                        </div>
+                                                    </div>
+                                            <?php
+                                                    echo "</td>";
                                                     echo "</tr>";
 
                                                     $correlativo++; // Incrementa el contador
