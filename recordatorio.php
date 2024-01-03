@@ -284,9 +284,9 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                     // Obtener los valores de la fila
                                                     $id_facturacionMKT = $row['id_original'];
-                                                    $fuente = $row['Comentario'];
+                                                    $fuente = $row['comentario'];
                                                     $start = $row['fecha_agenda'];
-                                                    $end = $row['hora_actual'];
+                                                    $end = $row['hora actual'];
                                                     
 
                                                     // Imprimir una fila de la tabla con los datos recuperados y el correlativo
