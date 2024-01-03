@@ -336,52 +336,86 @@ $dni = $_SESSION['dni'];
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <!-- inicio -->
                                                         <div class="mb-12">
-                                                            <label class="form-label">Selecciona un Campo</label>
-                                                            <select class="form-control select2" id="campoSeleccionado" name="campoSeleccionado">
-                                                                <?php
-                                                                // Array con los nombres de los campos de la tabla "producto"
-                                                                $campos = array("ID", "Nombre", "Descripcion", "Precio", "precioDolar", "precioMin", "precioDolarMin", "descuentoMax", "descuentoMaxDolar");
+    <label class="form-label">Selecciona un Producto</label>
+    <select class="form-control select2" id="productoSeleccionado" name="productoSeleccionado">
+        <?php
+        // Aquí deberías obtener los productos de tu base de datos
+        // y mostrar solo el nombre en las opciones del select
+        $productos = obtenerProductos(); // Debes implementar la función obtenerProductos()
 
-                                                                // Generar las opciones dentro del select
-                                                                foreach ($campos as $campo) {
-                                                                    echo "<option value='" . $campo . "'>" . $campo . "</option>";
-                                                                }
-                                                                ?>
-                                                            </select>
-                                                            <button onclick="agregarCampo()">Agregar</button>
-                                                        </div>
+        foreach ($productos as $producto) {
+            echo "<option value='" . $producto['ID'] . "'>" . $producto['Nombre'] . "</option>";
+        }
+        ?>
+    </select>
+    <button onclick="agregarProducto()">Agregar</button>
+</div>
 
-                                                        <!-- Espacio para mostrar la tabla -->
-                                                        <div>
-                                                            <table id="tablaProductos">
-                                                                <!-- Aquí se mostrarán los datos en tiempo real -->
-                                                            </table>
-                                                        </div>
+<!-- Espacio para mostrar la tabla -->
+<div>
+    <table id="tablaProductos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>precioDolar</th>
+                <th>precioMin</th>
+                <th>precioDolarMin</th>
+                <th>descuentoMax</th>
+                <th>descuentoMaxDolar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se mostrarán los datos en tiempo real -->
+        </tbody>
+    </table>
+</div>
 
-                                                        <!-- Script JavaScript para manejar la lógica de agregar campos -->
-                                                        <script>
-                                                            function agregarCampo() {
-                                                                var campoSeleccionado = document.getElementById("campoSeleccionado").value;
-                                                                var tablaProductos = document.getElementById("tablaProductos");
+<!-- Script JavaScript para manejar la lógica de agregar productos -->
+<script>
+    function agregarProducto() {
+        var productoSeleccionado = document.getElementById("productoSeleccionado");
+        var tablaProductos = document.getElementById("tablaProductos");
 
-                                                                // Obtener el valor seleccionado y agregarlo a la tabla (excluyendo el campo ID)
-                                                                if (campoSeleccionado !== "ID") {
-                                                                    // Lógica para obtener el valor real del campo seleccionado (puedes usar AJAX para obtener los datos de la base de datos)
-                                                                    var valorCampo = "ValorEjemplo";
+        // Obtener el ID del producto seleccionado
+        var productoID = productoSeleccionado.value;
 
-                                                                    // Crear una nueva fila y agregarla a la tabla
-                                                                    var newRow = tablaProductos.insertRow(tablaProductos.rows.length);
-                                                                    var cell1 = newRow.insertCell(0);
-                                                                    var cell2 = newRow.insertCell(1);
+        // Aquí deberías realizar una consulta a la base de datos para obtener todos los datos del producto
+        // en base al ID seleccionado. La siguiente línea es un ejemplo de cómo podrías hacerlo.
+        // var datosProducto = obtenerDatosProducto(productoID); // Debes implementar la función obtenerDatosProducto()
 
-                                                                    // Agregar los datos a las celdas
-                                                                    cell1.innerHTML = campoSeleccionado;
-                                                                    cell2.innerHTML = valorCampo;
-                                                                }
-                                                            }
-                                                        </script>
+        // Ejemplo de datos de producto (sustituir por la lógica real)
+        var datosProducto = {
+            ID: productoID,
+            Nombre: "NombreEjemplo",
+            Descripcion: "DescripcionEjemplo",
+            Precio: "PrecioEjemplo",
+            precioDolar: "precioDolarEjemplo",
+            precioMin: "precioMinEjemplo",
+            precioDolarMin: "precioDolarMinEjemplo",
+            descuentoMax: "descuentoMaxEjemplo",
+            descuentoMaxDolar: "descuentoMaxDolarEjemplo"
+        };
 
+        // Crear una nueva fila y agregarla a la tabla
+        var newRow = tablaProductos.insertRow(tablaProductos.rows.length);
+
+        // Iterar sobre las propiedades del objeto de datos del producto
+        for (var key in datosProducto) {
+            if (datosProducto.hasOwnProperty(key)) {
+                var cell = newRow.insertCell();
+                cell.innerHTML = datosProducto[key];
+            }
+        }
+    }
+</script>
+
+
+                                                        <!-- fin -->
                                                         <label class="form-label">Atributos</label>
                                                         <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
                                                             <?php
