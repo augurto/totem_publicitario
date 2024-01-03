@@ -287,6 +287,7 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                                     $comentario = $row['comentario'];
                                                     $fecha_agenda = $row['fecha_agenda'];
                                                     $hora_actual = $row['hora actual'];
+                                                    $estado_asignacion=$row['estado_agenda'];
                                                     // Crear un objeto DateTime con la hora actual
                                                     $fecha_hora = new DateTime($hora_actual);
 
@@ -305,8 +306,6 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                                     echo "<td>$fecha_agenda</td>";
                                                     echo "<td>$nueva_hora_actual</td>";
 
-                                                    // Agregar una columna con un botón de descarga
-                                                    echo "<td><a href='descargar.php?id=$id_facturacionMKT' class='btn btn-primary'>Descargar</a></td>";
                                                     echo "<td>"; // Columna para el dropdown 
                                             ?>
                                                     <!-- Dropdown -->
