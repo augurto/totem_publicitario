@@ -83,11 +83,22 @@ if (mysqli_query($con, $sql)) {
         // Enviar el correo
         $mail->send();
         echo "Mensaje enviado y almacenado en la base de datos con éxito";
+        sleep(1);
+        header("Location: ../email_enviar.php");
+        exit();
     } catch (Exception $e) {
         echo "Error al enviar el mensaje: {$mail->ErrorInfo}";
     }
 } else {
     echo "Error al almacenar en la base de datos: " . mysqli_error($con);
+    
+
+        // Esperar 2 segundos antes de redirigir
+        sleep(2);
+
+        // Redirigir de nuevo al mismo formulario
+        header("Location: ../tu_formulario.php");
+        exit();
 }
 
 // Cerrar la conexión
