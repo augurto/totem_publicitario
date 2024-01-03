@@ -181,47 +181,21 @@ $dni = $_SESSION['dni'];
                                             <div class="col-lg-12">
 
 
-                                            <?php if (empty($documento)) : ?>
-                                                <div class="row mb-6">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" >
-                                                </div>
-                                            </div>
-                                            <br>
-                                                <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
-                                                    </div>
-                                                </div>
-                                            <?php else : ?>
-                                               <div class="row mb-6">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
-                                                <div class="col-sm-10">
-                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
-                                                </div>
-                                            </div>
-                                            <br>
-                                                <div class="row mb-6">
-                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-10">
+                                                <!-- inicio -->
+                                                <div class="mb-12">
 
-                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
-                                                    </div>
+                                                    <label for="fuenteDato" class="form-label">Tipo de Documento</label>
+
+                                                    <select class="form-control select2" id="fuenteDato" name="fuenteDato">
+                                                        <option value="">Seleccione un tipo de documento</option>
+                                                        <option value="DNI">DNI</option>
+                                                        <option value="RUC">RUC</option>
+                                                        <option value="Carnet de Extranjería">Carnet de Extranjería</option>
+                                                        <option value="Pasaporte">Pasaporte</option>
+                                                    </select>
+
                                                 </div>
-                                            <?php endif; ?>
 
-
-                                            <script>
-                                                document.getElementById("example-number-input").addEventListener("input", function() {
-                                                    if (this.value.length > 9) {
-                                                        this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
-                                                    }
-                                                });
-                                            </script>
-                                            <br>
-                                                <br>
                                                 <!-- end row -->
                                                 <div class="row mb-6">
                                                     <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
@@ -728,7 +702,27 @@ $dni = $_SESSION['dni'];
                                     </form>
                                     <br>
 
-                                    
+                                    <form action="email/procesar_agenda.php" method="post">
+                                        <div class="row mb-3">
+                                            <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Agendar</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="datetime-local" id="example-datetime-local-input" name="fechaAgenda">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Comentario</label>
+                                            <div class="col-sm-10">
+                                                <textarea id="textarea" class="form-control" maxlength="30" rows="3" name="agendarComentario"></textarea>
+                                                <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-2 offset-sm-10">
+                                                <button type="submit" class="btn btn-primary">Agendar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
 
 
 
