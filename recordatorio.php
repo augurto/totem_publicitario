@@ -291,7 +291,7 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
 
                                                     // Imprimir una fila de la tabla con los datos recuperados y el correlativo
                                                     echo "<tr>";
-                                                    echo "<td>$correlativo</td>";
+                                                    echo "<td>$id_facturacionMKT</td>";
                                                     echo "<td>$fuente</td>";
                                                     echo "<td>$start</td>";
                                                     echo "<td>$end</td>";
