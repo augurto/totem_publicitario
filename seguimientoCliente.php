@@ -728,27 +728,7 @@ $dni = $_SESSION['dni'];
                                     </form>
                                     <br>
 
-                                    <form action="email/procesar_agenda.php" method="post">
-                                        <div class="row mb-3">
-                                            <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Agendar</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="datetime-local" id="example-datetime-local-input" name="fechaAgenda">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Comentario</label>
-                                            <div class="col-sm-10">
-                                                <textarea id="textarea" class="form-control" maxlength="30" rows="3" name="agendarComentario"></textarea>
-                                                <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-2 offset-sm-10">
-                                                <button type="submit" class="btn btn-primary">Agendar</button>
-                                            </div>
-                                        </div>
-                                    </form>
-
+                                    
 
 
 
