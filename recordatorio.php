@@ -240,7 +240,7 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                 <!-- Inicio bloque 1 -->
 
                 <div class="row">
-                    <div class="col-xl-7">
+                    <div class="col-xl-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="dropdown float-end">
@@ -263,18 +263,18 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Fuente</th>
-                                                <th>Fecha Inicio</th>
+                                                <th>documento</th>
+                                                <th>Fecha</th>
                                                 <th>Fecha Fin</th>
                                                 <th>Inversión</th>
-                                                <th>Archivo</th>
+                                                
                                                 <th>Descargar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             // Consulta SQL para obtener los datos de facturacionMKT
-                                            $query = "SELECT id_facturacionMKT, fuente, start, end, cantidad, archivo FROM facturacionMKT";
+                                            $query = "SELECT * FROM agendas";
                                             $result = mysqli_query($con, $query);
 
                                             // Verificar si se encontraron resultados
@@ -283,12 +283,11 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
 
                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                     // Obtener los valores de la fila
-                                                    $id_facturacionMKT = $row['id_facturacionMKT'];
-                                                    $fuente = $row['fuente'];
-                                                    $start = $row['start'];
-                                                    $end = $row['end'];
-                                                    $cantidad = $row['cantidad'];
-                                                    $archivo = $row['archivo'];
+                                                    $id_facturacionMKT = $row['id_original'];
+                                                    $fuente = $row['Comentario'];
+                                                    $start = $row['fecha_agenda'];
+                                                    $end = $row['hora_actual'];
+                                                    
 
                                                     // Imprimir una fila de la tabla con los datos recuperados y el correlativo
                                                     echo "<tr>";
@@ -296,8 +295,7 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                                     echo "<td>$fuente</td>";
                                                     echo "<td>$start</td>";
                                                     echo "<td>$end</td>";
-                                                    echo "<td>$cantidad</td>";
-                                                    echo "<td>$archivo</td>";
+                                                    
                                                     // Agregar una columna con un botón de descarga
                                                     echo "<td><a href='descargar.php?id=$id_facturacionMKT' class='btn btn-primary'>Descargar</a></td>";
                                                     echo "</tr>";
@@ -319,117 +317,6 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                     </div>
                     <!-- end col -->
 
-                    <div class="col-xl-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-md-5 col-9">
-                                        <h5 class="font-size-15 mb-3">Campañas Digitales</h5>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-md-7 col-3">
-                                        <ul class="list-inline user-chat-nav text-end mb-2">
-                                            <li class="list-inline-item">
-                                                <div class="dropdown">
-                                                    <a href="#" class="dropdown-toggle card-drop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="mdi mdi-magnify text-muted"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-0">
-                                                        <form class="p-2">
-                                                            <div class="search-box">
-                                                                <div class="position-relative">
-                                                                    <input type="text" class="form-control rounded bg-light border-0" placeholder="Search...">
-                                                                    <i class="mdi mdi-magnify search-icon"></i>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- end li -->
-                                            <li class="list-inline-item d-none d-sm-inline-block">
-                                                <div class="dropdown">
-                                                    <a href="#" class="dropdown-toggle card-drop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="mdi mdi-cog text-muted"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">View Profile</a>
-                                                        <a class="dropdown-item" href="#">Add Product</a>
-                                                        <a class="dropdown-item" href="#">Remove Product</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- end li -->
-                                        </ul>
-                                        <!-- end ul -->
-                                    </div>
-                                    <!-- end col -->
-                                </div>
-                                <!-- end row -->
-
-                                <div class="table-responsive">
-                                    <form action="includes/guardarFacturacionMKT.php" method="post" enctype="multipart/form-data">
-                                        <div class="mb-3">
-                                            <?php
-                                            // Consulta SQL para obtener las filas donde idAterrizajeFuente = 0
-                                            $query = "SELECT id_fuente, descripcionFuente FROM fuente WHERE idAterrizajeFuente = 0";
-                                            $result = mysqli_query($con, $query);
-
-                                            // Verificar si se encontraron resultados
-                                            if ($result) {
-                                                echo '<label class="form-label">Fuente</label>';
-                                                echo '<select class="form-control select2" name="fuente">';
-                                                echo '<option>Seleccione la fuente</option>';
-
-                                                // Recorrer los resultados y generar las opciones del select
-                                                while ($row = mysqli_fetch_assoc($result)) {
-                                                    $id_fuente = $row['id_fuente'];
-                                                    $descripcionFuente = $row['descripcionFuente'];
-                                                    echo "<option value='$id_fuente'>$descripcionFuente</option>";
-                                                }
-
-                                                echo '</select>';
-                                            } else {
-                                                echo "Error en la consulta: " . mysqli_error($con);
-                                            }
-                                            ?>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <div>
-                                                <label class="form-label">Fechas </label>
-                                                <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                                    <input type="text" class="form-control" name="start" placeholder="Fecha Inicio" />
-                                                    <input type="text" class="form-control" name="end" placeholder="Fecha Fin" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <div>
-                                                <label class="form-label">Inversión </label>
-                                                <input type="number" class="form-control" name="cantidad" />
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="formFile" class="form-label">Facturación</label>
-                                            <input class="form-control" type="file" id="formFile" name="facturacion" />
-                                        </div>
-
-                                        <!-- Botón "Enviar" que enviará el formulario a guardarFacturacionMKT.php -->
-                                        <div class="mb-3">
-                                            <button type="submit" class="btn btn-primary" formaction="includes/guardarFacturacionMKT.php">Enviar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- end table-responsive -->
-                            </div>
-                            <!-- end cardbody -->
-                        </div>
-                        <!-- end card -->
-                    </div>
-                    <!-- end col -->
                 </div>
                 <!-- end row -->
                 <!-- FIN bloque 1 -->
