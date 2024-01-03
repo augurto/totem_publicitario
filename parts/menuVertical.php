@@ -154,7 +154,7 @@ if ($resultadoContarFormularios) {
                     </a>
                 </li>
                 <li>
-                    <a href="email_enviar.php" class="waves-effect">
+                    <a href="recordatorio.php" class="waves-effect">
                         <i class="ri-notification-fill"></i>
                         <span>Recordatorio</span>
                     </a>
