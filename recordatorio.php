@@ -313,14 +313,14 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                                         <?php
                                                         $estado_asignacion = $row_asignacion['estado_asignacion'];
                                                         $btn_class = 'btn-secondary';
-                                                        $btn_text = 'Opciones';
+                                                        $btn_text = 'Pendiente';
 
                                                         if ($estado_asignacion == 3) {
                                                             $btn_class = 'btn-primary';
-                                                            $btn_text = 'Aceptado';
+                                                            $btn_text = 'Gestionado';
                                                         } elseif ($estado_asignacion == 4) {
                                                             $btn_class = 'btn-danger';
-                                                            $btn_text = 'Rechazado';
+                                                            $btn_text = 'Reprogramar';
                                                         }
                                                         ?>
 
@@ -330,8 +330,8 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                                         </button>
 
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton_<?php echo $row_asignacion['id_documento']; ?>">
-                                                            <a class="dropdown-item" href="includes/estadoAsignacion.php?id_documento=<?php echo $row_asignacion['id_documento']; ?>&valor=3">Aceptar</a>
-                                                            <a class="dropdown-item" href="includes/estadoAsignacion.php?id_documento=<?php echo $row_asignacion['id_documento']; ?>&valor=4">Rechazar</a>
+                                                            <a class="dropdown-item" href="email/agendar.php?id_documento=<?php echo $row['id_original']; ?>&valor=3">Gestionado</a>
+                                                            <a class="dropdown-item" href="email/agendar.php?id_documento=<?php echo $row['id_original']; ?>&valor=4">Reprogramar</a>
 
 
                                                         </div>
