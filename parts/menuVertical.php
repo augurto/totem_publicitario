@@ -45,6 +45,20 @@ if ($resultNoAtendidos) {
     $noAtendidos = 0; // Si hay un error en la consulta, establecemos el valor en 0
 }
 
+/* INICIO RECORDATORIO */
+
+$queryNoAgenda = "SELECT COUNT(*) AS countAGENDA FROM agendas where estado_agenda = 0  ";
+
+$resultNoAgenda = mysqli_query($con, $queryNoAgenda);
+
+if ($resultNoAgenda) {
+    $rowNoAgenda = mysqli_fetch_assoc($resultNoAgenda);
+    $noAgenda = $rowNoAgenda['countAGENDA'];
+} else {
+    $noAgenda = 0; // Si hay un error en la consulta, establecemos el valor en 0
+}
+/* FIN RECORDATORIO */
+
 // Definir la consulta SQL con los filtros requeridos
 $consulta = "SELECT COUNT(*) AS totalRegistros FROM web_formularios WHERE estado_web = 1 AND idEmpresa = $empresaUser AND id_user = $idUsuarioSesion";
 
@@ -156,7 +170,9 @@ if ($resultadoContarFormularios) {
                 <li>
                     <a href="recordatorio.php" class="waves-effect">
                         <i class="ri-notification-fill"></i>
+                        <span class="badge rounded-pill bg-success float-end"> <?php echo $noAgenda; ?></span>
                         <span>Recordatorio</span>
+                        
                     </a>
                     
                 </li>
