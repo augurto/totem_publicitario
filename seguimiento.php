@@ -504,6 +504,18 @@ $dni = $_SESSION['dni'];
                                                                 actualizarTabla();
                                                             });
                                                         });
+                                                         // Oculta el div al iniciar
+                                                        cotizarDiv.hide();
+
+                                                        tipoClienteSelect.on('change', function() {
+                                                            var selectedValue = $(this).val();
+
+                                                            if (selectedValue == 6) {
+                                                                cotizarDiv.show();
+                                                            } else {
+                                                                cotizarDiv.hide();
+                                                            }
+                                                        });
                                                     </script>
 
                                                     <!-- fin del div cotizar -->
