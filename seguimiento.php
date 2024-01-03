@@ -345,7 +345,7 @@ $dni = $_SESSION['dni'];
 
                                                     <br>
                                                     <label class="form-label">Atributos</label>
-                                                    <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
+                                                    <select class="select2 form-control select2" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
 
                                                         <?php
                                                         require 'includes/conexion.php'; // Incluimos el archivo de conexión
