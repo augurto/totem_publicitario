@@ -315,31 +315,31 @@ $dni = $_SESSION['dni'];
                                                         ?>
                                                     </select>
                                                 </div>
-                                                <!-- Agrega este script en tu página -->
                                                 <script>
-                                                    document.addEventListener('DOMContentLoaded', function() {
-                                                        // Obtener el elemento select
-                                                        var tipoClienteSelect = document.getElementById('tipoCliente');
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtener el elemento select
+    var tipoClienteSelect = document.getElementById('tipoCliente');
 
-                                                        // Obtener el elemento div que quieres mostrar/ocultar
-                                                        var cotizar3Div = document.getElementById('cotizar3');
+    // Obtener el elemento div que quieres mostrar/ocultar
+    var cotizar3Div = document.getElementById('cotizar3');
 
-                                                        // Agregar un evento change al select
-                                                        tipoClienteSelect.addEventListener('change', function() {
-                                                            // Verificar si el valor seleccionado es 6
-                                                            if (tipoClienteSelect.value == 6) {
-                                                                // Mostrar el div
-                                                                cotizar3Div.style.display = 'block';
-                                                            } else {
-                                                                // Ocultar el div
-                                                                cotizar3Div.style.display = 'none';
-                                                            }
-                                                        });
+    // Agregar un evento onchange directamente en el select
+    tipoClienteSelect.onchange = function () {
+        // Verificar si el valor seleccionado es 6
+        if (tipoClienteSelect.value == 6) {
+            // Mostrar el div
+            cotizar3Div.style.display = 'block';
+        } else {
+            // Ocultar el div
+            cotizar3Div.style.display = 'none';
+        }
+    };
 
-                                                        // Ejecutar el evento change al cargar la página para verificar el estado inicial
-                                                        tipoClienteSelect.dispatchEvent(new Event('change'));
-                                                    });
-                                                </script>
+    // Ejecutar el evento onchange al cargar la página para verificar el estado inicial
+    tipoClienteSelect.onchange();
+});
+</script>
+
 
 
                                                 <br>
