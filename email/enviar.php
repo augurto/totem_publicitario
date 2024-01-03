@@ -59,7 +59,7 @@ if (mysqli_query($con, $sql)) {
         // Configurar el servidor de correo
         $mail->SMTPDebug = SMTP::DEBUG_OFF; // Puedes cambiar a DEBUG_SERVER para obtener más información
         $mail->isSMTP();
-        $mail->Host = 'mail.privateemail.com';
+        $mail->Host = 'mail.geosatelital.com.pe';
         $mail->SMTPAuth = true;
         $mail->Username = 'notificaciones_generales@geosatelital.com.pe';
         $mail->Password = 'yBrPjbkRGaTVVdMGAUQjmeF2epx6N93w';
