@@ -262,10 +262,10 @@ $dni = $_SESSION['dni'];
                                                 </div>
                                                 <br>
                                                 <div class="row mb-6">
-                                                    
+
                                                     <label for="documento" class="col-sm-2 col-form-label">Datos</label>
                                                     <div class="col-sm-8">
-                                                    <input type="text" id="datos" name="datos" class="form-control" readonly>
+                                                        <input type="text" id="datos" name="datos" class="form-control" readonly>
                                                     </div>
                                                     <label for="documento" class="col-sm-2 col-form-label">Documento</label>
                                                     <div class="col-sm-8">
@@ -854,6 +854,13 @@ $dni = $_SESSION['dni'];
                                         <!-- end row -->
 
                                     </form>
+                                    <div class="row mb-3">
+                                        <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Date and
+                                            time</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                                        </div>
+                                    </div>
 
 
 
