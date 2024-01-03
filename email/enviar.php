@@ -59,15 +59,15 @@ if (mysqli_query($con, $sql)) {
         // Configurar el servidor de correo
         $mail->SMTPDebug = SMTP::DEBUG_OFF; // Puedes cambiar a DEBUG_SERVER para obtener más información
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'mail.privateemail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'ego.17.22@gmail.com';
-        $mail->Password = 'yxpg decu fxnq egsv';
+        $mail->Username = 'notificaciones_generales@geosatelital.com.pe';
+        $mail->Password = 'yBrPjbkRGaTVVdMGAUQjmeF2epx6N93w';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Port = 465;
 
         // Configurar el remitente y destinatario
-        $mail->setFrom('ego.17.22@gmail.com', 'Nombre del Remitente');
+        $mail->setFrom('notificaciones_generales@geosatelital.com.pe', 'Notificaciones GeoSatelital');
         $mail->addAddress($para);
 
         // Configurar el mensaje
