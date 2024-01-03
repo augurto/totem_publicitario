@@ -64,7 +64,7 @@ if (mysqli_query($con, $sql)) {
         $mail->Username = 'notificaciones_generales@geosatelital.com.pe';
         $mail->Password = 'yBrPjbkRGaTVVdMGAUQjmeF2epx6N93w';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 465;
+        $mail->Port = 587;
 
         // Configurar el remitente y destinatario
         $mail->setFrom('notificaciones_generales@geosatelital.com.pe', 'Notificaciones GeoSatelital');
