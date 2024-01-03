@@ -315,116 +315,142 @@ $dni = $_SESSION['dni'];
                                                         ?>
                                                     </select>
                                                 </div>
+                                                <!-- Agrega este script en tu página -->
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        // Obtener el elemento select
+                                                        var tipoClienteSelect = document.getElementById('tipoCliente');
+
+                                                        // Obtener el elemento div que quieres mostrar/ocultar
+                                                        var cotizar3Div = document.getElementById('cotizar3');
+
+                                                        // Agregar un evento change al select
+                                                        tipoClienteSelect.addEventListener('change', function() {
+                                                            // Verificar si el valor seleccionado es 6
+                                                            if (tipoClienteSelect.value == 6) {
+                                                                // Mostrar el div
+                                                                cotizar3Div.style.display = 'block';
+                                                            } else {
+                                                                // Ocultar el div
+                                                                cotizar3Div.style.display = 'none';
+                                                            }
+                                                        });
+
+                                                        // Ejecutar el evento change al cargar la página para verificar el estado inicial
+                                                        tipoClienteSelect.dispatchEvent(new Event('change'));
+                                                    });
+                                                </script>
+
 
                                                 <br>
 
                                                 <!-- Campo de selección múltiple para atributos -->
-                                                <div id="cotizar" style="display: none;">
-                                                <div id="cotizar">
-                                                    <div class="mb-12">
-                                                        <!-- Radio buttons para elegir moneda -->
-                                                        <div class="row mb-3">
-                                                            <label class="col-sm-2 col-form-label">Moneda</label>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="0" checked>
-                                                                    <label class="form-check-label" for="monedaSoles">Soles</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="1">
-                                                                    <label class="form-check-label" for="monedaDolares">Dólares</label>
+                                                <div id="cotizar3" style="display: none;">
+                                                    <div id="cotizar">
+                                                        <div class="mb-12">
+                                                            <!-- Radio buttons para elegir moneda -->
+                                                            <div class="row mb-3">
+                                                                <label class="col-sm-2 col-form-label">Moneda</label>
+                                                                <div class="col-sm-10">
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="0" checked>
+                                                                        <label class="form-check-label" for="monedaSoles">Soles</label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="1">
+                                                                        <label class="form-check-label" for="monedaDolares">Dólares</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
+                                                            <!-- inicio -->
+
+
+                                                            <!-- fin -->
+
                                                         </div>
-                                                        <!-- inicio -->
 
+                                                        <br>
+                                                        <label class="form-label">Atributos</label>
+                                                        <select class="select2 form-control select2" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
 
-                                                        <!-- fin -->
+                                                            <?php
+                                                            require 'includes/conexion.php'; // Incluimos el archivo de conexión
 
-                                                    </div>
+                                                            // Obtener la moneda seleccionada
+                                                            $moneda = isset($_POST['moneda']) ? $_POST['moneda'] : 0; // Por defecto, Soles
 
-                                                    <br>
-                                                    <label class="form-label">Atributos</label>
-                                                    <select class="select2 form-control select2" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
+                                                            // Seleccionar la columna de precio según la moneda
+                                                            $columnaPrecio = ($moneda == 0) ? 'Precio' : 'precioDolar';
 
-                                                        <?php
-                                                        require 'includes/conexion.php'; // Incluimos el archivo de conexión
+                                                            // Consulta condicional según la moneda
+                                                            $query = "SELECT ID, Nombre, $columnaPrecio AS Precio FROM productos";
+                                                            $result = mysqli_query($con, $query);
 
-                                                        // Obtener la moneda seleccionada
-                                                        $moneda = isset($_POST['moneda']) ? $_POST['moneda'] : 0; // Por defecto, Soles
+                                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                                $productoID = $row['ID'];
+                                                                $productoNombre = $row['Nombre'];
+                                                                $productoPrecio = $row['Precio'];
+                                                                echo "<option value='$productoID'>$productoNombre - $productoPrecio</option>";
+                                                            }
 
-                                                        // Seleccionar la columna de precio según la moneda
-                                                        $columnaPrecio = ($moneda == 0) ? 'Precio' : 'precioDolar';
+                                                            // Liberar el resultado
+                                                            mysqli_free_result($result);
 
-                                                        // Consulta condicional según la moneda
-                                                        $query = "SELECT ID, Nombre, $columnaPrecio AS Precio FROM productos";
-                                                        $result = mysqli_query($con, $query);
+                                                            // Cerrar la conexión
+                                                            mysqli_close($con);
+                                                            ?>
+                                                        </select>
+                                                        <!-- Tu código HTML/PHP anterior -->
 
-                                                        while ($row = mysqli_fetch_assoc($result)) {
-                                                            $productoID = $row['ID'];
-                                                            $productoNombre = $row['Nombre'];
-                                                            $productoPrecio = $row['Precio'];
-                                                            echo "<option value='$productoID'>$productoNombre - $productoPrecio</option>";
-                                                        }
-
-                                                        // Liberar el resultado
-                                                        mysqli_free_result($result);
-
-                                                        // Cerrar la conexión
-                                                        mysqli_close($con);
-                                                        ?>
-                                                    </select>
-                                                    <!-- Tu código HTML/PHP anterior -->
-
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-2 offset-sm-10">
-                                                            <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
+                                                        <div class="row mb-3">
+                                                            <div class="col-sm-2 offset-sm-10">
+                                                                <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <table class="table table-bordered" id="productosTabla">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Nombre</th>
-                                                                <th>Precio</th>
-                                                                <th>Cantidad</th>
-                                                                <th>Eliminar</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <!-- Aquí se agregarán dinámicamente los productos -->
-                                                        </tbody>
-                                                    </table>
+                                                        <table class="table table-bordered" id="productosTabla">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nombre</th>
+                                                                    <th>Precio</th>
+                                                                    <th>Cantidad</th>
+                                                                    <th>Eliminar</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- Aquí se agregarán dinámicamente los productos -->
+                                                            </tbody>
+                                                        </table>
 
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-4">
-                                                            <label>Subtotal:</label>
-                                                            <input type="text" class="form-control" id="subtotalInput" readonly>
+                                                        <div class="row mb-3">
+                                                            <div class="col-sm-4">
+                                                                <label>Subtotal:</label>
+                                                                <input type="text" class="form-control" id="subtotalInput" readonly>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label>Descuento:</label>
+                                                                <input type="text" class="form-control" id="descuentoInput">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label>Total:</label>
+                                                                <input type="text" class="form-control" id="totalInput" readonly>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            <label>Descuento:</label>
-                                                            <input type="text" class="form-control" id="descuentoInput">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label>Total:</label>
-                                                            <input type="text" class="form-control" id="totalInput" readonly>
-                                                        </div>
-                                                    </div>
 
-                                                    <script>
-                                                        document.addEventListener('DOMContentLoaded', function() {
-                                                            // Código JavaScript aquí
-                                                            let productos = [];
-                                                            let descuento = 0;
+                                                        <script>
+                                                            document.addEventListener('DOMContentLoaded', function() {
+                                                                // Código JavaScript aquí
+                                                                let productos = [];
+                                                                let descuento = 0;
 
-                                                            function actualizarTabla() {
-                                                                // Lógica para actualizar la tabla con los productos
-                                                                let tablaBody = document.querySelector('#productosTabla tbody');
-                                                                tablaBody.innerHTML = '';
+                                                                function actualizarTabla() {
+                                                                    // Lógica para actualizar la tabla con los productos
+                                                                    let tablaBody = document.querySelector('#productosTabla tbody');
+                                                                    tablaBody.innerHTML = '';
 
-                                                                productos.forEach(producto => {
-                                                                    let fila = document.createElement('tr');
-                                                                    fila.innerHTML = `
+                                                                    productos.forEach(producto => {
+                                                                        let fila = document.createElement('tr');
+                                                                        fila.innerHTML = `
                 <td>${producto.nombre}</td>
                 <td>${producto.precio}</td>
                 <td>
@@ -434,92 +460,80 @@ $dni = $_SESSION['dni'];
                     <button type="button" class="btn btn-danger eliminarProducto" data-id="${producto.id}">Eliminar</button>
                 </td>
             `;
-                                                                    tablaBody.appendChild(fila);
+                                                                        tablaBody.appendChild(fila);
+                                                                    });
+
+                                                                    // Calcular y actualizar el subtotal
+                                                                    let subtotal = productos.reduce((acc, curr) => acc + (curr.precio * curr.cantidad), 0);
+                                                                    document.querySelector('#subtotalInput').value = subtotal.toFixed(2);
+
+                                                                    // Calcular y actualizar el total con descuento
+                                                                    let total = (subtotal - descuento) * 1.18;
+                                                                    document.querySelector('#totalInput').value = total.toFixed(2);
+                                                                }
+
+                                                                function agregarProducto(id, nombre, precio) {
+                                                                    // Lógica para agregar un producto al array
+                                                                    productos.push({
+                                                                        id,
+                                                                        nombre,
+                                                                        precio,
+                                                                        cantidad: 1
+                                                                    });
+                                                                    actualizarTabla();
+                                                                }
+
+                                                                function eliminarProducto(id) {
+                                                                    // Lógica para eliminar un producto del array
+                                                                    productos = productos.filter(producto => producto.id !== id);
+                                                                    actualizarTabla();
+                                                                }
+
+                                                                // Evento de clic en el botón "Agregar"
+                                                                document.querySelector('.agregarProducto').addEventListener('click', function() {
+                                                                    // Lógica para obtener el producto seleccionado del select y agregarlo a la tabla
+                                                                    let select = document.querySelector('#atributosSelect');
+                                                                    let selectedOption = select.options[select.selectedIndex];
+                                                                    let productoID = selectedOption.value;
+                                                                    let productoNombrePrecio = selectedOption.text.split(' - ');
+                                                                    let productoNombre = productoNombrePrecio[0].trim();
+                                                                    let productoPrecio = parseFloat(productoNombrePrecio[1].trim());
+
+                                                                    agregarProducto(productoID, productoNombre, productoPrecio);
                                                                 });
 
-                                                                // Calcular y actualizar el subtotal
-                                                                let subtotal = productos.reduce((acc, curr) => acc + (curr.precio * curr.cantidad), 0);
-                                                                document.querySelector('#subtotalInput').value = subtotal.toFixed(2);
+                                                                // Evento de cambio en la cantidad de un producto
+                                                                document.addEventListener('input', function(event) {
+                                                                    if (event.target.classList.contains('cantidadInput')) {
+                                                                        let id = event.target.closest('tr').querySelector('.eliminarProducto').dataset.id;
+                                                                        let cantidad = parseInt(event.target.value);
 
-                                                                // Calcular y actualizar el total con descuento
-                                                                let total = (subtotal - descuento) * 1.18;
-                                                                document.querySelector('#totalInput').value = total.toFixed(2);
-                                                            }
-
-                                                            function agregarProducto(id, nombre, precio) {
-                                                                // Lógica para agregar un producto al array
-                                                                productos.push({
-                                                                    id,
-                                                                    nombre,
-                                                                    precio,
-                                                                    cantidad: 1
-                                                                });
-                                                                actualizarTabla();
-                                                            }
-
-                                                            function eliminarProducto(id) {
-                                                                // Lógica para eliminar un producto del array
-                                                                productos = productos.filter(producto => producto.id !== id);
-                                                                actualizarTabla();
-                                                            }
-
-                                                            // Evento de clic en el botón "Agregar"
-                                                            document.querySelector('.agregarProducto').addEventListener('click', function() {
-                                                                // Lógica para obtener el producto seleccionado del select y agregarlo a la tabla
-                                                                let select = document.querySelector('#atributosSelect');
-                                                                let selectedOption = select.options[select.selectedIndex];
-                                                                let productoID = selectedOption.value;
-                                                                let productoNombrePrecio = selectedOption.text.split(' - ');
-                                                                let productoNombre = productoNombrePrecio[0].trim();
-                                                                let productoPrecio = parseFloat(productoNombrePrecio[1].trim());
-
-                                                                agregarProducto(productoID, productoNombre, productoPrecio);
-                                                            });
-
-                                                            // Evento de cambio en la cantidad de un producto
-                                                            document.addEventListener('input', function(event) {
-                                                                if (event.target.classList.contains('cantidadInput')) {
-                                                                    let id = event.target.closest('tr').querySelector('.eliminarProducto').dataset.id;
-                                                                    let cantidad = parseInt(event.target.value);
-
-                                                                    let producto = productos.find(p => p.id === id);
-                                                                    if (producto) {
-                                                                        producto.cantidad = cantidad;
-                                                                        actualizarTabla();
+                                                                        let producto = productos.find(p => p.id === id);
+                                                                        if (producto) {
+                                                                            producto.cantidad = cantidad;
+                                                                            actualizarTabla();
+                                                                        }
                                                                     }
-                                                                }
+                                                                });
+
+                                                                // Evento de clic en el botón "Eliminar"
+                                                                document.addEventListener('click', function(event) {
+                                                                    if (event.target.classList.contains('eliminarProducto')) {
+                                                                        let id = event.target.dataset.id;
+                                                                        eliminarProducto(id);
+                                                                    }
+                                                                });
+
+                                                                // Evento de cambio en el descuento
+                                                                document.querySelector('#descuentoInput').addEventListener('input', function() {
+                                                                    descuento = parseFloat(document.querySelector('#descuentoInput').value) || 0;
+                                                                    actualizarTabla();
+                                                                });
                                                             });
+                                                        </script>
 
-                                                            // Evento de clic en el botón "Eliminar"
-                                                            document.addEventListener('click', function(event) {
-                                                                if (event.target.classList.contains('eliminarProducto')) {
-                                                                    let id = event.target.dataset.id;
-                                                                    eliminarProducto(id);
-                                                                }
-                                                            });
-
-                                                            // Evento de cambio en el descuento
-                                                            document.querySelector('#descuentoInput').addEventListener('input', function() {
-                                                                descuento = parseFloat(document.querySelector('#descuentoInput').value) || 0;
-                                                                actualizarTabla();
-                                                            });
-                                                        });
-                                                         // Oculta el div al iniciar
-                                                        cotizarDiv.hide();
-
-                                                        tipoClienteSelect.on('change', function() {
-                                                            var selectedValue = $(this).val();
-
-                                                            if (selectedValue == 6) {
-                                                                cotizarDiv.show();
-                                                            } else {
-                                                                cotizarDiv.hide();
-                                                            }
-                                                        });
-                                                    </script>
-
-                                                    <!-- fin del div cotizar -->
-                                                </div>
+                                                        <!-- fin del div cotizar -->
+                                                    </div>
                                                 </div>
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
