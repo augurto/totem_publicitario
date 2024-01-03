@@ -284,17 +284,25 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                     // Obtener los valores de la fila
                                                     $id_facturacionMKT = $row['id_original'];
-                                                    $fuente = $row['comentario'];
-                                                    $start = $row['fecha_agenda'];
-                                                    $end = $row['hora actual'];
+                                                    $comentario = $row['comentario'];
+                                                    $fecha_agenda = $row['fecha_agenda'];
+                                                    $hora_actual = $row['hora actual'];
+                                                    // Crear un objeto DateTime con la hora actual
+                                                    $fecha_hora = new DateTime($hora_actual);
+
+                                                    // Restar 5 horas
+                                                    $fecha_hora->modify('-5 hours');
+
+                                                    // Obtener la nueva fecha y hora después de restar 5 horas
+                                                    $nueva_hora_actual = $fecha_hora->format('Y-m-d H:i:s');
                                                     
 
                                                     // Imprimir una fila de la tabla con los datos recuperados y el correlativo
                                                     echo "<tr>";
                                                     echo "<td>$id_facturacionMKT</td>";
-                                                    echo "<td>$fuente</td>";
-                                                    echo "<td>$start</td>";
-                                                    echo "<td>$end</td>";
+                                                    echo "<td>$comentario</td>";
+                                                    echo "<td>$fecha_agenda</td>";
+                                                    echo "<td>$nueva_hora_actual</td>";
                                                     
                                                     // Agregar una columna con un botón de descarga
                                                     echo "<td><a href='descargar.php?id=$id_facturacionMKT' class='btn btn-primary'>Descargar</a></td>";
