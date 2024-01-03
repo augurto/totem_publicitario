@@ -288,14 +288,14 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
 
                                             // Verificar si se encontraron resultados
                                             if ($result) {
-                                                echo '<label class="form-label">Fuente</label>';
+                                                
                                                 echo '<select class="form-control select2" name="fuente">';
                                                 echo '<option>Seleccione la fuente</option>';
 
                                                 // Recorrer los resultados y generar las opciones del select
                                                 while ($row = mysqli_fetch_assoc($result)) {
-                                                    $id_fuente = $row['nombre_user'];
-                                                    $descripcionFuente = $row['email_user'];
+                                                    $id_fuente = $row['id_user'];
+                                                    $descripcionFuente = $row['nombre_user'];
                                                     echo "<option value='$id_fuente'>$descripcionFuente</option>";
                                                 }
 
