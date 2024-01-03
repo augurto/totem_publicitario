@@ -372,7 +372,6 @@ $dni = $_SESSION['dni'];
                                                         <br>
                                                         <label class="form-label">Planes</label>
                                                         <select class="select2 form-control select2" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
-
                                                             <?php
                                                             require 'includes/conexion.php'; // Incluimos el archivo de conexión
 
@@ -383,13 +382,12 @@ $dni = $_SESSION['dni'];
                                                             $columnaPrecio = ($moneda == 0) ? 'Precio' : 'precioDolar';
 
                                                             // Consulta condicional según la moneda
-                                                            $query = "SELECT ID, Nombre, $columnaPrecio AS Precio FROM productos";
+                                                            $query = "SELECT ID, Nombre FROM productos"; // Solo selecciona el nombre
                                                             $result = mysqli_query($con, $query);
 
                                                             while ($row = mysqli_fetch_assoc($result)) {
                                                                 $productoID = $row['ID'];
                                                                 $productoNombre = $row['Nombre'];
-                                                                $productoPrecio = $row['Precio'];
                                                                 echo "<option value='$productoID'>$productoNombre</option>";
                                                             }
 
@@ -400,6 +398,7 @@ $dni = $_SESSION['dni'];
                                                             mysqli_close($con);
                                                             ?>
                                                         </select>
+
                                                         <!-- Tu código HTML/PHP anterior -->
 
                                                         <div class="row mb-3">
@@ -481,8 +480,7 @@ $dni = $_SESSION['dni'];
                                                                         cantidad: 1
                                                                     });
                                                                     actualizarTabla();
-                                                                    // Limpiar el select después de agregar un producto
-                                                                    document.getElementById('atributosSelect').value = '';
+
                                                                 }
 
                                                                 function eliminarProducto(id) {
