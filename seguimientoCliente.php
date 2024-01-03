@@ -178,17 +178,15 @@ $dni = $_SESSION['dni'];
                                     <form id="myForm" action="includes/guardar_webformActualizado.php" method="post">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            
-                                            <div class="row mb-6">
+
+                                            <?php if (empty($documento)) : ?>
+                                                <div class="row mb-6">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
                                                 <div class="col-sm-10">
-                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos"
-                                                id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" >
+                                                    <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" >
                                                 </div>
                                             </div>
                                             <br>
-                                            
-                                            <?php if (empty($documento)) : ?>
                                                 <div class="row mb-6">
                                                     <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                     <div class="col-sm-10">
@@ -196,9 +194,17 @@ $dni = $_SESSION['dni'];
                                                     </div>
                                                 </div>
                                             <?php else : ?>
+                                               <div class="row mb-6">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                <div class="col-sm-10">
+                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <br>
                                                 <div class="row mb-6">
                                                     <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                     <div class="col-sm-10">
+
                                                         <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
                                                     </div>
                                                 </div>
@@ -213,30 +219,41 @@ $dni = $_SESSION['dni'];
                                                 });
                                             </script>
                                             <br>
-                                             <!-- end row -->
-                                             <div class="row mb-6">
+                                            <!-- end row -->
+                                            <div class="row mb-6">
                                                 <label for="example-tel-input" class="col-sm-2 col-form-label">Telefono</label>
                                                 <div class="col-sm-10">
-                                                <a href="https://api.whatsapp.com/send?phone=<?php echo "51".$telefono; ?>" target="_blank"><?php echo $telefono; ?></a>
-                                                <input type="hidden" class="form-control" name="telefono" value="<?php echo $telefono ?>" readonly>
+                                                    <?php if ($telefono == 0) : ?>
+                                                        <input type="text" class="form-control" name="telefono" value="<?php echo $telefono; ?>">
+                                                    <?php else : ?>
+                                                        <a href="https://api.whatsapp.com/send?phone=<?php echo "51" . $telefono; ?>" target="_blank"><?php echo $telefono; ?></a>
+                                                        <input type="hidden" class="form-control" name="telefono" value="<?php echo $telefono; ?>">
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
+
+
                                             <!-- end row -->
                                             <br>
                                             <div class="row mb-3">
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="email"  value="<?php echo $email  ; ?>" 
-                                                        id="example-email-input" name="email" readonly>
+                                                    <input class="form-control" type="email" value="<?php echo $email; ?>" id="example-email-input" name="email">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="example-email-input" class="col-sm-2 col-form-label">Usuario Asignado</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" value="<?php echo $idUsuarioSesion; ?>" id="example-email-input" name="randomUser" readonly>
                                                 </div>
                                             </div>
                                             <!-- end row -->
                                             <div class="mb-12">
                                                 <label class="form-label">Tipo de Cliente</label>
-                                                                                                
+
                                                 <select class="form-control select2" id="fuenteDato" name="fuenteDato">
                                                     <?php
-                                                    include 'includes/conexion.php'; 
+                                                    include 'includes/conexion.php';
                                                     // Realizar la consulta a la base de datos para obtener los datos de la tabla
                                                     $query = "SELECT * FROM tipoClienteCliente WHERE empresaEstado = $empresaUser2";
                                                     $result = mysqli_query($con, $query);
@@ -266,8 +283,8 @@ $dni = $_SESSION['dni'];
                                             <div class="mt-6">
                                                 <br>
                                                 <label class="mb-1">Fuente : </label>
-                                                
-                                                                                               
+
+
                                                 <?php
                                                 include 'includes/conexion.php';
                                                 if (empty($id_user)) {
@@ -275,6 +292,8 @@ $dni = $_SESSION['dni'];
                                                         $fuenteOriginal = 2;
                                                     } elseif ($_GET['pr'] == "Meta ADS") {
                                                         $fuenteOriginal = 3;
+                                                    } elseif ($_GET['pr'] == "TIKTOK ADS") {
+                                                        $fuenteOriginal = 11;
                                                     } else {
                                                         $fuenteOriginal = 1;
                                                     }
@@ -288,16 +307,19 @@ $dni = $_SESSION['dni'];
                                                     $row = mysqli_fetch_assoc($result);
                                                     $descripcionFuente = $row['descripcionFuente'];
                                                     $colorFuente = $row['colorFuente'];
-                                                
+
                                                     echo '<span class="badge rounded-pill" style="background-color: ' . $colorFuente . ';">' . $descripcionFuente . '</span>';
                                                     echo '<input class="form-control" type="hidden" id="example-text-input" name="fuente" value="' . $fuenteOriginal . '" readonly>';
-                                                }
-                                                 else {
+                                                } else {
                                                     echo '<span class="badge rounded-pill">SIN FUENTE</span>';
                                                 }
 
                                                 mysqli_close($con);
                                                 ?>
+                                                <label class="mb-1">Campaña : </label> <?php
+                                                                                        $camp = $_GET['f'];
+                                                                                        echo '<span class="badge rounded-pill"  style="background-color:green" >' . $camp . '</span>'; ?>
+
 
                                             </div>
                                             <br>
@@ -332,33 +354,18 @@ $dni = $_SESSION['dni'];
                                                 </select>
                                             </div>
 
-                                            
-                                           
-                                            <div class="mt-6">
-                                                <label class="mb-1">Mensaje </label>
-                                                
-                                                <textarea  class="form-control" maxlength="225" rows="3"  readonly><?php echo $mensaje; ?></textarea>
-
-                                            </div>
                                             <div class="mt-6">
                                                 <label class="mb-1">Comentario</label>
-                                                
-                                                <textarea  id="textarea" class="form-control" maxlength="225" rows="3" name="comentario" ></textarea>
+
+                                                <textarea id="textarea" class="form-control" maxlength="225" rows="3" name="comentario"></textarea>
 
                                             </div>
                                             <br>
-                                            <?php 
-                                                $prospectoExistente = $_GET['pr'];
-                                                
-                                                if (empty($mensajeOriginal)) {
-                                                    echo "Mensaje Original : ".$mensaje . "<br>";
-                                                } else {
-                                                    echo "Mensaje Original : ".$mensajeOriginal . "<br>";
-                                                }
-                                                
-                                                // Restar 5 horas a la fecha
-                                                $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
-                                                echo "Atendido por: " . ucwords($nombreUserEdicion) . "<br>Fecha: " . $nuevaFecha;
+                                            <?php
+                                            $prospectoExistente = $_GET['pr'];
+
+                                            // Restar 5 horas a la fecha
+                                            $nuevaFecha = date('Y-m-d H:i:s', strtotime($fecha . ' -5 hours'));
                                             ?>
 
 
@@ -372,15 +379,15 @@ $dni = $_SESSION['dni'];
                                                 // Establecer el valor en el input
                                                 document.getElementById('id-input').value = id;
                                             </script>
-                                            <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser'] ; ?>" readonly>
+                                            <input type="hidden" id="iduser" name="iduser" class="form-control" value="<?php echo $_SESSION['idUser']; ?>" readonly>
 
-                                            <input type="hidden" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr'] ; ?>" readonly>
+                                            <input type="hidden" id="pr" name="pr" class="form-control" value="<?php echo $_GET['pr']; ?>" readonly>
                                             <input type="hidden" id="idid" name="idid" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
-                                            <input type="hidden"  name="URL" class="form-control" value="<?php echo $url; ?>" readonly>
-                                            <input type="hidden"  name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
-                                            <input type="hidden"  name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
+                                            <input type="hidden" name="URL" class="form-control" value="<?php echo $url; ?>" readonly>
+                                            <input type="hidden" name="nombreFormulario" class="form-control" value="<?php echo $nombreFormulario; ?>" readonly>
+                                            <input type="hidden" name="ipFormulario" class="form-control" value="<?php echo $ipFormulario; ?>" readonly>
                                             <input type="hidden" name="aterrizaje" class="form-control" value="<?php echo $aterrizajeURL; ?>" readonly>
-                                            
+
                                             <?php
                                             // Verificar si $formActualizado está vacío
                                             if (empty($formActualizado)) {
@@ -392,10 +399,10 @@ $dni = $_SESSION['dni'];
 
 
 
-                                            <input type="hidden" id="iduser" name="empresaUser" class="form-control" value="<?php echo $_SESSION['empresaUser'] ; ?>" readonly>
+                                            <input type="hidden" id="iduser" name="empresaUser" class="form-control" value="<?php echo $_SESSION['empresaUser']; ?>" readonly>
                                             <?php if (empty($mensajeOriginal)) : ?>
                                                 <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensaje; ?>" readonly>
-                                                
+
                                             <?php else : ?>
                                                 <input type="hidden" id="mensajeOriginal" name="mensajeOriginal" class="form-control" value="<?php echo $mensajeOriginal; ?>" readonly>
                                             <?php endif; ?>
@@ -403,30 +410,30 @@ $dni = $_SESSION['dni'];
                                             <br>
                                             <?php if (empty($idOriginal)) : ?>
                                                 <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $_GET['id']; ?>" readonly>
-                                                
+
                                             <?php else : ?>
                                                 <input type="hidden" id="idOriginal" name="idOriginal" class="form-control" value="<?php echo $idOriginal; ?>" readonly>
                                             <?php endif; ?>
                                             <br>
-                                          
-                                            
-                                                <center>
+
+
+                                            <center>
                                                 <button type="submit" id="submitBtn" class="btn btn-outline-success btn-rounded waves-effect waves-light">Actualizar Datos</button>
-                                                </center>
-                                            
+                                            </center>
 
 
 
 
 
-                                                    
+
+
                                         </div>
                                         <!-- end col -->
-                                        
+
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
-                                    
+
                                 </form>
                                     <br>
 
