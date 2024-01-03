@@ -320,7 +320,7 @@ $dni = $_SESSION['dni'];
 
                                                 <!-- Campo de selección múltiple para atributos -->
                                                 <!-- <div id="cotizar" style="display: none;"> -->
-                                                <div id="cotizar" >
+                                                <div id="cotizar">
                                                     <div class="mb-12">
                                                         <!-- Radio buttons para elegir moneda -->
                                                         <div class="row mb-3">
@@ -397,7 +397,15 @@ $dni = $_SESSION['dni'];
                                                     </table>
 
                                                     <div class="row mb-3">
-                                                        <div class="col-sm-12">
+                                                        <div class="col-sm-4">
+                                                            <label>Subtotal:</label>
+                                                            <input type="text" class="form-control" id="subtotalInput" readonly>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label>Descuento:</label>
+                                                            <input type="text" class="form-control" id="descuentoInput">
+                                                        </div>
+                                                        <div class="col-sm-4">
                                                             <label>Total:</label>
                                                             <input type="text" class="form-control" id="totalInput" readonly>
                                                         </div>
@@ -407,6 +415,7 @@ $dni = $_SESSION['dni'];
                                                         document.addEventListener('DOMContentLoaded', function() {
                                                             // Código JavaScript aquí
                                                             let productos = [];
+                                                            let descuento = 0;
 
                                                             function actualizarTabla() {
                                                                 // Lógica para actualizar la tabla con los productos
@@ -428,8 +437,12 @@ $dni = $_SESSION['dni'];
                                                                     tablaBody.appendChild(fila);
                                                                 });
 
-                                                                // Calcular y actualizar el total
-                                                                let total = productos.reduce((acc, curr) => acc + (curr.precio * curr.cantidad), 0);
+                                                                // Calcular y actualizar el subtotal
+                                                                let subtotal = productos.reduce((acc, curr) => acc + (curr.precio * curr.cantidad), 0);
+                                                                document.querySelector('#subtotalInput').value = subtotal.toFixed(2);
+
+                                                                // Calcular y actualizar el total con descuento
+                                                                let total = (subtotal - descuento) * 1.18;
                                                                 document.querySelector('#totalInput').value = total.toFixed(2);
                                                             }
 
@@ -484,9 +497,14 @@ $dni = $_SESSION['dni'];
                                                                     eliminarProducto(id);
                                                                 }
                                                             });
+
+                                                            // Evento de cambio en el descuento
+                                                            document.querySelector('#descuentoInput').addEventListener('input', function() {
+                                                                descuento = parseFloat(document.querySelector('#descuentoInput').value) || 0;
+                                                                actualizarTabla();
+                                                            });
                                                         });
                                                     </script>
-
 
                                                     <!-- fin del div cotizar -->
                                                 </div>
