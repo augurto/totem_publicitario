@@ -176,7 +176,7 @@ $dni = $_SESSION['dni'];
                                     <!-- fin de datos api -->
 
                                     <!--   <form id="myForm" action="includes/guardar_user.php" method="post"> -->
-                                    <form id="myForm" action="includes/guardar_webformActualizado2.php" method="post">
+                                    <form id="myForm" action="includes/guardar_webformActualizado2.php" method="get">
                                         <div class="row">
                                             <div class="col-lg-12">
 
