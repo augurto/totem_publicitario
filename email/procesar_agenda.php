@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si la inserción fue exitosa
     if (mysqli_stmt_affected_rows($stmt) > 0) {
         // Redirigir a la página de éxito
-        header("Location: ../exito_agenda.php");
+        header("Location: ../vendedor.php");
         exit();
     } else {
         echo "Error al insertar en la tabla agendas: " . mysqli_error($con);

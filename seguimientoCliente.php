@@ -181,174 +181,46 @@ $dni = $_SESSION['dni'];
                                             <div class="col-lg-12">
 
 
-                                                <br>
-                                                <!-- inicio -->
+                                            <?php if (empty($documento)) : ?>
                                                 <div class="row mb-6">
-                                                    <label for="fuenteDato" class="col-sm-2 col-form-label">Tipo de Documento</label>
-                                                    <div class="col-sm-8">
-                                                        <select class="form-control select2" id="fuenteDato" name="fuenteDato">
-                                                            <option value="">Seleccione un tipo de documento</option>
-                                                            <option value="DNI">DNI</option>
-                                                            <option value="RUC">RUC</option>
-                                                            <option value="Carnet de Extranjería">Carnet de Extranjería</option>
-                                                            <option value="Pasaporte">Pasaporte</option>
-                                                        </select>
-                                                    </div>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>" >
                                                 </div>
-
-                                                <div id="datosDNI" class="row mb-6" style="display: none;">
-                                                    <label for="documento" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-8">
-                                                        <input class="form-control" type="number" id="documento" name="documento" maxlength="9">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <button type="button" class="btn btn-primary" onclick="buscarDatos()">
-                                                            <span class="glyphicon glyphicon-search"></span> Buscar
-                                                        </button>
-                                                    </div>
-                                                    <div class="row mb-6">
-                                                        <label for="datos" class="form-label">Datos</label>
-                                                        <input type="text" id="datos" name="datos" class="form-control" readonly>
-                                                    </div>
-                                                </div>
-
-                                                <div id="datosRUC" class="row mb-6" style="display: none;">
-                                                    <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
-                                                    <div class="col-sm-8">
-                                                        <input class="form-control" type="number" id="ruc" name="ruc" maxlength="11">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <button type="button" class="btn btn-primary" onclick="buscarRUC()">
-                                                            <span class="glyphicon glyphicon-search"></span> Buscar
-                                                        </button>
-                                                    </div>
-                                                    <div class="row mb-6">
-                                                        <label for="datosRUC" class="form-label">Datos RUC</label>
-                                                        <input type="text" id="datosRUC" name="datosRUC" class="form-control" readonly>
-                                                    </div>
-                                                </div>
-
-                                                <script>
-                                                    document.addEventListener('DOMContentLoaded', function() {
-                                                        var fuenteDato = document.getElementById('fuenteDato');
-                                                        var datosDNIBlock = document.getElementById('datosDNI');
-                                                        var datosRUCBlock = document.getElementById('datosRUC');
-
-                                                        fuenteDato.addEventListener('change', function() {
-                                                            var tipoDocumento = this.value;
-
-                                                            // Ocultar todos los bloques de datos
-                                                            datosDNIBlock.style.display = 'none';
-                                                            datosRUCBlock.style.display = 'none';
-
-                                                            // Mostrar el bloque correspondiente al tipo de documento seleccionado
-                                                            if (tipoDocumento === 'DNI') {
-                                                                datosDNIBlock.style.display = 'block';
-                                                            } else if (tipoDocumento === 'RUC') {
-                                                                datosRUCBlock.style.display = 'block';
-                                                            }
-                                                        });
-                                                    });
-                                                </script>
-
-
-
-                                                <!-- fin -->
+                                            </div>
+                                            <br>
                                                 <div class="row mb-6">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $datosForm; ?>">
+                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9">
                                                     </div>
                                                 </div>
-                                                <br>
+                                            <?php else : ?>
+                                               <div class="row mb-6">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">Datos</label>
+                                                <div class="col-sm-10">
+                                                <input class="form-control" type="text" placeholder="Nombres y Apellidos" id="example-text-input" name="datos" value="<?php echo $nombres_apellidos; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <br>
                                                 <div class="row mb-6">
+                                                    <label for="example-number-input" class="col-sm-2 col-form-label">Documento</label>
+                                                    <div class="col-sm-10">
 
-                                                    <label for="documento" class="col-sm-2 col-form-label">Datos</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" id="datos" name="datos" class="form-control" readonly>
+                                                        <input class="form-control" type="number" id="example-number-input" name="documento" maxlength="9" value="<?php echo $documento ?>" readonly>
                                                     </div>
-                                                    <label for="documento" class="col-sm-2 col-form-label">Documento</label>
-                                                    <div class="col-sm-8">
-                                                        <input class="form-control" type="number" id="documento" name="documento" maxlength="9">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <button type="button" class="btn btn-primary" onclick="buscarDatos()">
-                                                            <!-- Agrega el icono de búsqueda de Bootstrap -->
-                                                            <span class="glyphicon glyphicon-search"></span> Buscar
-                                                        </button>
-                                                    </div>
-
                                                 </div>
-                                                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                                            <?php endif; ?>
 
-                                                <script>
-                                                    $(document).ready(function() {
-                                                        $('#fuenteDato').change(function() {
-                                                            var tipoDocumento = $(this).val();
-                                                            $('.bloqueDatos').hide();
 
-                                                            if (tipoDocumento === 'DNI') {
-                                                                $('#datosDNI').show();
-                                                            } else if (tipoDocumento === 'RUC') {
-                                                                $('#datosRUC').show();
-                                                            }
-                                                        });
-
-                                                        function buscarDatos() {
-                                                            var documento = $("#documento").val();
-
-                                                            $.ajax({
-                                                                url: './includes/consulta_dni.php',
-                                                                method: 'POST',
-                                                                data: {
-                                                                    documento: documento
-                                                                },
-                                                                dataType: 'json',
-                                                                success: function(data) {
-                                                                    var nombre = data.nombres;
-                                                                    var apellidoPaterno = data.apellidoPaterno;
-                                                                    var apellidoMaterno = data.apellidoMaterno;
-                                                                    $("#datos").val(`${nombre} ${apellidoPaterno} ${apellidoMaterno}`);
-                                                                },
-                                                                error: function() {
-                                                                    alert("Error al buscar datos");
-                                                                }
-                                                            });
-                                                        }
-
-                                                        function buscarRUC() {
-                                                            var ruc = $("#ruc").val();
-
-                                                            $.ajax({
-                                                                url: './includes/consulta_ruc.php',
-                                                                method: 'POST',
-                                                                data: {
-                                                                    ruc: ruc
-                                                                },
-                                                                dataType: 'json',
-                                                                success: function(data) {
-                                                                    var razonSocial = data.razonSocial;
-                                                                    $("#datosRUC").val(razonSocial);
-                                                                },
-                                                                error: function() {
-                                                                    alert("Error al buscar datos RUC");
-                                                                }
-                                                            });
-                                                        }
-                                                    });
-                                                </script>
-
-                                                <br>
-
-                                                <script>
-                                                    document.getElementById("example-number-input").addEventListener("input", function() {
-                                                        if (this.value.length > 9) {
-                                                            this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
-                                                        }
-                                                    });
-                                                </script>
-                                                <br>
-                                                <!-- end row -->
+                                            <script>
+                                                document.getElementById("example-number-input").addEventListener("input", function() {
+                                                    if (this.value.length > 9) {
+                                                        this.value = this.value.slice(0, 9); // Limitar a 9 dígitos
+                                                    }
+                                                });
+                                            </script>
+                                            <br>
                                                 <br>
                                                 <!-- end row -->
                                                 <div class="row mb-6">
