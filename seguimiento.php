@@ -340,102 +340,61 @@ $dni = $_SESSION['dni'];
 
 
                                                         <!-- fin -->
-                                                        <label class="form-label">Atributos</label>
-                                                        <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
-                                                            <?php
-                                                            require 'includes/conexion.php'; // Incluimos el archivo de conexión
-
-                                                            $query = "SELECT ID, Atributo FROM atributos";
-                                                            $result = mysqli_query($con, $query);
-
-                                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                                $atributoID = $row['ID'];
-                                                                $atributoNombre = $row['Atributo'];
-                                                                echo "<option value='$atributoID'>$atributoNombre</option>";
-                                                            }
-
-                                                            // Liberar el resultado
-                                                            mysqli_free_result($result);
-
-                                                            // Cerrar la conexión
-                                                            mysqli_close($con);
-                                                            ?>
-                                                        </select>
+                                                        
                                                     </div>
 
                                                     <br>
-
-                                                    <!-- Campos de información del producto -->
                                                     <div class="row mb-3">
-                                                        <label for="producto" class="col-sm-2 col-form-label">Producto</label>
-                                                        <div class="col-sm-4">
-                                                            <input class="form-control" type="text" id="producto" name="producto" readonly>
-                                                        </div>
-                                                        <label for="precioPrincipal" class="col-sm-2 col-form-label">Precio Principal</label>
-                                                        <div class="col-sm-2">
-                                                            <input class="form-control" type="text" id="precioPrincipal" name="precioPrincipal" readonly>
-                                                        </div>
-                                                    </div>
+    <label class="col-sm-2 col-form-label">Moneda</label>
+    <div class="col-sm-10">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="0" checked>
+            <label class="form-check-label" for="monedaSoles">Soles</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="1">
+            <label class="form-check-label" for="monedaDolares">Dólares</label>
+        </div>
+    </div>
+</div>
 
-                                                    <!-- Otros campos relacionados con el producto -->
-                                                    <div class="row mb-3">
-                                                        <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
-                                                        <div class="col-sm-4">
-                                                            <input class="form-control" type="text" id="descripcion" name="descripcion" readonly>
-                                                        </div>
-                                                        <label for="precioSecundario" class="col-sm-2 col-form-label">Precio Secundario</label>
-                                                        <div class="col-sm-2">
-                                                            <input class="form-control" type="text" id="precioSecundario" name="precioSecundario" readonly>
-                                                        </div>
-                                                    </div>
+<label class="form-label">Atributos</label>
+<select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
 
-                                                    <div class="row mb-3">
-                                                        <label for="descuentoGeneral" class="col-sm-2 col-form-label">Descuento General</label>
-                                                        <div class="col-sm-4">
-                                                            <input class="form-control" type="text" id="descuentoGeneral" name="descuentoGeneral" readonly>
-                                                        </div>
-                                                        <!-- Los demás campos aquí... -->
-                                                    </div>
+<?php
+require 'includes/conexion.php'; // Incluimos el archivo de conexión
+
+// Obtener la moneda seleccionada
+$moneda = isset($_POST['moneda']) ? $_POST['moneda'] : 0; // Por defecto, Soles
+
+// Seleccionar la columna de precio según la moneda
+$columnaPrecio = ($moneda == 0) ? 'Precio' : 'precioDolar';
+
+// Consulta condicional según la moneda
+$query = "SELECT ID, $columnaPrecio AS Precio FROM productos";
+$result = mysqli_query($con, $query);
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $productoID = $row['ID'];
+    $productoPrecio = $row['Precio'];
+    echo "<option value='$productoID'>$productoPrecio</option>";
+}
+
+// Liberar el resultado
+mysqli_free_result($result);
+
+// Cerrar la conexión
+mysqli_close($con);
+?>
+</select>
 
 
-
-                                                    <!-- Botón Agregar -->
                                                     <div class="row mb-3">
                                                         <div class="col-sm-2 offset-sm-10">
                                                             <button type="button" class="btn btn-primary agregarProducto">Agregar</button>
                                                         </div>
                                                     </div>
 
-
-                                                    <!-- Agregar tabla para mostrar los productos seleccionados -->
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Nombre del Producto</th>
-                                                                <th>Moneda</th>
-                                                                <th>Precio Principal</th> <!-- Cambiar el encabezado a "Precio Principal" -->
-                                                                <th>Precio Secundario</th> <!-- Nueva columna para Precio Secundario -->
-                                                                <th>Cantidad</th>
-                                                                <th>Descuento en Monto</th>
-                                                                <th>Descuento Máximo</th> <!-- Nueva columna -->
-                                                                <th>Subtotal</th>
-                                                                <th>Eliminar</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="tablaProductos">
-                                                            <!-- Filas de productos -->
-                                                        </tbody>
-                                                    </table>
-
-
-
-
-                                                    <!-- Mostrar el total de la compra -->
-                                                    <div>
-                                                        <strong>Total: </strong><span id="total">0</span>
-
-
-                                                    </div>
 
                                                     <!-- fin del div cotizar -->
                                                 </div>
