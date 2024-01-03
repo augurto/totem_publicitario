@@ -340,41 +340,41 @@ $dni = $_SESSION['dni'];
 
 
                                                         <!-- fin -->
-                                                        
+
                                                     </div>
 
                                                     <br>
                                                     <label class="form-label">Atributos</label>
-<select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
+                                                    <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
 
-<?php
-require 'includes/conexion.php'; // Incluimos el archivo de conexión
+                                                        <?php
+                                                        require 'includes/conexion.php'; // Incluimos el archivo de conexión
 
-// Obtener la moneda seleccionada
-$moneda = isset($_POST['moneda']) ? $_POST['moneda'] : 0; // Por defecto, Soles
+                                                        // Obtener la moneda seleccionada
+                                                        $moneda = isset($_POST['moneda']) ? $_POST['moneda'] : 0; // Por defecto, Soles
 
-// Seleccionar la columna de precio según la moneda
-$columnaPrecio = ($moneda == 0) ? 'Precio' : 'precioDolar';
+                                                        // Seleccionar la columna de precio según la moneda
+                                                        $columnaPrecio = ($moneda == 0) ? 'Precio' : 'precioDolar';
 
-// Consulta condicional según la moneda
-$query = "SELECT ID, Nombre, $columnaPrecio AS Precio FROM productos";
-$result = mysqli_query($con, $query);
+                                                        // Consulta condicional según la moneda
+                                                        $query = "SELECT ID, Nombre, $columnaPrecio AS Precio FROM productos";
+                                                        $result = mysqli_query($con, $query);
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $productoID = $row['ID'];
-    $productoNombre = $row['Nombre'];
-    $productoPrecio = $row['Precio'];
-    echo "<option value='$productoID'>$productoNombre - $productoPrecio</option>";
-}
+                                                        while ($row = mysqli_fetch_assoc($result)) {
+                                                            $productoID = $row['ID'];
+                                                            $productoNombre = $row['Nombre'];
+                                                            $productoPrecio = $row['Precio'];
+                                                            echo "<option value='$productoID'>$productoNombre - $productoPrecio</option>";
+                                                        }
 
-// Liberar el resultado
-mysqli_free_result($result);
+                                                        // Liberar el resultado
+                                                        mysqli_free_result($result);
 
-// Cerrar la conexión
-mysqli_close($con);
-?>
-</select>
-
+                                                        // Cerrar la conexión
+                                                        mysqli_close($con);
+                                                        ?>
+                                                    </select>
+                                                    <!-- Tu código HTML/PHP anterior -->
 
                                                     <div class="row mb-3">
                                                         <div class="col-sm-2 offset-sm-10">
@@ -382,192 +382,117 @@ mysqli_close($con);
                                                         </div>
                                                     </div>
 
+                                                    <table class="table table-bordered" id="productosTabla">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Nombre</th>
+                                                                <th>Precio</th>
+                                                                <th>Cantidad</th>
+                                                                <th>Eliminar</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- Aquí se agregarán dinámicamente los productos -->
+                                                        </tbody>
+                                                    </table>
+
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-12">
+                                                            <label>Total:</label>
+                                                            <input type="text" class="form-control" id="totalInput" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <script>
+                                                        document.addEventListener('DOMContentLoaded', function() {
+                                                            // Código JavaScript aquí
+                                                            let productos = [];
+
+                                                            function actualizarTabla() {
+                                                                // Lógica para actualizar la tabla con los productos
+                                                                let tablaBody = document.querySelector('#productosTabla tbody');
+                                                                tablaBody.innerHTML = '';
+
+                                                                productos.forEach(producto => {
+                                                                    let fila = document.createElement('tr');
+                                                                    fila.innerHTML = `
+                <td>${producto.nombre}</td>
+                <td>${producto.precio}</td>
+                <td>
+                    <input type="number" class="form-control cantidadInput" value="${producto.cantidad}" min="1">
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger eliminarProducto" data-id="${producto.id}">Eliminar</button>
+                </td>
+            `;
+                                                                    tablaBody.appendChild(fila);
+                                                                });
+
+                                                                // Calcular y actualizar el total
+                                                                let total = productos.reduce((acc, curr) => acc + (curr.precio * curr.cantidad), 0);
+                                                                document.querySelector('#totalInput').value = total.toFixed(2);
+                                                            }
+
+                                                            function agregarProducto(id, nombre, precio) {
+                                                                // Lógica para agregar un producto al array
+                                                                productos.push({
+                                                                    id,
+                                                                    nombre,
+                                                                    precio,
+                                                                    cantidad: 1
+                                                                });
+                                                                actualizarTabla();
+                                                            }
+
+                                                            function eliminarProducto(id) {
+                                                                // Lógica para eliminar un producto del array
+                                                                productos = productos.filter(producto => producto.id !== id);
+                                                                actualizarTabla();
+                                                            }
+
+                                                            // Evento de clic en el botón "Agregar"
+                                                            document.querySelector('.agregarProducto').addEventListener('click', function() {
+                                                                // Lógica para obtener el producto seleccionado del select y agregarlo a la tabla
+                                                                let select = document.querySelector('#atributosSelect');
+                                                                let selectedOption = select.options[select.selectedIndex];
+                                                                let productoID = selectedOption.value;
+                                                                let productoNombrePrecio = selectedOption.text.split(' - ');
+                                                                let productoNombre = productoNombrePrecio[0].trim();
+                                                                let productoPrecio = parseFloat(productoNombrePrecio[1].trim());
+
+                                                                agregarProducto(productoID, productoNombre, productoPrecio);
+                                                            });
+
+                                                            // Evento de cambio en la cantidad de un producto
+                                                            document.addEventListener('input', function(event) {
+                                                                if (event.target.classList.contains('cantidadInput')) {
+                                                                    let id = event.target.closest('tr').querySelector('.eliminarProducto').dataset.id;
+                                                                    let cantidad = parseInt(event.target.value);
+
+                                                                    let producto = productos.find(p => p.id === id);
+                                                                    if (producto) {
+                                                                        producto.cantidad = cantidad;
+                                                                        actualizarTabla();
+                                                                    }
+                                                                }
+                                                            });
+
+                                                            // Evento de clic en el botón "Eliminar"
+                                                            document.addEventListener('click', function(event) {
+                                                                if (event.target.classList.contains('eliminarProducto')) {
+                                                                    let id = event.target.dataset.id;
+                                                                    eliminarProducto(id);
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+
 
                                                     <!-- fin del div cotizar -->
                                                 </div>
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-                                                <script>
-                                                    $(document).ready(function() {
-                                                        var tipoClienteSelect = $('#tipoCliente');
-                                                        var cotizarDiv = $('#cotizar');
 
-                                                        // Oculta el div al iniciar
-                                                        cotizarDiv.hide();
-
-                                                        tipoClienteSelect.on('change', function() {
-                                                            var selectedValue = $(this).val();
-
-                                                            if (selectedValue == 6) {
-                                                                cotizarDiv.show();
-                                                            } else {
-                                                                cotizarDiv.hide();
-                                                            }
-                                                        });
-
-                                                        $("input[name='moneda']").on('change', function() {
-                                                            actualizarTabla(); // Llamar a actualizarTabla cuando cambia la moneda
-                                                        });
-                                                        $('.select2-multiple').select2();
-
-                                                        var productosSeleccionados = []; // Almacenar los productos seleccionados
-
-                                                        // Actualizar la tabla de productos seleccionados
-                                                        function actualizarTabla() {
-                                                            var total = 0;
-
-                                                            // Limpiar la tabla antes de actualizarla
-                                                            $('#tablaProductos').empty();
-
-                                                            // Obtener el tipo de moneda seleccionada (0 para Soles y 1 para Dólares)
-                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
-
-                                                            // Recorrer los productos seleccionados
-                                                            productosSeleccionados.forEach(function(producto) {
-                                                                var cantidad = parseInt(producto.cantidad) || 1;
-                                                                var precioPrincipal = parseFloat(producto.PrecioPrincipal); // Precio Principal
-                                                                var precioSecundario = parseFloat(producto.PrecioSecundario); // Precio Secundario
-                                                                var descuentoGeneral = parseFloat(producto.DescuentoGeneral) || 0; // Descuento General
-
-                                                                // Calcular el subtotal sin considerar el descuento
-                                                                var subtotal = cantidad * precioPrincipal; // Usar el precio principal
-
-                                                                // Aplicar el descuento al subtotal del producto
-                                                                subtotal -= descuentoGeneral;
-
-                                                                total += subtotal;
-
-                                                                var simboloMoneda = (tipoMonedaSeleccionada === 0) ? 'S/' : '$';
-
-                                                                var fila = '<tr>' +
-                                                                    '<td><span>' + producto.Nombre + '</span></td>' +
-                                                                    '<td><span>' + (tipoMonedaSeleccionada === 0 ? 'S/' : '$') + '</span></td>' +
-                                                                    '<td><span>' + producto.PrecioPrincipal.toFixed(2) + '</span></td>' +
-                                                                    '<td><span>' + producto.PrecioSecundario.toFixed(2) + '</span></td>' +
-                                                                    '<td><input type="text" name="cantidad[]" value="' + cantidad + '" style="width: 50px;"></td>' +
-                                                                    '<td><span>' + subtotal.toFixed(2) + '</span></td>' +
-                                                                    '<td><button class="btn btn-danger eliminarFila">Eliminar</button></td>' +
-                                                                    '</tr>';
-
-                                                                $('#tablaProductos').append(fila);
-                                                            });
-
-
-                                                            // Actualizar el total
-                                                            $('#total').text(total.toFixed(2));
-                                                        }
-
-
-
-
-                                                        $('.agregarProducto').on('click', function() {
-                                                            var productoNombre = $('#producto').val();
-                                                            var productoPrecio = $('#precio').val();
-                                                            var descuentoMaximo = parseFloat($('#descuentoMax').val()) || 0; // Nuevo campo para el descuento máximo
-
-                                                            if (productoNombre && productoPrecio) {
-                                                                agregarProducto(productoNombre, parseFloat(productoPrecio), 0, descuentoMaximo); // Agregar el descuento máximo al llamar a agregarProducto
-                                                            }
-                                                        });
-
-                                                        function updateProduct() {
-                                                            var selectedAtributos = $('.select2-multiple').val();
-                                                            var tipoMonedaSeleccionada = $("input[name='moneda']:checked").val();
-
-                                                            $.ajax({
-                                                                type: 'POST',
-                                                                url: 'includes/buscarProducto.php',
-                                                                data: {
-                                                                    atributos: selectedAtributos,
-                                                                    tipoMoneda: tipoMonedaSeleccionada
-                                                                },
-                                                                success: function(response) {
-                                                                    if (response.startsWith('Ningún producto coincide con los atributos seleccionados.')) {
-                                                                        var atributoID = response.split('.').pop().trim();
-                                                                        $('#atributosSelect option[value="' + atributoID + '"]').css('background-color', 'red');
-                                                                        $('#producto').val('Ningún producto coincide');
-                                                                        $('#precioPrincipal').val(''); // Cambia el campo a 'precioPrincipal'
-                                                                    } else {
-                                                                        $('#atributosSelect option').css('background-color', '');
-                                                                        var productoInfo = JSON.parse(response);
-                                                                        $('#producto').val(productoInfo.Nombre);
-                                                                        $('#precioPrincipal').val(productoInfo.PrecioPrincipal); // Cambia el campo a 'precioPrincipal'
-                                                                        $('#descripcion').val(productoInfo.Descripcion);
-                                                                        $('#precioSecundario').val(productoInfo.PrecioSecundario); // Agrega el campo 'precioSecundario'
-                                                                        $('#descuentoGeneral').val(productoInfo.DescuentoGeneral); // Agrega el campo 'descuentoGeneral'
-                                                                        console.log(productoInfo);
-                                                                    }
-                                                                }
-                                                            });
-                                                        }
-
-
-
-                                                        function agregarProducto(nombre, precioPrincipal, precioSecundario, descuentoGeneral) {
-                                                            console.log('Nombre:', nombre);
-                                                            console.log('Precio Principal:', precioPrincipal);
-                                                            console.log('Precio Secundario:', precioSecundario);
-                                                            console.log('Descuento General:', descuentoGeneral);
-                                                            var tipoMonedaSeleccionada = parseInt($("input[name='moneda']:checked").val());
-
-                                                            productosSeleccionados.push({
-                                                                Nombre: nombre,
-                                                                PrecioPrincipal: parseFloat(precioPrincipal), // Usar el valor proporcionado
-                                                                PrecioSecundario: parseFloat(precioSecundario), // Usar el valor proporcionado
-                                                                DescuentoGeneral: parseFloat(descuentoGeneral), // Usar el valor proporcionado
-                                                                cantidad: 1,
-                                                                tipoMoneda: tipoMonedaSeleccionada
-                                                            });
-
-                                                            // Limpiar todos los campos relacionados con la información del producto
-                                                            $('#producto').val('');
-                                                            $('#precioPrincipal').val('');
-                                                            $('#precioSecundario').val('');
-                                                            $('#descuentoGeneral').val('');
-                                                            $('#descripcion').val(''); // Limpiar también la casilla de descripción
-                                                            $('.select2-multiple').val(null).trigger('change');
-
-                                                            actualizarTabla(); // Actualizar la tabla después de agregar el producto
-                                                        }
-
-
-
-
-
-                                                        $('.select2-multiple').on('change', function() {
-                                                            updateProduct();
-                                                        });
-
-                                                        $('.agregarProducto').on('click', function() {
-                                                            var productoNombre = $('#producto').val();
-                                                            var productoPrecioPrincipal = parseFloat($('#precioPrincipal').val());
-                                                            var productoPrecioSecundario = parseFloat($('#precioSecundario').val());
-                                                            var productoDescuentoGeneral = parseFloat($('#descuentoGeneral').val());
-
-                                                            if (productoNombre) {
-                                                                agregarProducto(productoNombre, productoPrecioPrincipal, productoPrecioSecundario, productoDescuentoGeneral);
-                                                            }
-                                                        });
-
-
-
-
-                                                        // Actualizar la tabla cuando cambia la cantidad
-                                                        $('#tablaProductos').on('change', '.cantidad', function() {
-                                                            var index = $(this).closest('tr').index();
-                                                            var nuevaCantidad = parseInt($(this).val()) || 1;
-                                                            productosSeleccionados[index].cantidad = nuevaCantidad;
-                                                            actualizarTabla();
-                                                        });
-
-                                                        // Eliminar un producto de la tabla
-                                                        $('#tablaProductos').on('click', '.eliminar', function() {
-                                                            var index = $(this).closest('tr').index();
-                                                            productosSeleccionados.splice(index, 1);
-                                                            actualizarTabla();
-                                                        });
-                                                    });
-                                                </script>
 
 
 
