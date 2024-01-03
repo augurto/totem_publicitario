@@ -311,7 +311,7 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                                     <!-- Dropdown -->
                                                     <div class="dropdown mt-2">
                                                         <?php
-                                                        $estado_asignacion = $row_asignacion['estado_asignacion'];
+                                                        $estado_asignacion = $row['estado_agenda'];
                                                         $btn_class = 'btn-secondary';
                                                         $btn_text = 'Pendiente';
 
