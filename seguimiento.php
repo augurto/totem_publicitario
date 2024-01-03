@@ -183,9 +183,10 @@ $dni = $_SESSION['dni'];
 
                                                 <br>
                                                 <!-- inicio -->
-                                                <div class="row mb-6">
+                                                <div class="mb-12">
+                                                    
                                                     <label for="fuenteDato" class="col-sm-2 col-form-label">Tipo de Documento</label>
-                                                    <div class="col-sm-8">
+                                                    
                                                         <select class="form-control select2" id="fuenteDato" name="fuenteDato">
                                                             <option value="">Seleccione un tipo de documento</option>
                                                             <option value="DNI">DNI</option>
@@ -193,7 +194,7 @@ $dni = $_SESSION['dni'];
                                                             <option value="Carnet de Extranjería">Carnet de Extranjería</option>
                                                             <option value="Pasaporte">Pasaporte</option>
                                                         </select>
-                                                    </div>
+                                                 
                                                 </div>
 
                                                 
