@@ -320,7 +320,7 @@ $dni = $_SESSION['dni'];
 
                                                 <!-- Campo de selección múltiple para atributos -->
                                                 <!-- <div id="cotizar" style="display: none;"> -->
-                                                <div id="cotizar" style="display: none;">
+                                                <div id="cotizar" >
                                                     <div class="mb-12">
                                                         <!-- Radio buttons para elegir moneda -->
                                                         <div class="row mb-3">
