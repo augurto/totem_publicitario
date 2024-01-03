@@ -97,7 +97,7 @@ if (mysqli_query($con, $sql)) {
         sleep(2);
 
         // Redirigir de nuevo al mismo formulario
-        header("Location: ../tu_formulario.php");
+        header("Location: ../email_enviar.php");
         exit();
 }
 

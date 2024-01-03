@@ -26,19 +26,26 @@ if ($valor !== null && is_numeric($valor)) {
         // Verificar si la actualización fue exitosa
         if (mysqli_stmt_affected_rows($stmt) > 0) {
             echo "Estado de la agenda actualizado correctamente.";
+            header("Location: ../recordatorio.php");
+            exit();
         } else {
             echo "Error al actualizar el estado de la agenda: " . mysqli_error($con);
+            header("Location: ../recordatorio.php");
+            exit();
         }
 
         // Cerrar la sentencia
         mysqli_stmt_close($stmt);
     } else {
         echo "ID del documento no válido.";
+        header("Location: ../recordatorio.php");
+        exit();
     }
 } else {
     echo "Valor no válido.";
+    header("Location: ../recordatorio.php");
+    exit();
 }
 
 // Cerrar la conexión
 mysqli_close($con);
-?>
