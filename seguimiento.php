@@ -184,20 +184,20 @@ $dni = $_SESSION['dni'];
                                                 <br>
                                                 <!-- inicio -->
                                                 <div class="mb-12">
-                                                    
-                                                    <label for="fuenteDato" class="col-sm-2 col-form-label">Tipo de Documento</label>
-                                                    
-                                                        <select class="form-control select2" id="fuenteDato" name="fuenteDato">
-                                                            <option value="">Seleccione un tipo de documento</option>
-                                                            <option value="DNI">DNI</option>
-                                                            <option value="RUC">RUC</option>
-                                                            <option value="Carnet de Extranjería">Carnet de Extranjería</option>
-                                                            <option value="Pasaporte">Pasaporte</option>
-                                                        </select>
-                                                 
+
+                                                    <label for="fuenteDato" class="form-label">Tipo de Documento</label>
+
+                                                    <select class="form-control select2" id="fuenteDato" name="fuenteDato">
+                                                        <option value="">Seleccione un tipo de documento</option>
+                                                        <option value="DNI">DNI</option>
+                                                        <option value="RUC">RUC</option>
+                                                        <option value="Carnet de Extranjería">Carnet de Extranjería</option>
+                                                        <option value="Pasaporte">Pasaporte</option>
+                                                    </select>
+
                                                 </div>
 
-                                                
+
                                                 <br>
                                                 <!-- end row -->
                                                 <div class="row mb-6">
@@ -336,6 +336,52 @@ $dni = $_SESSION['dni'];
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="mb-12">
+                                                            <label class="form-label">Selecciona un Campo</label>
+                                                            <select class="form-control select2" id="campoSeleccionado" name="campoSeleccionado">
+                                                                <?php
+                                                                // Array con los nombres de los campos de la tabla "producto"
+                                                                $campos = array("ID", "Nombre", "Descripcion", "Precio", "precioDolar", "precioMin", "precioDolarMin", "descuentoMax", "descuentoMaxDolar");
+
+                                                                // Generar las opciones dentro del select
+                                                                foreach ($campos as $campo) {
+                                                                    echo "<option value='" . $campo . "'>" . $campo . "</option>";
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                            <button onclick="agregarCampo()">Agregar</button>
+                                                        </div>
+
+                                                        <!-- Espacio para mostrar la tabla -->
+                                                        <div>
+                                                            <table id="tablaProductos">
+                                                                <!-- Aquí se mostrarán los datos en tiempo real -->
+                                                            </table>
+                                                        </div>
+
+                                                        <!-- Script JavaScript para manejar la lógica de agregar campos -->
+                                                        <script>
+                                                            function agregarCampo() {
+                                                                var campoSeleccionado = document.getElementById("campoSeleccionado").value;
+                                                                var tablaProductos = document.getElementById("tablaProductos");
+
+                                                                // Obtener el valor seleccionado y agregarlo a la tabla (excluyendo el campo ID)
+                                                                if (campoSeleccionado !== "ID") {
+                                                                    // Lógica para obtener el valor real del campo seleccionado (puedes usar AJAX para obtener los datos de la base de datos)
+                                                                    var valorCampo = "ValorEjemplo";
+
+                                                                    // Crear una nueva fila y agregarla a la tabla
+                                                                    var newRow = tablaProductos.insertRow(tablaProductos.rows.length);
+                                                                    var cell1 = newRow.insertCell(0);
+                                                                    var cell2 = newRow.insertCell(1);
+
+                                                                    // Agregar los datos a las celdas
+                                                                    cell1.innerHTML = campoSeleccionado;
+                                                                    cell2.innerHTML = valorCampo;
+                                                                }
+                                                            }
+                                                        </script>
+
                                                         <label class="form-label">Atributos</label>
                                                         <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
                                                             <?php
