@@ -319,7 +319,7 @@ $dni = $_SESSION['dni'];
                                                 <br>
 
                                                 <!-- Campo de selección múltiple para atributos -->
-                                                <!-- <div id="cotizar" style="display: none;"> -->
+                                                <div id="cotizar" style="display: none;">
                                                 <div id="cotizar">
                                                     <div class="mb-12">
                                                         <!-- Radio buttons para elegir moneda -->
@@ -519,6 +519,7 @@ $dni = $_SESSION['dni'];
                                                     </script>
 
                                                     <!-- fin del div cotizar -->
+                                                </div>
                                                 </div>
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
