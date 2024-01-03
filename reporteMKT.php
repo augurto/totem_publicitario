@@ -277,6 +277,41 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
+                                <h4 class="card-title mb-4">Filtro por Usuarios</h4>
+
+                                <div>
+
+                                <?php
+                                            // Consulta SQL para obtener las filas donde idAterrizajeFuente = 0
+                                            $query = "SELECT * FROM user WHERE tipo_user !=2";
+                                            $result = mysqli_query($con, $query);
+
+                                            // Verificar si se encontraron resultados
+                                            if ($result) {
+                                                echo '<label class="form-label">Fuente</label>';
+                                                echo '<select class="form-control select2" name="fuente">';
+                                                echo '<option>Seleccione la fuente</option>';
+
+                                                // Recorrer los resultados y generar las opciones del select
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $id_fuente = $row['nombre_user'];
+                                                    $descripcionFuente = $row['email_user'];
+                                                    echo "<option value='$id_fuente'>$descripcionFuente</option>";
+                                                }
+
+                                                echo '</select>';
+                                            } else {
+                                                echo "Error en la consulta: " . mysqli_error($con);
+                                            }
+                                            ?>
+
+                                </div>
+                            </div>
+                        </div><!--end card-->
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
                                 <h4 class="card-title mb-4">Factura</h4>
 
                                 <div id="spline_area" class="apex-charts" dir="ltr">1.074,11 PEN</div>
