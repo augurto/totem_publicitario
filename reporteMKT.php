@@ -290,7 +290,7 @@ while ($row = mysqli_fetch_assoc($resultFuente)) {
                                             if ($result) {
                                                 
                                                 echo '<select class="form-control select2" name="fuente">';
-                                                echo '<option>Seleccione la fuente</option>';
+                                                echo '<option>Seleccione Vendedor</option>';
 
                                                 // Recorrer los resultados y generar las opciones del select
                                                 while ($row = mysqli_fetch_assoc($result)) {
