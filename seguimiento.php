@@ -344,21 +344,7 @@ $dni = $_SESSION['dni'];
                                                     </div>
 
                                                     <br>
-                                                    <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">Moneda</label>
-    <div class="col-sm-10">
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="moneda" id="monedaSoles" value="0" checked>
-            <label class="form-check-label" for="monedaSoles">Soles</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="moneda" id="monedaDolares" value="1">
-            <label class="form-check-label" for="monedaDolares">Dólares</label>
-        </div>
-    </div>
-</div>
-
-<label class="form-label">Atributos</label>
+                                                    <label class="form-label">Atributos</label>
 <select class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
 
 <?php
@@ -371,13 +357,14 @@ $moneda = isset($_POST['moneda']) ? $_POST['moneda'] : 0; // Por defecto, Soles
 $columnaPrecio = ($moneda == 0) ? 'Precio' : 'precioDolar';
 
 // Consulta condicional según la moneda
-$query = "SELECT ID, $columnaPrecio AS Precio FROM productos";
+$query = "SELECT ID, Nombre, $columnaPrecio AS Precio FROM productos";
 $result = mysqli_query($con, $query);
 
 while ($row = mysqli_fetch_assoc($result)) {
     $productoID = $row['ID'];
+    $productoNombre = $row['Nombre'];
     $productoPrecio = $row['Precio'];
-    echo "<option value='$productoID'>$productoPrecio</option>";
+    echo "<option value='$productoID'>$productoNombre - $productoPrecio</option>";
 }
 
 // Liberar el resultado
