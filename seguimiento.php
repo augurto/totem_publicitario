@@ -370,7 +370,7 @@ $dni = $_SESSION['dni'];
                                                         </div>
 
                                                         <br>
-                                                        <label class="form-label">Atributos</label>
+                                                        <label class="form-label">Planes</label>
                                                         <select class="select2 form-control select2" data-placeholder="Selecciona atributos del Producto" id="atributosSelect">
 
                                                             <?php
@@ -390,7 +390,7 @@ $dni = $_SESSION['dni'];
                                                                 $productoID = $row['ID'];
                                                                 $productoNombre = $row['Nombre'];
                                                                 $productoPrecio = $row['Precio'];
-                                                                echo "<option value='$productoID'>$productoNombre - $productoPrecio</option>";
+                                                                echo "<option value='$productoID'>$productoNombre</option>";
                                                             }
 
                                                             // Liberar el resultado
@@ -482,7 +482,7 @@ $dni = $_SESSION['dni'];
                                                                     });
                                                                     actualizarTabla();
                                                                     // Limpiar el select después de agregar un producto
-                                                                    document.querySelector('#atributosSelect').selectedIndex = 0;
+                                                                    document.getElementById('atributosSelect').value = '';
                                                                 }
 
                                                                 function eliminarProducto(id) {
